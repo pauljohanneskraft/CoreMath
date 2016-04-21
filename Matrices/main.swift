@@ -22,20 +22,23 @@ var matrixF = [[3]]
 
 var matrices = [matrixA, matrixB, matrixC, matrixD, matrixE, matrixF]
 
-print("\\documentclass[12pt]{article}\n\\usepackage{amsmath}\n\\begin{document}\n")
+var out = "\\documentclass[12pt]{article}\n\\usepackage{amsmath}\n\\begin{document}\n"
 
 for matrix1 in matrices {
     for matrix2 in matrices {
         if let product = matrix1 * matrix2 {
-            print("\\[")
-            print(matrix1)
-            print("\\times")
-            print(matrix2)
-            print("=")
-            print(product)
-            print("\\] \\[ \\]")
+            out += "\\[\n"
+            out += toLaTeX(matrix1)
+            out += "\\times\n"
+            out += toLaTeX(matrix2)
+            out += "=\n"
+            out += toLaTeX(product)
+            out += "\\] \\[ \\]\n"
         }
     }
 }
 
-print("\\end{document}\n")
+out += "\\end{document}\n"
+
+print(out)
+

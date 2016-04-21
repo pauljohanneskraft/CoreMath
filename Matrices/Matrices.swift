@@ -9,16 +9,17 @@
 import Foundation
 
 infix operator * { associativity left precedence 140 }
-func * (left: [[Int]], right: [[Int]]) -> [[Int]]? {
+
+func * <T: NumericType>(left: [[T]], right: [[T]]) -> [[T]]? {
     if left[0].count != right.count { return nil }
-    var matrix : [[Int]] = []
+    var matrix : [[T]] = []
     
     for i in 0..<left.count {
-        var array : [Int] = []
+        var array : [T] = []
         for j in 0..<right[0].count {
-            var value = 0
+            var value : T = T(0)
             for k in 0..<right.count {
-                value += left[i][k]*right[k][j]
+                value = value + (left[i][k]*right[k][j])
             }
             array.append(value)
         }
@@ -27,18 +28,17 @@ func * (left: [[Int]], right: [[Int]]) -> [[Int]]? {
     return matrix
 }
 
-func print(matrix: [[Int]]) {
+func print<T>(matrix: [[T]]) {
     print(toLaTeX(matrix))
 }
 
-func toLaTeX(matrix: [[Int]]) -> String {
+func toLaTeX<T>(matrix: [[T]]) -> String {
     var out = "\\begin{pmatrix}\n"
     for array in matrix {
-        for v in array.dropLast() {
-            out += "\(v) & "
+        for value in array.dropLast() {
+            out += "\(value) & "
         }
-        out += "\(array[array.count - 1]) \\\\\n"
+        out += "\(array.last!) \\\\\n"
     }
-    out += "\\end{pmatrix}"
-    return out
+    return out + "\\end{pmatrix}"
 }
