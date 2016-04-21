@@ -26,14 +26,13 @@ print("\\documentclass[12pt]{article}\n\\usepackage{amsmath}\n\\begin{document}"
 
 for matrix1 in matrices {
     for matrix2 in matrices {
-        let product = matrix1 * matrix2
-        if product != nil {
+        if let product = matrix1 * matrix2 {
             print("\\[")
             print(matrix1)
             print("\\times")
             print(matrix2)
             print("=")
-            print(product!)
+            print(product)
             print("\\] \\[ \\]")
         }
     }
