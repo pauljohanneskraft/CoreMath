@@ -22,6 +22,8 @@ var matrixF = [[3]]
 
 var matrices = [matrixA, matrixB, matrixC, matrixD, matrixE, matrixF]
 
+print("\\documentclass[12pt]{article}\n\\usepackage{amsmath}\n\\begin{document}")
+
 for matrix1 in matrices {
     for matrix2 in matrices {
         let product = matrix1 * matrix2
@@ -30,9 +32,11 @@ for matrix1 in matrices {
             print(matrix1)
             print("\\times")
             print(matrix2)
-            print("\t=")
+            print("=")
             print(product!)
-            print("\\]")
+            print("\\] \\[ \\]")
         }
     }
 }
+
+print("\\end{document}")
