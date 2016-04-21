@@ -28,6 +28,26 @@ func * <T: NumericType>(left: [[T]], right: [[T]]) -> [[T]]? {
     return matrix
 }
 
+func * <T: NumericType>(left: [[T]], right: T) -> [[T]] {
+    var left = left
+    for row in 0..<left.count {
+        for column in 0..<left[row].count {
+            left[row][column] = left[row][column]*right
+        }
+    }
+    return left
+}
+
+func * <T: NumericType>(left: T, right: [[T]]) -> [[T]] {
+    var right = right
+    for row in 0..<right.count {
+        for column in 0..<right[row].count {
+            right[row][column] = right[row][column]*left
+        }
+    }
+    return right
+}
+
 func print<T>(matrix: [[T]]) {
     print(toLaTeX(matrix))
 }
@@ -42,3 +62,42 @@ func toLaTeX<T>(matrix: [[T]]) -> String {
     }
     return out + "\\end{pmatrix}"
 }
+
+func toLaTeX<T : NumericType>(matrix1: [[T]], _ matrix2: [[T]]) -> String {
+    var out = ""
+    if let product = matrix1 * matrix2 {
+        out = "\\[\n"
+        out += toLaTeX(matrix1)
+        out += "\\times\n"
+        out += toLaTeX(matrix2)
+        out += "=\n"
+        out += toLaTeX(product)
+        out += "\\] \\[ \\]\n"
+    }
+    return out
+}
+
+func toLaTeX<T : NumericType>(scalar: T, _ matrix: [[T]]) -> String {
+    let product = scalar * matrix
+    var out = "\\[\n"
+    out += "\(scalar)"
+    out += "\\times\n"
+    out += toLaTeX(matrix)
+    out += "=\n"
+    out += toLaTeX(product)
+    out += "\\] \\[ \\]\n"
+    return out
+}
+
+func toLaTeX<T : NumericType>(matrix: [[T]], _ scalar: T) -> String {
+    let product = matrix * scalar
+    var out = "\\[\n"
+    out += toLaTeX(matrix)
+    out += "\\times\n"
+    out += "\(scalar)"
+    out += "=\n"
+    out += toLaTeX(product)
+    out += "\\] \\[ \\]\n"
+    return out
+}
+

@@ -26,19 +26,14 @@ var out = "\\documentclass[12pt]{article}\n\\usepackage{amsmath}\n\\begin{docume
 
 for matrix1 in matrices {
     for matrix2 in matrices {
-        if let product = matrix1 * matrix2 {
-            out += "\\[\n"
-            out += toLaTeX(matrix1)
-            out += "\\times\n"
-            out += toLaTeX(matrix2)
-            out += "=\n"
-            out += toLaTeX(product)
-            out += "\\] \\[ \\]\n"
-        }
+        out += toLaTeX(matrix1, matrix2)
     }
 }
 
 out += "\\end{document}\n"
 
 print(out)
+
+// printing in the end for possible extension of project
+// (maybe directly compiling the LaTeX-file and letting the user decide where to store the .pdf-file)
 
