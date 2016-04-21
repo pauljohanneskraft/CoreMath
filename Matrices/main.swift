@@ -22,7 +22,7 @@ var matrixF = [[3]]
 
 var matrices = [matrixA, matrixB, matrixC, matrixD, matrixE, matrixF]
 
-print("\\documentclass[12pt]{article}\n\\usepackage{amsmath}\n\\begin{document}")
+print("\\documentclass[12pt]{article}\n\\usepackage{amsmath}\n\\begin{document}\n")
 
 for matrix1 in matrices {
     for matrix2 in matrices {
@@ -38,4 +38,4 @@ for matrix1 in matrices {
     }
 }
 
-print("\\end{document}")
+print("\\end{document}\n")

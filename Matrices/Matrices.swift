@@ -28,12 +28,17 @@ func * (left: [[Int]], right: [[Int]]) -> [[Int]]? {
 }
 
 func print(matrix: [[Int]]) {
-    print("\\begin{pmatrix}")
+    print(toLaTeX(matrix))
+}
+
+func toLaTeX(matrix: [[Int]]) -> String {
+    var out = "\\begin{pmatrix}\n"
     for array in matrix {
         for v in array.dropLast() {
-            print("\(v) & ", terminator: "")
+            out += "\(v) & "
         }
-        print("\(array[array.count - 1]) \\\\")
+        out += "\(array[array.count - 1]) \\\\\n"
     }
-    print("\\end{pmatrix}")
+    out += "\\end{pmatrix}"
+    return out
 }
