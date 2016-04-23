@@ -6,14 +6,22 @@
 //  Copyright © 2016 pauljohanneskraft. All rights reserved.
 //
 
-import Cocoa
+// import Cocoa
+
+// partially from source: http://natecook.com/blog/2014/08/generic-functions-for-incompatible-types/
 
 protocol NumericType {
-    func +(lhs: Self, rhs: Self) -> Self
-    func -(lhs: Self, rhs: Self) -> Self
-    func *(lhs: Self, rhs: Self) -> Self
-    func /(lhs: Self, rhs: Self) -> Self
-    func %(lhs: Self, rhs: Self) -> Self
+    func  +(lhs: Self, rhs: Self) -> Self
+    func  -(lhs: Self, rhs: Self) -> Self
+    func  *(lhs: Self, rhs: Self) -> Self
+    func  /(lhs: Self, rhs: Self) -> Self
+    func  %(lhs: Self, rhs: Self) -> Self
+    func !=(lhs: Self, rhs: Self) -> Bool
+    func ==(lhs: Self, rhs: Self) -> Bool
+    func  <(lhs: Self, rhs: Self) -> Bool
+    func  >(lhs: Self, rhs: Self) -> Bool
+    func <=(lhs: Self, rhs: Self) -> Bool
+    func >=(lhs: Self, rhs: Self) -> Bool
     init(_ v: Int)
 }
 
@@ -30,6 +38,31 @@ extension UInt16 : NumericType {}
 extension UInt32 : NumericType {}
 extension UInt64 : NumericType {}
 
-// source: http://natecook.com/blog/2014/08/generic-functions-for-incompatible-types/
+postfix func ++<T: NumericType>(inout left: T) -> T {
+    let before = left
+    ++left
+    return before
+}
+
+prefix func ++<T: NumericType>(inout left: T) -> T {
+    left = left + T(1)
+    return left
+}
+
+postfix func --<T: NumericType>(inout left: T) -> T {
+    let before = left
+    --left
+    return before
+}
+
+prefix func --<T: NumericType>(inout left: T) -> T {
+    left = left - T(1)
+    return left
+}
+
+func /= <T: NumericType>(inout left: T, right: T) -> T {
+    left = left / right
+    return left
+}
 
 
