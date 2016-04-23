@@ -4,4 +4,7 @@
 
 ## Matrices
 
-Multiplying matrices made easy, including * as infix operator to multiply [[Int]] with each other. The result can be printed out as LaTeX code, which can be compiled to a PDF. An example is given by the Matrices.pdf - file.
+The cross product of any two matrices with the same type (e.g. both being of type [[Double]] or [[Int]]) is implemented with an infix operator *.
+
+The scalar product is also implemented by using the infix operator *. It multiplies a matrix and one single value with the same type (e.g. [[Double]] and Double, [[Int]] and Int, etc).
+
