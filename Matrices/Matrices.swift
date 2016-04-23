@@ -48,6 +48,23 @@ func *= <T: NumericType>(inout left: [[T]], right: [[T]]) throws -> [[T]] {
     return left
 }
 
+func -= <T: NumericType>(inout left: [[T]], right: [[T]]) throws -> [[T]] {
+    if left.count != right.count || left[0].count != right[0].count { throw MatrixError.NotAddable }
+    for i in 0..<left.count {
+        for j in 0..<left[0].count {
+            left[i][j] = left[i][j] - right[i][j]
+        }
+    }
+    return left
+}
+
+func - <T: NumericType>(left: [[T]], right: [[T]]) throws -> [[T]] {
+    var matrix = left
+    try matrix -= right
+    return matrix
+}
+
+
 func += <T: NumericType>(inout left: [[T]], right: [[T]]) throws -> [[T]] {
     if left.count != right.count || left[0].count != right[0].count { throw MatrixError.NotAddable }
     for i in 0..<left.count {

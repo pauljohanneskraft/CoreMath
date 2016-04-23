@@ -45,6 +45,8 @@ out += "\\end{document}\n"
 
 print(out)
 
+print(try matrixB - matrixB)
+
 let matrix = [[1.0, 1, 1 ], [ 43, 0, 31 ],  [ 4, 0, 7 ]]
 
 let vector = [2.0, 4, 8]
