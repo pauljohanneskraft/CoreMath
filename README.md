@@ -1,6 +1,6 @@
 # Math
 
-(simple) mathematical functions, as well as some some techniques that Swift offers, are shown here
+(Simple) Mathematical operations, as well as some some techniques that Swift offers, are shown here.
 
 ## Matrices
 
