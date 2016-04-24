@@ -254,19 +254,23 @@ private func divideLine< T: NumericType>(row : Int, _ div : T, inout _ matrix : 
 func toLaTeX<T>(matrix: [[T]], vector: [T], result: [T]) -> String {
     var out = "\\[\n\\left(\n\\begin{matrix}\n"
     for row in matrix {
+        // out += : a & b & c & d \\
         for item in row.dropLast() {
             out += "\(item) & "
         }
         out += "\(row.last!) \\\\\n"
     }
     out += "\\end{matrix}\n"
+    // end of first part of matrix
     out += "\\right.\\left|\\left.\n"
+    // start of vector
     out += "\\begin{matrix}\n"
     for element in vector {
         out += "\(element) \\\\\n"
     }
     out += "\\end{matrix}\n\\right)\\right."
     out += "=\n"
+    // in the end the result vector
     out += toLaTeX(vector: result)
     out += "\n\\]"
     return out
