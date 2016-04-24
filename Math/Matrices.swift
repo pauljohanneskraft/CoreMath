@@ -6,8 +6,6 @@
 //  Copyright © 2016 pauljohanneskraft. All rights reserved.
 //
 
-//import Foundation
-
 postfix func ++<T: NumericType>(inout left: [[T]]) -> [[T]] {
     let before = left
     ++left

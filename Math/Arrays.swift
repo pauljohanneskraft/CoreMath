@@ -6,8 +6,6 @@
 //  Copyright © 2016 pauljohanneskraft. All rights reserved.
 //
 
-import Cocoa
-
 infix operator <-> { associativity left precedence 140 }
 func <-> <T>(inout left: T, inout right: T) {
     (left, right) = (right, left)

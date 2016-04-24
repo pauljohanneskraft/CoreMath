@@ -6,8 +6,6 @@
 //  Copyright © 2016 pauljohanneskraft. All rights reserved.
 //
 
-// import Cocoa
-
 // partially from source: http://natecook.com/blog/2014/08/generic-functions-for-incompatible-types/
 
 protocol NumericType {

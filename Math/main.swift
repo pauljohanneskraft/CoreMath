@@ -6,8 +6,6 @@
 //  Copyright © 2016 pauljohanneskraft. All rights reserved.
 //
 
-//import Foundation
-
 let matrixA = [[1,2,0], [0, 1, 1]]
 
 let matrixB = [[1,5,0], [0,2,1], [1,4,1]]
