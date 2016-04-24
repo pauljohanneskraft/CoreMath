@@ -65,4 +65,17 @@ func /= <T: NumericType>(inout left: T, right: T) -> T {
     return left
 }
 
+func += <T: NumericType>(inout left: T, right: T) -> T {
+    left = left + right
+    return left
+}
+
+prefix func -<T:NumericType>(left: T) -> T {
+    return T(0) - left
+}
+
+func abs<T: NumericType>(left: T) -> T {
+    if left < T(0) { return -left }
+    return left
+}
 
