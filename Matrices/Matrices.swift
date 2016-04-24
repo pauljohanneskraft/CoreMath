@@ -159,10 +159,10 @@ func print<T>(matrix: [[T]]) {
 // source: https://wiki.freitagsrunde.org/Javakurs/Übungsaufgaben/Gauß-Algorithmus/Musterloesung
 // originally written in Java, rewritten by me in Swift
 
-func solve<T : NumericType>(matrix: [[T]], _ vector: [T]) throws -> [T] {
-    if matrix.count < matrix[0].count { throw MatrixError.Unsolvable }
-    var matrix = matrix
-    var vector = vector
+func solve<T : NumericType>(pmatrix: [[T]], _ pvector: [T]) throws -> [T] {
+    if pmatrix.count < pmatrix[0].count { throw MatrixError.Unsolvable }
+    var matrix = pmatrix
+    var vector = pvector
     var tmpColumn : Int
     for line in 0..<matrix.count {
         tmpColumn = -1
@@ -230,6 +230,9 @@ func solve<T : NumericType>(matrix: [[T]], _ vector: [T]) throws -> [T] {
         }
     }
     
+    if !test(pmatrix, vector: pvector, result: vector) {
+        throw MatrixError.Unsolvable // throws e.g. when there are no Int-results but there was a [[Int]] as input
+    }
     //print(matrix, vector)
     return vector
 }
@@ -247,3 +250,44 @@ private func divideLine< T: NumericType>(row : Int, _ div : T, inout _ matrix : 
     }
     vector[row] = vector[row] / div;
 }
+
+func toLaTeX<T>(matrix: [[T]], vector: [T], result: [T]) -> String {
+    var out = "\\[\n\\left(\n\\begin{matrix}\n"
+    for row in matrix {
+        for item in row.dropLast() {
+            out += "\(item) & "
+        }
+        out += "\(row.last!) \\\\\n"
+    }
+    out += "\\end{matrix}\n"
+    out += "\\right.\\left|\\left.\n"
+    out += "\\begin{matrix}\n"
+    for element in vector {
+        out += "\(element) \\\\\n"
+    }
+    out += "\\end{matrix}\n\\right)\\right."
+    out += "=\n"
+    out += toLaTeX(vector: result)
+    out += "\n\\]"
+    return out
+}
+
+
+func test<T: NumericType>(matrix: [[T]], vector: [T], result: [T]) -> Bool {
+    if vector.count != result.count || vector.count != matrix.count { return false }
+    for row in 0..<result.count {
+        var value = T(0)
+        for column in 0..<matrix[row].count {
+            //print("\(matrix[row][column]*result[column]) + ", terminator: "")
+            value += matrix[row][column]*result[column]
+        }
+        //print("=\(vector[row])?")
+        if abs((value - vector[row])*T(128)) >= T(1) {
+            return false
+        }
+    }
+    return true
+}
+
+
+
