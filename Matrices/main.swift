@@ -64,7 +64,7 @@ let matrix2 = [[2,1,3], [2,6,8], [6,8,18]]
 let vector2 = [1,3,5]
 
 do {
-    print(toLaTeX(matrix1, vector: vector1, result: try solve(matrix1, vector1))) // not working due to fact that there are no Int-results
+    print(toLaTeX(matrix2, vector: vector2, result: try solve(matrix2, vector2))) // not working due to fact that there are no Int-results
 } catch _ {}
 
 
