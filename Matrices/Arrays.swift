@@ -31,3 +31,22 @@ func /= <T : NumericType>(inout left: [T], right: T) -> [T] {
     }
     return left
 }
+
+func toLaTeX<T>(array array: [T]) -> String {
+    var out = "\\begin{pmatrix}\n"
+    for value in array.dropLast() {
+        out += "\(value) & "
+    }
+    out += "\(array.last!) \\\\\n"
+    return out + "\\end{pmatrix}"
+}
+
+func toLaTeX<T>(vector vector: [T]) -> String {
+    var out = "\\begin{pmatrix}\n"
+    for value in vector.dropLast() {
+        out += "\(value) \\\\\n"
+    }
+    out += "\(vector.last!)\n"
+    return out + "\\end{pmatrix}"
+}
+
