@@ -43,17 +43,32 @@ for matrix1 in matrices {
 
 out += "\\end{document}\n"
 
-print(out)
+//print(out)
 
-print(try matrixB - matrixB)
+let matrix1 = [[2.0,1,3], [2,6,8], [6,8,18]]
 
-let matrix = [[1.0, 1, 1 ], [ 43, 0, 31 ],  [ 4, 0, 7 ]]
+let vector1 = [1.0,3,5]
 
-let vector = [2.0, 4, 8]
+do {
+print(toLaTeX(matrix1, vector: vector1, result: try solve(matrix1, vector1))) // working
+} catch _ {}
 
-let result = try solve(matrix, vector)
+/*
+2x + y + 3z = 1
+2x + 6y + 8z = 3
+6x + 8y + 18z = 5
+ */
 
-print(result)
+let matrix2 = [[2,1,3], [2,6,8], [6,8,18]]
+
+let vector2 = [1,3,5]
+
+do {
+    print(toLaTeX(matrix1, vector: vector1, result: try solve(matrix1, vector1))) // not working due to fact that there are no Int-results
+} catch _ {}
+
+
+//print(linearSystemString)
 
 // print(try matrixA + matrixB) -> example where exception is thrown because matrixA and matrixB are incompatible to be added up
 
