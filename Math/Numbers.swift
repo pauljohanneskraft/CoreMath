@@ -1,6 +1,6 @@
 //
 //  Numbers.swift
-//  Matrices
+//  Math
 //
 //  Created by Paul Kraft on 22.04.16.
 //  Copyright © 2016 pauljohanneskraft. All rights reserved.

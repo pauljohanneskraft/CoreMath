@@ -1,6 +1,6 @@
 //
 //  main.swift
-//  Matrizen
+//  Math
 //
 //  Created by Paul Kraft on 21.04.16.
 //  Copyright © 2016 pauljohanneskraft. All rights reserved.
@@ -50,13 +50,13 @@ let matrix1 = [[2.0,1,3], [2,6,8], [6,8,18]]
 let vector1 = [1.0,3,5]
 
 do {
-print(toLaTeX(matrix1, vector: vector1, result: try solve(matrix1, vector1))) // working
+    print(toLaTeX(matrix1, vector: vector1, result: try solve(matrix1, vector1))) // working
 } catch _ {}
 
 /*
-2x + y + 3z = 1
-2x + 6y + 8z = 3
-6x + 8y + 18z = 5
+ 2x + y + 3z = 1
+ 2x + 6y + 8z = 3
+ 6x + 8y + 18z = 5
  */
 
 let matrix2 = [[2,1,3], [2,6,8], [6,8,18]]
