@@ -291,5 +291,26 @@ func test<T: NumericType>(matrix: [[T]], vector: [T], result: [T]) -> Bool {
     return true
 }
 
+infix operator ^^= {}
+infix operator ^^ {}
 
+func ^^=<T : NumericType>(inout left: [[T]], right: Int) throws -> [[T]] {
+    let orig = left
+    if right < 10 {
+        for _ in 0..<right {
+            try left *= orig
+        }
+    } else {
+        let half = right / 2
+        let m1 = try orig ^^ half
+        let m2 = try orig ^^ right - half
+        left = try m1 * m2
+    }
+    return left
+}
 
+func ^^<T : NumericType>(left: [[T]], right: Int) throws -> [[T]] {
+    var left = left
+    try left ^^= right
+    return left
+}

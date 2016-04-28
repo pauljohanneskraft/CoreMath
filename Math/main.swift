@@ -18,11 +18,23 @@ let matrixE = [[1, -1, 0]]
 
 let matrixF = [[3]]
 
+let friends : [[Double]] = [[0,0.5,1/2, 0, 0], [1,0,0,0,0], [0,1/3,0,1/3,1/3], [0,0,0,0,1], [0,1/2,1/2, 0, 0] ]
+
+let a = try friends ^^ 1000
+
+let friends2 : [[Double]] = [[0,1/2,1/2, 0, 0], [1,0,0,0,0], [0,1/3,0,1/3,1/3], [0,0,0,0,1], [0,1/2,1/2, 0, 0] ]
+
+let b = try friends2 ^^ 1000
+
+print(a)
+
+print(try a - b)
+
 //let matrixG = [[1.0]]
 
 let matrices = [matrixA, matrixB, matrixC, matrixD, matrixE, matrixF]
 
-print("\\documentclass[12pt]{article}\n\\usepackage{amsmath}\n\\begin{document}\n")
+//print("\\documentclass[12pt]{article}\n\\usepackage{amsmath}\n\\begin{document}\n")
 
 for matrix1 in matrices {
     for matrix2 in matrices {
@@ -35,19 +47,17 @@ for matrix1 in matrices {
             out += "=\n"
             out += toLaTeX(product)
             out += "\n\\]\n\n\\[ \\]\n\n"
-            print(out)
+            //print(out)
         } catch _ {}
     }
 }
-
-print("\\end{document}")
 
 let matrix1 = [[2.0,1,3], [2,6,8], [6,8,18]]
 
 let vector1 = [1.0,3,5]
 
 do {
-    print(toLaTeX(matrix1, vector: vector1, result: try solve(matrix1, vector1)))
+    //print(toLaTeX(matrix1, vector: vector1, result: try solve(matrix1, vector1)))
     // working
 } catch _ {}
 
@@ -62,11 +72,13 @@ let matrix2 = [[2,1,3], [2,6,8], [6,8,18]]
 let vector2 = [1,3,5]
 
 do {
-    print(toLaTeX(matrix2, vector: vector2, result: try solve(matrix2, vector2)))
+    //print(toLaTeX(matrix2, vector: vector2, result: try solve(matrix2, vector2)))
     // not working due to fact that there are no Int-results
 } catch _ {}
 
 do {
-    print(try matrixA + matrixB)
+    //print(try matrixA + matrixB)
     // -> example where exception is thrown because matrixA and matrixB are incompatible to be added up
 } catch _ {}
+
+//print("\\end{document}")
