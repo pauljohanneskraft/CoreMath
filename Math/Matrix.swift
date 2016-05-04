@@ -1,10 +1,18 @@
 //
-//  Matrices.swift
+//  Matrix.swift
 //  Math
 //
 //  Created by Paul Kraft on 21.04.16.
 //  Copyright © 2016 pauljohanneskraft. All rights reserved.
 //
+
+//
+// ++ used on a matrix with numeric values will increment every single element in the matrix
+//
+// example:
+//
+// var left : [[T]] = [[..., ...], ...]
+// left++
 
 postfix func ++<T: NumericType>(inout left: [[T]]) -> [[T]] {
     let before = left
@@ -21,6 +29,14 @@ prefix func ++<T: NumericType>(inout left: [[T]]) -> [[T]] {
     return left
 }
 
+// multiplying matrices can be done using the * operator
+// 
+// @generic T : NumericType
+// @param left : [[T]] - matrix A
+// @param right: [[T]] - matrix B
+// @result : [[T]] - product of matrix A and matrix B
+// @throws MatrixError.NotMultipliable if left[0].count != right.count
+
 func * <T: NumericType>(left: [[T]], right: [[T]]) throws -> [[T]] {
     var left = left
     try left *= right
@@ -36,7 +52,7 @@ func *= <T: NumericType>(inout left: [[T]], right: [[T]]) throws -> [[T]] {
         for j in 0..<right[0].count {
             var value : T = T(0)
             for k in 0..<right.count {
-                value = value + (left[i][k]*right[k][j])
+                value += (left[i][k]*right[k][j])
             }
             array.append(value)
         }
@@ -291,26 +307,77 @@ func test<T: NumericType>(matrix: [[T]], vector: [T], result: [T]) -> Bool {
     return true
 }
 
-infix operator ^^= {}
-infix operator ^^ {}
+import Foundation
 
-func ^^=<T : NumericType>(inout left: [[T]], right: Int) throws -> [[T]] {
+var count = 0
+
+func ^=<T : NumericType>(inout left: [[T]], right: Int) throws -> [[T]] {
+    print("calculating matrix ^ \(right)")
     let orig = left
-    if right < 10 {
+    if right == 0 {
+        for i in 0..<left.count {
+            for j in 0..<left[i].count {
+                left[i][j] = T(1)
+            }
+        }
+    } else if right < 5 {
         for _ in 0..<right {
             try left *= orig
         }
     } else {
         let half = right / 2
-        let m1 = try orig ^^ half
-        let m2 = try orig ^^ right - half
-        left = try m1 * m2
+        let m = try orig ^ half
+        left = try m * m
+        if !Bool(right & 0x1) {
+            left = try left * orig
+        }
+    }
+    print("calculating matrix ^ \(right) ready.")
+    return left
+}
+
+func ^<T : NumericType>(left: [[T]], right: Int) throws -> [[T]] {
+    var left = left
+    try left ^= right
+    return left
+}
+
+func exp<T:NumericType>(left: [[T]], _ right: Int) throws -> [[T]] {
+    return try left ^ right
+}
+
+infix operator ^+ { associativity left precedence 140 }
+infix operator ^+= { associativity left precedence 140 assignment }
+
+func ^+ <T : NumericType>(left: [[T]], right : UInt) throws -> [[T]] {
+    var left = left
+    try left ^+= right
+    return left
+}
+
+func ^+= <T: NumericType>(inout left: [[T]], right: UInt) throws -> [[T]] {
+    if right < 2 { return left }
+    var matrixToPower = left
+    let matrix0 = left
+    for _ in 2...right {
+        try matrixToPower *= matrix0
+        try left += matrixToPower
+        // print(i, " mat: ", matrixToPower, " left: ", left)
     }
     return left
 }
 
-func ^^<T : NumericType>(left: [[T]], right: Int) throws -> [[T]] {
-    var left = left
-    try left ^^= right
-    return left
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

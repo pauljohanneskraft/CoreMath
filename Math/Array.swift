@@ -1,21 +1,20 @@
 //
-//  Arrays.swift
+//  Array.swift
 //  Math
 //
 //  Created by Paul Kraft on 23.04.16.
 //  Copyright © 2016 pauljohanneskraft. All rights reserved.
 //
 
-infix operator <-> { associativity left precedence 140 }
-func <-> <T>(inout left: T, inout right: T) {
-    (left, right) = (right, left)
-}
+// extension to add swapping-capability, e.g. comfortable when sorting
 
 extension Array {
     mutating func swap(left: Int, _ right: Int) {
         self[left] <-> self[right]
     }
 }
+
+// division of an array and a number (simply divides every single item)
 
 func / <T : NumericType>(left: [T], right: T) -> [T] {
     var left = left
@@ -30,6 +29,8 @@ func /= <T : NumericType>(inout left: [T], right: T) -> [T] {
     return left
 }
 
+// toLatex(array: ) returns LaTeX code describing the given array as a matrix having only one row
+
 func toLaTeX<T>(array array: [T]) -> String {
     var out = "\\begin{pmatrix}\n"
     for value in array.dropLast() {
@@ -38,6 +39,8 @@ func toLaTeX<T>(array array: [T]) -> String {
     out += "\(array.last!) \\\\\n"
     return out + "\\end{pmatrix}"
 }
+
+// toLatex(vector: ) returns LaTeX code describing the given array as a matrix having only one column (just like a vector would look like)
 
 func toLaTeX<T>(vector vector: [T]) -> String {
     var out = "\\begin{pmatrix}\n"

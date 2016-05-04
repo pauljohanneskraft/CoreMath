@@ -1,5 +1,5 @@
 //
-//  Numbers.swift
+//  Number.swift
 //  Math
 //
 //  Created by Paul Kraft on 22.04.16.
@@ -20,7 +20,18 @@ protocol NumericType {
     func  >(lhs: Self, rhs: Self) -> Bool
     func <=(lhs: Self, rhs: Self) -> Bool
     func >=(lhs: Self, rhs: Self) -> Bool
-    init(_ v: Int)
+    init(_ v: Double)
+    init(_ v: Float )
+    init(_ v: Int   )
+    init(_ v: Int8  )
+    init(_ v: Int16 )
+    init(_ v: Int32 )
+    init(_ v: Int64 )
+    init(_ v: UInt  )
+    init(_ v: UInt8 )
+    init(_ v: UInt16)
+    init(_ v: UInt32)
+    init(_ v: UInt64)
 }
 
 extension Double : NumericType {}

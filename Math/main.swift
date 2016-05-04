@@ -6,32 +6,42 @@
 //  Copyright © 2016 pauljohanneskraft. All rights reserved.
 //
 
-let matrixA = [[1,2,0], [0, 1, 1]]
+import Cocoa
 
-let matrixB = [[1,5,0], [0,2,1], [1,4,1]]
+//let matrixA = [[1,2,0], [0, 1, 1]]
 
-let matrixC = [[2,1], [0,0], [1,0], [1,-1]]
+//let matrixB = [[1,5,0], [0,2,1], [1,4,1]]
 
-let matrixD = [[1], [2], [0], [-1]]
+//let matrixC = [[2,1], [0,0], [1,0], [1,-1]]
 
-let matrixE = [[1, -1, 0]]
+//let matrixD = [[1], [2], [0], [-1]]
 
-let matrixF = [[3]]
+//let matrixE = [[1, -1, 0]]
 
-let friends : [[Double]] = [[0,0.5,1/2, 0, 0], [1,0,0,0,0], [0,1/3,0,1/3,1/3], [0,0,0,0,1], [0,1/2,1/2, 0, 0] ]
+//let matrixF = [[3]]
 
-let a = try friends ^^ 1000
+let friends : [[Double]] = [[0,0.5,1/2, 0, 0], [1,0,0,0,0], [0,1/3,0,1/3,1/3], [0,0,0,0,1], [0,1/2,1/2, 0, 0]]
 
-let friends2 : [[Double]] = [[0,1/2,1/2, 0, 0], [1,0,0,0,0], [0,1/3,0,1/3,1/3], [0,0,0,0,1], [0,1/2,1/2, 0, 0] ]
+let start : Double = NSDate().timeIntervalSince1970
 
-let b = try friends2 ^^ 1000
+let a = try friends ^ Int.max
+
+let end = Double(NSDate().timeIntervalSince1970)
+
+print(end - start)
+
+//let friends2 : [[Double]] = [[0,1/2,1/2, 0, 0], [1,0,0,0,0], [0,1/3,0,1/3,1/3], [0,0,0,0,1], [0,1/2,1/2, 0, 0] ]
+
+//let b = try friends2 ^^ Int.max - 10
 
 print(a)
 
-print(try a - b)
+
+
+//print(try a - b)
 
 //let matrixG = [[1.0]]
-
+/*
 let matrices = [matrixA, matrixB, matrixC, matrixD, matrixE, matrixF]
 
 //print("\\documentclass[12pt]{article}\n\\usepackage{amsmath}\n\\begin{document}\n")
@@ -82,3 +92,4 @@ do {
 } catch _ {}
 
 //print("\\end{document}")
+*/
