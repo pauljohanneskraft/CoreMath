@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B93AD0F1CDD151000AB103E /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B93AD0E1CDD151000AB103E /* String.swift */; };
 		9BAE70661CDCA9A90071647C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAE70651CDCA9A90071647C /* main.swift */; };
 		9BAE70721CDCAA3A0071647C /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAE706C1CDCAA3A0071647C /* String.swift */; };
 		9BAE70731CDCAA3A0071647C /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAE706D1CDCAA3A0071647C /* Matrix.swift */; };
@@ -14,8 +15,7 @@
 		9BAE70751CDCAA3A0071647C /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAE706F1CDCAA3A0071647C /* Array.swift */; };
 		9BAE70761CDCAA3A0071647C /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAE70701CDCAA3A0071647C /* Error.swift */; };
 		9BAE70771CDCAA3A0071647C /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAE70711CDCAA3A0071647C /* General.swift */; };
-		9BAE70861CDCAA940071647C /* MatrixAddition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAE70851CDCAA940071647C /* MatrixAddition.swift */; };
-		9BAE70881CDCAB150071647C /* MatrixExponentiation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAE70871CDCAB150071647C /* MatrixExponentiation.swift */; };
+		9BF9FB231CDD145700EA5689 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF9FB221CDD145700EA5689 /* Matrix.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +31,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9B93AD0E1CDD151000AB103E /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		9BAE70621CDCA9A90071647C /* Math */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Math; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BAE70651CDCA9A90071647C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		9BAE706C1CDCAA3A0071647C /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -41,9 +42,8 @@
 		9BAE70711CDCAA3A0071647C /* General.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
 		9BAE707C1CDCAA610071647C /* Test.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BAE70801CDCAA610071647C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9BAE70841CDCAA930071647C /* Test-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Test-Bridging-Header.h"; sourceTree = "<group>"; };
-		9BAE70851CDCAA940071647C /* MatrixAddition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatrixAddition.swift; sourceTree = "<group>"; };
-		9BAE70871CDCAB150071647C /* MatrixExponentiation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatrixExponentiation.swift; sourceTree = "<group>"; };
+		9BAE70841CDCAA930071647C /* Test-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Test-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		9BF9FB221CDD145700EA5689 /* Matrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,7 +70,6 @@
 				9BAE70641CDCA9A90071647C /* Math */,
 				9BAE707D1CDCAA610071647C /* Test */,
 				9BAE70631CDCA9A90071647C /* Products */,
-				9BAE70841CDCAA930071647C /* Test-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,9 +99,10 @@
 		9BAE707D1CDCAA610071647C /* Test */ = {
 			isa = PBXGroup;
 			children = (
-				9BAE70871CDCAB150071647C /* MatrixExponentiation.swift */,
-				9BAE70851CDCAA940071647C /* MatrixAddition.swift */,
+				9B93AD0E1CDD151000AB103E /* String.swift */,
+				9BF9FB221CDD145700EA5689 /* Matrix.swift */,
 				9BAE70801CDCAA610071647C /* Info.plist */,
+				9BAE70841CDCAA930071647C /* Test-Bridging-Header.h */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -209,8 +209,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9BAE70861CDCAA940071647C /* MatrixAddition.swift in Sources */,
-				9BAE70881CDCAB150071647C /* MatrixExponentiation.swift in Sources */,
+				9B93AD0F1CDD151000AB103E /* String.swift in Sources */,
+				9BF9FB231CDD145700EA5689 /* Matrix.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,6 +359,7 @@
 				9BAE706B1CDCA9A90071647C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9BAE70811CDCAA610071647C /* Build configuration list for PBXNativeTarget "Test" */ = {
 			isa = XCConfigurationList;
@@ -367,6 +368,7 @@
 				9BAE70831CDCAA610071647C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

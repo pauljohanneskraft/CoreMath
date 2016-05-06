@@ -1,5 +1,5 @@
 //
-//  MatrixAddition.swift
+//  String.swift
 //  Math
 //
 //  Created by Paul Kraft on 06.05.16.
@@ -10,7 +10,7 @@ import XCTest
 
 @testable import Math
 
-class MatrixAddition: XCTestCase {
+class String: XCTestCase {
 
     override func setUp() {
         super.setUp()
@@ -28,13 +28,8 @@ class MatrixAddition: XCTestCase {
     }
 
     func testPerformanceExample() {
-        let matrixA = [[1,2,3], [4,5,6], [7,8,9]]
         // This is an example of a performance test case.
-        measureBlock {
-            do {
-                let result = try matrixA + matrixA
-                print(result)
-            } catch _ {}
+        self.measureBlock {
             // Put the code you want to measure the time of here.
         }
     }
