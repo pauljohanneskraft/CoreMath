@@ -71,6 +71,16 @@ class Matrix: XCTestCase {
         }
         print(c)
     }
+    
+    func testModulo() {
+        let a  = [[1,2,3], [4,5,6], [7,8,9]]
+        let b = 2
+        var c = []
+        measureBlock {
+             c = a % b
+        }
+        print(c)
+    }
 }
 
 
