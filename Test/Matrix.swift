@@ -22,16 +22,73 @@ class Matrix: XCTestCase {
         super.tearDown()
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock {
-            // Put the code you want to measure the time of here.
+    func testMultiplication() {
+        let a = [[1,2,3], [4,5,6], [7,8,9]]
+        let b = [[9,8,7], [6,5,4], [3,2,1]]
+        var c = a
+        measureThrowingBlock {
+            c = try a * b
         }
+        print(c)
     }
-
+    
+    func testScalarMultiplication() {
+        let a = [[1,2,3], [4,5,6], [7,8,9]]
+        let b = 5
+        var c = a
+        measureBlock {
+            c = a * b
+        }
+        print(c)
+    }
+    
+    func testAddition() {
+        let a = [[1,2,3], [4,5,6], [7,8,9]]
+        let b = [[9,8,7], [6,5,4], [3,2,1]]
+        var c = a
+        measureThrowingBlock {
+            c = try a + b
+        }
+        print(c)
+    }
+    
+    func testExponentiation() {
+        let a = [[1,2,3], [4,5,6], [7,8,9]]
+        let b = 5
+        var c = a
+        measureThrowingBlock {
+            c = try a ^ b
+        }
+        print(c)
+    }
+    
+    func testExponentiationAndAddition() {
+        let a = [[1,2,3], [4,5,6], [7,8,9]]
+        let b : UInt = 5
+        var c = a
+        measureThrowingBlock {
+            c = try a ^+ b
+        }
+        print(c)
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
