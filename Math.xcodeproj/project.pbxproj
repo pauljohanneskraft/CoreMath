@@ -32,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		9B93AD0E1CDD151000AB103E /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		9B93AD101CDD158500AB103E /* Test-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Test-Bridging-Header.h"; sourceTree = "<group>"; };
 		9BAE70621CDCA9A90071647C /* Math */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Math; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BAE70651CDCA9A90071647C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		9BAE706C1CDCAA3A0071647C /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -42,7 +43,6 @@
 		9BAE70711CDCAA3A0071647C /* General.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
 		9BAE707C1CDCAA610071647C /* Test.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BAE70801CDCAA610071647C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9BAE70841CDCAA930071647C /* Test-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Test-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		9BF9FB221CDD145700EA5689 /* Matrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -101,8 +101,8 @@
 			children = (
 				9B93AD0E1CDD151000AB103E /* String.swift */,
 				9BF9FB221CDD145700EA5689 /* Matrix.swift */,
+				9B93AD101CDD158500AB103E /* Test-Bridging-Header.h */,
 				9BAE70801CDCAA610071647C /* Info.plist */,
-				9BAE70841CDCAA930071647C /* Test-Bridging-Header.h */,
 			);
 			path = Test;
 			sourceTree = "<group>";
