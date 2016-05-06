@@ -19,3 +19,9 @@ extension XCTestCase {
         }
     }
 }
+
+func nocatch(block: () throws -> () ) {
+    do {
+        try block()
+    } catch _ {}
+}
