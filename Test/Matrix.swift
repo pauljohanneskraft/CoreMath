@@ -25,7 +25,7 @@ class Matrix: XCTestCase {
     func testMultiplication() {
         let a = [[1,2,3], [4,5,6], [7,8,9]]
         let b = [[9,8,7], [6,5,4], [3,2,1]]
-        var c = a
+        var c = []
         measureThrowingBlock {
             c = try a * b
         }
@@ -35,7 +35,7 @@ class Matrix: XCTestCase {
     func testScalarMultiplication() {
         let a = [[1,2,3], [4,5,6], [7,8,9]]
         let b = 5
-        var c = a
+        var c = []
         measureBlock {
             c = a * b
         }
@@ -45,7 +45,7 @@ class Matrix: XCTestCase {
     func testAddition() {
         let a = [[1,2,3], [4,5,6], [7,8,9]]
         let b = [[9,8,7], [6,5,4], [3,2,1]]
-        var c = a
+        var c = []
         measureThrowingBlock {
             c = try a + b
         }
@@ -55,7 +55,7 @@ class Matrix: XCTestCase {
     func testExponentiation() {
         let a = [[1,2,3], [4,5,6], [7,8,9]]
         let b = 5
-        var c = a
+        var c = []
         measureThrowingBlock {
             c = try a ^ b
         }
@@ -65,7 +65,7 @@ class Matrix: XCTestCase {
     func testExponentiationAndAddition() {
         let a = [[1,2,3], [4,5,6], [7,8,9]]
         let b : UInt = 5
-        var c = a
+        var c = []
         measureThrowingBlock {
             c = try a ^+ b
         }
