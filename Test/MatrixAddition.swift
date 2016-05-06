@@ -1,14 +1,16 @@
 //
-//  ExponentiationAndAddition.swift
+//  MatrixAddition.swift
 //  Math
 //
-//  Created by Paul Kraft on 04.05.16.
+//  Created by Paul Kraft on 06.05.16.
 //  Copyright © 2016 pauljohanneskraft. All rights reserved.
 //
 
 import XCTest
 
-class ExponentiationAndAddition: XCTestCase {
+@testable import Math
+
+class MatrixAddition: XCTestCase {
 
     override func setUp() {
         super.setUp()
@@ -26,12 +28,12 @@ class ExponentiationAndAddition: XCTestCase {
     }
 
     func testPerformanceExample() {
-        let a : [[Double]] = [[0, 1.0], [0, 0]]
+        let matrixA = [[1,2,3], [4,5,6], [7,8,9]]
         // This is an example of a performance test case.
-        self.measureBlock {
+        measureBlock {
             do {
-                let b = try a ^+ 10
-                print("b: ", b)
+                let result = try matrixA + matrixA
+                print(result)
             } catch _ {}
             // Put the code you want to measure the time of here.
         }

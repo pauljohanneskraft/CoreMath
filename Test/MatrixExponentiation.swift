@@ -1,14 +1,16 @@
 //
-//  ScalarMultiplication.swift
+//  MatrixExponentiation.swift
 //  Math
 //
-//  Created by Paul Kraft on 04.05.16.
+//  Created by Paul Kraft on 06.05.16.
 //  Copyright © 2016 pauljohanneskraft. All rights reserved.
 //
 
 import XCTest
 
-class ScalarMultiplication: XCTestCase {
+@testable import Math
+
+class MatrixExponentiation: XCTestCase {
 
     override func setUp() {
         super.setUp()
@@ -26,11 +28,14 @@ class ScalarMultiplication: XCTestCase {
     }
 
     func testPerformanceExample() {
-        let a = [[2,3],[4,5]]
+        let matrixA = [[1,2,3],[4,5,6],[7,8,9]]
         // This is an example of a performance test case.
         self.measureBlock {
-            let b = a * 0
-            print(b)
+            do {
+                let result = try matrixA ^ 100
+                print(result)
+            } catch _ {}
+            // Put the code you want to measure the time of here.
         }
     }
 
