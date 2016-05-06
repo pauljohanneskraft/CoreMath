@@ -9,11 +9,16 @@
 // partially from source: http://natecook.com/blog/2014/08/generic-functions-for-incompatible-types/
 
 protocol NumericType {
-    func  +(lhs: Self, rhs: Self) -> Self
-    func  -(lhs: Self, rhs: Self) -> Self
-    func  *(lhs: Self, rhs: Self) -> Self
-    func  /(lhs: Self, rhs: Self) -> Self
-    func  %(lhs: Self, rhs: Self) -> Self
+    func + (      lhs: Self, rhs: Self) -> Self
+    func +=(inout lhs: Self, rhs: Self)
+    func - (      lhs: Self, rhs: Self) -> Self
+    func -=(inout lhs: Self, rhs: Self)
+    func * (      lhs: Self, rhs: Self) -> Self
+    func *=(inout lhs: Self, rhs: Self)
+    func / (      lhs: Self, rhs: Self) -> Self
+    func /=(inout lhs: Self, rhs: Self)
+    func % (      lhs: Self, rhs: Self) -> Self
+    func %=(inout lhs: Self, rhs: Self)
     func !=(lhs: Self, rhs: Self) -> Bool
     func ==(lhs: Self, rhs: Self) -> Bool
     func  <(lhs: Self, rhs: Self) -> Bool
@@ -87,4 +92,44 @@ func abs<T: NumericType>(left: T) -> T {
     if left < T(0) { return -left }
     return left
 }
+
+func %= <T: NumericType>(inout left: [[T]], right: T) -> [[T]] {
+    for i in 0..<left.count {
+        for j in 0..<left[i].count {
+            left[i][j] %= right
+        }
+    }
+    return left
+}
+
+func % <T: NumericType>(left: [[T]], right: T) -> [[T]] {
+    var left = left
+    left %= right
+    return left
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
