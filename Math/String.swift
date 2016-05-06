@@ -41,12 +41,21 @@ func * (left: String, right: UInt) -> String {
 
 
 func *= (inout left: String, right: UInt) -> String {
-    let orig = left
     if right == 0 {
         left = ""
         return left
     }
-    for _ in 1..<right {
+    let orig = left
+    if right < 5 {
+        for _ in 1..<right {
+            left += orig
+        }
+        return left
+    }
+    let half = right / 2
+    let m = left * half
+    left = m + m
+    if (right & 1 == 1) {
         left += orig
     }
     return left
