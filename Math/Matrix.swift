@@ -367,8 +367,20 @@ func ^+= <T: NumericType>(inout left: [[T]], right: UInt) throws -> [[T]] {
     return left
 }
 
+func %= <T: NumericType>(inout left: [[T]], right: T) -> [[T]] {
+    for i in 0..<left.count {
+        for j in 0..<left[i].count {
+            left[i][j] %= right
+        }
+    }
+    return left
+}
 
-
+func % <T: NumericType>(left: [[T]], right: T) -> [[T]] {
+    var left = left
+    left %= right
+    return left
+}
 
 
 
