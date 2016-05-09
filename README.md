@@ -6,27 +6,32 @@ A try to extend Swift with more advanced (mostly mathematical) operations and fu
 
 ### General
 
-operators
-  <-> : swapping two elements of the same type (short for: (a,b) = (b,a) )
+| infix |                                    |  
+| ----- |:----------------------------------:| 
+| <->   | swap two elements of the same type |
 
 ### NumericType
 
 NumericType is a protocol used to unite all numeric types.
 By extending the specific numeric types with this protocol, mathematical functions can be created once for a type implementing this protocol and later be used with any one of them.
 
-implementing types
-  Double, Float, Int, Int8, Int16, Int32, Int64, UInt, UInt8, UInt16, UInt32, UInt64.
-  
-operators needed to implement the protocol
-  +, +=, -, -=, *, *=, /, /=, %, %=, !=, ==, <, >, <=, >=
-  
-functions
-  init(_v: T) : T being any of the known types implementing the NumericType-protocol
-  
-additional definitions
-  postfix operators:  ++, --
-  prefix  operators:  ++, --, -
-  functions:          abs(..)
+| implementing types                                                                 |
+| ---------------------------------------------------------------------------------- |
+| Double, Float, Int, Int8, Int16, Int32, Int64, UInt, UInt8, UInt16, UInt32, UInt64 |
+
+| operators needed to implement the protocol              |
+| ------------------------------------------------------- |
+| +, +=, -, -=, *, *=, /, /=, %, %=, !=, ==, <, >, <=, >= |
+
+| functions   |                                                                  | 
+| ----------- |:----------------------------------------------------------------:| 
+| init(..)    | casting made easy, implemented for every known implementing type |
+
+| additional definitions |           | 
+| ---------------------- |:---------:| 
+| postfix operators      | ++, --    |
+| prefix  operators      | ++, --, - |
+| functions              | abs(..)   |
 
 [See file](Math/Numbers.swift)
 
@@ -34,36 +39,41 @@ additional definitions
 
 Originally the repository was used for matrix calculations, so there are many matrix calculations available.
 
-prefix operators
-  ++ : incrementing every single item
-  
-postfix operators
-  ++ : incrementing every single item
+| prefix |                                | 
+| ------ |:------------------------------:| 
+| ++     | incrementing every single item |
 
-infix operators
-  *\ : multiply matrices
-  *\ : multiply a matrix with a scalar (both directions possible, matrix * scalar or scalar * matrix)
-  +\ : add matrices
-  -\ : subtract matrices
-  ^ : calculating the matrix to the given power (being of type UInt)
-  ^+: add up all the powers of the given matrix up to the given power (of type UInt)
-  % : set every value in the matrix to the value mod p, p being the given number (of the same type as the elements in the matrix)
+| postfix |                                | 
+| ------- |:------------------------------:| 
+| ++      | incrementing every single item |
 
-functions
-  toLatex(..) : generates LaTeX code representing the given matrix
-  test(..)    : calculates, if linear system is solved with the given matrix and vectors
-  
+| infix |                                   | use                           | result            | 
+| ----- |:---------------------------------:| ----------------------------- | ----------------- |
+| *     | multiply matrices                 | [[1,2],[3,4]] * [[5,6],[7,8]] | [[n1,n2],[n3,n4]] |
+| *     | multiply a matrix with a scalar   | [[1,2],[3,4]] * 2             | [[2,4],[6,8]]     |
+| +     | add matrices                      | [[1,2],[3,4]] + [[5,6],[7,8]] | [[6,8],[10,12]]   |
+| -     | subtract matrices                 | [[1,2],[3,4]] - [[5,6],[7,8]] | [[-4,-4],[-4,-4]] |
+| ^     | matrix to the given power         | [[1,2],[3,4]] ^ 2             | [[n1,n2],[n3,n4]] |
+| ^+    | adds up all the powers of the matrix up to the given power | ... | ... |
+| %     | set every value in the matrix to the value mod op2 | ... | ... |
+
+| functions   |                                                                          | 
+| ----------- |:------------------------------------------------------------------------:| 
+| toLaTeX(..) | generates LaTeX code representing the given matrix                       |
+| test(..)    | calculates, if linear system is solved with the given matrix and vectors |
 
 [See file](Math/Matrix.swift)
 
 ### Arrays
 
-operators
-  / : divide all elements by the given number
-  
-functions
-  swap(..)  : swapping two array elements
-  toLatex() : generating array or vector representation of the given array
+| infix |                                   | use                           | result            | 
+| ----- |:---------------------------------:| ----------------------------- | ----------------- |
+| /     | divide all elements by op2        | [2,4,6,8] / 2                 | [1,2,3,4]         |
+
+| functions   |                                                              | 
+| ----------- |:------------------------------------------------------------:| 
+| toLaTeX(..) | generating array or vector representation of the given array |
+| swap(..)    | swapping two array elements                                  |
   
 [See file](Math/Array.swift)
 
@@ -71,10 +81,12 @@ functions
 
 Less mathematical, but still useful: string manipulation functions/operators.
 
-operators
-  *\ : multiply strings, e.g. "hello" * 2 => "hellohello".
+| infix |                  | use         | result       | 
+| ----- |:----------------:| ----------- | ------------ |
+| *     | multiply strings | "hello" * 2 | "hellohello" |
 
-functions
-  to1337()  : replacing some letters with numbers
+| functions   |                                     | 
+| ----------- |:-----------------------------------:| 
+| to1337()    | replacing some letters with numbers |
 
 [See file](Math/String.swift)
