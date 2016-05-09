@@ -41,10 +41,10 @@ postfix operators
   ++ : incrementing every single item
 
 infix operators
-  * : multiply matrices
-  * : multiply a matrix with a scalar (both directions possible, matrix * scalar or scalar * matrix)
-  + : add matrices
-  - : subtract matrices
+  *\ : multiply matrices
+  *\ : multiply a matrix with a scalar (both directions possible, matrix * scalar or scalar * matrix)
+  +\ : add matrices
+  -\ : subtract matrices
   ^ : calculating the matrix to the given power (being of type UInt)
   ^+: add up all the powers of the given matrix up to the given power (of type UInt)
   % : set every value in the matrix to the value mod p, p being the given number (of the same type as the elements in the matrix)
@@ -72,7 +72,7 @@ functions
 Less mathematical, but still useful: string manipulation functions/operators.
 
 operators
-  * : multiply strings, e.g. "hello" * 2 => "hellohello".
+  *\ : multiply strings, e.g. "hello" * 2 => "hellohello".
 
 functions
   to1337()  : replacing some letters with numbers
