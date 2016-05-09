@@ -6,6 +6,8 @@ A try to extend Swift with more advanced (mostly mathematical) operations and fu
 
 ### General
 
+#### operators
+
 | infix |                                    |  
 | ----- |:----------------------------------:| 
 | <->   | swap two elements of the same type |
@@ -39,6 +41,8 @@ By extending the specific numeric types with this protocol, mathematical functio
 
 Originally the repository was used for matrix calculations, so there are many matrix calculations available.
 
+#### operators
+
 | prefix |                                | 
 | ------ |:------------------------------:| 
 | ++     | incrementing every single item |
@@ -66,14 +70,17 @@ Originally the repository was used for matrix calculations, so there are many ma
 
 ### Arrays
 
+#### operators
+
 | infix |                                   | use                           | result            | 
 | ----- |:---------------------------------:| ----------------------------- | ----------------- |
 | /     | divide all elements by op2        | [2,4,6,8] / 2                 | [1,2,3,4]         |
 
-| functions   |                                                              | 
-| ----------- |:------------------------------------------------------------:| 
-| toLaTeX(..) | generating array or vector representation of the given array |
-| swap(..)    | swapping two array elements                                  |
+| functions       |                                                           | 
+| --------------- |:---------------------------------------------------------:| 
+| toLaTeX()       | generating LaTeX representation of the given array        |
+| toLaTeXVector() | generating LaTeX vector representation of the given array |
+| swap(..)        | swapping two array elements                               |
   
 [See file](Math/Array.swift)
 
