@@ -12,6 +12,29 @@ extension Array {
     mutating func swap(left: Int, _ right: Int) {
         self[left] <-> self[right]
     }
+    
+    func toLaTeXVector() -> String {
+        var out = "\\begin{pmatrix}\n"
+        for value in self.dropLast() {
+            out += "\(value) \\\\\n"
+        }
+        if let last = self.last {
+            out += "\(last)\n"
+        }
+        return out + "\\end{pmatrix}"
+    }
+    
+    func toLaTeX() -> String {
+        var out = "\\begin{pmatrix}\n"
+        for value in self.dropLast() {
+            out += "\(value) & "
+        }
+        if let last = self.last {
+            out += "\(last) \\\\\n"
+        }
+        return out + "\\end{pmatrix}"
+    }
+    
 }
 
 // division of an array and a number (simply divides every single item)
@@ -28,26 +51,3 @@ func /= <T : NumericType>(inout left: [T], right: T) -> [T] {
     }
     return left
 }
-
-// toLatex(array: ) returns LaTeX code describing the given array as a matrix having only one row
-
-func toLaTeX<T>(array array: [T]) -> String {
-    var out = "\\begin{pmatrix}\n"
-    for value in array.dropLast() {
-        out += "\(value) & "
-    }
-    out += "\(array.last!) \\\\\n"
-    return out + "\\end{pmatrix}"
-}
-
-// toLatex(vector: ) returns LaTeX code describing the given array as a matrix having only one column (just like a vector would look like)
-
-func toLaTeX<T>(vector vector: [T]) -> String {
-    var out = "\\begin{pmatrix}\n"
-    for value in vector.dropLast() {
-        out += "\(value) \\\\\n"
-    }
-    out += "\(vector.last!)\n"
-    return out + "\\end{pmatrix}"
-}
-
