@@ -285,7 +285,7 @@ func toLaTeX<T>(matrix: [[T]], vector: [T], result: [T]) -> String {
     out += "\\end{matrix}\n\\right)\\right."
     out += "=\n"
     // in the end the result vector
-    out += toLaTeX(vector: result)
+    out += result.toLaTeXVector()
     out += "\n\\]"
     return out
 }
@@ -300,7 +300,7 @@ func test<T: NumericType>(matrix: [[T]], vector: [T], result: [T]) -> Bool {
             value += matrix[row][column]*result[column]
         }
         //print("=\(vector[row])?")
-        if abs((value - vector[row])*T(128)) >= T(1) {
+        if ((value - vector[row])*T(128)).abs() >= T(1) {
             return false
         }
     }

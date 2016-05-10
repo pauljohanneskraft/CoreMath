@@ -11,11 +11,7 @@ import XCTest
 extension XCTestCase {
     func measureThrowingBlock(block: () throws -> Void) {
         measureBlock {
-            do {
-                try block()
-            } catch let e {
-                print("did throw", e)
-            }
+            nocatch(block)
         }
     }
 }
@@ -23,5 +19,16 @@ extension XCTestCase {
 func nocatch(block: () throws -> () ) {
     do {
         try block()
-    } catch _ {}
+    } catch let e {
+        print(e)
+    }
+}
+
+func nocatch<T>(block: () throws -> T) -> T? {
+    do {
+        return try block()
+    } catch let e {
+        print(e)
+        return nil;
+    }
 }
