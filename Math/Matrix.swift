@@ -382,6 +382,23 @@ func % <T: NumericType>(left: [[T]], right: T) -> [[T]] {
     return left
 }
 
+prefix operator § {}
+
+prefix func §<T : NumericType>(lhs: [[T]]) -> [[T]] {
+    var res : [[T]] = []
+    for j in lhs[0].range {
+        var array : [T] = []
+        for i in lhs.range {
+            array.append(lhs[i][j])
+        }
+        res.append(array)
+    }
+    return res
+}
+
+
+
+
 
 
 
