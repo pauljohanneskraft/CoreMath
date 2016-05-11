@@ -11,3 +11,7 @@
 enum MatrixError: ErrorType {
     case NotMultipliable, NotAddable, Unsolvable
 }
+
+enum HashListError: ErrorType {
+    case AlreadyInList
+}
