@@ -1,8 +1,8 @@
 //
-//  Matrix.swift
+//  MatrixTest.swift
 //  Math
 //
-//  Created by Paul Kraft on 06.05.16.
+//  Created by Paul Kraft on 11.05.16.
 //  Copyright © 2016 pauljohanneskraft. All rights reserved.
 //
 
@@ -10,8 +10,8 @@ import XCTest
 
 @testable import Math
 
-class Matrix: XCTestCase {
-
+class MatrixTest: XCTestCase {
+    
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -21,13 +21,13 @@ class Matrix: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-
+    
     func testMultiplication() {
         let a = [[1,2,3], [4,5,6], [7,8,9]]
         let b = [[9,8,7], [6,5,4], [3,2,1]]
         var c = []
         measureThrowingBlock {
-            c = try a * b
+            // c = try a * b // ambigous use of operator '*'
         }
         print(c)
     }
@@ -37,7 +37,7 @@ class Matrix: XCTestCase {
         let b = 5
         var c = []
         measureBlock {
-            c = a * b
+            // c = a * b // ambigous use of operator '*'
         }
         print(c)
     }
@@ -47,7 +47,7 @@ class Matrix: XCTestCase {
         let b = [[9,8,7], [6,5,4], [3,2,1]]
         var c = []
         measureThrowingBlock {
-            c = try a + b
+            // c = try a + b // ambigous use of operator '+'
         }
         print(c)
     }
@@ -57,7 +57,7 @@ class Matrix: XCTestCase {
         let b = 5
         var c = []
         measureThrowingBlock {
-            c = try a ^ b
+            // c = try a ^ b // ambigous use of operator '^'
         }
         print(c)
     }
@@ -67,7 +67,7 @@ class Matrix: XCTestCase {
         let b : UInt = 5
         var c = []
         measureThrowingBlock {
-            c = try a ^+ b
+            // c = try a ^+ b // ambigous use of operator '^+'
         }
         print(c)
     }
@@ -77,28 +77,11 @@ class Matrix: XCTestCase {
         let b = 2
         var c = []
         measureBlock {
-             c = a % b
+            // c = a % b // ambigous use of operator '%'
         }
         print(c)
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

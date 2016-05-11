@@ -1,8 +1,8 @@
 //
-//  String.swift
+//  StringTest.swift
 //  Math
 //
-//  Created by Paul Kraft on 06.05.16.
+//  Created by Paul Kraft on 11.05.16.
 //  Copyright © 2016 pauljohanneskraft. All rights reserved.
 //
 
@@ -10,8 +10,8 @@ import XCTest
 
 @testable import Math
 
-class String: XCTestCase {
-
+class StringTest: XCTestCase {
+    
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -23,37 +23,14 @@ class String: XCTestCase {
     }
     
     func testMultiplication() {
-        var a = "hello"
+        let a = "hello"
+        var b = ""
+        let num : UInt = UInt(2)
+        print(a, " * ", num, "=>")
         measureBlock {
-            a *= 5
+            b = a * num
         }
-        print(a)
+        print(b)
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

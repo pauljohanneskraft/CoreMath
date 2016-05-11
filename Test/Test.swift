@@ -1,12 +1,14 @@
 //
 //  Test.swift
-//  Math
+//  Test
 //
-//  Created by Paul Kraft on 06.05.16.
+//  Created by Paul Kraft on 11.05.16.
 //  Copyright © 2016 pauljohanneskraft. All rights reserved.
 //
 
 import XCTest
+
+@testable import Math
 
 extension XCTestCase {
     func measureThrowingBlock(block: () throws -> Void) {
