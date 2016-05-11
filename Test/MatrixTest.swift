@@ -21,13 +21,13 @@ class MatrixTest: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-    
+    /*
     func testMultiplication() {
         let a = [[1,2,3], [4,5,6], [7,8,9]]
         let b = [[9,8,7], [6,5,4], [3,2,1]]
         var c = []
         measureThrowingBlock {
-            // c = try a * b // ambigous use of operator '*'
+            c = try a * b // ambigous use of operator '*'
         }
         print(c)
     }
@@ -37,7 +37,7 @@ class MatrixTest: XCTestCase {
         let b = 5
         var c = []
         measureBlock {
-            // c = a * b // ambigous use of operator '*'
+            c = a * b // ambigous use of operator '*'
         }
         print(c)
     }
@@ -47,7 +47,7 @@ class MatrixTest: XCTestCase {
         let b = [[9,8,7], [6,5,4], [3,2,1]]
         var c = []
         measureThrowingBlock {
-            // c = try a + b // ambigous use of operator '+'
+            c = try a + b // ambigous use of operator '+'
         }
         print(c)
     }
@@ -57,7 +57,7 @@ class MatrixTest: XCTestCase {
         let b = 5
         var c = []
         measureThrowingBlock {
-            // c = try a ^ b // ambigous use of operator '^'
+            c = try a ^ b // ambigous use of operator '^'
         }
         print(c)
     }
@@ -67,7 +67,7 @@ class MatrixTest: XCTestCase {
         let b : UInt = 5
         var c = []
         measureThrowingBlock {
-            // c = try a ^+ b // ambigous use of operator '^+'
+            c = try a ^+ b // ambigous use of operator '^+'
         }
         print(c)
     }
@@ -77,10 +77,31 @@ class MatrixTest: XCTestCase {
         let b = 2
         var c = []
         measureBlock {
-            // c = a % b // ambigous use of operator '%'
+            c = a % b // ambigous use of operator '%'
         }
         print(c)
     }
+    
+    func testTransposition() {
+        let a : [[Int]] = [[0,1,2],[2,3,4]]
+        var b : [[Int]] = []
+        measureBlock {
+            b = §a // ambigous use of operator '§'
+        }
+        print(b)
+        print(a)
+    }
+    
+    func testTransposition2() {
+        var a : [[Int]] = [[0,1,2],[2,3,4]]
+        var b : [[Int]] = []
+        measureBlock {
+            b = §!a // ambigous use of operator '§!'
+        }
+        print(b)
+        print(a)
+    }
+    */
 }
 
 

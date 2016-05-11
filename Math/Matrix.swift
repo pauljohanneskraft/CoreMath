@@ -396,7 +396,12 @@ prefix func §<T : NumericType>(lhs: [[T]]) -> [[T]] {
     return res
 }
 
+prefix operator §! {}
 
+prefix func §!<T : NumericType>(inout lhs: [[T]]) -> [[T]] {
+    lhs = §lhs
+    return lhs
+}
 
 
 
