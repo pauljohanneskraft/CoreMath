@@ -35,6 +35,7 @@ extension Array {
         return out + "\\end{pmatrix}"
     }
     
+    var range : Range<Int> { return 0..<count }
 }
 
 // division of an array and a number (simply divides every single item)
