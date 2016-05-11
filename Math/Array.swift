@@ -52,3 +52,11 @@ func /= <T : NumericType>(inout left: [T], right: T) -> [T] {
     }
     return left
 }
+
+prefix func §<T : NumericType>(lhs: [T]) -> [[T]] {
+    var res : [[T]] = []
+    for v in lhs {
+        res.append([v])
+    }
+    return res
+}

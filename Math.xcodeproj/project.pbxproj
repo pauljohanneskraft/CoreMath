@@ -24,6 +24,7 @@
 		9B0FC7CB1CE31CE30009BAF4 /* StringTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0FC7CA1CE31CE30009BAF4 /* StringTest.swift */; };
 		9B0FC7CD1CE31CED0009BAF4 /* MatrixTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0FC7CC1CE31CED0009BAF4 /* MatrixTest.swift */; };
 		9B0FC7CF1CE31CF70009BAF4 /* NumberTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0FC7CE1CE31CF70009BAF4 /* NumberTest.swift */; };
+		9B36F7121CE34AAA007B52F6 /* Hashing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B36F7111CE34AAA007B52F6 /* Hashing.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -53,6 +54,7 @@
 		9B0FC7CA1CE31CE30009BAF4 /* StringTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringTest.swift; sourceTree = "<group>"; };
 		9B0FC7CC1CE31CED0009BAF4 /* MatrixTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatrixTest.swift; sourceTree = "<group>"; };
 		9B0FC7CE1CE31CF70009BAF4 /* NumberTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberTest.swift; sourceTree = "<group>"; };
+		9B36F7111CE34AAA007B52F6 /* Hashing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hashing.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				9B0FC7A51CE31CA70009BAF4 /* main.swift */,
+				9B36F7111CE34AAA007B52F6 /* Hashing.swift */,
 				9B0FC7AC1CE31CB90009BAF4 /* Array.swift */,
 				9B0FC7AD1CE31CB90009BAF4 /* Error.swift */,
 				9B0FC7AE1CE31CB90009BAF4 /* General.swift */,
@@ -207,6 +210,7 @@
 			files = (
 				9B0FC7A61CE31CA70009BAF4 /* main.swift in Sources */,
 				9B0FC7B51CE31CB90009BAF4 /* Matrix.swift in Sources */,
+				9B36F7121CE34AAA007B52F6 /* Hashing.swift in Sources */,
 				9B0FC7B61CE31CB90009BAF4 /* Number.swift in Sources */,
 				9B0FC7B31CE31CB90009BAF4 /* Error.swift in Sources */,
 				9B0FC7B71CE31CB90009BAF4 /* String.swift in Sources */,
@@ -372,6 +376,7 @@
 				9B0FC7AB1CE31CA70009BAF4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9B0FC7C11CE31CC40009BAF4 /* Build configuration list for PBXNativeTarget "Test" */ = {
 			isa = XCConfigurationList;
@@ -380,6 +385,7 @@
 				9B0FC7C31CE31CC40009BAF4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
