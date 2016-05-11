@@ -83,7 +83,13 @@ extension String {
     }
 }
 
+func +<T>(left: String, right: T) -> String {
+    return "\(left)\(right)"
+}
 
+func +<T>(left: T, right: String) -> String {
+    return "\(left)\(right)"
+}
 
 
 
