@@ -16,3 +16,20 @@ infix operator <-> { associativity left precedence 140 assignment }
 func <-> <T>(inout left: T, inout right: T) {
     (left, right) = (right, left)
 }
+
+func nocatch(block: () throws -> () ) {
+    do {
+        try block()
+    } catch let e {
+        print(e)
+    }
+}
+
+func nocatch<T>(block: () throws -> T) -> T? {
+    do {
+        return try block()
+    } catch let e {
+        print(e)
+        return nil;
+    }
+}
