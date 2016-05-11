@@ -113,6 +113,7 @@ extension NumericType {
             break
         default:
             assert(false)
+            // beware when implementing NumericType-protocol in another type
             self = Self(0)
             break
         }
