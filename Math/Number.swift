@@ -35,8 +35,6 @@ protocol NumericType {
     func <=(lhs: Self, rhs: Self) -> Bool
     func >=(lhs: Self, rhs: Self) -> Bool
     
-    func abs() -> Self
-    
     static var max : Self { get }
     static var min : Self { get }
     
@@ -58,9 +56,45 @@ protocol NumericType {
 }
 
 extension NumericType {
+    
     func abs() -> Self {
         return (self < Self(0) ? Self(0) - self : self)
     }
+    
+    func isPrime() -> Bool {
+        let num = self
+        if Double(Int(num)) != Double(num) {
+            return false
+        }
+        let zero = Self(0)
+        let two = Self(2)
+        let three = Self(3)
+        let five = Self(5)
+        let six = Self(6)
+        if num <= three { return true }
+        if (num % two) == zero { return false }
+        if (num % three) == zero { return false }
+        var i = five
+        while i * i <= num {
+            if (num % i) == zero { return false }
+            if (num % (i + two)) == zero { return false }
+            i += six
+        }
+        return true
+    }
+    
+    func isInteger() -> Bool {
+        return Double(Int(self)) == Double(self)
+    }
+    
+    func sign() -> Bool {
+        return self < Self(0)
+    }
+    
+    func isNaturalNumber(includingZero includingZero: Bool) -> Bool {
+        return isInteger() && (includingZero ? self >= Self(0) : self > Self(0))
+    }
+    
     init<T: NumericType>(_ v: T) {
         switch v {
         case is Double:
@@ -112,12 +146,11 @@ extension NumericType {
             self = Self(w)
             break
         default:
-            assert(false)
+            fatalError("casting unsuccesful, include " + v.dynamicType + " to init<T: NumericType>(_ v: T)")
             // beware when implementing NumericType-protocol in another type
-            self = Self(0)
-            break
         }
     }
+    
 }
 
 extension Int    : NumericType {}
