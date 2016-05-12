@@ -8,25 +8,25 @@
 
 import Foundation
 
-struct HashTable <T: NumericType, U> : CustomStringConvertible {
+struct HashTable <K: NumericType, V> : CustomStringConvertible {
     
-    private(set) var table = [[(key: T, value: U)]]()
-    private(set) var hash: T -> Int
+    private(set) var table  : [[(key: K, value: V)]]
+    private(set) var hash   : K -> Int
     
     init(_ count : Int) { // convenience init
-        self.init(_: count, hash: { return Int($0 % T(count)) })
+        self.init(_: count, hash: { return Int($0 % K(count)) })
     }
     
-    init(_ count : Int, hash: T -> Int) {
-        table = [[(key: T, value: U)]](count: count, repeatedValue: [])
+    init(_ count : Int, hash: K -> Int) {
+        table = [[(key: K, value: V)]](count: count, repeatedValue: [])
         self.hash = hash
     }
     
-    mutating func insert(key key: T, value: U) throws {
+    mutating func insert(key key: K, value: V) throws {
         try insert(element: (key, value))
     }
     
-    mutating func insert(element new: (key: T, value: U)) throws {
+    mutating func insert(element new: (key: K, value: V)) throws {
         let h = hash(new.key)
         if !table.range.contains(h) {
             throw HashTableError.BadHashFunction
@@ -39,7 +39,7 @@ struct HashTable <T: NumericType, U> : CustomStringConvertible {
         table[h].append(new)
     }
     
-    mutating func find(key key: T) throws -> (key: T, value: U) {
+    mutating func find(key key: K) throws -> (key: K, value: V) {
         let h = hash(key)
         if !table.range.contains(h) {
             throw HashTableError.BadHashFunction
@@ -52,40 +52,25 @@ struct HashTable <T: NumericType, U> : CustomStringConvertible {
         throw HashTableError.NotInList
     }
     
-    mutating func remove(key old: T) throws -> (key: T, value: U) {
-        let h = hash(old)
+    mutating func remove(key key: K) throws -> (key: K, value: V) {
+        let h = hash(key)
         if !table.range.contains(h) {
             throw HashTableError.BadHashFunction
         }
         for v in table[h].range {
-            if old == table[h][v].key {
+            if key == table[h][v].key {
                 return table[h].removeAtIndex(v)
             }
         }
         throw HashTableError.NotInList
     }
     
-    private mutating func testHashFunction() throws -> Bool {
-        try changeHash(hash: self.hash)
-        var min = 0
-        var max = 0
-        var total = 0
-        for i in 0..<Int(table.count) {
-            let length = table[i].count
-            if table[min].count > length { min = i }
-            if table[max].count < length { max = i }
-            total += length
-        }
-        let avg = total / Int(table.count)
-        return max - min < avg
-    }
-    
-    mutating func changeHash(hash newHash: T -> Int) throws {
+    mutating func setHash(newHash: K -> Int) throws {
         let oldHash = self.hash
         let oldTable = self.table
         do {
             self.hash = newHash
-            self.table = [[(key: T, value: U)]](count: oldTable.count, repeatedValue: [])
+            self.table = [[(key: K, value: V)]](count: oldTable.count, repeatedValue: [])
             for bucket in oldTable {
                 for element in bucket {
                     try insert(element: element)
@@ -105,25 +90,25 @@ struct HashTable <T: NumericType, U> : CustomStringConvertible {
 }
 
 
-struct HashTableNoChaining <T: NumericType, U> : CustomStringConvertible {
+struct HashTableNoChaining <K : NumericType, V> : CustomStringConvertible {
     
-    private(set) var table = [(key: T, value: U)?]()
-    private(set) var hash: T -> Int
+    private(set) var table  : [(key: K, value: V)?]
+    private(set) var hash   : K -> Int
     
     init(_ count : Int) { // convenience init
-        self.init(_: count, hash: { return Int($0 % T(count)) })
+        self.init(_: count, hash: { return Int($0 % K(count)) })
     }
     
-    init(_ count : Int, hash: T -> Int) {
-        table = [(key: T, value: U)?](count: count, repeatedValue: nil)
+    init(_ count : Int, hash: K -> Int) {
+        table = [(key: K, value: V)?](count: count, repeatedValue: nil)
         self.hash = hash
     }
     
-    mutating func insert(key key: T, value: U) throws {
+    mutating func insert(key key: K, value: V) throws {
         try insert(element: (key, value))
     }
     
-    mutating func insert(element new: (key: T, value: U)) throws {
+    mutating func insert(element new: (key: K, value: V)) throws {
         let h = hash(new.key)
         if !table.range.contains(h) {
             throw HashTableError.BadHashFunction
@@ -135,7 +120,7 @@ struct HashTableNoChaining <T: NumericType, U> : CustomStringConvertible {
         }
     }
     
-    mutating func find(key key: T) throws -> (key: T, value: U) {
+    mutating func find(key key: K) throws -> (key: K, value: V) {
         let h = hash(key)
         if !table.range.contains(h) {
             throw HashTableError.BadHashFunction
@@ -148,13 +133,13 @@ struct HashTableNoChaining <T: NumericType, U> : CustomStringConvertible {
         throw HashTableError.NotInList
     }
     
-    mutating func remove(key old: T) throws -> (key: T, value: U) {
-        let h = hash(old)
+    mutating func remove(key key: K) throws -> (key: K, value: V) {
+        let h = hash(key)
         if !table.range.contains(h) {
             throw HashTableError.BadHashFunction
         }
         if let t = table[h] {
-            if old == t.key {
+            if key == t.key {
                 table[h] = nil
                 return t
             }
@@ -162,12 +147,12 @@ struct HashTableNoChaining <T: NumericType, U> : CustomStringConvertible {
         throw HashTableError.NotInList
     }
     
-    mutating func changeHash(hash newHash: T -> Int) throws {
+    mutating func changeHash(hash newHash: K -> Int) throws {
         let oldHash = self.hash
         let oldTable = self.table
         do {
             self.hash = newHash
-            self.table = [(key: T, value: U)?](count: oldTable.count, repeatedValue: nil)
+            self.table = [(key: K, value: V)?](count: oldTable.count, repeatedValue: nil)
             for element in oldTable {
                 if element != nil {
                     try insert(element: element!)
