@@ -10,7 +10,7 @@ import Foundation
 
 // partially from source: http://natecook.com/blog/2014/08/generic-functions-for-incompatible-types/
 
-protocol NumericType {
+protocol NumericType : ForwardIndexType {
     
     func &+(lhs: Self, rhs: Self) -> Self
     func &-(lhs: Self, rhs: Self) -> Self
@@ -56,6 +56,10 @@ protocol NumericType {
 }
 
 extension NumericType {
+    
+    static var range : Range<Self> {
+        return Self.min...Self.max
+    }
     
     func abs() -> Self {
         return (self < Self(0) ? Self(0) - self : self)
@@ -168,11 +172,17 @@ extension UInt64 : NumericType {}
 extension Double : NumericType {
     static var max : Double { return DBL_MAX }
     static var min : Double { return DBL_MIN }
+    public func successor() -> Double {
+        return nextafter(self, self + 1)
+    }
 }
 
 extension Float  : NumericType {
     static var max : Float { return FLT_MAX }
     static var min : Float { return FLT_MIN }
+    public func successor() -> Float {
+        return nextafterf(self, self + 1)
+    }
 }
 
 func &+(lhs: Double, rhs: Double) -> Double { return lhs + rhs }
@@ -213,8 +223,6 @@ infix operator ^^ {}
 func ^^ <T: NumericType> (radix: T, power: T) -> T {
     return T(pow(Double(radix), Double(power)))
 }
-
-
 
 
 
