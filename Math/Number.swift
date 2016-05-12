@@ -61,7 +61,7 @@ extension NumericType {
         return Self.min...Self.max
     }
     
-    func abs() -> Self {
+    var abs : Self {
         return (self < Self(0) ? Self(0) - self : self)
     }
     
@@ -87,16 +87,16 @@ extension NumericType {
         return true
     }
     
-    func isInteger() -> Bool {
+    var isInteger : Bool {
         return Double(Int(self)) == Double(self)
     }
     
-    func sign() -> Bool {
+    var sign : Bool {
         return self < Self(0)
     }
     
     func isNaturalNumber(includingZero includingZero: Bool) -> Bool {
-        return isInteger() && (includingZero ? self >= Self(0) : self > Self(0))
+        return isInteger && (includingZero ? self >= Self(0) : self > Self(0))
     }
     
     init<T: NumericType>(_ v: T) {
@@ -224,5 +224,11 @@ func ^^ <T: NumericType> (radix: T, power: T) -> T {
     return T(pow(Double(radix), Double(power)))
 }
 
+func max<T : NumericType>(numbers: T...) -> T {
+    return numbers.max { $0 > $1 }
+}
 
+func min<T : NumericType>(numbers: T...) -> T {
+    return numbers.max { $0 < $1 }
+}
 

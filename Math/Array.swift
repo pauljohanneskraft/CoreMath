@@ -8,6 +8,8 @@
 
 // extension to add swapping-capability, e.g. comfortable when sorting
 
+import Foundation
+
 extension Array {
     mutating func swap(left: Int, _ right: Int) {
         self[left] <-> self[right]
@@ -35,6 +37,37 @@ extension Array {
         return out + "\\end{pmatrix}"
     }
     
+    func max(fun: (Element, Element) -> Bool) -> Element {
+        let printing = false
+        let buckets = 4
+        if self.count <= (buckets + buckets) {
+            if count == 1 { return self[0] }
+            var max : Element = self[0]
+            for v in self.dropFirst() {
+                if fun(v, max) {
+                    max = v
+                }
+            }
+            if printing { print("max in " + self + " is " + max) }
+            return max
+        }
+        let c = Int(log2(Double(buckets)))
+        let separator = count >> c
+        var arrOfMaxes = [Element]()
+        var upperBound = separator
+        if printing { print(upperBound + " " + separator)}
+        while upperBound < count {
+            if printing { print("will search for max in self[\(upperBound-separator)..<\(upperBound)]") }
+            arrOfMaxes.append(([] + self[(upperBound-separator)..<upperBound]).max(fun))
+            upperBound += separator
+        }
+        if printing { print("will search for max in self[\(upperBound-separator)..<\(count)]") }
+        arrOfMaxes.append(([] + self[upperBound-separator..<count]).max(fun))
+        let max = arrOfMaxes.max(fun)
+        if printing { print("max in " + self + " is " + max) }
+        return max
+    }
+    
     var range : Range<Int> { return 0..<count }
 }
 
@@ -60,3 +93,5 @@ prefix func §<T : NumericType>(lhs: [T]) -> [[T]] {
     }
     return res
 }
+
+

@@ -300,7 +300,7 @@ func test<T: NumericType>(matrix: [[T]], vector: [T], result: [T]) -> Bool {
             value += matrix[row][column]*result[column]
         }
         //print("=\(vector[row])?")
-        if ((value - vector[row])*T(128)).abs() >= T(1) {
+        if ((value - vector[row])*T(128)).abs >= T(1) {
             return false
         }
     }
