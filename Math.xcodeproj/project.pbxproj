@@ -130,10 +130,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9B0FC7A91CE31CA70009BAF4 /* Build configuration list for PBXNativeTarget "Math" */;
 			buildPhases = (
+				9B19FF241CE5ED9A0045E59E /* ShellScript */,
 				9B0FC79E1CE31CA70009BAF4 /* Sources */,
 				9B0FC79F1CE31CA70009BAF4 /* Frameworks */,
 				9B0FC7A01CE31CA70009BAF4 /* CopyFiles */,
-				9B19FF241CE5ED9A0045E59E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -219,7 +219,8 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "TAGS=\"TODO:|FIXME:\"\nERRORTAG=\"ERROR:\"\nfind \"${SRCROOT}\" \\( -name \"*.h\" -or -name \"*.m\" -or -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$|($ERRORTAG).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\" | perl -p -e \"s/($ERRORTAG)/ error: \\$1/\"";
+			shellScript = "TAGS=\"TODO|FIX|PERFORMANCE|IDEA|WARNING\"\nERRORTAG=\"ERROR\"\nfind \"${SRCROOT}\" \\( -name \"*.h\" -or -name \"*.m\" -or -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$|($ERRORTAG).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\" | perl -p -e \"s/($ERRORTAG)/ error: \\$1/\"";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
