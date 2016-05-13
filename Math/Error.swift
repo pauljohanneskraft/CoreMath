@@ -15,3 +15,7 @@ enum MatrixError: ErrorType {
 enum HashTableError: ErrorType {
     case InList, NotInList, BadHashFunction, HashConflict
 }
+
+enum ArrayError: ErrorType {
+    case NotInArray, InArray, NotUnique
+}
