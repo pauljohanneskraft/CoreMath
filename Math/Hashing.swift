@@ -8,24 +8,66 @@
 
 import Foundation
 
-struct HashTable <K : Hashable, V> : CustomStringConvertible {
+struct HashTableElement<K> : Hashable {
+    let key : Int
+    var elem : K?
+    var hashValue : Int { return key }
+}
+
+func ==<K>(lhs: HashTableElement<K>, rhs: HashTableElement<K>) -> Bool {
+    return lhs.key == rhs.key
+}
+
+protocol HashTableType : CustomStringConvertible {
+    associatedtype Element : Hashable
     
-    private(set) var table          : [[(key: K, value: V)]]
-    private(set) var hashFunction   : K -> Int
+    // init(_ f: Element -> Int)
+    // init(_ array: [Element]) throws
+    // init()
+    // init(_ buckets : Int)
+    // init(_ buckets: Int, _ array: [Element]) throws
+    // init(_ buckets : Int, hashFunction: Element -> Int)
+    mutating func insert(elements: Element...) throws
+    mutating func insert(elements: [Element]) throws
+    mutating func insertNoCorrection(element new: Element) throws
+    mutating func overwriteOrAdd(element: Element) throws
+    mutating func executeForKey<T>(key: Element, f: (Int,Int?) throws -> T) throws -> T
+    mutating func executeForUniqueKey<T>(key: Element, f: (Int,Int?) throws -> T) throws -> T
+    mutating func overwrite(element: Element) throws
+    mutating func insert(element new: Element) throws
+    mutating func get(key key: Element) throws -> Element
+    mutating func remove(key key: Element) throws -> Element
+    mutating func correctBucketCount() throws
+    func hash(key: Element) throws -> Int
+    mutating func changeBucketCount(buckets: Int) throws
+    mutating func changeBucketCount(buckets: Int, f: Element -> Int) throws
+    mutating func hash(newHash: Element -> Int) throws
+    func sort()
+    var array : [Element] { get }
+    var buckets : Int { get }
+    var count : Int { get }
+    var description: String { get }
+}
+
+struct HashTable <Element : Hashable> : HashTableType {
     
-    init(_ f: K -> Int) {
+    //P.ERFORMANCE: making table of type [[[(K,V)]]] with the second list being hashed, too?
+    private(set) var table          : [[Element]]
+    private(set) var hashFunction   : Element -> Int
+    
+    init(_ f: Element -> Int) {
         self.init()
         hashFunction = f
     }
     
-    init(_ array: [(K, V)]) throws {
+    init(_ array: [Element]) throws {
         self.init()
         for v in array {
             try insert(element: v)
         }
     }
     
-    init(_ array: [(K, V)], buckets: Int) throws {
+    init(_ array: [Element], buckets: Int) throws {
         self.init(buckets)
         for v in array {
             try insert(element: v)
@@ -40,86 +82,86 @@ struct HashTable <K : Hashable, V> : CustomStringConvertible {
         self.init(_: buckets, hashFunction: { return $0.hashValue })
     }
     
-    init(_ buckets : Int, hashFunction: K -> Int) {
-        table = [[(key: K, value: V)]](count: buckets, repeatedValue: [])
+    init(_ buckets : Int, hashFunction: Element -> Int) {
+        table = [[Element]](count: buckets, repeatedValue: [])
         self.hashFunction = hashFunction
     }
     
-    mutating func insert(elements: (K,V)...) throws {
+    //P.ERFORMANCE maybe in parallel or hashing all first in parallel, then appending all?
+    mutating func insert(elements: Element...) throws {
         try insert(elements)
     }
     
-    mutating func insert(elements: [(K,V)]) throws {
+    //P.ERFORMANCE maybe in parallel or hashing all first in parallel, then appending all?
+    mutating func insert(elements: [Element]) throws {
         for v in elements {
             try insertNoCorrection(element: v)
         }
         try correctBucketCount()
     }
     
-    mutating func insertNoCorrection(element new: (K,V)) throws {
-        let h = hash(new.0)
-        if !table.range.contains(h) {
-            throw HashTableError.BadHashFunction
+    //I.DEA private?
+    mutating func insertNoCorrection(element new: Element) throws {
+        try executeForKey(new) {
+            b,i in
+                if i != nil { throw HashTableError.InList }
+                else        { self.table[b].append(new) }
         }
-        for v in table[h].range {
-            if new.0 == table[h][v].key {
-                throw HashTableError.InList
-            }
+    }
+    
+    mutating func overwriteOrAdd(element: Element) throws {
+        try executeForKey(element) {
+            b, i in
+                if i != nil { self.table[b][i!] = element   }
+                else        { self.table[b].append(element) }
         }
-        table[h].append(new)
     }
     
-    mutating func insertNoCorrection(key key: K, value: V) throws {
-        try insert(element: (key, value))
+    mutating func executeForKey<T>(key: Element, f: (Int,Int?) throws -> T) throws -> T {
+        let h = try hash(key)
+        let i = table[h].find { key == $0 }
+        return try f(h,i)
     }
     
-    mutating func insert(key key: K, value: V) throws {
-        try insert(element: (key, value))
+    mutating func executeForUniqueKey<T>(key: Element, f: (Int,Int?) throws -> T) throws -> T {
+        let h = try hash(key)
+        let i = try table[h].findUnique { key == $0 }
+        return try f(h,i)
     }
     
-    mutating func insert(element new: (key: K, value: V)) throws {
+    mutating func overwrite(element: Element) throws {
+        try executeForKey(element) {
+            b, i in
+                if i != nil { self.table[b][i!] = element    }
+                else        { throw HashTableError.NotInList }
+        }
+    }
+    
+    mutating func insert(element new: Element) throws {
         try insertNoCorrection(element: new)
+        //P.ERFORMANCE useful? maybe saving counter and only testing after 10 insertions...
         try correctBucketCount()
     }
     
-    mutating func find(key key: K) throws -> (key: K, value: V) {
-        let h = hash(key)
-        if !table.range.contains(h) {
-            throw HashTableError.BadHashFunction
+    mutating func get(key key: Element) throws -> Element {
+        return try executeForKey(key) {
+            b, i in
+                if i != nil { return self.table[b][i!] }
+                throw HashTableError.NotInList
         }
-        for v in table[h].range {
-            if key == table[h][v].key {
-                return table[h][v]
-            }
-        }
-        throw HashTableError.NotInList
     }
     
-    mutating func remove(key key: K) throws -> (key: K, value: V) {
-        let h = hash(key)
-        if !table.range.contains(h) {
-            throw HashTableError.BadHashFunction
+    //T.ODO removeSavely - using findUnique
+    
+    mutating func remove(key key: Element) throws -> Element {
+        return try executeForKey(key) {
+            b, i in
+                if i != nil { return self.table[b].removeAtIndex(i!) }
+                else        { throw HashTableError.NotInList }
         }
-        for v in table[h].range {
-            if key == table[h][v].key {
-                return table[h].removeAtIndex(v)
-            }
-        }
-        throw HashTableError.NotInList
     }
     
-    func sumOfBucketCounts() -> Int {
-        var array : [Int] = []
-        for i in table {
-            array.append(i.count)
-        }
-        if let e = array.combineAll({ $0 + $1 }) {
-            print("sum of " + array + " is " + e)
-            return e
-        }
-        return 0
-    }
-    
+    //F.IX needs mathematical basis
     mutating func correctBucketCount() throws {
         print("correcting bucket count?")
         let max = table.max { $0.count > $1.count }.count
@@ -128,7 +170,7 @@ struct HashTable <K : Hashable, V> : CustomStringConvertible {
             print("did end because tc * 2 < 5: " + table.count)
             return
         }
-        if max > sumOfBucketCounts() / tc {
+        if max > count / tc {
             print("increasing bucket count!")
             try changeBucketCount(tc)
         }
@@ -140,7 +182,7 @@ struct HashTable <K : Hashable, V> : CustomStringConvertible {
             print("did end because tc / 2 < 3: " + table.count)
             return
         }
-        if min < sumOfBucketCounts() / tc {
+        if min < count / tc {
             print("decreasing bucket count!")
             try changeBucketCount(tc)
             return
@@ -148,26 +190,29 @@ struct HashTable <K : Hashable, V> : CustomStringConvertible {
         print("min: " + min + ", table.count: " + table.count)
     }
     
-    func hash(key: K) -> Int {
+    func hash(key: Element) throws -> Int {
         var h = (hashFunction(key) % table.count)
         while h < 0 {
             h += table.count
         }
-        print("hashes " + key + " to " + h)
-        return (h % table.count)
+        h = h % table.count
+        if 0 < h || h >= count {
+            throw HashTableError.BadHashFunction
+        }
+        return h
     }
     
-    private mutating func changeBucketCount(buckets: Int) throws {
+    internal mutating func changeBucketCount(buckets: Int) throws {
         try changeBucketCount(buckets, f: hashFunction)
     }
     
-    private mutating func changeBucketCount(buckets: Int, f: K -> Int) throws {
+    internal mutating func changeBucketCount(buckets: Int, f: Element -> Int) throws {
         let oldHash = self.hashFunction
         let oldTable = self.table
         do {
             let newHash = f
             self.hashFunction = newHash
-            self.table = [[(key: K, value: V)]](count: buckets, repeatedValue: [])
+            self.table = [[Element]](count: buckets, repeatedValue: [])
             for bucket in oldTable {
                 for element in bucket {
                     try insertNoCorrection(element: element)
@@ -182,12 +227,12 @@ struct HashTable <K : Hashable, V> : CustomStringConvertible {
     }
 
     
-    mutating func hash(newHash: K -> Int) throws {
+    mutating func hash(newHash: Element -> Int) throws {
         let oldHash = self.hashFunction
         let oldTable = self.table
         do {
             self.hashFunction = newHash
-            self.table = [[(key: K, value: V)]](count: oldTable.count, repeatedValue: [])
+            self.table = [[Element]](count: oldTable.count, repeatedValue: [])
             for bucket in oldTable {
                 for element in bucket {
                     try insert(element: element)
@@ -199,21 +244,26 @@ struct HashTable <K : Hashable, V> : CustomStringConvertible {
             throw HashTableError.BadHashFunction
         }
     }
+
     
     func sort() {
         for arr in table {
-            arr.sort { return $0.key.hashValue < $1.key.hashValue }
+            arr.sort { return $0.hashValue < $1.hashValue }
         }
     }
     
-    var array : [(key: K, value: V)] {
-        var array = [(key: K, value: V)]()
+    var array : [Element] {
+        var array = [Element]()
         for arr in table {
             for v in arr {
                 array.append(v)
             }
         }
         return array
+    }
+    
+    var buckets : Int {
+        return table.count
     }
     
     var count : Int {
@@ -227,90 +277,4 @@ struct HashTable <K : Hashable, V> : CustomStringConvertible {
     var description: String {
         return String(table)
     }
-    
 }
-
-
-struct HashTableNoChaining <K : NumericType, V> : CustomStringConvertible {
-    
-    private(set) var table  : [(key: K, value: V)?]
-    private(set) var hash   : K -> Int
-    
-    init(_ count : Int) { // convenience init
-        self.init(_: count, hash: { return Int($0 % K(count)) })
-    }
-    
-    init(_ count : Int, hash: K -> Int) {
-        table = [(key: K, value: V)?](count: count, repeatedValue: nil)
-        self.hash = hash
-    }
-    
-    mutating func insert(key key: K, value: V) throws {
-        try insert(element: (key, value))
-    }
-    
-    mutating func insert(element new: (key: K, value: V)) throws {
-        let h = hash(new.key)
-        if !table.range.contains(h) {
-            throw HashTableError.BadHashFunction
-        }
-        if table[h] != nil {
-            throw HashTableError.HashConflict
-        } else {
-            table[h] = new
-        }
-    }
-    
-    mutating func find(key key: K) throws -> (key: K, value: V) {
-        let h = hash(key)
-        if !table.range.contains(h) {
-            throw HashTableError.BadHashFunction
-        }
-        if let t = table[h] {
-            if t.key == key {
-                return t
-            }
-        }
-        throw HashTableError.NotInList
-    }
-    
-    mutating func remove(key key: K) throws -> (key: K, value: V) {
-        let h = hash(key)
-        if !table.range.contains(h) {
-            throw HashTableError.BadHashFunction
-        }
-        if let t = table[h] {
-            if key == t.key {
-                table[h] = nil
-                return t
-            }
-        }
-        throw HashTableError.NotInList
-    }
-    
-    mutating func changeHash(hash newHash: K -> Int) throws {
-        let oldHash = self.hash
-        let oldTable = self.table
-        do {
-            self.hash = newHash
-            self.table = [(key: K, value: V)?](count: oldTable.count, repeatedValue: nil)
-            for element in oldTable {
-                if element != nil {
-                    try insert(element: element!)
-                }
-            }
-        } catch _ {
-            self.hash = oldHash
-            self.table = oldTable
-            throw HashTableError.BadHashFunction
-        }
-    }
-    
-    var description: String {
-        return String(table)
-    }
-    
-}
-
-
-
