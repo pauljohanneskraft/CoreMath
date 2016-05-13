@@ -14,7 +14,7 @@
 
 infix operator <-> { associativity left precedence 140 assignment }
 func <-> <T>(inout left: T, inout right: T) {
-    (left, right) = (right, left)
+    swap(&left, &right)
 }
 
 func nocatch(block: () throws -> () ) {
