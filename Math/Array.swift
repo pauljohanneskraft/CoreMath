@@ -62,7 +62,71 @@ extension Array {
         return nil
     }
     
-    func max(fun: (Element, Element) -> Bool) -> Element {
+    func find(f: Element -> Bool) -> Int? {
+        if self.count == 0 { return nil }
+        if self.count < 5 {
+            for i in self.range {
+                if f(self[i]) { return i }
+            }
+            return nil
+        }
+        let mid = self.count >> 1
+        let left = ([] + self[0..<mid]).find(f)
+        if left != nil { return left }
+        let right = ([] + self[mid..<count]).find(f)
+        return right
+    }
+    
+    func findUnique(f: Element -> Bool) throws -> Int? {
+        if self.count == 0 { return nil }
+        if self.count < 5 {
+            var v : Int? = nil
+            for i in self.range {
+                if f(self[i]) {
+                    if v == i   { v = i }
+                    else        { throw ArrayError.NotUnique }
+                }
+            }
+            return v
+        }
+        let mid = count >> 1
+        let left = ([] + self[0..<mid]).find(f)
+        let right = ([] + self[mid..<count]).find(f)
+        if left != nil && right != nil {
+            throw ArrayError.NotUnique
+        }
+        return (left == nil ? right : left)
+    }
+    
+    func findAll(f: Element -> Bool) -> [Int] {
+        if self.count == 0 { return [] }
+        if self.count < 5 {
+            var res : [Int] = []
+            for i in self.range {
+                if f(self[i]) {
+                    res.append(i)
+                }
+            }
+            print(self + " -> " + res)
+            return res
+        }
+        let mid = count >> 1
+        let left = ([] + self[0..<mid]).findAll(f)
+        var right = ([] + self[mid..<count]).findAll(f)
+        for i in right.range {
+            right[i] += mid
+        }
+        return left + right
+    }
+    
+    mutating func setAll(to: Element throws -> Element ) rethrows {
+        for i in self.range {
+            self[i] = try to(self[i])
+        }
+    }
+    
+    func max(fun: (Element, Element) -> Bool) -> Element? {
+        if count == 0 { return nil }
         let buckets = 4
         if self.count <= (buckets << 1) {
             if count == 1 { return self[0] }
@@ -75,7 +139,7 @@ extension Array {
             return max
         }
         let separator = count / buckets
-        var arrOfMaxes = [Element]()
+        var arrOfMaxes = [Element?]()
         var upperBound = separator
         while upperBound < count {
             arrOfMaxes.append(([] + self[(upperBound-separator)..<upperBound]).max(fun))
