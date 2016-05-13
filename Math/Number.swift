@@ -8,7 +8,13 @@
 
 import Foundation
 
+typealias Byte = UInt8
 
+typealias Word = UInt16
+
+typealias DWord = UInt32
+
+typealias QWord = UInt64
 
 // partially from source: http://natecook.com/blog/2014/08/generic-functions-for-incompatible-types/
 
@@ -62,7 +68,6 @@ protocol NumericType : ForwardIndexType, Hashable, Strideable {
     init(_ v: UInt32)
     init(_ v: UInt64)
     init(_ v: Self  )
-    //init(_ v: String)
     init<T: NumericType>(_ v: T)
     
 }
@@ -78,35 +83,45 @@ extension NumericType {
         return bigEndian.string(radix, groupsOf: groupsOf)
     }
     
-    var bigEndian : UInt64 {
+    var bigEndian : QWord {
         return bitVectorToInt(toBitVector().reverse())
     }
     
-    private func bitVectorToInt(array: [UInt8]) -> UInt64 {
-        let arr : [UInt8] = array.reverse()
-        var res = UInt64(0)
+    private func bitVectorToInt(array: [Byte]) -> QWord {
+        let arr : [Byte] = array.reverse()
+        var res = QWord(0)
         for i in arr.range {
-            var a = UInt64(arr[i])
-            a <<= UInt64(i*8)
+            var a = QWord(arr[i])
+            a <<= QWord(i*8)
             res |= a
         }
         return res
     }
     
-    private func toBitVector() -> [UInt8] {
+    private func toBitVector() -> [Byte] {
         var value = self
         let arr = withUnsafePointer(&value) {
-            Array(UnsafeBufferPointer(start: UnsafePointer<UInt8>($0), count: sizeof(Self)))
+            Array(UnsafeBufferPointer(start: UnsafePointer<Byte>($0), count: sizeof(Self)))
         }
         return arr
     }
     
-    var littleEndian : UInt64 {
+    var littleEndian : QWord {
         return bitVectorToInt(toBitVector())
     }
     
     static var range : Range<Self> {
         return Self.min...Self.max
+    }
+    
+    var bits : Int {
+        var this = bigEndian
+        var num = 0
+        for _ in 0..<(sizeof(Self) << 2) {
+            num += Int(this % 2)
+            this >>= 1
+        }
+        return num
     }
     
     var abs : Self {
@@ -186,16 +201,16 @@ protocol EnhancedFloatingPointType : NumericType {}
 extension EnhancedFloatingPointType {}
 
 
-extension Int    : NumericType, EnhancedIntegerType {}
-extension Int8   : NumericType, EnhancedIntegerType {}
-extension Int16  : NumericType, EnhancedIntegerType {}
-extension Int32  : NumericType, EnhancedIntegerType {}
-extension Int64  : NumericType, EnhancedIntegerType {}
-extension UInt   : NumericType, EnhancedIntegerType {}
-extension UInt8  : NumericType, EnhancedIntegerType {}
-extension UInt16 : NumericType, EnhancedIntegerType {}
-extension UInt32 : NumericType, EnhancedIntegerType {}
-extension UInt64 : NumericType, EnhancedIntegerType {
+extension Int    : EnhancedIntegerType {}
+extension Int8   : EnhancedIntegerType {}
+extension Int16  : EnhancedIntegerType {}
+extension Int32  : EnhancedIntegerType {}
+extension Int64  : EnhancedIntegerType {}
+extension UInt   : EnhancedIntegerType {}
+extension UInt8  : EnhancedIntegerType {}
+extension UInt16 : EnhancedIntegerType {}
+extension UInt32 : EnhancedIntegerType {}
+extension UInt64 : EnhancedIntegerType {
     func string(radix: Int, groupsOf: Int) -> String {
         let logradixDouble = log2(Double(radix))
         if logradixDouble.isNaturalNumber(includingZero: false) {
@@ -223,7 +238,7 @@ extension UInt64 : NumericType, EnhancedIntegerType {
 }
 
 
-extension Double : NumericType {
+extension Double : EnhancedFloatingPointType {
     static var max : Double { return DBL_MAX }
     static var min : Double { return DBL_MIN }
     public func successor() -> Double {
@@ -231,7 +246,7 @@ extension Double : NumericType {
     }
 }
 
-extension Float  : NumericType {
+extension Float  : EnhancedFloatingPointType {
     static var max : Float { return FLT_MAX }
     static var min : Float { return FLT_MIN }
     public func successor() -> Float {
@@ -239,7 +254,7 @@ extension Float  : NumericType {
     }
 }
 
-extension Float80: NumericType {
+extension Float80: EnhancedFloatingPointType {
     static var max : Float80 { return Float80(FLT_MAX) }
     static var min : Float80 { return Float80(FLT_MIN) }
     
