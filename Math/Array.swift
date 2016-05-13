@@ -37,10 +37,34 @@ extension Array {
         return out + "\\end{pmatrix}"
     }
     
+    func sort(order: (Element, Element) -> Bool) {
+        sort { return order($0, $1) }
+    }
+    
+    func combineAll(f: (Element, Element) -> Element) -> Element? {
+        if count < 5 {
+            if count == 0 { return nil }
+            if count == 1 { return self[0] }
+            var res = f(self[0], self[1])
+            for v in self.dropFirst().dropFirst() {
+                res = f(res, v)
+            }
+            return res
+        }
+        let mid = count >> 1
+        let left  = ([] + self[0..<mid]).combineAll(f)
+        let right = ([] + self[mid..<count]).combineAll(f)
+        if let l = left {
+            if let r = right {
+                return f(l,r)
+            }
+        }
+        return nil
+    }
+    
     func max(fun: (Element, Element) -> Bool) -> Element {
-        let printing = false
         let buckets = 4
-        if self.count <= (buckets + buckets) {
+        if self.count <= (buckets << 1) {
             if count == 1 { return self[0] }
             var max : Element = self[0]
             for v in self.dropFirst() {
@@ -48,23 +72,17 @@ extension Array {
                     max = v
                 }
             }
-            if printing { print("max in " + self + " is " + max) }
             return max
         }
-        let c = Int(log2(Double(buckets)))
-        let separator = count >> c
+        let separator = count / buckets
         var arrOfMaxes = [Element]()
         var upperBound = separator
-        if printing { print(upperBound + " " + separator)}
         while upperBound < count {
-            if printing { print("will search for max in self[\(upperBound-separator)..<\(upperBound)]") }
             arrOfMaxes.append(([] + self[(upperBound-separator)..<upperBound]).max(fun))
             upperBound += separator
         }
-        if printing { print("will search for max in self[\(upperBound-separator)..<\(count)]") }
         arrOfMaxes.append(([] + self[upperBound-separator..<count]).max(fun))
         let max = arrOfMaxes.max(fun)
-        if printing { print("max in " + self + " is " + max) }
         return max
     }
     
