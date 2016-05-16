@@ -354,3 +354,23 @@ prefix func ! <T: EnhancedIntegerType>(value: T) throws -> T {
     if fac > UInt64(T.max) { throw NumberError.TooBigForType("0x\(fac.hex), \(fac.dec) is too large to fit into \(T.self)") }
     return T(fac)
 }
+
+prefix operator ∿ {}
+prefix func ∿<T: NumericType>(num: T) -> T {
+    return T(sin(Double(num)))
+}
+
+prefix operator √ {}
+prefix func √ <T: NumericType>(num: T) -> T {
+    return T(pow(Double(num), 1/2))
+}
+
+prefix operator ∛ {}
+prefix func ∛ <T: NumericType>(num: T) -> T {
+    return T(pow(Double(num), 1/3))
+}
+
+prefix operator ∜ {}
+prefix func ∜ <T: NumericType>(num: T) -> T {
+    return T(pow(Double(num), 1/4))
+}
