@@ -11,26 +11,13 @@ import XCTest
 @testable import Math
 
 extension XCTestCase {
-    func measureThrowingBlock(block: () throws -> Void) {
+    func measureThrowingBlock<T>(block: () throws -> T) -> T? {
+        var a : T?
         measureBlock {
-            nocatch(block)
+            do { a = try block() }
+            catch let e { print("Error: \(e)") }
+            // a = nocatch(block)
         }
-    }
-}
-
-func nocatch(block: () throws -> () ) {
-    do {
-        try block()
-    } catch let e {
-        print(e)
-    }
-}
-
-func nocatch<T>(block: () throws -> T) -> T? {
-    do {
-        return try block()
-    } catch let e {
-        print(e)
-        return nil;
+        return a
     }
 }

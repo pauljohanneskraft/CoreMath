@@ -8,6 +8,8 @@
 
 import XCTest
 
+@testable import Math
+
 class HashingTest: XCTestCase {
 
     override func setUp() {
@@ -19,5 +21,29 @@ class HashingTest: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
+    /*
+    func testThis() {
+        var hashTable = HashTable<Word, Word>()
+
+        measureThrowingBlock {
+            hashTable = HashTable<Word, Word>()
+            
+            try hashTable.correctBucketCount()
+            
+            let max = 0xFFF
+            
+            try hashTable.correctBucketCount(max)
+            
+            hashTable.increaseBuckets = true
+            hashTable.decreaseBuckets = false
+            
+            for i in 0..<max {
+                hashTable[Word(max-i)] = Word(i)
+            }
+        }
+        print(hashTable)
+        print("bucketCount \(hashTable.buckets), count: \(hashTable.count), avgBucketSize: \(hashTable.avgBucketSize)")
+    }
+     */
     
 }
