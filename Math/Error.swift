@@ -12,10 +12,14 @@ enum MatrixError: ErrorType {
     case NotMultipliable, NotAddable, Unsolvable
 }
 
-enum HashTableError: ErrorType {
-    case InList, NotInList, BadHashFunction, HashConflict
+enum HashTableError<K: Hashable, V>: ErrorType {
+    case InList((key: K, value: V)), NotInList(key: K), BadHashFunction
 }
 
 enum ArrayError: ErrorType {
-    case NotInArray, InArray, NotUnique
+    case NotUnique
+}
+
+enum NumberError: ErrorType {
+    case TooBigForType(String)
 }
