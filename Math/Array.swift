@@ -146,8 +146,8 @@ extension Array {
             upperBound += separator
         }
         arrOfMaxes.append(([] + self[upperBound-separator..<count]).max(fun))
-        let max = arrOfMaxes.max(fun)
-        return max
+        // let max = arrOfMaxes.max(fun)
+        return self[0]
     }
     
     var range : Range<Int> { return 0..<count }
@@ -174,6 +174,60 @@ prefix func §<T : NumericType>(lhs: [T]) -> [[T]] {
         res.append([v])
     }
     return res
+    
 }
+
+
+
+/*
+infix operator / {}
+
+func / <T>(left: [T], right: [T]) -> [T] {
+    var left = left
+    for i in left.range {
+        if right.contains({ $0 == left[i] }) {
+            left.removeAtIndex(i)
+        }
+    }
+    return left
+}
+
+*/
+
+infix operator ⋃ {}
+func ⋃ <T> (left: Set<T>, right: Set<T>) -> Set<T> {
+    return left.union(right)
+}
+
+infix operator ⋃= {}
+func ⋃= <T> (inout left: Set<T>, right: Set<T>) -> Set<T> {
+    left.unionInPlace(right)
+    return left
+}
+
+
+infix operator ⋂ {}
+func ⋂ <T>(left: Set<T>, right: Set<T>) -> Set<T> {
+    return left.intersect(right)
+}
+
+infix operator ⋂= {}
+func ⋂= <T : Comparable>(inout left: Set<T>, right: Set<T>) -> Set<T> {
+    left.intersectInPlace(right)
+    return left
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
