@@ -17,19 +17,11 @@ func <-> <T>(inout left: T, inout right: T) {
     swap(&left, &right)
 }
 
-func nocatch(block: () throws -> () ) {
-    do {
-        try block()
-    } catch let e {
-        print(e)
-    }
-}
-
-func nocatch<T>(block: () throws -> T) -> T? {
+func nocatch<T>(block: () throws -> T ) -> T? {
     do {
         return try block()
     } catch let e {
-        print(e)
-        return nil;
+        print("Error: \(e)")
+        return nil
     }
 }
