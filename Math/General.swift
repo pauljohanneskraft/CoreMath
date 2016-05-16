@@ -25,3 +25,31 @@ func nocatch<T>(block: () throws -> T ) -> T? {
         return nil
     }
 }
+
+import Cocoa
+
+func printMeasure<T>(desc: String = "Test", _ blocks: (() throws -> T)...) {
+    for i in blocks.range {
+        let desc = "\(desc)\((blocks.count < 2 ? "" : " \(i)"))"
+        do {
+            let m = try measure {
+                return try blocks[i]()
+            }
+            var res = "returned \(m.result)"
+            res = (res != "returned ()" ? res : "finished")
+            print("\(desc) \(res) after \(Float(m.time)) s.")
+        } catch let e {
+            print("Error in \(desc): \(e)")
+        }
+    }
+}
+
+@warn_unused_result func measure<T>(block: () throws -> T ) rethrows -> (time: NSTimeInterval, result: T) {
+    var start : NSDate = NSDate()
+    var end : NSDate = NSDate()
+    var res : T
+    start = NSDate()
+    res = try block()
+    end = NSDate()
+    return (end.timeIntervalSince1970 - start.timeIntervalSince1970, res)
+}
