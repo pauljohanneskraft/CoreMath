@@ -18,7 +18,7 @@ typealias QWord = UInt64
 
 // partially from source: http://natecook.com/blog/2014/08/generic-functions-for-incompatible-types/
 
-protocol NumericType : ForwardIndexType, Hashable, Strideable {
+protocol NumericType : ForwardIndexType, Hashable, Strideable, CustomStringConvertible {
     
     func &+(lhs: Self, rhs: Self) -> Self
     func &-(lhs: Self, rhs: Self) -> Self
@@ -195,11 +195,27 @@ extension EnhancedIntegerType {
     var isInfinite: Bool { return false }
     var isNaN: Bool { return false }
     var isSignaling: Bool { return false }
+    var nextPowerOf2: Int {
+        let c = ceil(log2(Double(self)))
+        return Int(pow(2.0, c))
+    }
+    var faculty : UInt64 {
+        let one = UInt64(1)
+        if self <= Self(1) { return one }
+        let value = UInt64(self)
+        return value * (value - one).faculty
+    }
 }
 
 protocol EnhancedFloatingPointType : NumericType {}
-extension EnhancedFloatingPointType {}
-
+extension EnhancedFloatingPointType {
+    var inaccuracy : Self {
+        let this : Self = self
+        let succ : Self = self.successor()
+        print("\(this) -> \(succ)")
+        return succ - this
+    }
+}
 
 extension Int    : EnhancedIntegerType {}
 extension Int8   : EnhancedIntegerType {}
@@ -242,7 +258,7 @@ extension Double : EnhancedFloatingPointType {
     static var max : Double { return DBL_MAX }
     static var min : Double { return DBL_MIN }
     public func successor() -> Double {
-        return nextafter(self, self + 1)
+        return nextafter(self, DBL_MAX)
     }
 }
 
@@ -250,7 +266,7 @@ extension Float  : EnhancedFloatingPointType {
     static var max : Float { return FLT_MAX }
     static var min : Float { return FLT_MIN }
     public func successor() -> Float {
-        return nextafterf(self, self + 1)
+        return nextafterf(self, FLT_MAX)
     }
 }
 
@@ -269,7 +285,7 @@ extension Float80: EnhancedFloatingPointType {
     
     public func successor() -> Float80 {
         let num = self
-        let modF = Float(num % Float80(FLT_MAX))
+        let modF = Float(num % Float80(Float.max))
         return num + Float80(modF.successor())
     }
 }
@@ -325,10 +341,16 @@ func &^^ <T: NumericType> (radix: T, power: T) -> T {
 
 
 func max<T : NumericType>(numbers: T...) -> T {
-    return numbers.max { $0 > $1 }
+    return numbers.max { $0 > $1 }!
 }
 
 func min<T : NumericType>(numbers: T...) -> T {
-    return numbers.max { $0 < $1 }
+    return numbers.max { $0 < $1 }!
 }
 
+// prefix operator ! {}
+prefix func ! <T: EnhancedIntegerType>(value: T) throws -> T {
+    let fac = value.faculty
+    if fac > UInt64(T.max) { throw NumberError.TooBigForType("0x\(fac.hex), \(fac.dec) is too large to fit into \(T.self)") }
+    return T(fac)
+}
