@@ -81,6 +81,70 @@ extension String {
         }
         return str
     }
+    
+    subscript(index: String.CharacterView.Index) -> Character {
+        get { return self.characters[index] }
+        set {
+            var chars = self.characters
+            chars.removeAtIndex(index)
+            chars.insert(newValue, atIndex: index)
+            self = String(chars)
+
+        }
+    }
+    subscript(range: Range<String.CharacterView.Index>) -> String {
+        get { return String(self.characters[range]) }
+        set {
+            var chars = self.characters
+            chars.replaceRange(range, with: newValue.characters)
+            self = String(chars)
+        }
+    }
+    
+    func getIndex(v: Int) -> Index {
+        var index = self.startIndex
+        for _ in 0..<v {
+            index = index.successor()
+        }
+        return index
+    }
+    
+    func getIndexRange(r: Range<Int>) -> Range<Index> {
+        let start = getIndex(r.startIndex)
+        var end = start
+        for _ in 0..<r.count-1 { end = end.successor() }
+        return start...end
+    }
+    
+    
+    subscript(index: Int) -> Character {
+        get {
+            let index = getIndex(index)
+            return self.characters[index]
+        }
+        set {
+            let index = getIndex(index)
+            var chars = self.characters
+            chars.removeAtIndex(index)
+            chars.insert(newValue, atIndex: index)
+            self = String(chars)
+            
+        }
+    }
+    
+    subscript(range: Range<Int>) -> String {
+        get {
+            let range = getIndexRange(range)
+            return String(self.characters[range])
+        }
+        set {
+            let range = getIndexRange(range)
+            var chars = self.characters
+            chars.replaceRange(range, with: newValue.characters)
+            self = String(chars)
+        }
+    }
+
 }
 
 func +<T>(left: String, right: T) -> String {
@@ -90,7 +154,6 @@ func +<T>(left: String, right: T) -> String {
 func +<T>(left: T, right: String) -> String {
     return "\(left)\(right)"
 }
-
 
 
 

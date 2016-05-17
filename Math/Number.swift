@@ -339,7 +339,7 @@ func &^^ <T: NumericType> (radix: T, power: T) -> T {
     return T(pow(Double(radix), Double(power)) % (Double(T.max) + 1.0))
 }
 
-
+/*
 func max<T : NumericType>(numbers: T...) -> T {
     return numbers.max { $0 > $1 }!
 }
@@ -347,7 +347,7 @@ func max<T : NumericType>(numbers: T...) -> T {
 func min<T : NumericType>(numbers: T...) -> T {
     return numbers.max { $0 < $1 }!
 }
-
+*/
 // prefix operator ! {}
 prefix func ! <T: EnhancedIntegerType>(value: T) throws -> T {
     let fac = value.faculty

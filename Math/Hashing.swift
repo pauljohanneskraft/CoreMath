@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 protocol HashTableElementType : Hashable {
     associatedtype Key : Hashable
     associatedtype Element
@@ -26,9 +25,15 @@ struct HashTable <K: Hashable, V> : ArrayLiteralConvertible, CustomStringConvert
     typealias Element = (key: K, value: V)
     
     //P.ERFORMANCE: making table of type [[[(K,V)]]] with the second list being hashed, too?
-    private(set) var table          = [[Element]](count: 0x10, repeatedValue: [])
     private(set) var hashFunction   : K -> Int   = { $0.hashValue }
     private(set) var maxBucketSize  : Int = 4 // 2 ^ 4 = 16
+    private(set) var table          = [[Element]](count: 0x10, repeatedValue: []) {
+        didSet {
+            while table.count < 4 || table.count != table.count.nextPowerOf2 {
+                table.append([])
+            }
+        }
+    }
     
     init(arrayLiteral elements: Element...) {
         print("here")
@@ -45,6 +50,7 @@ struct HashTable <K: Hashable, V> : ArrayLiteralConvertible, CustomStringConvert
             if !oldValue && resetBuckets {
                 increaseBuckets = true
                 decreaseBuckets = true
+                do { try correctBucketCount() } catch _ {}
             }
             if !resetBuckets {
                 increaseBuckets = false
@@ -61,7 +67,7 @@ struct HashTable <K: Hashable, V> : ArrayLiteralConvertible, CustomStringConvert
     }
     
     init(buckets: Int = 0x10, resetBuckets: Bool = true, hashFunction: K -> Int = { $0.hashValue }) {
-        table = [[(key: K, value: V)]](count: buckets.nextPowerOf2, repeatedValue: [])
+        self.table = [[(key: K, value: V)]](count: buckets < 4 ? 4 : buckets.nextPowerOf2, repeatedValue: [])
         self.hashFunction = hashFunction
         self.resetBuckets = resetBuckets
     }
@@ -220,7 +226,7 @@ struct HashTable <K: Hashable, V> : ArrayLiteralConvertible, CustomStringConvert
             }
         }
         
-        if avgBucketSize > (table.max { $0.count > $1.count }!.count << 2) {
+        if avgBucketSize > (table.maxElement { $0.count > $1.count }!.count << 2) {
             throw HashTableError<K,V>.BadHashFunction
         }
         

@@ -15,7 +15,6 @@ public struct constants {
     static let y_0 = (4*pi) * (10.0 ^^ -7)
     static let h   = 6.6260_7004_0 * (10.0 ^^ -34)
     static let c   = 299_792_458
-
 }
 
 
