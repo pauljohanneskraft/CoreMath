@@ -14,13 +14,13 @@
 // var left : [[T]] = [[..., ...], ...]
 // left++
 
-postfix func ++<T: NumericType>(inout left: [[T]]) -> [[T]] {
+postfix func ++<T: NumericType>(left: inout [[T]]) -> [[T]] {
     let before = left
     ++left
     return before
 }
 
-prefix func ++<T: NumericType>(inout left: [[T]]) -> [[T]] {
+prefix func ++<T: NumericType>( left: inout [[T]]) -> [[T]] {
     for row in 0..<left.count {
         for column in 0..<left[row].count {
             left[row][column]++
@@ -43,7 +43,7 @@ func * <T: NumericType>(left: [[T]], right: [[T]]) throws -> [[T]] {
     return left
 }
 
-func *= <T: NumericType>(inout left: [[T]], right: [[T]]) throws -> [[T]] {
+func *= <T: NumericType>( left: inout [[T]], right: [[T]]) throws -> [[T]] {
     if left[0].count != right.count { throw MatrixError.NotMultipliable }
     var matrix : [[T]] = []
     
@@ -62,7 +62,7 @@ func *= <T: NumericType>(inout left: [[T]], right: [[T]]) throws -> [[T]] {
     return left
 }
 
-func -= <T: NumericType>(inout left: [[T]], right: [[T]]) throws -> [[T]] {
+func -= <T: NumericType>( left: inout [[T]], right: [[T]]) throws -> [[T]] {
     if left.count != right.count || left[0].count != right[0].count { throw MatrixError.NotAddable }
     for i in 0..<left.count {
         for j in 0..<left[0].count {
@@ -79,7 +79,7 @@ func - <T: NumericType>(left: [[T]], right: [[T]]) throws -> [[T]] {
 }
 
 
-func += <T: NumericType>(inout left: [[T]], right: [[T]]) throws -> [[T]] {
+func += <T: NumericType>( left: inout [[T]], right: [[T]]) throws -> [[T]] {
     if left.count != right.count || left[0].count != right[0].count { throw MatrixError.NotAddable }
     for i in 0..<left.count {
         for j in 0..<left[0].count {
@@ -95,7 +95,7 @@ func + <T: NumericType>(left: [[T]], right: [[T]]) throws -> [[T]] {
     return matrix
 }
 
-func *= <T: NumericType>(inout left: [[T]], right: T) -> [[T]] {
+func *= <T: NumericType>( left: inout [[T]], right: T) -> [[T]] {
     for row in 0..<left.count {
         for column in 0..<left[row].count {
             left[row][column] = left[row][column]*right
@@ -116,7 +116,7 @@ func * <T: NumericType>(left: T, right: [[T]]) -> [[T]] {
     return right
 }
 
-func /= <T: NumericType>(inout left: [[T]], right: T) -> [[T]] {
+func /= <T: NumericType>( left: inout [[T]], right: T) -> [[T]] {
     for row in 0..<left.count {
         for column in 0..<left[row].count {
             left[row][column] = left[row][column]/right
@@ -154,7 +154,7 @@ func != <T: NumericType>(left: [[T]], right: [[T]]) -> Bool {
     return !(left == right)
 }
 
-func toLaTeX<T>(matrix: [[T]]) -> String {
+func toLaTeX<T>(_ matrix: [[T]]) -> String {
     var out = "\\begin{pmatrix}\n"
     for array in matrix {
         for value in array.dropLast() {
@@ -173,7 +173,7 @@ func print<T>(matrix: [[T]]) {
 // source: https://wiki.freitagsrunde.org/Javakurs/Übungsaufgaben/Gauß-Algorithmus/Musterloesung
 // originally written in Java, rewritten by me in Swift
 
-func solve<T : NumericType>(pmatrix: [[T]], _ pvector: [T]) throws -> [T] {
+func solve<T : NumericType>(_ pmatrix: [[T]], _ pvector: [T]) throws -> [T] {
     if pmatrix.count < pmatrix[0].count { throw MatrixError.Unsolvable }
     var matrix = pmatrix
     var vector = pvector
@@ -201,7 +201,7 @@ func solve<T : NumericType>(pmatrix: [[T]], _ pvector: [T]) throws -> [T] {
             if matrix[0].count - 1 >= line {
                 //print(matrix)
                 //print(vector)
-                throw MatrixError.Unsolvable
+                throw MatrixError.NoUniqueSolution
             }
             break
         }
@@ -244,21 +244,21 @@ func solve<T : NumericType>(pmatrix: [[T]], _ pvector: [T]) throws -> [T] {
         }
     }
     
-    if !test(pmatrix, vector: pvector, result: vector) {
+    if !test(matrix: pmatrix, vector: pvector, result: vector) {
         throw MatrixError.Unsolvable // throws e.g. when there are no Int-results but there was a [[Int]] as input
     }
     //print(matrix, vector)
     return vector
 }
 
-private func removeRowLeadingNumber<T : NumericType>(factor: T, _ rowRoot: Int, _ row: Int, inout _ matrix: [[T]], inout _ vector: [T]) {
+private func removeRowLeadingNumber<T : NumericType>(_ factor: T, _ rowRoot: Int, _ row: Int, _ matrix: inout [[T]], _ vector: inout [T]) {
     for column in 0..<matrix[row].count {
         matrix[row][column] = matrix[row][column] - factor * matrix[rowRoot][column];
     }
     vector[row] = vector[row] - factor * vector[rowRoot];
 }
 
-private func divideLine< T: NumericType>(row : Int, _ div : T, inout _ matrix : [[T]], inout _ vector: [T]){
+private func divideLine< T: NumericType>(_ row : Int, _ div : T, _ matrix : inout [[T]], _ vector: inout [T]){
     for column in 0..<matrix[row].count {
         matrix[row][column] = matrix[row][column] / div;
     }
@@ -311,7 +311,7 @@ import Foundation
 
 var count = 0
 
-func ^=<T : NumericType>(inout left: [[T]], right: Int) throws -> [[T]] {
+func ^=<T : NumericType>( left: inout [[T]], right: Int) throws -> [[T]] {
     print("calculating matrix ^ \(right)")
     let orig = left
     if right == 0 {
@@ -328,7 +328,7 @@ func ^=<T : NumericType>(inout left: [[T]], right: Int) throws -> [[T]] {
         let half = right / 2
         let m = try orig ^ half
         left = try m * m
-        if !Bool(right & 0x1) {
+        if right & 0x1 == 0x1 {
             left = try left * orig
         }
     }
@@ -355,7 +355,7 @@ func ^+ <T : NumericType>(left: [[T]], right : UInt) throws -> [[T]] {
     return left
 }
 
-func ^+= <T: NumericType>(inout left: [[T]], right: UInt) throws -> [[T]] {
+func ^+= <T: NumericType>( left: inout [[T]], right: UInt) throws -> [[T]] {
     if right < 2 { return left }
     var matrixToPower = left
     let matrix0 = left
@@ -367,7 +367,7 @@ func ^+= <T: NumericType>(inout left: [[T]], right: UInt) throws -> [[T]] {
     return left
 }
 
-func %= <T: NumericType>(inout left: [[T]], right: T) -> [[T]] {
+func %= <T: NumericType>( left: inout [[T]], right: T) -> [[T]] {
     for i in 0..<left.count {
         for j in 0..<left[i].count {
             left[i][j] %= right
@@ -386,9 +386,9 @@ prefix operator § {}
 
 prefix func §<T : NumericType>(lhs: [[T]]) -> [[T]] {
     var res : [[T]] = []
-    for j in lhs[0].range {
+    for j in lhs[0].indices {
         var array : [T] = []
-        for i in lhs.range {
+        for i in lhs.indices {
             array.append(lhs[i][j])
         }
         res.append(array)
@@ -398,13 +398,14 @@ prefix func §<T : NumericType>(lhs: [[T]]) -> [[T]] {
 
 prefix operator §! {}
 
-prefix func §!<T : NumericType>(inout lhs: [[T]]) -> [[T]] {
+prefix func §! <T : NumericType>( lhs: inout [[T]]) -> [[T]] {
     lhs = §lhs
     return lhs
 }
 
-
-
+extension Array where Element : Collection {
+    
+}
 
 
 

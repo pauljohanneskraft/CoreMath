@@ -12,20 +12,20 @@ protocol ElementaryCalculation : Addable, Subtractable, Multipliable, Divisible 
 
 protocol Multipliable {
     func * (left: Self, right: Self) -> Self
-    func *=(inout left: Self, right: Self)
+    func *=( left: inout Self, right: Self)
 }
 
 protocol Addable {
     func + (left: Self, right: Self) -> Self
-    func += (inout left: Self, right: Self)
+    func += ( left: inout Self, right: Self)
 }
 
 protocol Subtractable {
     func - (left: Self, right: Self) -> Self
-    func -= (inout left: Self, right: Self)
+    func -= ( left: inout Self, right: Self)
 }
 
 protocol Divisible {
     func / (left: Self, right: Self) -> Self
-    func /= (inout left: Self, right: Self)
+    func /= ( left: inout Self, right: Self)
 }

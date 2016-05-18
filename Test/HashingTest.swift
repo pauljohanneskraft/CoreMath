@@ -21,12 +21,13 @@ class HashingTest: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
+    
     /*
     func testThis() {
-        var hashTable = HashTable<Word, Word>()
+        var hashTable = HashTable<Word, Word>(buckets: 0x10)
 
         measureThrowingBlock {
-            hashTable = HashTable<Word, Word>()
+            hashTable = HashTable<Word, Word>(buckets: 0x10)
             
             try hashTable.correctBucketCount()
             
@@ -44,6 +45,5 @@ class HashingTest: XCTestCase {
         print(hashTable)
         print("bucketCount \(hashTable.buckets), count: \(hashTable.count), avgBucketSize: \(hashTable.avgBucketSize)")
     }
-     */
-    
+    */
 }

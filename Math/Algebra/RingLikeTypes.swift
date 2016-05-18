@@ -23,7 +23,7 @@ internal protocol AbelianGroup0 : AbelianGroupType { // definition of an Abelian
     var set0 : Set<Element0> { get }
     var neutralElement0 : Element0 { get }
     var op0 : (Element0, Element0) -> Element0 { get }
-    var inverse0 : Element0 -> Element0 { get }
+    var inverse0 : (Element0) -> Element0 { get }
 }
 
 internal protocol Monoid1 {
@@ -76,27 +76,27 @@ extension RingType where Element0 == Element1 {
         return true
     }
     
-    private func associativeAddition(u: Element0, _ v: Element0, _ w: Element0) -> Bool {
+    private func associativeAddition(_ u: Element0, _ v: Element0, _ w: Element0) -> Bool {
         // if ((u ⨁ v) ⨁ w) != (u ⨁ (v ⨁ w)) { return false }
         return true
     }
     
-    private func commutativeAddition(u: Element0, _ v: Element0) -> Bool {
+    private func commutativeAddition(_ u: Element0, _ v: Element0) -> Bool {
         // if (u ⨁ v) != (v ⨁ u) { return false }                   // ⨁ is commutative
         return true
     }
     
-    private func associativeMultiplication(u: Element0, _ v: Element0, _ w: Element0) -> Bool {
+    private func associativeMultiplication(_ u: Element0, _ v: Element0, _ w: Element0) -> Bool {
         // if ((u ⨂ v) ⨂ w) != (u ⨂ (v ⨂ w)) { return false }      // ⨂ is associative
         return true
     }
     
-    private func leftDistributive(u: Element0, _ v: Element0, _ w: Element0) -> Bool {
+    private func leftDistributive(_ u: Element0, _ v: Element0, _ w: Element0) -> Bool {
         // if (u ⨂ (v ⨁ w)) != (u ⨂ v) ⨁ (u ⨂ w) { return false } // ⨂ is  left-distributive over ⨁
         return true
     }
     
-    private func rightDistributive(u: Element0, _ v: Element0, _ w: Element0) -> Bool {
+    private func rightDistributive(_ u: Element0, _ v: Element0, _ w: Element0) -> Bool {
         // if ((u ⨁ v) ⨂ w) != (u ⨂ v) ⨁ (v ⨂ w) { return false } // ⨂ is right-distributive over ⨁
         return true
     }

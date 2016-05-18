@@ -40,7 +40,7 @@ func * (left: String, right: UInt) -> String {
 // @result                  : String - the concatonated string
 
 
-func *= (inout left: String, right: UInt) -> String {
+func *= ( left: inout String, right: UInt) -> String {
     if right == 0 {
         left = ""
         return left
@@ -86,8 +86,8 @@ extension String {
         get { return self.characters[index] }
         set {
             var chars = self.characters
-            chars.removeAtIndex(index)
-            chars.insert(newValue, atIndex: index)
+            chars.remove(at: index)
+            chars.insert(newValue, at: index)
             self = String(chars)
 
         }
@@ -96,24 +96,24 @@ extension String {
         get { return String(self.characters[range]) }
         set {
             var chars = self.characters
-            chars.replaceRange(range, with: newValue.characters)
+            chars.replaceSubrange(range, with: newValue.characters)
             self = String(chars)
         }
     }
     
-    func getIndex(v: Int) -> Index {
-        var index = self.startIndex
+    func getIndex(_ v: Int) -> Index {
+        var i = self.startIndex
         for _ in 0..<v {
-            index = index.successor()
+            i = index(after: i)
         }
-        return index
+        return i
     }
     
-    func getIndexRange(r: Range<Int>) -> Range<Index> {
-        let start = getIndex(r.startIndex)
+    func getIndexRange(_ r: Range<Int>) -> Range<Index> {
+        let start = getIndex(r.lowerBound)
         var end = start
-        for _ in 0..<r.count-1 { end = end.successor() }
-        return start...end
+        for _ in 0..<r.count-1 { end = index(after: end) }
+        return start..<end
     }
     
     
@@ -125,8 +125,8 @@ extension String {
         set {
             let index = getIndex(index)
             var chars = self.characters
-            chars.removeAtIndex(index)
-            chars.insert(newValue, atIndex: index)
+            chars.remove(at: index)
+            chars.insert(newValue, at: index)
             self = String(chars)
             
         }
@@ -140,7 +140,7 @@ extension String {
         set {
             let range = getIndexRange(range)
             var chars = self.characters
-            chars.replaceRange(range, with: newValue.characters)
+            chars.replaceSubrange(range, with: newValue.characters)
             self = String(chars)
         }
     }

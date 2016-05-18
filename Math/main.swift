@@ -63,10 +63,15 @@ print(hT)
 
  */
 
+/*
 var str = "😇😄😅😁😂"
 
 str[0...3] = "😁😂"
 
 for i in 0..<str.characters.count { print(str[0...i]) }
+*/
 
+do {
+let c = try solve([[1,2,0,1], [1,1,-1,2], [-1,0,2,-1],[-2,3,7,1]], [6,-4,2,-2])
+} catch let e { print(e) }
 

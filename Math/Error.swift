@@ -8,18 +8,18 @@
 
 // all errors concerning matrices
 
-enum MatrixError: ErrorType {
-    case NotMultipliable, NotAddable, Unsolvable
+enum MatrixError: ErrorProtocol {
+    case NotMultipliable, NotAddable, Unsolvable, NoUniqueSolution
 }
 
-enum HashTableError<K: Hashable, V>: ErrorType {
+enum HashTableError<K: Hashable, V>: ErrorProtocol {
     case InList((key: K, value: V)), NotInList(key: K), BadHashFunction
 }
 
-enum ArrayError: ErrorType {
+enum ArrayError: ErrorProtocol {
     case NotUnique
 }
 
-enum NumberError: ErrorType {
+enum NumberError: ErrorProtocol {
     case TooBigForType(String)
 }

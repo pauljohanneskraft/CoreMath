@@ -21,7 +21,7 @@ struct Magma<Element where Element: Hashable, Element : Comparable> : MagmaType 
 }
 
 struct Group<Element where Element: Hashable, Element : Comparable> : GroupType {
-    init(set: Set<Element>, op: (Element,Element) -> Element, neutralElement: Element, inv: Element -> Element) {
+    init(set: Set<Element>, op: (Element,Element) -> Element, neutralElement: Element, inv: (Element) -> Element) {
         self.set = set
         self.op = op
         self.neutralElement = neutralElement
@@ -31,7 +31,7 @@ struct Group<Element where Element: Hashable, Element : Comparable> : GroupType 
     let op : (Element, Element) -> Element
     let eq : (Element, Element) -> Bool = { return $0 == $1 }
     let neutralElement : Element
-    let inv : Element -> Element
+    let inv : (Element) -> Element
     let sign : Character? = "+"
 }
 

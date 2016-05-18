@@ -13,7 +13,7 @@
 //
 
 infix operator <-> { associativity left precedence 140 assignment }
-func <-> <T>(inout left: T, inout right: T) {
+func <-> <T>( left: inout T, right: inout T) {
     swap(&left, &right)
 }
 
@@ -29,7 +29,7 @@ func nocatch<T>(block: () throws -> T ) -> T? {
 import Cocoa
 
 func printMeasure<T>(desc: String = "Test", _ blocks: (() throws -> T)...) {
-    for i in blocks.range {
+    for i in blocks.indices {
         let desc = "\(desc)\((blocks.count < 2 ? "" : " \(i)"))"
         do {
             let m = try measure {

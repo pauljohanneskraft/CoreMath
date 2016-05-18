@@ -8,6 +8,8 @@
 
 import Foundation
 
+
+/*
 protocol HashTableElementType : Hashable {
     associatedtype Key : Hashable
     associatedtype Element
@@ -25,9 +27,9 @@ struct HashTable <K: Hashable, V> : ArrayLiteralConvertible, CustomStringConvert
     typealias Element = (key: K, value: V)
     
     //P.ERFORMANCE: making table of type [[[(K,V)]]] with the second list being hashed, too?
-    private(set) var hashFunction   : K -> Int   = { $0.hashValue }
+    private(set) var hashFunction   : (K) -> Int   = { $0.hashValue }
     private(set) var maxBucketSize  : Int = 4 // 2 ^ 4 = 16
-    private(set) var table          = [[Element]](count: 0x10, repeatedValue: []) {
+    private(set) var table          = [[Element]](repeating: [], count: 0x10) {
         didSet {
             while table.count < 4 || table.count != table.count.nextPowerOf2 {
                 table.append([])
@@ -66,19 +68,19 @@ struct HashTable <K: Hashable, V> : ArrayLiteralConvertible, CustomStringConvert
         try insert(array)
     }
     
-    init(buckets: Int = 0x10, resetBuckets: Bool = true, hashFunction: K -> Int = { $0.hashValue }) {
-        self.table = [[(key: K, value: V)]](count: buckets < 4 ? 4 : buckets.nextPowerOf2, repeatedValue: [])
+    init(buckets: Int = 0x10, resetBuckets: Bool = true, hashFunction: (K) -> Int = { $0.hashValue }) {
+        self.table = [[(key: K, value: V)]](repeating: [], count: buckets < 4 ? 4 : buckets.nextPowerOf2)
         self.hashFunction = hashFunction
         self.resetBuckets = resetBuckets
     }
     
     //P.ERFORMANCE maybe in parallel or hashing all first in parallel, then appending all?
-    mutating func insert(elements elements: (key: K, value: V)...) throws {
+    mutating func insert(elements: (key: K, value: V)...) throws {
         try insert(elements)
     }
     
     //P.ERFORMANCE maybe in parallel or hashing all first in parallel, then appending all?
-    mutating func insert(elements: [(key: K, value: V)]) throws {
+    mutating func insert(_ elements: [(key: K, value: V)]) throws {
         try correctBucketCount(count + elements.count)
         let oldResetBuckets = resetBuckets
         self.resetBuckets = false
@@ -149,7 +151,7 @@ struct HashTable <K: Hashable, V> : ArrayLiteralConvertible, CustomStringConvert
         try correctBucketCount()
     }
     
-    func executeForKey<T>(key: K, f: (Int,Int?) throws -> T) throws -> T {
+    func executeForKey<T>(_ key: K, f: (Int,Int?) throws -> T) throws -> T {
         let h = try hash(key)
         let i = table[h].find { key == $0.key }
         return try f(h,i)
@@ -178,7 +180,7 @@ struct HashTable <K: Hashable, V> : ArrayLiteralConvertible, CustomStringConvert
         try correctBucketCount()
     }
     
-    func get(key key: K) throws -> (key: K, value: V) {
+    func get(key: K) throws -> (key: K, value: V) {
         return try executeForKey(key) {
             b, i in
                 if i != nil { return self.table[b][i!] }
@@ -188,15 +190,15 @@ struct HashTable <K: Hashable, V> : ArrayLiteralConvertible, CustomStringConvert
     
     //T.ODO removeSavely - using findUnique
     
-    mutating func remove(key key: K) throws -> (key: K, value: V) {
+    mutating func remove(key: K) throws -> (key: K, value: V) {
         return try executeForKey(key) {
             b, i in
-                if i != nil { return self.table[b].removeAtIndex(i!) }
+                if i != nil { return self.table[b].remove(at: i!) }
                 else        { throw HashTableError<K,V>.NotInList(key: key) }
         }
     }
     
-    mutating func correctBucketCount(count: Int) throws {
+    mutating func correctBucketCount(_ count: Int) throws {
         // print("tries correction")
         if !resetBuckets { return }
         // setting 16 as max per bucket
@@ -226,7 +228,7 @@ struct HashTable <K: Hashable, V> : ArrayLiteralConvertible, CustomStringConvert
             }
         }
         
-        if avgBucketSize > (table.maxElement { $0.count > $1.count }!.count << 2) {
+        if avgBucketSize > (table.max { $0.count > $1.count }!.count << 2) {
             throw HashTableError<K,V>.BadHashFunction
         }
         
@@ -241,7 +243,7 @@ struct HashTable <K: Hashable, V> : ArrayLiteralConvertible, CustomStringConvert
         return count / buckets
     }
     
-    func hash(key: K) throws -> Int {
+    func hash(_ key: K) throws -> Int {
         var h = hashFunction(key) % table.count
         while h < 0 {
             h = (h + table.count) % table.count
@@ -250,7 +252,7 @@ struct HashTable <K: Hashable, V> : ArrayLiteralConvertible, CustomStringConvert
     }
     
     // if f stays the same -> some buckets can stay the same
-    internal mutating func changeBucketCount(buckets: Int) throws {
+    internal mutating func changeBucketCount(_ buckets: Int) throws {
         let oldTable = self.table
         let oldResetBuckets = self.resetBuckets
         do {
@@ -265,7 +267,7 @@ struct HashTable <K: Hashable, V> : ArrayLiteralConvertible, CustomStringConvert
                     }
                 }
             } else {
-                self.table = [[(key: K, value: V)]](count: buckets, repeatedValue: [])
+                self.table = [[(key: K, value: V)]](repeating: [], count: buckets)
                 for bucket in oldTable {
                     for element in bucket {
                         try insert(element: element)
@@ -282,7 +284,7 @@ struct HashTable <K: Hashable, V> : ArrayLiteralConvertible, CustomStringConvert
         }
     }
     
-    internal mutating func changeBucketCount(buckets: Int, f: K -> Int) throws {
+    internal mutating func changeBucketCount(buckets: Int, f: (K) -> Int) throws {
         let oldHash = self.hashFunction
         let oldTable = self.table
         let oldResetBuckets = self.resetBuckets
@@ -290,7 +292,7 @@ struct HashTable <K: Hashable, V> : ArrayLiteralConvertible, CustomStringConvert
             let buckets = buckets.nextPowerOf2
             self.resetBuckets = false
             self.hashFunction = f
-            self.table = [[(key: K, value: V)]](count: buckets, repeatedValue: [])
+            self.table = [[(key: K, value: V)]](repeating: [], count: buckets)
             for bucket in oldTable {
                 for element in bucket {
                     try insert(element: element)
@@ -308,7 +310,7 @@ struct HashTable <K: Hashable, V> : ArrayLiteralConvertible, CustomStringConvert
     }
 
     
-    mutating func hash(newHash: K -> Int) throws {
+    mutating func hash(_ newHash: (K) -> Int) throws {
         let oldHash = self.hashFunction
         let oldTable = self.table
         let oldResetBuckets = self.resetBuckets
@@ -316,7 +318,7 @@ struct HashTable <K: Hashable, V> : ArrayLiteralConvertible, CustomStringConvert
             self.resetBuckets = false
             print("setting new hash")
             self.hashFunction = newHash
-            self.table = [[(key: K, value: V)]](count: oldTable.count, repeatedValue: [])
+            self.table = [[(key: K, value: V)]](repeating: [], count: oldTable.count)
             for bucket in oldTable {
                 for element in bucket {
                     try insert(element: element)
@@ -363,9 +365,59 @@ struct HashTable <K: Hashable, V> : ArrayLiteralConvertible, CustomStringConvert
     
     var description: String {
         var desc = "HashTable\(Element.self)\n"
-        for i in table.range {
+        for i in table.indices {
             desc += "bucket \(i+1): \(table[i])\n"
         }
         return desc
     }
 }
+
+
+
+// TODO HashTableLinearProbing, HashTableChaining, HashTable...?
+*/
+/*
+protocol HashTableType {
+    associatedtype Element : Hashable
+    associatedtype Bucket  : Collection
+    associatedtype Table   : Collection
+    
+    var hashFunction: Element -> Int { get set }
+    func hash(elem: Element) -> Int
+    
+    var table: Table { get }
+    var count : Int { get set }
+    
+    func insert(elem: Element) throws
+    func overrideOrAdd(elem: Element) throws
+    func insert<C : CollectionType>(elem: C) throws
+}
+
+extension HashTableType {
+    func hash(elem: Element) -> Int {
+        return elem.hashValue.abs % count
+    }
+}
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

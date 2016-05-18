@@ -13,7 +13,7 @@ import XCTest
 extension XCTestCase {
     func measureThrowingBlock<T>(block: () throws -> T) -> T? {
         var a : T?
-        measureBlock {
+        measure {
             do { a = try block() }
             catch let e { print("Error: \(e)") }
             // a = nocatch(block)

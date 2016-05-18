@@ -18,7 +18,8 @@ protocol MagmaType : CustomStringConvertible {
 extension MagmaType {
     var description: String {
         if sign != nil {
-            return "⟨\(set.sort({ a, b in a < b })), \(sign!)⟩"
+            let s : [Element] = [Element](set)
+            return "⟨\(s.sort(order: { a, b in a < b })), \(sign!)⟩"
         }
         return "⟨\(set), •⟩"
     }
@@ -28,7 +29,7 @@ extension MagmaType {
         return true
     }
     
-    func testClosure(u: Element, _ v: Element) -> Bool {
+    func testClosure(_ u: Element, _ v: Element) -> Bool {
         return set.contains(op(u,v))
     }
 }
@@ -47,7 +48,7 @@ extension Commutative {
         for u in set { for v in set { if !testCommutative(u,v) { return false } } } // \forall u,v \in Set : (u • v) = (v • u)
         return true
     }
-    func testCommutative(u: Element, _ v: Element) -> Bool {
+    func testCommutative(_ u: Element, _ v: Element) -> Bool {
         let a = op(v,u)
         let b = op(u,v)
         return eq(a, b)
@@ -63,7 +64,7 @@ extension hasNeutralElement {
         for u in set { if !testNeutralElement(u) { return false } }
         return true
     }
-    func testNeutralElement(u: Element) -> Bool {
+    func testNeutralElement(_ u: Element) -> Bool {
         return eq(op(u, neutralElement), u)
     }
 }
@@ -71,7 +72,7 @@ extension hasNeutralElement {
 // prefix func ! <T: Invertible> (element: T.Element) -> T.Element { return T.inverse(element) }
 
 internal protocol Invertible : MagmaType, hasNeutralElement {
-    var inv : Element -> Element { get }
+    var inv : (Element) -> Element { get }
 }
 
 extension Invertible {
@@ -79,7 +80,7 @@ extension Invertible {
         for u in set { if !testInverse(u) { return false } }
         return true
     }
-    func testInverse(u: Element) -> Bool {
+    func testInverse(_ u: Element) -> Bool {
         return eq(op(inv(u), u), neutralElement)
         // return (!u • u) == neutralElement
     }
@@ -91,7 +92,7 @@ extension Idempotent {  // • is idempotent
         for u in set { if !testIdempotent(u) { return false } }
         return true
     }
-    func testIdempotent(u: Element) -> Bool {
+    func testIdempotent(_ u: Element) -> Bool {
         return eq(op(u,u), u)     // return (u • u) == u
     }
 }
@@ -104,7 +105,7 @@ extension Associative {
         // \forall u,v,w \in Set : ((u • v) • w) = (u • (v • w))
         return true
     }
-    func testAssociative(u: Element, _ v: Element, _ w: Element) -> Bool {
+    func testAssociative(_ u: Element, _ v: Element, _ w: Element) -> Bool {
         return eq(op(op(u,v), w), op(u, op(v,w))) // return ((u • v) • w) == (u • (v • w))
     }
 }

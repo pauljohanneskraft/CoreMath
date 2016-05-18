@@ -21,11 +21,12 @@ class MatrixTest: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
+    
     /*
     func testMultiplication() {
-        let a = [[1,2,3], [4,5,6], [7,8,9]]
-        let b = [[9,8,7], [6,5,4], [3,2,1]]
-        var c = []
+        let a : [[Int]] = [[1,2,3], [4,5,6], [7,8,9]]
+        let b : [[Int]] = [[9,8,7], [6,5,4], [3,2,1]]
+        var c : [[Int]] = []
         measureThrowingBlock {
             c = try a * b // ambigous use of operator '*'
         }
@@ -33,9 +34,9 @@ class MatrixTest: XCTestCase {
     }
     
     func testScalarMultiplication() {
-        let a = [[1,2,3], [4,5,6], [7,8,9]]
-        let b = 5
-        var c = []
+        let a : [[Int]] = [[1,2,3], [4,5,6], [7,8,9]]
+        let b : Int = 5
+        var c : [[Int]] = []
         measureBlock {
             c = a * b // ambigous use of operator '*'
         }
@@ -43,9 +44,9 @@ class MatrixTest: XCTestCase {
     }
     
     func testAddition() {
-        let a = [[1,2,3], [4,5,6], [7,8,9]]
-        let b = [[9,8,7], [6,5,4], [3,2,1]]
-        var c = []
+        let a : [[Int]] = [[1,2,3], [4,5,6], [7,8,9]]
+        let b : [[Int]] = [[9,8,7], [6,5,4], [3,2,1]]
+        var c : [[Int]] = []
         measureThrowingBlock {
             c = try a + b // ambigous use of operator '+'
         }
@@ -53,9 +54,9 @@ class MatrixTest: XCTestCase {
     }
     
     func testExponentiation() {
-        let a = [[1,2,3], [4,5,6], [7,8,9]]
-        let b = 5
-        var c = []
+        let a : [[Int]] = [[1,2,3], [4,5,6], [7,8,9]]
+        let b : Int = 5
+        var c : [[Int]] = []
         measureThrowingBlock {
             c = try a ^ b // ambigous use of operator '^'
         }
@@ -63,9 +64,9 @@ class MatrixTest: XCTestCase {
     }
     
     func testExponentiationAndAddition() {
-        let a = [[1,2,3], [4,5,6], [7,8,9]]
+        let a : [[Int]] = [[1,2,3], [4,5,6], [7,8,9]]
         let b : UInt = 5
-        var c = []
+        var c : [[Int]] = []
         measureThrowingBlock {
             c = try a ^+ b // ambigous use of operator '^+'
         }
@@ -73,9 +74,9 @@ class MatrixTest: XCTestCase {
     }
     
     func testModulo() {
-        let a  = [[1,2,3], [4,5,6], [7,8,9]]
-        let b = 2
-        var c = []
+        let a : [[Int]] = [[1,2,3], [4,5,6], [7,8,9]]
+        let b : Int = 2
+        var c : [[Int]] = []
         measureBlock {
             c = a % b // ambigous use of operator '%'
         }
@@ -101,7 +102,8 @@ class MatrixTest: XCTestCase {
         print(b)
         print(a)
     }
-    */
+ */
+    
 }
 
 

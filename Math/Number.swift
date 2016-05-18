@@ -18,7 +18,7 @@ typealias QWord = UInt64
 
 // partially from source: http://natecook.com/blog/2014/08/generic-functions-for-incompatible-types/
 
-protocol NumericType : ForwardIndexType, Hashable, Strideable, CustomStringConvertible {
+protocol NumericType : Comparable, Hashable, Strideable, CustomStringConvertible {
     
     func &+(lhs: Self, rhs: Self) -> Self
     func &-(lhs: Self, rhs: Self) -> Self
@@ -30,11 +30,11 @@ protocol NumericType : ForwardIndexType, Hashable, Strideable, CustomStringConve
     func / (lhs: Self, rhs: Self) -> Self
     func % (lhs: Self, rhs: Self) -> Self
     
-    func %=(inout lhs: Self, rhs: Self)
-    func +=(inout lhs: Self, rhs: Self)
-    func -=(inout lhs: Self, rhs: Self)
-    func *=(inout lhs: Self, rhs: Self)
-    func /=(inout lhs: Self, rhs: Self)
+    func %=( lhs: inout Self, rhs: Self)
+    func +=( lhs: inout Self, rhs: Self)
+    func -=( lhs: inout Self, rhs: Self)
+    func *=( lhs: inout Self, rhs: Self)
+    func /=( lhs: inout Self, rhs: Self)
 
     func !=(lhs: Self, rhs: Self) -> Bool
     func ==(lhs: Self, rhs: Self) -> Bool
@@ -79,18 +79,18 @@ extension NumericType {
     var dec : String { return bigEndian.dec }
     var hex : String { return bigEndian.hex }
     
-    func string(radix: Int, groupsOf: Int) -> String {
+    func string(_ radix: Int, groupsOf: Int) -> String {
         return bigEndian.string(radix, groupsOf: groupsOf)
     }
     
     var bigEndian : QWord {
-        return bitVectorToInt(toBitVector().reverse())
+        return bitVectorToInt(toBitVector().reversed())
     }
     
-    private func bitVectorToInt(array: [Byte]) -> QWord {
-        let arr : [Byte] = array.reverse()
+    private func bitVectorToInt(_ array: [Byte]) -> QWord {
+        let arr : [Byte] = array.reversed()
         var res = QWord(0)
-        for i in arr.range {
+        for i in arr.indices {
             var a = QWord(arr[i])
             a <<= QWord(i*8)
             res |= a
@@ -111,7 +111,7 @@ extension NumericType {
     }
     
     static var range : Range<Self> {
-        return Self.min...Self.max
+        return Self.min..<Self.max
     }
     
     var bits : Int {
@@ -158,7 +158,7 @@ extension NumericType {
         return self < Self(0)
     }
     
-    func isNaturalNumber(includingZero includingZero: Bool) -> Bool {
+    func isNaturalNumber(includingZero: Bool) -> Bool {
         return isInteger && (includingZero ? self >= Self(0) : self > Self(0))
     }
     
@@ -207,11 +207,13 @@ extension EnhancedIntegerType {
     }
 }
 
-protocol EnhancedFloatingPointType : NumericType {}
+protocol EnhancedFloatingPointType : NumericType {
+    var successor : Self { get }
+}
 extension EnhancedFloatingPointType {
     var inaccuracy : Self {
         let this : Self = self
-        let succ : Self = self.successor()
+        let succ : Self = self.successor
         print("\(this) -> \(succ)")
         return succ - this
     }
@@ -253,11 +255,10 @@ extension UInt64 : EnhancedIntegerType {
     var hex : String { return string(16, groupsOf: 4) }
 }
 
-
 extension Double : EnhancedFloatingPointType {
     static var max : Double { return DBL_MAX }
     static var min : Double { return DBL_MIN }
-    public func successor() -> Double {
+    var successor : Double {
         return nextafter(self, DBL_MAX)
     }
 }
@@ -265,7 +266,7 @@ extension Double : EnhancedFloatingPointType {
 extension Float  : EnhancedFloatingPointType {
     static var max : Float { return FLT_MAX }
     static var min : Float { return FLT_MIN }
-    public func successor() -> Float {
+    var successor : Float {
         return nextafterf(self, FLT_MAX)
     }
 }
@@ -280,13 +281,13 @@ extension Float80: EnhancedFloatingPointType {
     var isZero: Bool { return self == Float80(0) }
     var isSubnormal: Bool { return Double(self).isSubnormal }
     var isInfinite: Bool { return !self.isFinite }
-    var isNaN: Bool { return self == Float80(Double.NaN) || self == Float80(Double.quietNaN) }
+    var isNaN: Bool { return self == Float80(Double.nan) || self == Float80(Double.quietNaN) }
     var isSignaling: Bool { return isNaN }
     
-    public func successor() -> Float80 {
+    var successor : Float80 {
         let num = self
         let modF = Float(num % Float80(Float.max))
-        return num + Float80(modF.successor())
+        return num + Float80(modF.successor)
     }
 }
 
@@ -303,24 +304,24 @@ func &-(lhs: Float80, rhs: Float80) -> Float80 { return lhs - rhs }
 func &*(lhs: Float80, rhs: Float80) -> Float80 { return lhs * rhs }
 
 
-postfix func ++<T: NumericType>(inout left: T) -> T {
+postfix func ++<T: NumericType>( left: inout T) -> T {
     let before = left
     ++left
     return before
 }
 
-prefix func ++<T: NumericType>(inout left: T) -> T {
+prefix func ++<T: NumericType>( left: inout T) -> T {
     left = left + T(1)
     return left
 }
 
-postfix func --<T: NumericType>(inout left: T) -> T {
+postfix func --<T: NumericType>( left: inout T) -> T {
     let before = left
     --left
     return before
 }
 
-prefix func --<T: NumericType>(inout left: T) -> T {
+prefix func --<T: NumericType>( left: inout T) -> T {
     left = left - T(1)
     return left
 }

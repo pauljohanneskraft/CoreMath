@@ -11,7 +11,7 @@
 import Foundation
 
 extension Array {
-    mutating func swap(left: Int, _ right: Int) {
+    mutating func swap(_ left: Int, _ right: Int) {
         self[left] <-> self[right]
     }
     
@@ -41,7 +41,7 @@ extension Array {
         sort { return order($0, $1) }
     }
     
-    func combineAll(f: (Element, Element) -> Element) -> Element? {
+    func combineAll(_ f: (Element, Element) -> Element) -> Element? {
         if count < 5 {
             if count == 0 { return nil }
             if count == 1 { return self[0] }
@@ -62,10 +62,10 @@ extension Array {
         return nil
     }
     
-    func find(f: Element -> Bool) -> Int? {
+    func find(_ f: (Element) -> Bool) -> Int? {
         if self.count == 0 { return nil }
         if self.count < 5 {
-            for i in self.range {
+            for i in self.indices {
                 if f(self[i]) { return i }
             }
             return nil
@@ -77,11 +77,11 @@ extension Array {
         return right
     }
     
-    func findUnique(f: Element -> Bool) throws -> Int? {
+    func findUnique(_ f: (Element) -> Bool) throws -> Int? {
         if self.count == 0 { return nil }
         if self.count < 5 {
             var v : Int? = nil
-            for i in self.range {
+            for i in self.indices {
                 if f(self[i]) {
                     if v == i   { v = i }
                     else        { throw ArrayError.NotUnique }
@@ -98,11 +98,11 @@ extension Array {
         return (left == nil ? right : left)
     }
     
-    func findAll(f: Element -> Bool) -> [Int] {
+    func findAll(_ f: (Element) -> Bool) -> [Int] {
         if self.count == 0 { return [] }
         if self.count < 5 {
             var res : [Int] = []
-            for i in self.range {
+            for i in self.indices {
                 if f(self[i]) {
                     res.append(i)
                 }
@@ -113,19 +113,17 @@ extension Array {
         let mid = count >> 1
         let left = ([] + self[0..<mid]).findAll(f)
         var right = ([] + self[mid..<count]).findAll(f)
-        for i in right.range {
+        for i in right.indices {
             right[i] += mid
         }
         return left + right
     }
     
-    mutating func setAll(to: Element throws -> Element ) rethrows {
-        for i in self.range {
+    mutating func setAll(_ to: (Element) throws -> Element ) rethrows {
+        for i in self.indices {
             self[i] = try to(self[i])
         }
     }
-    
-    var range : Range<Int> { return 0..<count }
 }
 
 // division of an array and a number (simply divides every single item)
@@ -136,7 +134,7 @@ func / <T : NumericType>(left: [T], right: T) -> [T] {
     return left
 }
 
-func /= <T : NumericType>(inout left: [T], right: T) -> [T] {
+func /= <T : NumericType>( left: inout [T], right: T) -> [T] {
     for valueIndex in 0..<left.count {
         left[valueIndex] = left[valueIndex] / right
     }
@@ -157,20 +155,20 @@ func ⋃ <T> (left: Set<T>, right: Set<T>) -> Set<T> {
 }
 
 infix operator ⋃= {}
-func ⋃= <T> (inout left: Set<T>, right: Set<T>) -> Set<T> {
-    left.unionInPlace(right)
+func ⋃= <T> ( left: inout Set<T>, right: Set<T>) -> Set<T> {
+    left.formUnion(right)
     return left
 }
 
 
 infix operator ⋂ {}
 func ⋂ <T>(left: Set<T>, right: Set<T>) -> Set<T> {
-    return left.intersect(right)
+    return left.intersection(right)
 }
 
 infix operator ⋂= {}
-func ⋂= <T : Comparable>(inout left: Set<T>, right: Set<T>) -> Set<T> {
-    left.intersectInPlace(right)
+func ⋂= <T : Comparable>( left: inout Set<T>, right: Set<T>) -> Set<T> {
+    left.formIntersection(right)
     return left
 }
 
