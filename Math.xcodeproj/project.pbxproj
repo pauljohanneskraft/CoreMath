@@ -44,6 +44,7 @@
 		9BB8EDCD1CE3F3C400CF1A9D /* HashingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB8EDCC1CE3F3C400CF1A9D /* HashingTest.swift */; };
 		9BBDA53C1CE7547B0038A56C /* Hashing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B36F7111CE34AAA007B52F6 /* Hashing.swift */; };
 		9BBDA5401CE78E930038A56C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDA53F1CE78E930038A56C /* Constants.swift */; };
+		9BF6FE3B1CEDCC3B007E71B9 /* Threads.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF6FE3A1CEDCC3A007E71B9 /* Threads.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -73,6 +74,7 @@
 		9B0FC7CA1CE31CE30009BAF4 /* StringTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringTest.swift; sourceTree = "<group>"; };
 		9B0FC7CC1CE31CED0009BAF4 /* MatrixTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatrixTest.swift; sourceTree = "<group>"; };
 		9B0FC7CE1CE31CF70009BAF4 /* NumberTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberTest.swift; sourceTree = "<group>"; };
+		9B127D7E1CEE525D00B1F6F4 /* Math-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Math-Bridging-Header.h"; sourceTree = "<group>"; };
 		9B36F7111CE34AAA007B52F6 /* Hashing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hashing.swift; sourceTree = "<group>"; };
 		9B9658921CE7AA7F0001D606 /* Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operations.swift; sourceTree = "<group>"; };
 		9B9658981CE7FCD90001D606 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
@@ -84,6 +86,8 @@
 		9BB21B761CEA4AD1009FF58B /* RingLikeTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RingLikeTest.swift; sourceTree = "<group>"; };
 		9BB8EDCC1CE3F3C400CF1A9D /* HashingTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HashingTest.swift; sourceTree = "<group>"; };
 		9BBDA53F1CE78E930038A56C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		9BF6FE3A1CEDCC3A007E71B9 /* Threads.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Threads.swift; sourceTree = "<group>"; };
+		9BF6FE3C1CEDDCA6007E71B9 /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +130,8 @@
 			isa = PBXGroup;
 			children = (
 				9B0FC7A51CE31CA70009BAF4 /* main.swift */,
+				9BF6FE3A1CEDCC3A007E71B9 /* Threads.swift */,
+				9BF6FE3C1CEDDCA6007E71B9 /* Playground.playground */,
 				9B36F7111CE34AAA007B52F6 /* Hashing.swift */,
 				9B0FC7AC1CE31CB90009BAF4 /* Array.swift */,
 				9B0FC7AD1CE31CB90009BAF4 /* Error.swift */,
@@ -137,6 +143,7 @@
 				9B96589A1CE7FD630001D606 /* Algebra */,
 				9B9658981CE7FCD90001D606 /* Protocols.swift */,
 				9B0FC7B11CE31CB90009BAF4 /* String.swift */,
+				9B127D7E1CEE525D00B1F6F4 /* Math-Bridging-Header.h */,
 			);
 			path = Math;
 			sourceTree = "<group>";
@@ -276,6 +283,7 @@
 				9B9658A01CE94F670001D606 /* RingLikeTypes.swift in Sources */,
 				9B0FC7A61CE31CA70009BAF4 /* main.swift in Sources */,
 				9B0FC7B51CE31CB90009BAF4 /* Matrix.swift in Sources */,
+				9BF6FE3B1CEDCC3B007E71B9 /* Threads.swift in Sources */,
 				9B36F7121CE34AAA007B52F6 /* Hashing.swift in Sources */,
 				9BB21B711CE9BD66009FF58B /* GroupLikeStructs.swift in Sources */,
 				9B96589E1CE7FD9C0001D606 /* GroupLikeTypes.swift in Sources */,
@@ -410,7 +418,13 @@
 		9B0FC7AA1CE31CA70009BAF4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Math/Math-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TREAT_MISSING_BASELINES_AS_TEST_FAILURES = NO;
 			};
 			name = Debug;
@@ -418,7 +432,12 @@
 		9B0FC7AB1CE31CA70009BAF4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Math/Math-Bridging-Header.h";
 				TREAT_MISSING_BASELINES_AS_TEST_FAILURES = NO;
 			};
 			name = Release;
