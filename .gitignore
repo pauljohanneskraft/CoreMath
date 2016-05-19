@@ -1,5 +1,8 @@
 .DS_Store
 
+main.swift 
+# used for testing, due to the library characteristic of the project, main.swift was removed.
+
 # Xcode
 #
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
