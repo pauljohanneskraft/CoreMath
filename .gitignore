@@ -1,6 +1,6 @@
 .DS_Store
 
-Math/main.swift 
+main.swift 
 # used for testing, due to the library characteristic of the project, main.swift was removed.
 
 # Xcode
