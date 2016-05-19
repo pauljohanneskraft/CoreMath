@@ -8,20 +8,23 @@
 
 
 protocol MagmaType : CustomStringConvertible {
-    associatedtype Element : Hashable, Comparable
+    associatedtype Element : Hashable, Equatable, Comparable
     var set : Set<Element> { get }
     var op : (Element, Element) -> Element { get }
-    var eq : (Element, Element) -> Bool { get }
     var sign : Character? { get }
+    var eq : (Element, Element) -> Bool { get }
 }
 
 extension MagmaType {
     var description: String {
         if sign != nil {
-            let s : [Element] = [Element](set)
-            return "⟨\(s.sort(order: { a, b in a < b })), \(sign!)⟩"
+            var s : [Element] = [Element](set)
+            return "⟨\(s.sort { a, b in a < b })), \(sign!)⟩"
         }
         return "⟨\(set), •⟩"
+    }
+    func test() -> Bool {
+        return testClosure()
     }
     
     func testClosure() -> Bool {
@@ -45,7 +48,8 @@ func • <T: MagmaType>(left: T.Element, right: T.Element) -> T.Element { return
 internal protocol Commutative : MagmaType {}
 extension Commutative {
     func testCommutative() -> Bool {
-        for u in set { for v in set { if !testCommutative(u,v) { return false } } } // \forall u,v \in Set : (u • v) = (v • u)
+        for u in set { for v in set { if !testCommutative(u,v) { return false } } }
+        // \forall u,v \in Set : (u • v) = (v • u)
         return true
     }
     func testCommutative(_ u: Element, _ v: Element) -> Bool {

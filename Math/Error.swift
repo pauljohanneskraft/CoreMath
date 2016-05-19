@@ -23,3 +23,7 @@ enum ArrayError: ErrorProtocol {
 enum NumberError: ErrorProtocol {
     case TooBigForType(String)
 }
+
+enum GroupLikeError: ErrorProtocol {
+    case TypeNotMatching
+}
