@@ -37,10 +37,6 @@ extension Array {
         return out + "\\end{pmatrix}"
     }
     
-    func sort(order: (Element, Element) -> Bool) {
-        sort { return order($0, $1) }
-    }
-    
     func combineAll(_ f: (Element, Element) -> Element) -> Element? {
         if count < 5 {
             if count == 0 { return nil }
@@ -97,7 +93,7 @@ extension Array {
         }
         return (left == nil ? right : left)
     }
-    
+
     func findAll(_ f: (Element) -> Bool) -> [Int] {
         if self.count == 0 { return [] }
         if self.count < 5 {
@@ -171,18 +167,4 @@ func ⋂= <T : Comparable>( left: inout Set<T>, right: Set<T>) -> Set<T> {
     left.formIntersection(right)
     return left
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
