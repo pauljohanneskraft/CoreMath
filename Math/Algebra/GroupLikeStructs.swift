@@ -9,18 +9,19 @@
 import Foundation
 
 struct GroupLike<Element where Element: Hashable, Element : Comparable> : SemigroupType, Commutative {
-    init(set: Set<Element>, op: (Element,Element) -> Element, neutralElement: Element? = nil, inv: ((Element) -> Element)? = nil) {
+    init(set: Set<Element>, op: (Element,Element) -> Element, neutralElement: Element? = nil, inv: ((Element) -> Element)? = nil, sign: Character = "•") {
         self.set = set
         self.op = op
         self.neutralElement = neutralElement
         self.inv = inv
+        self.sign = sign
     }
     let set : Set<Element>
     let op : (Element, Element) -> Element
     let eq : (Element, Element) -> Bool = { $0 == $1 }
     let neutralElement : Element?
     let inv : ((Element) -> Element)?
-    let sign : Character? = "+"
+    let sign : Character
     
     var strictestType : Any?  {
         
@@ -68,108 +69,108 @@ struct GroupLike<Element where Element: Hashable, Element : Comparable> : Semigr
 }
 
 struct Magma<Element where Element : Hashable, Element : Comparable> : MagmaType {
-    init(set: Set<Element>, op: (Element, Element) -> Element, sign: Character? = nil) throws {
+    init(set: Set<Element>, op: (Element, Element) -> Element, sign: Character = "•") throws {
         self.set = set
         self.op = op
+        self.sign = sign
         if test() != true {
             throw GroupLikeError.TypeNotMatching
         }
-        self.sign = sign
     }
     init(_ groupLike: GroupLike<Element>) throws {
         self.set = groupLike.set
         self.op = groupLike.op
+        self.sign = groupLike.sign
         if test() != true {
             throw GroupLikeError.TypeNotMatching
         }
-        self.sign = groupLike.sign
     }
     let set : Set<Element>
     let op : (Element, Element) -> Element
     var eq : (Element, Element) -> Bool = { $0 == $1 }
-    var sign : Character?
+    let sign : Character
 }
 
 struct Semigroup<Element where Element : Hashable, Element : Comparable> : SemigroupType {
-    init(set: Set<Element>, op: (Element, Element) -> Element, sign: Character? = nil) throws {
+    init(set: Set<Element>, op: (Element, Element) -> Element, sign: Character = "•") throws {
         self.set = set
         self.op = op
+        self.sign = sign
         if test() != (true, true) {
             throw GroupLikeError.TypeNotMatching
         }
-        self.sign = sign
     }
     init(_ groupLike: GroupLike<Element>) throws {
         self.set = groupLike.set
         self.op = groupLike.op
+        self.sign = groupLike.sign
         if test() != (true, true) {
             throw GroupLikeError.TypeNotMatching
         }
-        self.sign = groupLike.sign
     }
     let set : Set<Element>
     let op : (Element, Element) -> Element
     var eq : (Element, Element) -> Bool = { $0 == $1 }
-    var sign : Character?
+    let sign : Character
 }
 
 struct Monoid<Element where Element : Hashable, Element : Comparable> : MonoidType {
-    init(set: Set<Element>, op: (Element, Element) -> Element, neutralElement: Element, sign: Character? = nil) throws {
+    init(set: Set<Element>, op: (Element, Element) -> Element, neutralElement: Element, sign: Character = "•") throws {
         self.set = set
         self.op = op
         self.neutralElement = neutralElement
+        self.sign = sign
         if test() != (true, true, true) {
             throw GroupLikeError.TypeNotMatching
         }
-        self.sign = sign
     }
     init(_ groupLike: GroupLike<Element>) throws {
         self.set = groupLike.set
         self.op = groupLike.op
         self.neutralElement = groupLike.neutralElement!
+        self.sign = groupLike.sign
         if test() != (true, true,true) {
             throw GroupLikeError.TypeNotMatching
         }
-        self.sign = groupLike.sign
     }
     let set : Set<Element>
     let op : (Element, Element) -> Element
     let eq : (Element, Element) -> Bool = { $0 == $1 }
     let neutralElement : Element
-    var sign : Character?
+    let sign : Character
 }
 
 struct Group<Element where Element : Hashable, Element : Comparable> : GroupType {
-    init(set: Set<Element>, op: (Element, Element) -> Element, neutralElement: Element, inv: (Element) -> Element, sign: Character? = nil) throws {
+    init(set: Set<Element>, op: (Element, Element) -> Element, neutralElement: Element, inv: (Element) -> Element, sign: Character = "•") throws {
         self.set = set
         self.op = op
         self.neutralElement = neutralElement
         self.inv = inv
+        self.sign = sign
         if test() != (true, true, true, true) {
             throw GroupLikeError.TypeNotMatching
         }
-        self.sign = sign
     }
     init(_ groupLike: GroupLike<Element>) throws {
         self.set = groupLike.set
         self.op = groupLike.op
         self.neutralElement = groupLike.neutralElement!
         self.inv = groupLike.inv!
+        self.sign = groupLike.sign
         if test() != (true, true,true, true) {
             throw GroupLikeError.TypeNotMatching
         }
-        self.sign = groupLike.sign
     }
     let set : Set<Element>
     let op : (Element, Element) -> Element
     let eq : (Element, Element) -> Bool = { $0 == $1 }
     let neutralElement : Element
     let inv : (Element) -> Element
-    var sign : Character?
+    let sign : Character
 }
 
 struct AbelianGroup<Element where Element : Hashable, Element : Comparable> : AbelianGroupType {
-    init(set: Set<Element>, op: (Element, Element) -> Element, neutralElement: Element, inv: (Element) -> Element, sign: Character? = nil) throws {
+    init(set: Set<Element>, op: (Element, Element) -> Element, neutralElement: Element, inv: (Element) -> Element, sign: Character = "•") throws {
         self.set = set
         self.op = op
         self.neutralElement = neutralElement
@@ -184,17 +185,17 @@ struct AbelianGroup<Element where Element : Hashable, Element : Comparable> : Ab
         self.op = groupLike.op
         self.neutralElement = groupLike.neutralElement!
         self.inv = groupLike.inv!
+        self.sign = groupLike.sign
         if test() != (true, true,true, true, true) {
             throw GroupLikeError.TypeNotMatching
         }
-        self.sign = groupLike.sign
     }
     let set : Set<Element>
     let op : (Element, Element) -> Element
     let eq : (Element, Element) -> Bool = { $0 == $1 }
     let neutralElement : Element
     let inv : (Element) -> Element
-    var sign : Character?
+    let sign : Character
 }
 
 
