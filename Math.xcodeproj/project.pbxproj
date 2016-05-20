@@ -23,6 +23,8 @@
 		9B0FC7CB1CE31CE30009BAF4 /* StringTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0FC7CA1CE31CE30009BAF4 /* StringTest.swift */; };
 		9B0FC7CD1CE31CED0009BAF4 /* MatrixTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0FC7CC1CE31CED0009BAF4 /* MatrixTest.swift */; };
 		9B0FC7CF1CE31CF70009BAF4 /* NumberTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0FC7CE1CE31CF70009BAF4 /* NumberTest.swift */; };
+		9B1B6BC91CEF65FA0054A3E1 /* ModuleLikeTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1B6BC81CEF65FA0054A3E1 /* ModuleLikeTypes.swift */; };
+		9B1B6BCB1CEF660E0054A3E1 /* ModuleLikeStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1B6BCA1CEF660E0054A3E1 /* ModuleLikeStructs.swift */; };
 		9B36F7121CE34AAA007B52F6 /* Hashing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B36F7111CE34AAA007B52F6 /* Hashing.swift */; };
 		9B884ABE1CEC90EF00154A14 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDA53F1CE78E930038A56C /* Constants.swift */; };
 		9B884ABF1CEC90F300154A14 /* Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9658921CE7AA7F0001D606 /* Operations.swift */; };
@@ -44,7 +46,6 @@
 		9BB8EDCD1CE3F3C400CF1A9D /* HashingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB8EDCC1CE3F3C400CF1A9D /* HashingTest.swift */; };
 		9BBDA53C1CE7547B0038A56C /* Hashing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B36F7111CE34AAA007B52F6 /* Hashing.swift */; };
 		9BBDA5401CE78E930038A56C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDA53F1CE78E930038A56C /* Constants.swift */; };
-		9BF6FE3B1CEDCC3B007E71B9 /* Threads.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF6FE3A1CEDCC3A007E71B9 /* Threads.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -75,6 +76,8 @@
 		9B0FC7CC1CE31CED0009BAF4 /* MatrixTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatrixTest.swift; sourceTree = "<group>"; };
 		9B0FC7CE1CE31CF70009BAF4 /* NumberTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberTest.swift; sourceTree = "<group>"; };
 		9B127D7E1CEE525D00B1F6F4 /* Math-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Math-Bridging-Header.h"; sourceTree = "<group>"; };
+		9B1B6BC81CEF65FA0054A3E1 /* ModuleLikeTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModuleLikeTypes.swift; path = Algebra/ModuleLikeTypes.swift; sourceTree = "<group>"; };
+		9B1B6BCA1CEF660E0054A3E1 /* ModuleLikeStructs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModuleLikeStructs.swift; path = Algebra/ModuleLikeStructs.swift; sourceTree = "<group>"; };
 		9B36F7111CE34AAA007B52F6 /* Hashing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hashing.swift; sourceTree = "<group>"; };
 		9B9658921CE7AA7F0001D606 /* Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operations.swift; sourceTree = "<group>"; };
 		9B9658981CE7FCD90001D606 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
@@ -86,7 +89,6 @@
 		9BB21B761CEA4AD1009FF58B /* RingLikeTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RingLikeTest.swift; sourceTree = "<group>"; };
 		9BB8EDCC1CE3F3C400CF1A9D /* HashingTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HashingTest.swift; sourceTree = "<group>"; };
 		9BBDA53F1CE78E930038A56C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		9BF6FE3A1CEDCC3A007E71B9 /* Threads.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Threads.swift; sourceTree = "<group>"; };
 		9BF6FE3C1CEDDCA6007E71B9 /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -130,7 +132,6 @@
 			isa = PBXGroup;
 			children = (
 				9B0FC7A51CE31CA70009BAF4 /* main.swift */,
-				9BF6FE3A1CEDCC3A007E71B9 /* Threads.swift */,
 				9BF6FE3C1CEDDCA6007E71B9 /* Playground.playground */,
 				9B36F7111CE34AAA007B52F6 /* Hashing.swift */,
 				9B0FC7AC1CE31CB90009BAF4 /* Array.swift */,
@@ -170,6 +171,8 @@
 				9BB21B701CE9BD66009FF58B /* GroupLikeStructs.swift */,
 				9B96589F1CE94F670001D606 /* RingLikeTypes.swift */,
 				9BB21B721CE9D076009FF58B /* RingLikeStructs.swift */,
+				9B1B6BC81CEF65FA0054A3E1 /* ModuleLikeTypes.swift */,
+				9B1B6BCA1CEF660E0054A3E1 /* ModuleLikeStructs.swift */,
 			);
 			name = Algebra;
 			sourceTree = "<group>";
@@ -281,9 +284,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B9658A01CE94F670001D606 /* RingLikeTypes.swift in Sources */,
+				9B1B6BCB1CEF660E0054A3E1 /* ModuleLikeStructs.swift in Sources */,
 				9B0FC7A61CE31CA70009BAF4 /* main.swift in Sources */,
 				9B0FC7B51CE31CB90009BAF4 /* Matrix.swift in Sources */,
-				9BF6FE3B1CEDCC3B007E71B9 /* Threads.swift in Sources */,
+				9B1B6BC91CEF65FA0054A3E1 /* ModuleLikeTypes.swift in Sources */,
 				9B36F7121CE34AAA007B52F6 /* Hashing.swift in Sources */,
 				9BB21B711CE9BD66009FF58B /* GroupLikeStructs.swift in Sources */,
 				9B96589E1CE7FD9C0001D606 /* GroupLikeTypes.swift in Sources */,
