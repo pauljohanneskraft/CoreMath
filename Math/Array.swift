@@ -93,27 +93,6 @@ extension Array {
         }
         return (left == nil ? right : left)
     }
-
-    func findAll(_ f: (Element) -> Bool) -> [Int] {
-        if self.count == 0 { return [] }
-        if self.count < 5 {
-            var res : [Int] = []
-            for i in self.indices {
-                if f(self[i]) {
-                    res.append(i)
-                }
-            }
-            print(self + " -> " + res)
-            return res
-        }
-        let mid = count >> 1
-        let left = ([] + self[0..<mid]).findAll(f)
-        var right = ([] + self[mid..<count]).findAll(f)
-        for i in right.indices {
-            right[i] += mid
-        }
-        return left + right
-    }
     
     mutating func setAll(_ to: (Element) throws -> Element ) rethrows {
         for i in self.indices {
@@ -167,4 +146,41 @@ func ⋂= <T : Comparable>( left: inout Set<T>, right: Set<T>) -> Set<T> {
     left.formIntersection(right)
     return left
 }
+
+
+extension Dictionary {
+    init(_ array: [(Key,Value)]) {
+        self.init()
+        for v in array { self[v.0] = v.1 }
+    }
+}
+
+/*
+extension Array where Element == (key: K, value: V) {
+    init<K,V>(_ dict: [K:V]) {
+        self = []
+        for v in dict { self.append((v.key, v.value)) }
+    }
+}
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
