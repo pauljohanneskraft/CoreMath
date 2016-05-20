@@ -17,11 +17,9 @@ protocol MagmaType : CustomStringConvertible {
 
 extension MagmaType {
     var description: String {
-        if sign != nil {
-            var s : [Element] = [Element](set)
-            return "⟨\(s.sort { a, b in a < b })), \(sign!)⟩"
-        }
-        return "⟨\(set), •⟩"
+        var s = [Element](set)
+        s.sort()
+        return "\(Self.self) ⟨\(s)), \((sign != nil ? sign! : "•"))⟩"
     }
     func test() -> Bool {
         return testClosure()
