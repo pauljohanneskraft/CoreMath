@@ -11,7 +11,7 @@ protocol MagmaType : CustomStringConvertible {
     associatedtype Element : Hashable, Equatable, Comparable
     var set : Set<Element> { get }
     var op : (Element, Element) -> Element { get }
-    var sign : Character? { get }
+    var sign : Character { get }
     var eq : (Element, Element) -> Bool { get }
 }
 
@@ -19,7 +19,7 @@ extension MagmaType {
     var description: String {
         var s = [Element](set)
         s.sort()
-        return "\(Self.self) ⟨\(s)), \((sign != nil ? sign! : "•"))⟩"
+        return "\(Self.self) ⟨\(s)), \(sign)⟩"
     }
     func test() -> Bool {
         return testClosure()
