@@ -55,7 +55,7 @@ func printMeasure<T>(desc: String = "Test", _ blocks: (() throws -> T)...) {
 }
 
 @warn_unused_result
-public func async<S : Sequence, U  where S.Iterator.Element : Hashable>
+public func asyncWithIndex<S : Sequence, U  where S.Iterator.Element : Hashable>
     (_ sequence: S, _ block: (S.Iterator.Element) -> U)
     -> [S.Iterator.Element:U] {
         
@@ -71,6 +71,25 @@ public func async<S : Sequence, U  where S.Iterator.Element : Hashable>
         }
         dispatch_group_wait(group, DISPATCH_TIME_FOREVER)
         return dict
+}
+
+@warn_unused_result
+public func asyncUnordered<S : Sequence, U  where S.Iterator.Element : Hashable>
+    (_ sequence: S, _ block: (S.Iterator.Element) -> U)
+    -> [U] {
+        
+        let group = dispatch_group_create()!
+        var arr : [U] = []
+        let lockQueue = dispatch_queue_create("Math.LoopLockQueue", nil)!
+        
+        for i in sequence {
+            dispatch_group_async(group, dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
+                let c = block(i)
+                dispatch_sync(lockQueue) { arr.append(c) }
+            }
+        }
+        dispatch_group_wait(group, DISPATCH_TIME_FOREVER)
+        return arr
 }
 
 
