@@ -23,13 +23,23 @@ struct GroupLike<Element where Element: Hashable, Element : Comparable> : Semigr
     let sign : Character? = "+"
     
     func highestPossibleMatchingType() -> String {
-        switch test() {
-        case ( false , _     , _     , _     , _     ): return "Nothing"
-        case ( true  , false , _     , _     , _     ): return "Magma"
-        case ( true  , true  , false , _     , _     ): return "Semigroup"
-        case ( true  , true  , true  , false , _     ): return "Monoid"
-        case ( true  , true  , true  , true  , false ): return "Group"
-        case ( true  , true  , true  , true  , true  ): return "Abelian Group"
+        let t = test()
+        let tString = "(closed: \(t.0), associative: \(t.1), neutralElement: \(t.2), invertible: \(t.3), commutative: \(t.4)) -> "
+        
+        switch t {
+            
+        case ( false , _     , _     , _     , _     ): return tString + "Nothing"
+            
+        case ( true  , false , _     , _     , _     ): return tString + "Magma"
+            
+        case ( true  , true  , false , _     , _     ): return tString + "Semigroup"
+            
+        case ( true  , true  , true  , false , _     ): return tString + "Monoid"
+            
+        case ( true  , true  , true  , true  , false ): return tString + "Group"
+            
+        case ( true  , true  , true  , true  , true  ): return tString + "Abelian Group"
+            
         }
     }
     
