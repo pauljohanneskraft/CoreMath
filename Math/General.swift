@@ -44,12 +44,42 @@ func printMeasure<T>(desc: String = "Test", _ blocks: (() throws -> T)...) {
     }
 }
 
-@warn_unused_result func measure<T>(block: () throws -> T ) rethrows -> (time: NSTimeInterval, result: T) {
+@warn_unused_result func measure<T>(_ block: () throws -> T ) rethrows -> (time: NSTimeInterval, result: T) {
     var start : NSDate = NSDate()
-    var end : NSDate = NSDate()
-    var res : T
+    var end   : NSDate = NSDate()
+    var res   : T
     start = NSDate()
     res = try block()
     end = NSDate()
     return (end.timeIntervalSince1970 - start.timeIntervalSince1970, res)
+}
+
+@warn_unused_result
+public func async<S : Sequence, U  where S.Iterator.Element : Hashable>
+    (_ sequence: S, _ block: (S.Iterator.Element) -> U)
+    -> [S.Iterator.Element:U] {
+        
+        let group = dispatch_group_create()!
+        var dict : [S.Iterator.Element:U] = [:]
+        let lockQueue = dispatch_queue_create("Math.LoopLockQueue", nil)!
+        
+        for i in sequence {
+            dispatch_group_async(group, dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
+                let c = block(i)
+                dispatch_sync(lockQueue) { dict[i] = c }
+            }
+        }
+        dispatch_group_wait(group, DISPATCH_TIME_FOREVER)
+        return dict
+}
+
+
+public func async<S : Sequence>(_ sequence: S, _ block: (S.Iterator.Element) -> ()) {
+    let group = dispatch_group_create()!
+    for i in sequence {
+        dispatch_group_async(group, dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0))
+            { block(i) }
+    }
+    dispatch_group_wait(group, DISPATCH_TIME_FOREVER)
+    
 }
