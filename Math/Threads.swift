@@ -8,25 +8,49 @@
 
 import Foundation
 
-extension Sequence where Self.Iterator.Element : Hashable {
-    typealias Element = Self.Iterator.Element
-    public func loop<U>(_ block: (Element) -> U) -> [(Element,U)] {
+@warn_unused_result
+public func asyncLoopReturnValues<S : Sequence, U  where S.Iterator.Element : Hashable>
+    (_ sequence: S, _ block: (S.Iterator.Element) -> U)
+    -> [S.Iterator.Element:U] {
+        
         let group = dispatch_group_create()!
-        var cs = [(Element,U)]()
+        var dict : [S.Iterator.Element:U] = [:]
         let lockQueue = dispatch_queue_create("Math.LoopLockQueue", nil)!
-        for i in self {
+        
+        for i in sequence {
+            
             dispatch_group_async(group, dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), {
+                
                 let c = block(i)
-                dispatch_sync(lockQueue) { cs.append((i,c)) }
+                
+                dispatch_sync(lockQueue) { dict[i] = c }
+                
             })
+            
         }
+        
         dispatch_group_wait(group, DISPATCH_TIME_FOREVER)
-        return cs
-    }
+        
+        return dict
 }
 
-
-
+public func asyncLoop<S : Sequence>(_ sequence: S, _ block: (S.Iterator.Element) -> ()) {
+    
+    let group = dispatch_group_create()!
+    
+    for i in sequence {
+        
+        dispatch_group_async(group, dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), {
+            
+            block(i)
+            
+        })
+        
+    }
+    
+    dispatch_group_wait(group, DISPATCH_TIME_FOREVER)
+    
+}
 
 
 
