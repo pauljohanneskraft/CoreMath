@@ -104,7 +104,6 @@ extension RingType where Element0 == Element1 {
 }
 
 /*
-//TODO expand to real protocols
 protocol RngType {}
 protocol SemiringType {}
 protocol NearRingType {}

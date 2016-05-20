@@ -371,12 +371,7 @@ struct HashTable <K: Hashable, V> : ArrayLiteralConvertible, CustomStringConvert
         return desc
     }
 }
-
-
-
-// TODO HashTableLinearProbing, HashTableChaining, HashTable...?
-*/
-/*
+ 
 protocol HashTableType {
     associatedtype Element : Hashable
     associatedtype Bucket  : Collection
