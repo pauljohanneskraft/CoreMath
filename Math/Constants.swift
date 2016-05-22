@@ -17,7 +17,12 @@ public struct constants {
     static let c   = 299_792_458
 }
 
-
+func Z(_ u: Int) -> Set<Int> {
+    guard u >= 0 else { return [] }
+    var set = Set<Int>()
+    for i in 0..<u { set.insert(i) }
+    return set
+}
 
 
 
