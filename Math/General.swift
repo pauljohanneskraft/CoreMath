@@ -55,18 +55,22 @@ func printMeasure<T>(desc: String = "Test", _ blocks: (() throws -> T)...) {
 }
 
 @warn_unused_result
-public func asyncWithIndex<S : Sequence, U  where S.Iterator.Element : Hashable>
-    (_ sequence: S, _ block: (S.Iterator.Element) -> U)
-    -> [S.Iterator.Element:U] {
+public func asyncWithIndex<S : Sequence where S.Iterator.Element : Hashable>
+    (_ sequence: S, _ block: (S.Iterator.Element) throws -> Any)
+    -> [S.Iterator.Element:Any] {
         
         let group = dispatch_group_create()!
-        var dict : [S.Iterator.Element:U] = [:]
+        var dict : [S.Iterator.Element:Any] = [:]
         let lockQueue = dispatch_queue_create("Math.LoopLockQueue", nil)!
         
         for i in sequence {
             dispatch_group_async(group, dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
-                let c = block(i)
-                dispatch_sync(lockQueue) { dict[i] = c }
+                do {
+                    let c = try block(i)
+                    dispatch_sync(lockQueue) { dict[i] = c }
+                } catch let e {
+                    dispatch_sync(lockQueue) { dict[i] = e }
+                }
             }
         }
         dispatch_group_wait(group, DISPATCH_TIME_FOREVER)
@@ -74,18 +78,22 @@ public func asyncWithIndex<S : Sequence, U  where S.Iterator.Element : Hashable>
 }
 
 @warn_unused_result
-public func asyncUnordered<S : Sequence, U  where S.Iterator.Element : Hashable>
-    (_ sequence: S, _ block: (S.Iterator.Element) -> U)
-    -> [U] {
+public func asyncUnordered<S : Sequence where S.Iterator.Element : Hashable>
+    (_ sequence: S, _ block: (S.Iterator.Element) throws -> Any)
+    -> [Any] {
         
         let group = dispatch_group_create()!
-        var arr : [U] = []
+        var arr : [Any] = []
         let lockQueue = dispatch_queue_create("Math.LoopLockQueue", nil)!
         
         for i in sequence {
             dispatch_group_async(group, dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
-                let c = block(i)
-                dispatch_sync(lockQueue) { arr.append(c) }
+                do {
+                    let c = try block(i)
+                    dispatch_sync(lockQueue) { arr.append(c) }
+                } catch let e {
+                    dispatch_sync(lockQueue) { arr.append(e) }
+                }
             }
         }
         dispatch_group_wait(group, DISPATCH_TIME_FOREVER)
@@ -100,5 +108,13 @@ public func async<S : Sequence>(_ sequence: S, _ block: (S.Iterator.Element) -> 
             { block(i) }
     }
     dispatch_group_wait(group, DISPATCH_TIME_FOREVER)
-    
 }
+
+public func block<B>(_ block: () -> B) -> B {
+    return block()
+}
+
+public func block<B>(_ block: () throws -> (B)) throws -> B {
+    return try block()
+}
+
