@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct constants {
+public enum constants {
     static let pi  = 3.14159_26535_89793_23846
     static let tau = 2*pi
     static let e   = 2.71828_18284_59045_23536
