@@ -214,7 +214,6 @@ extension EnhancedFloatingPointType {
     var inaccuracy : Self {
         let this : Self = self
         let succ : Self = self.successor
-        print("\(this) -> \(succ)")
         return succ - this
     }
 }
