@@ -23,29 +23,31 @@
 		9B0FC7CB1CE31CE30009BAF4 /* StringTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0FC7CA1CE31CE30009BAF4 /* StringTest.swift */; };
 		9B0FC7CD1CE31CED0009BAF4 /* MatrixTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0FC7CC1CE31CED0009BAF4 /* MatrixTest.swift */; };
 		9B0FC7CF1CE31CF70009BAF4 /* NumberTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0FC7CE1CE31CF70009BAF4 /* NumberTest.swift */; };
-		9B1B6BC91CEF65FA0054A3E1 /* ModuleLikeTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1B6BC81CEF65FA0054A3E1 /* ModuleLikeTypes.swift */; };
-		9B1B6BCB1CEF660E0054A3E1 /* ModuleLikeStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1B6BCA1CEF660E0054A3E1 /* ModuleLikeStructs.swift */; };
-		9B36F7121CE34AAA007B52F6 /* Hashing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B36F7111CE34AAA007B52F6 /* Hashing.swift */; };
+		9B1B6BC91CEF65FA0054A3E1 /* ModuleLikeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1B6BC81CEF65FA0054A3E1 /* ModuleLikeProtocols.swift */; };
+		9B1B6BCB1CEF660E0054A3E1 /* ModuleLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1B6BCA1CEF660E0054A3E1 /* ModuleLike.swift */; };
 		9B884ABE1CEC90EF00154A14 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDA53F1CE78E930038A56C /* Constants.swift */; };
 		9B884ABF1CEC90F300154A14 /* Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9658921CE7AA7F0001D606 /* Operations.swift */; };
-		9B884AC51CEC90FA00154A14 /* GroupLikeTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B96589D1CE7FD9C0001D606 /* GroupLikeTypes.swift */; };
-		9B884AC61CEC90FA00154A14 /* GroupLikeStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB21B701CE9BD66009FF58B /* GroupLikeStructs.swift */; };
-		9B884AC71CEC90FA00154A14 /* RingLikeTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B96589F1CE94F670001D606 /* RingLikeTypes.swift */; };
-		9B884AC81CEC90FA00154A14 /* RingLikeStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB21B721CE9D076009FF58B /* RingLikeStructs.swift */; };
+		9B884AC51CEC90FA00154A14 /* GroupLikeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B96589D1CE7FD9C0001D606 /* GroupLikeProtocols.swift */; };
+		9B884AC61CEC90FA00154A14 /* GroupLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB21B701CE9BD66009FF58B /* GroupLike.swift */; };
+		9B884AC71CEC90FA00154A14 /* RingLikeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B96589F1CE94F670001D606 /* RingLikeProtocols.swift */; };
+		9B884AC81CEC90FA00154A14 /* RingLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB21B721CE9D076009FF58B /* RingLike.swift */; };
 		9B884AC91CEC90FA00154A14 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9658981CE7FCD90001D606 /* Protocols.swift */; };
 		9B884ACA1CEC90FA00154A14 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0FC7B11CE31CB90009BAF4 /* String.swift */; };
 		9B884ACB1CEC90FE00154A14 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0FC7A51CE31CA70009BAF4 /* main.swift */; };
 		9B9658931CE7AA7F0001D606 /* Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9658921CE7AA7F0001D606 /* Operations.swift */; };
 		9B9658991CE7FCD90001D606 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9658981CE7FCD90001D606 /* Protocols.swift */; };
-		9B96589E1CE7FD9C0001D606 /* GroupLikeTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B96589D1CE7FD9C0001D606 /* GroupLikeTypes.swift */; };
-		9B9658A01CE94F670001D606 /* RingLikeTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B96589F1CE94F670001D606 /* RingLikeTypes.swift */; };
-		9BB21B711CE9BD66009FF58B /* GroupLikeStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB21B701CE9BD66009FF58B /* GroupLikeStructs.swift */; };
-		9BB21B731CE9D076009FF58B /* RingLikeStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB21B721CE9D076009FF58B /* RingLikeStructs.swift */; };
+		9B96589E1CE7FD9C0001D606 /* GroupLikeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B96589D1CE7FD9C0001D606 /* GroupLikeProtocols.swift */; };
+		9B9658A01CE94F670001D606 /* RingLikeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B96589F1CE94F670001D606 /* RingLikeProtocols.swift */; };
+		9BB21B711CE9BD66009FF58B /* GroupLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB21B701CE9BD66009FF58B /* GroupLike.swift */; };
+		9BB21B731CE9D076009FF58B /* RingLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB21B721CE9D076009FF58B /* RingLike.swift */; };
 		9BB21B751CEA4AC3009FF58B /* GroupLikeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB21B741CEA4AC3009FF58B /* GroupLikeTest.swift */; };
 		9BB21B771CEA4AD1009FF58B /* RingLikeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB21B761CEA4AD1009FF58B /* RingLikeTest.swift */; };
 		9BB8EDCD1CE3F3C400CF1A9D /* HashingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB8EDCC1CE3F3C400CF1A9D /* HashingTest.swift */; };
-		9BBDA53C1CE7547B0038A56C /* Hashing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B36F7111CE34AAA007B52F6 /* Hashing.swift */; };
 		9BBDA5401CE78E930038A56C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDA53F1CE78E930038A56C /* Constants.swift */; };
+		9BC116D01CF1C97900A88B64 /* HashingChaining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC116CF1CF1C97900A88B64 /* HashingChaining.swift */; };
+		9BC116D21CF1C9A400A88B64 /* HashingLinearProbing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC116D11CF1C9A400A88B64 /* HashingLinearProbing.swift */; };
+		9BC116D41CF1C9CB00A88B64 /* HashingProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC116D31CF1C9CB00A88B64 /* HashingProtocols.swift */; };
+		9BC116D81CF1CC6000A88B64 /* HashingDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC116D71CF1CC6000A88B64 /* HashingDouble.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -76,19 +78,22 @@
 		9B0FC7CC1CE31CED0009BAF4 /* MatrixTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatrixTest.swift; sourceTree = "<group>"; };
 		9B0FC7CE1CE31CF70009BAF4 /* NumberTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberTest.swift; sourceTree = "<group>"; };
 		9B127D7E1CEE525D00B1F6F4 /* Math-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Math-Bridging-Header.h"; sourceTree = "<group>"; };
-		9B1B6BC81CEF65FA0054A3E1 /* ModuleLikeTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModuleLikeTypes.swift; path = Algebra/ModuleLikeTypes.swift; sourceTree = "<group>"; };
-		9B1B6BCA1CEF660E0054A3E1 /* ModuleLikeStructs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModuleLikeStructs.swift; path = Algebra/ModuleLikeStructs.swift; sourceTree = "<group>"; };
-		9B36F7111CE34AAA007B52F6 /* Hashing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hashing.swift; sourceTree = "<group>"; };
+		9B1B6BC81CEF65FA0054A3E1 /* ModuleLikeProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModuleLikeProtocols.swift; path = Algebra/ModuleLikeProtocols.swift; sourceTree = "<group>"; };
+		9B1B6BCA1CEF660E0054A3E1 /* ModuleLike.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModuleLike.swift; path = Algebra/ModuleLike.swift; sourceTree = "<group>"; };
 		9B9658921CE7AA7F0001D606 /* Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operations.swift; sourceTree = "<group>"; };
 		9B9658981CE7FCD90001D606 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
-		9B96589D1CE7FD9C0001D606 /* GroupLikeTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GroupLikeTypes.swift; path = Algebra/GroupLikeTypes.swift; sourceTree = "<group>"; };
-		9B96589F1CE94F670001D606 /* RingLikeTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RingLikeTypes.swift; path = Algebra/RingLikeTypes.swift; sourceTree = "<group>"; };
-		9BB21B701CE9BD66009FF58B /* GroupLikeStructs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GroupLikeStructs.swift; path = Algebra/GroupLikeStructs.swift; sourceTree = "<group>"; };
-		9BB21B721CE9D076009FF58B /* RingLikeStructs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RingLikeStructs.swift; path = Algebra/RingLikeStructs.swift; sourceTree = "<group>"; };
+		9B96589D1CE7FD9C0001D606 /* GroupLikeProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GroupLikeProtocols.swift; path = Algebra/GroupLikeProtocols.swift; sourceTree = "<group>"; };
+		9B96589F1CE94F670001D606 /* RingLikeProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RingLikeProtocols.swift; path = Algebra/RingLikeProtocols.swift; sourceTree = "<group>"; };
+		9BB21B701CE9BD66009FF58B /* GroupLike.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GroupLike.swift; path = Algebra/GroupLike.swift; sourceTree = "<group>"; };
+		9BB21B721CE9D076009FF58B /* RingLike.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RingLike.swift; path = Algebra/RingLike.swift; sourceTree = "<group>"; };
 		9BB21B741CEA4AC3009FF58B /* GroupLikeTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupLikeTest.swift; sourceTree = "<group>"; };
 		9BB21B761CEA4AD1009FF58B /* RingLikeTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RingLikeTest.swift; sourceTree = "<group>"; };
 		9BB8EDCC1CE3F3C400CF1A9D /* HashingTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HashingTest.swift; sourceTree = "<group>"; };
 		9BBDA53F1CE78E930038A56C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		9BC116CF1CF1C97900A88B64 /* HashingChaining.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HashingChaining.swift; path = Hashing/HashingChaining.swift; sourceTree = "<group>"; };
+		9BC116D11CF1C9A400A88B64 /* HashingLinearProbing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HashingLinearProbing.swift; path = Hashing/HashingLinearProbing.swift; sourceTree = "<group>"; };
+		9BC116D31CF1C9CB00A88B64 /* HashingProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HashingProtocols.swift; path = Hashing/HashingProtocols.swift; sourceTree = "<group>"; };
+		9BC116D71CF1CC6000A88B64 /* HashingDouble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HashingDouble.swift; path = Hashing/HashingDouble.swift; sourceTree = "<group>"; };
 		9BF6FE3C1CEDDCA6007E71B9 /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -133,7 +138,7 @@
 			children = (
 				9B0FC7A51CE31CA70009BAF4 /* main.swift */,
 				9BF6FE3C1CEDDCA6007E71B9 /* Playground.playground */,
-				9B36F7111CE34AAA007B52F6 /* Hashing.swift */,
+				9BC116CE1CF1C94700A88B64 /* Hashing */,
 				9B0FC7AC1CE31CB90009BAF4 /* Array.swift */,
 				9B0FC7AD1CE31CB90009BAF4 /* Error.swift */,
 				9B0FC7AE1CE31CB90009BAF4 /* General.swift */,
@@ -167,14 +172,25 @@
 		9B96589A1CE7FD630001D606 /* Algebra */ = {
 			isa = PBXGroup;
 			children = (
-				9B96589D1CE7FD9C0001D606 /* GroupLikeTypes.swift */,
-				9BB21B701CE9BD66009FF58B /* GroupLikeStructs.swift */,
-				9B96589F1CE94F670001D606 /* RingLikeTypes.swift */,
-				9BB21B721CE9D076009FF58B /* RingLikeStructs.swift */,
-				9B1B6BC81CEF65FA0054A3E1 /* ModuleLikeTypes.swift */,
-				9B1B6BCA1CEF660E0054A3E1 /* ModuleLikeStructs.swift */,
+				9B96589D1CE7FD9C0001D606 /* GroupLikeProtocols.swift */,
+				9BB21B701CE9BD66009FF58B /* GroupLike.swift */,
+				9B96589F1CE94F670001D606 /* RingLikeProtocols.swift */,
+				9BB21B721CE9D076009FF58B /* RingLike.swift */,
+				9B1B6BC81CEF65FA0054A3E1 /* ModuleLikeProtocols.swift */,
+				9B1B6BCA1CEF660E0054A3E1 /* ModuleLike.swift */,
 			);
 			name = Algebra;
+			sourceTree = "<group>";
+		};
+		9BC116CE1CF1C94700A88B64 /* Hashing */ = {
+			isa = PBXGroup;
+			children = (
+				9BC116CF1CF1C97900A88B64 /* HashingChaining.swift */,
+				9BC116D11CF1C9A400A88B64 /* HashingLinearProbing.swift */,
+				9BC116D71CF1CC6000A88B64 /* HashingDouble.swift */,
+				9BC116D31CF1C9CB00A88B64 /* HashingProtocols.swift */,
+			);
+			name = Hashing;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -283,21 +299,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B9658A01CE94F670001D606 /* RingLikeTypes.swift in Sources */,
-				9B1B6BCB1CEF660E0054A3E1 /* ModuleLikeStructs.swift in Sources */,
+				9B9658A01CE94F670001D606 /* RingLikeProtocols.swift in Sources */,
+				9B1B6BCB1CEF660E0054A3E1 /* ModuleLike.swift in Sources */,
 				9B0FC7A61CE31CA70009BAF4 /* main.swift in Sources */,
 				9B0FC7B51CE31CB90009BAF4 /* Matrix.swift in Sources */,
-				9B1B6BC91CEF65FA0054A3E1 /* ModuleLikeTypes.swift in Sources */,
-				9B36F7121CE34AAA007B52F6 /* Hashing.swift in Sources */,
-				9BB21B711CE9BD66009FF58B /* GroupLikeStructs.swift in Sources */,
-				9B96589E1CE7FD9C0001D606 /* GroupLikeTypes.swift in Sources */,
+				9B1B6BC91CEF65FA0054A3E1 /* ModuleLikeProtocols.swift in Sources */,
+				9BC116D01CF1C97900A88B64 /* HashingChaining.swift in Sources */,
+				9BB21B711CE9BD66009FF58B /* GroupLike.swift in Sources */,
+				9BC116D21CF1C9A400A88B64 /* HashingLinearProbing.swift in Sources */,
+				9B96589E1CE7FD9C0001D606 /* GroupLikeProtocols.swift in Sources */,
 				9B9658991CE7FCD90001D606 /* Protocols.swift in Sources */,
 				9B0FC7B61CE31CB90009BAF4 /* Number.swift in Sources */,
 				9B0FC7B31CE31CB90009BAF4 /* Error.swift in Sources */,
 				9B0FC7B71CE31CB90009BAF4 /* String.swift in Sources */,
+				9BC116D41CF1C9CB00A88B64 /* HashingProtocols.swift in Sources */,
 				9B0FC7B41CE31CB90009BAF4 /* General.swift in Sources */,
 				9B0FC7B21CE31CB90009BAF4 /* Array.swift in Sources */,
-				9BB21B731CE9D076009FF58B /* RingLikeStructs.swift in Sources */,
+				9BB21B731CE9D076009FF58B /* RingLike.swift in Sources */,
+				9BC116D81CF1CC6000A88B64 /* HashingDouble.swift in Sources */,
 				9BBDA5401CE78E930038A56C /* Constants.swift in Sources */,
 				9B9658931CE7AA7F0001D606 /* Operations.swift in Sources */,
 			);
@@ -312,14 +331,13 @@
 				9B0FC7CB1CE31CE30009BAF4 /* StringTest.swift in Sources */,
 				9B0FC7CF1CE31CF70009BAF4 /* NumberTest.swift in Sources */,
 				9B0FC7BF1CE31CC40009BAF4 /* Test.swift in Sources */,
-				9B884AC81CEC90FA00154A14 /* RingLikeStructs.swift in Sources */,
-				9B884AC61CEC90FA00154A14 /* GroupLikeStructs.swift in Sources */,
-				9B884AC71CEC90FA00154A14 /* RingLikeTypes.swift in Sources */,
+				9B884AC81CEC90FA00154A14 /* RingLike.swift in Sources */,
+				9B884AC61CEC90FA00154A14 /* GroupLike.swift in Sources */,
+				9B884AC71CEC90FA00154A14 /* RingLikeProtocols.swift in Sources */,
 				9B884ABE1CEC90EF00154A14 /* Constants.swift in Sources */,
-				9B884AC51CEC90FA00154A14 /* GroupLikeTypes.swift in Sources */,
+				9B884AC51CEC90FA00154A14 /* GroupLikeProtocols.swift in Sources */,
 				9BB8EDCD1CE3F3C400CF1A9D /* HashingTest.swift in Sources */,
 				9BB21B751CEA4AC3009FF58B /* GroupLikeTest.swift in Sources */,
-				9BBDA53C1CE7547B0038A56C /* Hashing.swift in Sources */,
 				9B0FC7C41CE31CD30009BAF4 /* Array.swift in Sources */,
 				9B0FC7C51CE31CD30009BAF4 /* Error.swift in Sources */,
 				9B884AC91CEC90FA00154A14 /* Protocols.swift in Sources */,
