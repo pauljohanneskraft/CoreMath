@@ -1,5 +1,5 @@
 //
-//  GroupLikeStructs.swift
+//  GroupLike.swift
 //  Math
 //
 //  Created by Paul Kraft on 16.05.16.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct GroupLike<Element where Element: Hashable, Element : Comparable> : SemigroupType, Commutative {
+struct GroupLike<Element where Element : Hashable, Element: Comparable> : SemigroupType, Commutative {
     init(set: Set<Element>, op: (Element,Element) -> Element, neutralElement: Element? = nil, inv: ((Element) -> Element)? = nil, sign: Character = "•") {
         self.set = set
         self.op = op
@@ -29,15 +29,15 @@ struct GroupLike<Element where Element: Hashable, Element : Comparable> : Semigr
             
         case ( false , _     , _     , _     , _     ): return nil
             
-        case ( true  , false , _     , _     , _     ): return try? Magma(self)
+        case ( true  , false , _     , _     , _     ): return try! Magma(self)
             
-        case ( true  , true  , false , _     , _     ): return try? Semigroup(self)
+        case ( true  , true  , false , _     , _     ): return try! Semigroup(self)
             
-        case ( true  , true  , true  , false , _     ): return try? Monoid(self)
+        case ( true  , true  , true  , false , _     ): return try! Monoid(self)
             
-        case ( true  , true  , true  , true  , false ): return try? Group(self)
+        case ( true  , true  , true  , true  , false ): return try! Group(self)
             
-        case ( true  , true  , true  , true  , true  ): return try? AbelianGroup(self)
+        case ( true  , true  , true  , true  , true  ): return try! AbelianGroup(self)
             
         }
     }
@@ -68,7 +68,7 @@ struct GroupLike<Element where Element: Hashable, Element : Comparable> : Semigr
     }
 }
 
-struct Magma<Element where Element : Hashable, Element : Comparable> : MagmaType {
+struct Magma<Element where Element : Hashable, Element: Comparable> : MagmaType {
     init(set: Set<Element>, op: (Element, Element) -> Element, sign: Character = "•") throws {
         self.set = set
         self.op = op
@@ -91,7 +91,7 @@ struct Magma<Element where Element : Hashable, Element : Comparable> : MagmaType
     let sign : Character
 }
 
-struct Semigroup<Element where Element : Hashable, Element : Comparable> : SemigroupType {
+struct Semigroup<Element where Element : Hashable, Element: Comparable> : SemigroupType {
     init(set: Set<Element>, op: (Element, Element) -> Element, sign: Character = "•") throws {
         self.set = set
         self.op = op
@@ -114,7 +114,7 @@ struct Semigroup<Element where Element : Hashable, Element : Comparable> : Semig
     let sign : Character
 }
 
-struct Monoid<Element where Element : Hashable, Element : Comparable> : MonoidType {
+struct Monoid<Element where Element : Hashable, Element: Comparable> : MonoidType {
     init(set: Set<Element>, op: (Element, Element) -> Element, neutralElement: Element, sign: Character = "•") throws {
         self.set = set
         self.op = op
@@ -140,7 +140,7 @@ struct Monoid<Element where Element : Hashable, Element : Comparable> : MonoidTy
     let sign : Character
 }
 
-struct Group<Element where Element : Hashable, Element : Comparable> : GroupType {
+struct Group<Element where Element : Hashable, Element: Comparable> : GroupType {
     init(set: Set<Element>, op: (Element, Element) -> Element, neutralElement: Element, inv: (Element) -> Element, sign: Character = "•") throws {
         self.set = set
         self.op = op
@@ -169,7 +169,7 @@ struct Group<Element where Element : Hashable, Element : Comparable> : GroupType
     let sign : Character
 }
 
-struct AbelianGroup<Element where Element : Hashable, Element : Comparable> : AbelianGroupType {
+struct AbelianGroup<Element where Element : Hashable, Element: Comparable> : AbelianGroupType {
     init(set: Set<Element>, op: (Element, Element) -> Element, neutralElement: Element, inv: (Element) -> Element, sign: Character = "•") throws {
         self.set = set
         self.op = op

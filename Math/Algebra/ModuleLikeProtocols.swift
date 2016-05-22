@@ -1,5 +1,5 @@
 //
-//  ModuleLikeTypes.swift
+//  ModuleLikeProtocols.swift
 //  Math
 //
 //  Created by Paul Kraft on 20.05.16.

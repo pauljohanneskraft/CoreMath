@@ -1,5 +1,5 @@
 //
-//  HashingDouble.swift
+//  HashingLinearProbing.swift
 //  Math
 //
 //  Created by Paul Kraft on 22.05.16.

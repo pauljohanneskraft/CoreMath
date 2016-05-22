@@ -1,5 +1,5 @@
 //
-//  RingLikeStructs.swift
+//  RingLike.swift
 //  Math
 //
 //  Created by Paul Kraft on 16.05.16.

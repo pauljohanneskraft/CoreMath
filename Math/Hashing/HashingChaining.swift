@@ -1,5 +1,5 @@
 //
-//  Hashing.swift
+//  HashingChaining.swift
 //  Math
 //
 //  Created by Paul Kraft on 11.05.16.
@@ -8,8 +8,8 @@
 
 import Foundation
 
-
 /*
+
 protocol HashTableElementType : Hashable {
     associatedtype Key : Hashable
     associatedtype Element
@@ -334,10 +334,9 @@ struct HashTable <K: Hashable, V> : ArrayLiteralConvertible, CustomStringConvert
         }
     }
 
-    
-    func sort() {
-        for arr in table {
-            arr.sort { return $0.key.hashValue < $1.key.hashValue }
+    mutating func sort() {
+        for i in table.indices {
+            table[i].sort { return $0.key.hashValue < $1.key.hashValue }
         }
     }
     
@@ -374,10 +373,9 @@ struct HashTable <K: Hashable, V> : ArrayLiteralConvertible, CustomStringConvert
  
 protocol HashTableType {
     associatedtype Element : Hashable
-    associatedtype Bucket  : Collection
     associatedtype Table   : Collection
     
-    var hashFunction: Element -> Int { get set }
+    var hashFunction: (Element) -> Int { get set }
     func hash(elem: Element) -> Int
     
     var table: Table { get }
@@ -385,7 +383,7 @@ protocol HashTableType {
     
     func insert(elem: Element) throws
     func overrideOrAdd(elem: Element) throws
-    func insert<C : CollectionType>(elem: C) throws
+    func insert<C : Collection>(elem: C) throws
 }
 
 extension HashTableType {
@@ -394,9 +392,7 @@ extension HashTableType {
     }
 }
 
-
 */
-
 
 
 

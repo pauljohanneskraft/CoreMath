@@ -1,5 +1,5 @@
 //
-//  GroupLikeTypes.swift
+//  GroupLikeProtocols.swift
 //  Math
 //
 //  Created by Paul Kraft on 15.05.16.
@@ -13,13 +13,14 @@ protocol MagmaType : CustomStringConvertible {
     var op : (Element, Element) -> Element { get }
     var sign : Character { get }
     var eq : (Element, Element) -> Bool { get }
+    var description : String { get }
 }
 
 extension MagmaType {
     var description: String {
         var s = [Element](set)
         s.sort()
-        return "\(Self.self) ⟨\(s)), \(sign)⟩"
+        return "\(Self.self) ⟨ \(s), \(sign) ⟩"
     }
     func test() -> Bool {
         return testClosure()
