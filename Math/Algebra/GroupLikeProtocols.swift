@@ -18,9 +18,7 @@ protocol MagmaType : CustomStringConvertible {
 
 extension MagmaType {
     var description: String {
-        var s = [Element](set)
-        s.sort()
-        return "\(Self.self) ⟨ \(s), \(sign) ⟩"
+        return "\(Self.self) ⟨ \(set.sorted()), \(sign) ⟩"
     }
     func test() -> Bool {
         return testClosure()
