@@ -17,7 +17,7 @@ func <-> <T>( left: inout T, right: inout T) {
     swap(&left, &right)
 }
 
-func nocatch<T>(block: () throws -> T ) -> T? {
+func nocatch<T>(_ block: () throws -> T ) -> T? {
     do {
         return try block()
     } catch let e {
@@ -28,7 +28,7 @@ func nocatch<T>(block: () throws -> T ) -> T? {
 
 import Cocoa
 
-func printMeasure<T>(desc: String = "Test", _ blocks: (() throws -> T)...) {
+func printMeasure<T>(_ desc: String = "Test", _ blocks: (() throws -> T)...) {
     for i in blocks.indices {
         let desc = "\(desc)\((blocks.count < 2 ? "" : " \(i)"))"
         do {
@@ -55,8 +55,8 @@ func printMeasure<T>(desc: String = "Test", _ blocks: (() throws -> T)...) {
 }
 
 @warn_unused_result
-public func asyncWithIndex<S : Sequence where S.Iterator.Element : Hashable>
-    (_ sequence: S, _ block: (S.Iterator.Element) throws -> Any)
+public func asyncWithIndex<S : Sequence, U where S.Iterator.Element : Hashable>
+    (_ sequence: S, _ block: (S.Iterator.Element) throws -> U)
     -> [S.Iterator.Element:Any] {
         
         let group = dispatch_group_create()!
@@ -78,8 +78,8 @@ public func asyncWithIndex<S : Sequence where S.Iterator.Element : Hashable>
 }
 
 @warn_unused_result
-public func asyncUnordered<S : Sequence where S.Iterator.Element : Hashable>
-    (_ sequence: S, _ block: (S.Iterator.Element) throws -> Any)
+public func asyncUnordered<S : Sequence, U where S.Iterator.Element : Hashable>
+    (_ sequence: S, _ block: (S.Iterator.Element) throws -> U)
     -> [Any] {
         
         let group = dispatch_group_create()!
@@ -100,6 +100,45 @@ public func asyncUnordered<S : Sequence where S.Iterator.Element : Hashable>
         return arr
 }
 
+@warn_unused_result
+public func asyncWithIndex<S : Sequence, U where S.Iterator.Element : Hashable>
+    (_ sequence: S, _ block: (S.Iterator.Element) -> U)
+    -> [S.Iterator.Element:U] {
+        
+        let group = dispatch_group_create()!
+        var dict : [S.Iterator.Element:U] = [:]
+        let lockQueue = dispatch_queue_create("Math.LoopLockQueue", nil)!
+        
+        for i in sequence {
+            dispatch_group_async(group, dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
+                let c = block(i)
+                dispatch_sync(lockQueue) { dict[i] = c }
+            }
+        }
+        dispatch_group_wait(group, DISPATCH_TIME_FOREVER)
+        return dict
+}
+
+@warn_unused_result
+public func asyncUnordered<S : Sequence, U where S.Iterator.Element : Hashable>
+    (_ sequence: S, _ block: (S.Iterator.Element) -> U)
+    -> [U] {
+        
+        let group = dispatch_group_create()!
+        var arr : [U] = []
+        let lockQueue = dispatch_queue_create("Math.LoopLockQueue", nil)!
+        
+        for i in sequence {
+            dispatch_group_async(group, dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
+                let c = block(i)
+                dispatch_sync(lockQueue) { arr.append(c) }
+            }
+        }
+        dispatch_group_wait(group, DISPATCH_TIME_FOREVER)
+        return arr
+}
+
+
 
 public func async<S : Sequence>(_ sequence: S, _ block: (S.Iterator.Element) -> ()) {
     let group = dispatch_group_create()!
@@ -110,11 +149,33 @@ public func async<S : Sequence>(_ sequence: S, _ block: (S.Iterator.Element) -> 
     dispatch_group_wait(group, DISPATCH_TIME_FOREVER)
 }
 
-public func block<B>(_ block: () -> B) -> B {
-    return block()
-}
-
-public func block<B>(_ block: () throws -> (B)) throws -> B {
+public func block<B>(_ block: () throws -> (B)) rethrows -> B {
     return try block()
 }
+
+public func block<B>(_ condition: Bool, _ block: () throws -> (B)) rethrows -> B? {
+    guard condition else { return nil }
+    return try block()
+}
+
+extension Bool : Comparable {}
+
+public func < (lhs: Bool, rhs: Bool) -> Bool {
+    return !lhs && rhs
+}
+
+func == (lhs: Bool, rhs: Bool) -> Bool {
+    return (lhs && rhs) || (!lhs && !rhs)
+}
+
+func loop(_ block: () throws -> ()) rethrows {
+    while true { try block() }
+}
+
+func loopUntilNotNullAndNotThrowing<T>(_ block: () throws -> T?) -> T {
+    repeat {
+        if let c = try? block() { return c! }
+    } while true;
+}
+
 
