@@ -32,13 +32,16 @@ func * (left: String, right: UInt) -> String {
     return res
 }
 
-// implementation of the * operator on String and UInt to concatonate a String to itself multiple times
-// and directly assigning it to the String
-//
-// @param           right   : UInt - how many times (-1) the string should be concatonated to itself ( 0 means "" )
-// @param   inout   left    : String - the string to concatonate to itself, will be assigned to this variable (inout ;-) )
-// @result                  : String - the concatonated string
-
+/*
+ implementation of the *= operator on String and UInt to concatonate a String to itself multiple times and directly assigning it to the String
+ 
+ - parameter right : UInt - how many times (-1) the string should be concatonated to itself
+ 
+ - parameter left : String - the string to concatonate to itself, will be assigned to this variable (inout ;-) )
+ 
+ - return String - the concatonated string
+ 
+ */
 
 func *= ( left: inout String, right: UInt) -> String {
     if right == 0 {
@@ -93,12 +96,8 @@ extension String {
         }
     }
     subscript(range: Range<String.CharacterView.Index>) -> String {
-        get { return String(self.characters[range]) }
-        set {
-            var chars = self.characters
-            chars.replaceSubrange(range, with: newValue.characters)
-            self = String(chars)
-        }
+        @warn_unused_result get { return String(self.characters[range]) }
+        set { self.characters.replaceSubrange(range, with: newValue.characters) }
     }
     
     func getIndex(_ v: Int) -> Index {
@@ -109,40 +108,24 @@ extension String {
         return i
     }
     
-    func getIndexRange(_ r: Range<Int>) -> Range<Index> {
+    func getIndexRange(_ r: CountableRange<Int>) -> Range<Index> {
         let start = getIndex(r.lowerBound)
         var end = start
-        for _ in 0..<r.count-1 { end = index(after: end) }
+        let endRange = min(r.count - 1, self.characters.count - r.lowerBound - 1)
+        guard endRange >= 0 else { return start..<start }
+        for _ in 0...endRange { end = index(after: end) }
         return start..<end
     }
     
     
     subscript(index: Int) -> Character {
-        get {
-            let index = getIndex(index)
-            return self.characters[index]
-        }
-        set {
-            let index = getIndex(index)
-            var chars = self.characters
-            chars.remove(at: index)
-            chars.insert(newValue, at: index)
-            self = String(chars)
-            
-        }
+        @warn_unused_result get { return self[getIndex(index)]            }
+                            set {        self[getIndex(index)] = newValue }
     }
     
-    subscript(range: Range<Int>) -> String {
-        get {
-            let range = getIndexRange(range)
-            return String(self.characters[range])
-        }
-        set {
-            let range = getIndexRange(range)
-            var chars = self.characters
-            chars.replaceSubrange(range, with: newValue.characters)
-            self = String(chars)
-        }
+    subscript(range: CountableRange<Int>) -> String {
+        @warn_unused_result get { return self[getIndexRange(range)]            }
+                            set {        self[getIndexRange(range)] = newValue }
     }
 
 }
