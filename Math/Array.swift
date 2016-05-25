@@ -149,33 +149,30 @@ func ⋂= <T : Comparable>( left: inout Set<T>, right: Set<T>) -> Set<T> {
 
 
 extension Dictionary {
-    init(_ array: [(Key,Value)]) {
+    /// create a dictionary from a tuple array
+    init(_ array: (Key,Value)...) {
         self.init()
         for v in array { self[v.0] = v.1 }
     }
-}
+    
+    init(_ array: (Value,Key)...) {
+        self.init()
+        for v in array { self[v.1] = v.0 }
+    }
+    
+    var values : [Value] {
+        var arr = [Value]()
+        for i in self { arr.append(i.value) }
+        return arr
+    }
+    
+    var array : [(Key, Value)] {
+        var arr = [(Key,Value)]()
+        for i in self { arr.append((i.key,i.value)) }
+        return arr
 
-/*
-extension Array where Element == (key: K, value: V) {
-    init<K,V>(_ dict: [K:V]) {
-        self = []
-        for v in dict { self.append((v.key, v.value)) }
     }
 }
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
