@@ -10,14 +10,17 @@ import Foundation
 
 
 protocol HashTableType : ArrayLiteralConvertible {
-    associatedtype Element : Hashable
+    associatedtype Key : Hashable
+    associatedtype Value
     init()
     init(count: Int)
     var count : Int { get }
-    var array : [Element] { get }
-    func insert(element: Element) throws
-    func insert(elements: Element...) throws
-    func insert(elements: [Element]) throws
-    func overwrite(element: Element) throws
-    func executeForKey(element: Element, block: (Element) throws -> ()) throws
+    var array : [(Key, Value)] { get }
+    func insert(element: (Key, Value)) throws
+    func insert(elements: (Key, Value)...) throws
+    func insert(elements: [(Key, Value)]) throws
+    func overwrite(element: (Key, Value)) throws
+    func execute(key: Key, block: (Key) throws -> Value) throws -> Value
+    func remove(key: Key) throws
+    subscript(key: Key) -> Value? { get set }
 }

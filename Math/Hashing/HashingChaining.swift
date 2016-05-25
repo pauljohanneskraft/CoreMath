@@ -8,7 +8,7 @@
 
 import Foundation
 
-/*
+
 
 protocol HashTableElementType : Hashable {
     associatedtype Key : Hashable
@@ -26,16 +26,10 @@ extension HashTableElementType {
 struct HashTable <K: Hashable, V> : ArrayLiteralConvertible, CustomStringConvertible {
     typealias Element = (key: K, value: V)
     
-    //P.ERFORMANCE: making table of type [[[(K,V)]]] with the second list being hashed, too?
+    // PERFORMANCE: making table of type [[[(K,V)]]] with the second list being hashed, too?
     private(set) var hashFunction   : (K) -> Int   = { $0.hashValue }
     private(set) var maxBucketSize  : Int = 4 // 2 ^ 4 = 16
-    private(set) var table          = [[Element]](repeating: [], count: 0x10) {
-        didSet {
-            while table.count < 4 || table.count != table.count.nextPowerOf2 {
-                table.append([])
-            }
-        }
-    }
+    private(set) var table          = [[Element]](repeating: [], count: 0x10)
     
     init(arrayLiteral elements: Element...) {
         print("here")
@@ -74,12 +68,12 @@ struct HashTable <K: Hashable, V> : ArrayLiteralConvertible, CustomStringConvert
         self.resetBuckets = resetBuckets
     }
     
-    //P.ERFORMANCE maybe in parallel or hashing all first in parallel, then appending all?
+    //PERFORMANCE maybe in parallel or hashing all first in parallel, then appending all?
     mutating func insert(elements: (key: K, value: V)...) throws {
         try insert(elements)
     }
     
-    //P.ERFORMANCE maybe in parallel or hashing all first in parallel, then appending all?
+    //PERFORMANCE maybe in parallel or hashing all first in parallel, then appending all?
     mutating func insert(_ elements: [(key: K, value: V)]) throws {
         try correctBucketCount(count + elements.count)
         let oldResetBuckets = resetBuckets
@@ -114,7 +108,7 @@ struct HashTable <K: Hashable, V> : ArrayLiteralConvertible, CustomStringConvert
         set {
             do {
                 if newValue != nil { try overwriteOrAdd(element: (key, newValue!)) }
-                else          { do { try remove(key: key) } catch _ {} }
+                else               { try remove(key: key) }
             } catch let e {
                 print(e)
             }
@@ -141,7 +135,6 @@ struct HashTable <K: Hashable, V> : ArrayLiteralConvertible, CustomStringConvert
         }
     }
     
-    //I.DEA private?
     mutating func overwriteOrAdd(element new: (key: K, value: V)) throws {
         try executeForKey(new.key) {
             b, i in
@@ -188,8 +181,7 @@ struct HashTable <K: Hashable, V> : ArrayLiteralConvertible, CustomStringConvert
         }
     }
     
-    //T.ODO removeSavely - using findUnique
-    
+    //TODO removeSavely - using findUnique
     mutating func remove(key: K) throws -> (key: K, value: V) {
         return try executeForKey(key) {
             b, i in
@@ -234,7 +226,6 @@ struct HashTable <K: Hashable, V> : ArrayLiteralConvertible, CustomStringConvert
         
     }
     
-    //F.IX needs mathematical basis
     mutating func correctBucketCount() throws {
         try correctBucketCount(count)
     }
@@ -284,7 +275,7 @@ struct HashTable <K: Hashable, V> : ArrayLiteralConvertible, CustomStringConvert
         }
     }
     
-    internal mutating func changeBucketCount(buckets: Int, f: (K) -> Int) throws {
+    internal mutating func changeBucketCount(_ buckets: Int, f: (K) -> Int) throws {
         let oldHash = self.hashFunction
         let oldTable = self.table
         let oldResetBuckets = self.resetBuckets
@@ -370,7 +361,7 @@ struct HashTable <K: Hashable, V> : ArrayLiteralConvertible, CustomStringConvert
         return desc
     }
 }
- 
+ /*
 protocol HashTableType {
     associatedtype Element : Hashable
     associatedtype Table   : Collection
