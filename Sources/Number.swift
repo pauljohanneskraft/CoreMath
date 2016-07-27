@@ -19,29 +19,33 @@ typealias QWord = UInt64
 // partially from source: http://natecook.com/blog/2014/08/generic-functions-for-incompatible-types/
 
 protocol NumericType : Comparable, Hashable, Strideable, CustomStringConvertible {
-    
-    func &+(lhs: Self, rhs: Self) -> Self
-    func &-(lhs: Self, rhs: Self) -> Self
-    func &*(lhs: Self, rhs: Self) -> Self
 
-    func + (lhs: Self, rhs: Self) -> Self
-    func - (lhs: Self, rhs: Self) -> Self
-    func * (lhs: Self, rhs: Self) -> Self
-    func / (lhs: Self, rhs: Self) -> Self
-    func % (lhs: Self, rhs: Self) -> Self
+    func !=  (lhs: Self, rhs: Self) -> Bool
+    func ==  (lhs: Self, rhs: Self) -> Bool
+    func  <  (lhs: Self, rhs: Self) -> Bool
+    func  >  (lhs: Self, rhs: Self) -> Bool
+    func <=  (lhs: Self, rhs: Self) -> Bool
+    func >=  (lhs: Self, rhs: Self) -> Bool
     
-    func %=( lhs: inout Self, rhs: Self)
-    func +=( lhs: inout Self, rhs: Self)
-    func -=( lhs: inout Self, rhs: Self)
-    func *=( lhs: inout Self, rhs: Self)
-    func /=( lhs: inout Self, rhs: Self)
-
-    func !=(lhs: Self, rhs: Self) -> Bool
-    func ==(lhs: Self, rhs: Self) -> Bool
-    func  <(lhs: Self, rhs: Self) -> Bool
-    func  >(lhs: Self, rhs: Self) -> Bool
-    func <=(lhs: Self, rhs: Self) -> Bool
-    func >=(lhs: Self, rhs: Self) -> Bool
+    func +   (lhs: Self, rhs: Self) -> Self
+    func -   (lhs: Self, rhs: Self) -> Self
+    func *   (lhs: Self, rhs: Self) -> Self
+    func /   (lhs: Self, rhs: Self) -> Self
+    func %   (lhs: Self, rhs: Self) -> Self
+    
+    func &+  (lhs: Self, rhs: Self) -> Self
+    func &-  (lhs: Self, rhs: Self) -> Self
+    func &*  (lhs: Self, rhs: Self) -> Self
+    
+    func &+= (lhs: inout Self, rhs: Self)
+    func &*= (lhs: inout Self, rhs: Self)
+    func &-= (lhs: inout Self, rhs: Self)
+    
+    func %=  (lhs: inout Self, rhs: Self)
+    func +=  (lhs: inout Self, rhs: Self)
+    func -=  (lhs: inout Self, rhs: Self)
+    func *=  (lhs: inout Self, rhs: Self)
+    func /=  (lhs: inout Self, rhs: Self)
     
     static var max : Self { get }
     static var min : Self { get }
@@ -70,17 +74,40 @@ protocol NumericType : Comparable, Hashable, Strideable, CustomStringConvertible
     init(_ v: Self  )
     init<T: NumericType>(_ v: T)
     
+    func string(radix: Int, groupsOf: Int) -> String
+    
+    var successor : Self { get }
 }
 
 extension NumericType {
     
-    var bin : String { return bigEndian.bin }
-    var oct : String { return bigEndian.oct }
-    var dec : String { return bigEndian.dec }
-    var hex : String { return bigEndian.hex }
+    var bin : String {
+        let str = bigEndian.bin
+        let index : String.Index = str.getIndex(72 - sizeof(Self) * 9)
+        return str.substring(from: index)
+    }
+    var oct : String {
+        let str = bigEndian.oct
+        let index : String.Index = str.getIndex(32 - sizeof(Self) * 4)
+        return str.substring(from: index)
+    }
+    var dec : String {
+        return String(Int(self))
+    }
+    var hex : String {
+        let str = bigEndian.hex
+        let index : String.Index
+        switch sizeof(Self) {
+        case 1:  index = str.getIndex(18)
+        case 2:  index = str.getIndex(15)
+        case 4:  index = str.getIndex(10)
+        default: return str
+        }
+        return str.substring(from: index)
+    }
     
-    func string(_ radix: Int, groupsOf: Int) -> String {
-        return bigEndian.string(radix, groupsOf: groupsOf)
+    func string(radix: Int, groupsOf: Int) -> String {
+        return bigEndian.string(radix: radix, groupsOf: groupsOf)
     }
     
     var bigEndian : QWord {
@@ -182,6 +209,12 @@ extension NumericType {
             // beware when implementing NumericType-protocol in another type
         }
     }
+    
+    var inaccuracy : Self {
+        let this : Self = self
+        let succ : Self = self.successor
+        return succ - this
+    }
 }
 
 protocol EnhancedIntegerType : NumericType {}
@@ -205,18 +238,14 @@ extension EnhancedIntegerType {
         let value = UInt64(self)
         return value * (value - one).faculty
     }
-}
-
-protocol EnhancedFloatingPointType : NumericType {
-    var successor : Self { get }
-}
-extension EnhancedFloatingPointType {
-    var inaccuracy : Self {
-        let this : Self = self
-        let succ : Self = self.successor
-        return succ - this
+    
+    var successor : Self {
+        return self &+ Self(1)
     }
 }
+
+protocol EnhancedFloatingPointType : NumericType {}
+extension EnhancedFloatingPointType {}
 
 extension Int    : EnhancedIntegerType {}
 extension Int8   : EnhancedIntegerType {}
@@ -248,10 +277,10 @@ extension UInt64 : EnhancedIntegerType {
         return String(self, radix: radix)
     }
     
-    var bin : String { return string( 2, groupsOf: 8) }
-    var oct : String { return string( 8, groupsOf: 4) }
-    var dec : String { return string(10, groupsOf: 3) }
-    var hex : String { return string(16, groupsOf: 4) }
+    var bin : String { return string(radix: 2, groupsOf: 8) }
+    var oct : String { return string(radix: 8, groupsOf: 3) }
+    var dec : String { return string(radix:10, groupsOf: 3) }
+    var hex : String { return string(radix:16, groupsOf: 4) }
 }
 
 extension Double : EnhancedFloatingPointType {
@@ -280,7 +309,7 @@ extension Float80: EnhancedFloatingPointType {
     var isZero: Bool { return self == Float80(0) }
     var isSubnormal: Bool { return Double(self).isSubnormal }
     var isInfinite: Bool { return !self.isFinite }
-    var isNaN: Bool { return self == Float80(Double.nan) || self == Float80(Double.quietNaN) }
+    var isNaN: Bool { return self == Float80(Double.nan) }
     var isSignaling: Bool { return isNaN }
     
     var successor : Float80 {
@@ -316,13 +345,12 @@ prefix func ++<T: NumericType>( left: inout T) -> T {
 
 postfix func --<T: NumericType>( left: inout T) -> T {
     let before = left
-    --left
+    _ = --left
     return before
 }
 
-prefix func --<T: NumericType>( left: inout T) -> T {
+prefix func --<T: NumericType>(left: inout T) {
     left = left - T(1)
-    return left
 }
 
 prefix func -<T: NumericType>(left: T) -> T {
@@ -374,3 +402,214 @@ prefix operator ∜ {}
 prefix func ∜ <T: NumericType>(num: T) -> T {
     return T(pow(Double(num), 1/4))
 }
+
+
+
+
+
+
+struct InfiniteInt : CustomStringConvertible, InfiniteIntType {
+    private var sign : Bool = false
+    private var array : [UInt64]
+    /*
+    init(integerLiteral v: Int) {
+        if v < 0 { sign = true }
+        array = [UInt64(v.abs)]
+    }
+ */
+    
+    init(_ v: Int) {
+        if v < 0 { sign = true }
+        array = [UInt64(v.abs)]
+    }
+    /*
+    init(_ v: Int8) {
+        if v < 0 { sign = true }
+        array = [UInt64(v.abs)]
+    }
+    init(_ v: Int16) {
+        if v < 0 { sign = true }
+        array = [UInt64(v.abs)]
+    }
+    init(_ v: Int32) {
+        if v < 0 { sign = true }
+        array = [UInt64(v.abs)]
+    }
+    init(_ v: Int64) {
+        if v < 0 { sign = true }
+        array = [UInt64(v.abs)]
+    }
+    init(_ v: UInt) {
+        array = [UInt64(v)]
+    }
+    init(_ v: UInt8) {
+        array = [UInt64(v)]
+    }
+    init(_ v: UInt16) {
+        array = [UInt64(v)]
+    }
+    init(_ v: UInt32) {
+        array = [UInt64(v)]
+    }
+    init(_ v: UInt64) {
+        array = [v]
+    }
+ */
+    var description: String {
+        return "\(array)"
+    }
+    var successor : InfiniteInt {
+        return self // + InfiniteInt(1)
+    }
+    var hashValue: Int {
+        return Int(array[0] % UInt64(Int.max))
+    }
+}
+
+protocol InfiniteIntType {
+    func <<= (lhs: inout Self, rhs: Int) -> Self
+    func << (lhs: Self, rhs: Int) -> Self
+    func += (lhs: inout Self, rhs: Self) -> Self
+    func + (lhs: Self, rhs: Self) -> Self
+}
+
+func <<= (lhs: inout InfiniteInt, rhs: Int) -> InfiniteInt {
+    var x : UInt64
+    var overflow : UInt64 = 0
+    let rhs = UInt64(rhs)
+    let mask : UInt64 = UInt64.max << rhs
+    for i in lhs.array.indices {
+        x = lhs.array[i] + overflow
+        overflow = x & mask
+        lhs.array[i] = x << rhs
+    }
+    if overflow != 0 {
+        lhs.array.append(overflow)
+    }
+    return lhs
+}
+
+func << (lhs: InfiniteInt, rhs: Int) -> InfiniteInt {
+    var lhs = lhs
+    lhs <<= rhs
+    return lhs
+}
+
+func += (lhs: inout InfiniteInt, rhs: InfiniteInt) -> InfiniteInt {
+    let rhscount = rhs.array.count, lhscount = lhs.array.count
+    if !rhs.sign && !lhs.sign {
+        if lhscount >= rhscount {
+            var overflow : UInt64 = 0
+            let max32 = UInt64(UInt32.max) + 1
+            var l : UInt64
+            var r : UInt64
+            var e : UInt64
+            var x : UInt64
+            for i in lhs.array.indices {
+                l = lhs.array[i] % max32
+                r = rhs.array[i] % max32
+                e = l + r + overflow
+                overflow = e / max32
+                x = e % max32
+                l = lhs.array[i] / max32
+                r = rhs.array[i] / max32
+                e = l + r + overflow
+                overflow = e / max32
+                lhs.array[i] = ((e % max32) << 8) + x
+                if i > rhscount && overflow == 0 { return lhs }
+            }
+            if overflow != 0 {
+                lhs.array.append(overflow)
+            }
+            return lhs
+        }
+    }
+    return lhs
+}
+
+func + (lhs: InfiniteInt, rhs: InfiniteInt) -> InfiniteInt {
+    var lhs = lhs
+    lhs += rhs
+    return lhs
+}
+
+func -= (lhs: inout InfiniteInt, rhs: InfiniteInt) -> InfiniteInt {
+    if lhs.array.count >= rhs.array.count {
+        let indices = lhs.array.indices
+        for i in indices {
+            print(i)
+        }
+    } else {
+        let indices = rhs.array.indices
+        lhs.sign = true
+        for i in indices {
+            print(i)
+        }
+    }
+    return lhs
+}
+
+func - (lhs: InfiniteInt, rhs: InfiniteInt) -> InfiniteInt {
+    var lhs = lhs
+    lhs -= rhs
+    return lhs
+}
+/*
+func * (lhs: InfiniteInt, rhs: InfiniteInt) -> InfiniteInt {
+    
+}
+
+func / (lhs: InfiniteInt, rhs: InfiniteInt) -> InfiniteInt {
+    
+}
+
+func >> (lhs: InfiniteInt, rhs: Int) -> InfiniteInt {
+    var lhs = lhs
+    lhs >>= rhs
+    return lhs
+}
+
+func >>= (lhs: inout InfiniteInt, rhs: Int) -> InfiniteInt {
+    let rest = UInt64(16 - rhs)
+    let rhs64 = UInt64(rhs)
+    let mask = UInt64.max >> rest
+    lhs.array[0] >>= rhs64
+    var v : UInt64
+    for i in lhs.array.indices.dropFirst() {
+        v = lhs.array[i]
+        lhs.array[i-1] |= ((mask & v) << rest)
+        lhs.array[i] = v >> rhs64
+    }
+    return lhs
+}
+
+
+func % (lhs: InfiniteInt, rhs: InfiniteInt) -> InfiniteInt {
+    if rhs.array.count == 1 {
+        return InfiniteInt(Int(lhs.array[0] % rhs.array[0]))
+    }
+    for i in lhs.array.count {
+        
+    }
+    return lhs
+}
+
+*/
+
+infix operator &+= {}
+infix operator &-= {}
+infix operator &*= {}
+
+func &+=<T : NumericType>(lhs: inout T, rhs: T) {
+    lhs = lhs &+ rhs
+}
+
+func &*=<T : NumericType>(lhs: inout T, rhs: T) {
+    lhs = lhs &* rhs
+}
+
+func &-=<T : NumericType>(lhs: inout T, rhs: T) {
+    lhs = lhs &- rhs
+}
+
+

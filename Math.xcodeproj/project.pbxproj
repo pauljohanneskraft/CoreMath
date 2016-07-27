@@ -7,47 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9B0FC7A61CE31CA70009BAF4 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0FC7A51CE31CA70009BAF4 /* main.swift */; };
-		9B0FC7B21CE31CB90009BAF4 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0FC7AC1CE31CB90009BAF4 /* Array.swift */; };
-		9B0FC7B31CE31CB90009BAF4 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0FC7AD1CE31CB90009BAF4 /* Error.swift */; };
-		9B0FC7B41CE31CB90009BAF4 /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0FC7AE1CE31CB90009BAF4 /* General.swift */; };
-		9B0FC7B51CE31CB90009BAF4 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0FC7AF1CE31CB90009BAF4 /* Matrix.swift */; };
-		9B0FC7B61CE31CB90009BAF4 /* Number.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0FC7B01CE31CB90009BAF4 /* Number.swift */; };
-		9B0FC7B71CE31CB90009BAF4 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0FC7B11CE31CB90009BAF4 /* String.swift */; };
 		9B0FC7BF1CE31CC40009BAF4 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0FC7BE1CE31CC40009BAF4 /* Test.swift */; };
-		9B0FC7C41CE31CD30009BAF4 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0FC7AC1CE31CB90009BAF4 /* Array.swift */; };
-		9B0FC7C51CE31CD30009BAF4 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0FC7AD1CE31CB90009BAF4 /* Error.swift */; };
-		9B0FC7C61CE31CD30009BAF4 /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0FC7AE1CE31CB90009BAF4 /* General.swift */; };
-		9B0FC7C71CE31CD30009BAF4 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0FC7AF1CE31CB90009BAF4 /* Matrix.swift */; };
-		9B0FC7C81CE31CD30009BAF4 /* Number.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0FC7B01CE31CB90009BAF4 /* Number.swift */; };
 		9B0FC7CB1CE31CE30009BAF4 /* StringTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0FC7CA1CE31CE30009BAF4 /* StringTest.swift */; };
 		9B0FC7CD1CE31CED0009BAF4 /* MatrixTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0FC7CC1CE31CED0009BAF4 /* MatrixTest.swift */; };
 		9B0FC7CF1CE31CF70009BAF4 /* NumberTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0FC7CE1CE31CF70009BAF4 /* NumberTest.swift */; };
-		9B1B6BC91CEF65FA0054A3E1 /* ModuleLikeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1B6BC81CEF65FA0054A3E1 /* ModuleLikeProtocols.swift */; };
-		9B1B6BCB1CEF660E0054A3E1 /* ModuleLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1B6BCA1CEF660E0054A3E1 /* ModuleLike.swift */; };
-		9B884ABE1CEC90EF00154A14 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDA53F1CE78E930038A56C /* Constants.swift */; };
-		9B884ABF1CEC90F300154A14 /* Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9658921CE7AA7F0001D606 /* Operations.swift */; };
-		9B884AC51CEC90FA00154A14 /* GroupLikeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B96589D1CE7FD9C0001D606 /* GroupLikeProtocols.swift */; };
-		9B884AC61CEC90FA00154A14 /* GroupLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB21B701CE9BD66009FF58B /* GroupLike.swift */; };
-		9B884AC71CEC90FA00154A14 /* RingLikeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B96589F1CE94F670001D606 /* RingLikeProtocols.swift */; };
-		9B884AC81CEC90FA00154A14 /* RingLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB21B721CE9D076009FF58B /* RingLike.swift */; };
-		9B884AC91CEC90FA00154A14 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9658981CE7FCD90001D606 /* Protocols.swift */; };
-		9B884ACA1CEC90FA00154A14 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0FC7B11CE31CB90009BAF4 /* String.swift */; };
-		9B884ACB1CEC90FE00154A14 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0FC7A51CE31CA70009BAF4 /* main.swift */; };
-		9B9658931CE7AA7F0001D606 /* Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9658921CE7AA7F0001D606 /* Operations.swift */; };
-		9B9658991CE7FCD90001D606 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9658981CE7FCD90001D606 /* Protocols.swift */; };
-		9B96589E1CE7FD9C0001D606 /* GroupLikeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B96589D1CE7FD9C0001D606 /* GroupLikeProtocols.swift */; };
-		9B9658A01CE94F670001D606 /* RingLikeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B96589F1CE94F670001D606 /* RingLikeProtocols.swift */; };
-		9BB21B711CE9BD66009FF58B /* GroupLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB21B701CE9BD66009FF58B /* GroupLike.swift */; };
-		9BB21B731CE9D076009FF58B /* RingLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB21B721CE9D076009FF58B /* RingLike.swift */; };
 		9BB21B751CEA4AC3009FF58B /* GroupLikeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB21B741CEA4AC3009FF58B /* GroupLikeTest.swift */; };
 		9BB21B771CEA4AD1009FF58B /* RingLikeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB21B761CEA4AD1009FF58B /* RingLikeTest.swift */; };
 		9BB8EDCD1CE3F3C400CF1A9D /* HashingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB8EDCC1CE3F3C400CF1A9D /* HashingTest.swift */; };
-		9BBDA5401CE78E930038A56C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDA53F1CE78E930038A56C /* Constants.swift */; };
-		9BC116D01CF1C97900A88B64 /* HashingChaining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC116CF1CF1C97900A88B64 /* HashingChaining.swift */; };
-		9BC116D21CF1C9A400A88B64 /* HashingLinearProbing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC116D11CF1C9A400A88B64 /* HashingLinearProbing.swift */; };
-		9BC116D41CF1C9CB00A88B64 /* HashingProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC116D31CF1C9CB00A88B64 /* HashingProtocols.swift */; };
-		9BC116D81CF1CC6000A88B64 /* HashingDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC116D71CF1CC6000A88B64 /* HashingDouble.swift */; };
+		9BF812C31D129AE900DC21BF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF812B81D129AE900DC21BF /* main.swift */; };
+		9BF812C41D129AE900DC21BF /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF812B91D129AE900DC21BF /* Matrix.swift */; };
+		9BF812C51D129AE900DC21BF /* Number.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF812BA1D129AE900DC21BF /* Number.swift */; };
+		9BF812C61D129AE900DC21BF /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF812BB1D129AE900DC21BF /* General.swift */; };
+		9BF812C71D129AE900DC21BF /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF812BC1D129AE900DC21BF /* Array.swift */; };
+		9BF812C81D129AE900DC21BF /* Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF812BD1D129AE900DC21BF /* Operations.swift */; };
+		9BF812C91D129AE900DC21BF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF812BE1D129AE900DC21BF /* Constants.swift */; };
+		9BF812CA1D129AE900DC21BF /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF812BF1D129AE900DC21BF /* String.swift */; };
+		9BF812CB1D129AE900DC21BF /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF812C01D129AE900DC21BF /* Protocols.swift */; };
+		9BF812CC1D129AE900DC21BF /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF812C11D129AE900DC21BF /* Error.swift */; };
+		9BF812D11D129B1100DC21BF /* HashingChaining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF812CD1D129B1100DC21BF /* HashingChaining.swift */; };
+		9BF812D21D129B1100DC21BF /* HashingLinearProbing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF812CE1D129B1100DC21BF /* HashingLinearProbing.swift */; };
+		9BF812D31D129B1100DC21BF /* HashingProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF812CF1D129B1100DC21BF /* HashingProtocols.swift */; };
+		9BF812D41D129B1100DC21BF /* HashingDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF812D01D129B1100DC21BF /* HashingDouble.swift */; };
+		9BF812DC1D129B3200DC21BF /* RingLikeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF812D61D129B3200DC21BF /* RingLikeProtocols.swift */; };
+		9BF812DD1D129B3200DC21BF /* GroupLikeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF812D71D129B3200DC21BF /* GroupLikeProtocols.swift */; };
+		9BF812DE1D129B3200DC21BF /* GroupLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF812D81D129B3200DC21BF /* GroupLike.swift */; };
+		9BF812DF1D129B3200DC21BF /* RingLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF812D91D129B3200DC21BF /* RingLike.swift */; };
+		9BF812E01D129B3200DC21BF /* ModuleLikeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF812DA1D129B3200DC21BF /* ModuleLikeProtocols.swift */; };
+		9BF812E11D129B3200DC21BF /* ModuleLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF812DB1D129B3200DC21BF /* ModuleLike.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -64,37 +50,36 @@
 
 /* Begin PBXFileReference section */
 		9B0FC7A21CE31CA70009BAF4 /* Math */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Math; sourceTree = BUILT_PRODUCTS_DIR; };
-		9B0FC7A51CE31CA70009BAF4 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		9B0FC7AC1CE31CB90009BAF4 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
-		9B0FC7AD1CE31CB90009BAF4 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
-		9B0FC7AE1CE31CB90009BAF4 /* General.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
-		9B0FC7AF1CE31CB90009BAF4 /* Matrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
-		9B0FC7B01CE31CB90009BAF4 /* Number.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Number.swift; sourceTree = "<group>"; };
-		9B0FC7B11CE31CB90009BAF4 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		9B0FC7BC1CE31CC40009BAF4 /* Test.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B0FC7BE1CE31CC40009BAF4 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		9B0FC7C01CE31CC40009BAF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B0FC7CA1CE31CE30009BAF4 /* StringTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringTest.swift; sourceTree = "<group>"; };
 		9B0FC7CC1CE31CED0009BAF4 /* MatrixTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatrixTest.swift; sourceTree = "<group>"; };
 		9B0FC7CE1CE31CF70009BAF4 /* NumberTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberTest.swift; sourceTree = "<group>"; };
-		9B127D7E1CEE525D00B1F6F4 /* Math-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Math-Bridging-Header.h"; sourceTree = "<group>"; };
-		9B1B6BC81CEF65FA0054A3E1 /* ModuleLikeProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModuleLikeProtocols.swift; path = Algebra/ModuleLikeProtocols.swift; sourceTree = "<group>"; };
-		9B1B6BCA1CEF660E0054A3E1 /* ModuleLike.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModuleLike.swift; path = Algebra/ModuleLike.swift; sourceTree = "<group>"; };
-		9B9658921CE7AA7F0001D606 /* Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operations.swift; sourceTree = "<group>"; };
-		9B9658981CE7FCD90001D606 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
-		9B96589D1CE7FD9C0001D606 /* GroupLikeProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GroupLikeProtocols.swift; path = Algebra/GroupLikeProtocols.swift; sourceTree = "<group>"; };
-		9B96589F1CE94F670001D606 /* RingLikeProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RingLikeProtocols.swift; path = Algebra/RingLikeProtocols.swift; sourceTree = "<group>"; };
-		9BB21B701CE9BD66009FF58B /* GroupLike.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GroupLike.swift; path = Algebra/GroupLike.swift; sourceTree = "<group>"; };
-		9BB21B721CE9D076009FF58B /* RingLike.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RingLike.swift; path = Algebra/RingLike.swift; sourceTree = "<group>"; };
 		9BB21B741CEA4AC3009FF58B /* GroupLikeTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupLikeTest.swift; sourceTree = "<group>"; };
 		9BB21B761CEA4AD1009FF58B /* RingLikeTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RingLikeTest.swift; sourceTree = "<group>"; };
 		9BB8EDCC1CE3F3C400CF1A9D /* HashingTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HashingTest.swift; sourceTree = "<group>"; };
-		9BBDA53F1CE78E930038A56C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		9BC116CF1CF1C97900A88B64 /* HashingChaining.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HashingChaining.swift; path = Hashing/HashingChaining.swift; sourceTree = "<group>"; };
-		9BC116D11CF1C9A400A88B64 /* HashingLinearProbing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HashingLinearProbing.swift; path = Hashing/HashingLinearProbing.swift; sourceTree = "<group>"; };
-		9BC116D31CF1C9CB00A88B64 /* HashingProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HashingProtocols.swift; path = Hashing/HashingProtocols.swift; sourceTree = "<group>"; };
-		9BC116D71CF1CC6000A88B64 /* HashingDouble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HashingDouble.swift; path = Hashing/HashingDouble.swift; sourceTree = "<group>"; };
-		9BF6FE3C1CEDDCA6007E71B9 /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; };
+		9BF812B81D129AE900DC21BF /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = main.swift; path = Sources/main.swift; sourceTree = SOURCE_ROOT; };
+		9BF812B91D129AE900DC21BF /* Matrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Matrix.swift; path = Sources/Matrix.swift; sourceTree = SOURCE_ROOT; };
+		9BF812BA1D129AE900DC21BF /* Number.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Number.swift; path = Sources/Number.swift; sourceTree = SOURCE_ROOT; };
+		9BF812BB1D129AE900DC21BF /* General.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = General.swift; path = Sources/General.swift; sourceTree = SOURCE_ROOT; };
+		9BF812BC1D129AE900DC21BF /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Array.swift; path = Sources/Array.swift; sourceTree = SOURCE_ROOT; };
+		9BF812BD1D129AE900DC21BF /* Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Operations.swift; path = Sources/Operations.swift; sourceTree = SOURCE_ROOT; };
+		9BF812BE1D129AE900DC21BF /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Sources/Constants.swift; sourceTree = SOURCE_ROOT; };
+		9BF812BF1D129AE900DC21BF /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = String.swift; path = Sources/String.swift; sourceTree = SOURCE_ROOT; };
+		9BF812C01D129AE900DC21BF /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Protocols.swift; path = Sources/Protocols.swift; sourceTree = SOURCE_ROOT; };
+		9BF812C11D129AE900DC21BF /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Error.swift; path = Sources/Error.swift; sourceTree = SOURCE_ROOT; };
+		9BF812C21D129AE900DC21BF /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = Playground.playground; path = Sources/Playground.playground; sourceTree = SOURCE_ROOT; };
+		9BF812CD1D129B1100DC21BF /* HashingChaining.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HashingChaining.swift; path = Sources/Hashing/HashingChaining.swift; sourceTree = "<group>"; };
+		9BF812CE1D129B1100DC21BF /* HashingLinearProbing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HashingLinearProbing.swift; path = Sources/Hashing/HashingLinearProbing.swift; sourceTree = "<group>"; };
+		9BF812CF1D129B1100DC21BF /* HashingProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HashingProtocols.swift; path = Sources/Hashing/HashingProtocols.swift; sourceTree = "<group>"; };
+		9BF812D01D129B1100DC21BF /* HashingDouble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HashingDouble.swift; path = Sources/Hashing/HashingDouble.swift; sourceTree = "<group>"; };
+		9BF812D61D129B3200DC21BF /* RingLikeProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RingLikeProtocols.swift; path = Sources/Algebra/RingLikeProtocols.swift; sourceTree = "<group>"; };
+		9BF812D71D129B3200DC21BF /* GroupLikeProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GroupLikeProtocols.swift; path = Sources/Algebra/GroupLikeProtocols.swift; sourceTree = "<group>"; };
+		9BF812D81D129B3200DC21BF /* GroupLike.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GroupLike.swift; path = Sources/Algebra/GroupLike.swift; sourceTree = "<group>"; };
+		9BF812D91D129B3200DC21BF /* RingLike.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RingLike.swift; path = Sources/Algebra/RingLike.swift; sourceTree = "<group>"; };
+		9BF812DA1D129B3200DC21BF /* ModuleLikeProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModuleLikeProtocols.swift; path = Sources/Algebra/ModuleLikeProtocols.swift; sourceTree = "<group>"; };
+		9BF812DB1D129B3200DC21BF /* ModuleLike.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModuleLike.swift; path = Sources/Algebra/ModuleLike.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,20 +121,19 @@
 		9B0FC7A41CE31CA70009BAF4 /* Math */ = {
 			isa = PBXGroup;
 			children = (
-				9B0FC7A51CE31CA70009BAF4 /* main.swift */,
-				9BF6FE3C1CEDDCA6007E71B9 /* Playground.playground */,
-				9BC116CE1CF1C94700A88B64 /* Hashing */,
-				9B0FC7AC1CE31CB90009BAF4 /* Array.swift */,
-				9B0FC7AD1CE31CB90009BAF4 /* Error.swift */,
-				9B0FC7AE1CE31CB90009BAF4 /* General.swift */,
-				9B0FC7AF1CE31CB90009BAF4 /* Matrix.swift */,
-				9B0FC7B01CE31CB90009BAF4 /* Number.swift */,
-				9BBDA53F1CE78E930038A56C /* Constants.swift */,
-				9B9658921CE7AA7F0001D606 /* Operations.swift */,
-				9B96589A1CE7FD630001D606 /* Algebra */,
-				9B9658981CE7FCD90001D606 /* Protocols.swift */,
-				9B0FC7B11CE31CB90009BAF4 /* String.swift */,
-				9B127D7E1CEE525D00B1F6F4 /* Math-Bridging-Header.h */,
+				9BF812B81D129AE900DC21BF /* main.swift */,
+				9BF812B91D129AE900DC21BF /* Matrix.swift */,
+				9BF812BA1D129AE900DC21BF /* Number.swift */,
+				9BF812BB1D129AE900DC21BF /* General.swift */,
+				9BF812BC1D129AE900DC21BF /* Array.swift */,
+				9BF812BD1D129AE900DC21BF /* Operations.swift */,
+				9BF812BE1D129AE900DC21BF /* Constants.swift */,
+				9BF812BF1D129AE900DC21BF /* String.swift */,
+				9BF812C01D129AE900DC21BF /* Protocols.swift */,
+				9BF812C11D129AE900DC21BF /* Error.swift */,
+				9BF812E21D129B3800DC21BF /* Algebra */,
+				9BF812D51D129B1A00DC21BF /* Hashing */,
+				9BF812C21D129AE900DC21BF /* Playground.playground */,
 			);
 			path = Math;
 			sourceTree = "<group>";
@@ -169,28 +153,30 @@
 			path = Test;
 			sourceTree = "<group>";
 		};
-		9B96589A1CE7FD630001D606 /* Algebra */ = {
+		9BF812D51D129B1A00DC21BF /* Hashing */ = {
 			isa = PBXGroup;
 			children = (
-				9B96589D1CE7FD9C0001D606 /* GroupLikeProtocols.swift */,
-				9BB21B701CE9BD66009FF58B /* GroupLike.swift */,
-				9B96589F1CE94F670001D606 /* RingLikeProtocols.swift */,
-				9BB21B721CE9D076009FF58B /* RingLike.swift */,
-				9B1B6BC81CEF65FA0054A3E1 /* ModuleLikeProtocols.swift */,
-				9B1B6BCA1CEF660E0054A3E1 /* ModuleLike.swift */,
-			);
-			name = Algebra;
-			sourceTree = "<group>";
-		};
-		9BC116CE1CF1C94700A88B64 /* Hashing */ = {
-			isa = PBXGroup;
-			children = (
-				9BC116CF1CF1C97900A88B64 /* HashingChaining.swift */,
-				9BC116D11CF1C9A400A88B64 /* HashingLinearProbing.swift */,
-				9BC116D71CF1CC6000A88B64 /* HashingDouble.swift */,
-				9BC116D31CF1C9CB00A88B64 /* HashingProtocols.swift */,
+				9BF812CD1D129B1100DC21BF /* HashingChaining.swift */,
+				9BF812CE1D129B1100DC21BF /* HashingLinearProbing.swift */,
+				9BF812CF1D129B1100DC21BF /* HashingProtocols.swift */,
+				9BF812D01D129B1100DC21BF /* HashingDouble.swift */,
 			);
 			name = Hashing;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		9BF812E21D129B3800DC21BF /* Algebra */ = {
+			isa = PBXGroup;
+			children = (
+				9BF812D61D129B3200DC21BF /* RingLikeProtocols.swift */,
+				9BF812D71D129B3200DC21BF /* GroupLikeProtocols.swift */,
+				9BF812D81D129B3200DC21BF /* GroupLike.swift */,
+				9BF812D91D129B3200DC21BF /* RingLike.swift */,
+				9BF812DA1D129B3200DC21BF /* ModuleLikeProtocols.swift */,
+				9BF812DB1D129B3200DC21BF /* ModuleLike.swift */,
+			);
+			name = Algebra;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,9 +229,11 @@
 				TargetAttributes = {
 					9B0FC7A11CE31CA70009BAF4 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 					};
 					9B0FC7BB1CE31CC40009BAF4 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -299,26 +287,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B9658A01CE94F670001D606 /* RingLikeProtocols.swift in Sources */,
-				9B1B6BCB1CEF660E0054A3E1 /* ModuleLike.swift in Sources */,
-				9B0FC7A61CE31CA70009BAF4 /* main.swift in Sources */,
-				9B0FC7B51CE31CB90009BAF4 /* Matrix.swift in Sources */,
-				9B1B6BC91CEF65FA0054A3E1 /* ModuleLikeProtocols.swift in Sources */,
-				9BC116D01CF1C97900A88B64 /* HashingChaining.swift in Sources */,
-				9BB21B711CE9BD66009FF58B /* GroupLike.swift in Sources */,
-				9BC116D21CF1C9A400A88B64 /* HashingLinearProbing.swift in Sources */,
-				9B96589E1CE7FD9C0001D606 /* GroupLikeProtocols.swift in Sources */,
-				9B9658991CE7FCD90001D606 /* Protocols.swift in Sources */,
-				9B0FC7B61CE31CB90009BAF4 /* Number.swift in Sources */,
-				9B0FC7B31CE31CB90009BAF4 /* Error.swift in Sources */,
-				9B0FC7B71CE31CB90009BAF4 /* String.swift in Sources */,
-				9BC116D41CF1C9CB00A88B64 /* HashingProtocols.swift in Sources */,
-				9B0FC7B41CE31CB90009BAF4 /* General.swift in Sources */,
-				9B0FC7B21CE31CB90009BAF4 /* Array.swift in Sources */,
-				9BB21B731CE9D076009FF58B /* RingLike.swift in Sources */,
-				9BC116D81CF1CC6000A88B64 /* HashingDouble.swift in Sources */,
-				9BBDA5401CE78E930038A56C /* Constants.swift in Sources */,
-				9B9658931CE7AA7F0001D606 /* Operations.swift in Sources */,
+				9BF812C51D129AE900DC21BF /* Number.swift in Sources */,
+				9BF812C81D129AE900DC21BF /* Operations.swift in Sources */,
+				9BF812C61D129AE900DC21BF /* General.swift in Sources */,
+				9BF812C31D129AE900DC21BF /* main.swift in Sources */,
+				9BF812CA1D129AE900DC21BF /* String.swift in Sources */,
+				9BF812D31D129B1100DC21BF /* HashingProtocols.swift in Sources */,
+				9BF812DE1D129B3200DC21BF /* GroupLike.swift in Sources */,
+				9BF812C41D129AE900DC21BF /* Matrix.swift in Sources */,
+				9BF812DF1D129B3200DC21BF /* RingLike.swift in Sources */,
+				9BF812E01D129B3200DC21BF /* ModuleLikeProtocols.swift in Sources */,
+				9BF812DC1D129B3200DC21BF /* RingLikeProtocols.swift in Sources */,
+				9BF812C71D129AE900DC21BF /* Array.swift in Sources */,
+				9BF812D21D129B1100DC21BF /* HashingLinearProbing.swift in Sources */,
+				9BF812DD1D129B3200DC21BF /* GroupLikeProtocols.swift in Sources */,
+				9BF812E11D129B3200DC21BF /* ModuleLike.swift in Sources */,
+				9BF812CB1D129AE900DC21BF /* Protocols.swift in Sources */,
+				9BF812D11D129B1100DC21BF /* HashingChaining.swift in Sources */,
+				9BF812D41D129B1100DC21BF /* HashingDouble.swift in Sources */,
+				9BF812CC1D129AE900DC21BF /* Error.swift in Sources */,
+				9BF812C91D129AE900DC21BF /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,22 +319,8 @@
 				9B0FC7CB1CE31CE30009BAF4 /* StringTest.swift in Sources */,
 				9B0FC7CF1CE31CF70009BAF4 /* NumberTest.swift in Sources */,
 				9B0FC7BF1CE31CC40009BAF4 /* Test.swift in Sources */,
-				9B884AC81CEC90FA00154A14 /* RingLike.swift in Sources */,
-				9B884AC61CEC90FA00154A14 /* GroupLike.swift in Sources */,
-				9B884AC71CEC90FA00154A14 /* RingLikeProtocols.swift in Sources */,
-				9B884ABE1CEC90EF00154A14 /* Constants.swift in Sources */,
-				9B884AC51CEC90FA00154A14 /* GroupLikeProtocols.swift in Sources */,
 				9BB8EDCD1CE3F3C400CF1A9D /* HashingTest.swift in Sources */,
 				9BB21B751CEA4AC3009FF58B /* GroupLikeTest.swift in Sources */,
-				9B0FC7C41CE31CD30009BAF4 /* Array.swift in Sources */,
-				9B0FC7C51CE31CD30009BAF4 /* Error.swift in Sources */,
-				9B884AC91CEC90FA00154A14 /* Protocols.swift in Sources */,
-				9B0FC7C61CE31CD30009BAF4 /* General.swift in Sources */,
-				9B0FC7C71CE31CD30009BAF4 /* Matrix.swift in Sources */,
-				9B884ACB1CEC90FE00154A14 /* main.swift in Sources */,
-				9B884ACA1CEC90FA00154A14 /* String.swift in Sources */,
-				9B0FC7C81CE31CD30009BAF4 /* Number.swift in Sources */,
-				9B884ABF1CEC90F300154A14 /* Operations.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,6 +421,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Math/Math-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 3.0;
 				TREAT_MISSING_BASELINES_AS_TEST_FAILURES = NO;
 			};
 			name = Debug;
@@ -461,6 +436,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Math/Math-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				TREAT_MISSING_BASELINES_AS_TEST_FAILURES = NO;
 			};
 			name = Release;
@@ -473,6 +449,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Kraft.Test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -484,6 +461,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Kraft.Test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

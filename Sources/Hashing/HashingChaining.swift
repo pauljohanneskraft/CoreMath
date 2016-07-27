@@ -144,7 +144,7 @@ struct HashTable <K: Hashable, V> : ArrayLiteralConvertible, CustomStringConvert
         try correctBucketCount()
     }
     
-    func executeForKey<T>(_ key: K, f: (Int,Int?) throws -> T) throws -> T {
+    func executeForKey<T>(_ key: K, f: @noescape(Int,Int?) throws -> T) throws -> T {
         let h = try hash(key)
         let i = table[h].find { key == $0.key }
         return try f(h,i)

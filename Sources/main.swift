@@ -62,9 +62,9 @@ try block(false) {
     print("didChange")
     print(hT)
 }*/
-
+/*
 block(false) {
-    var str = "😇😄😅😁😂😇😄😅😁😂😇😄😅😁😂😇😄😅😁😂😇😄😅😁😂"
+    var str = "abcdefghijklmnopqrstuvwxyzäöüß"
     for i in 0...str.characters.count {
         print("str[0..<\(i)]: \(str[0..<i])")
     }
@@ -149,7 +149,7 @@ block(false) {
     print(constants.pi.inaccuracy)
 }
 
-block(true) {
+block(false) {
     print(1e20.inaccuracy)
     print((1e20 + 100.0).inaccuracy)
 }
@@ -170,7 +170,7 @@ block(false) {
     print(hashesValues)
 }
 
-block(true) {
+block(false) {
     let c = loopUntilNotNullAndNotThrowing {
         () -> Int? in
         let b : Int? = 3
@@ -178,3 +178,107 @@ block(true) {
     }
     print(c.dynamicType)
 }
+
+block(false) {
+    func hash(_ u: Int) -> Int {
+        return (3*u) % 13
+    }
+}
+
+/*block(true) {
+    var infInt = InfiniteInt(UInt.max)
+    infInt = (infInt + 1)
+    print(infInt)
+}*/
+
+block(false) {
+    var t = Thread()
+    for i in 0..<10 {
+        t.add {
+            print(i)
+        }
+    }
+    print("t.todo: \(t.todo)")
+    t.join()
+}
+
+block(false) {
+    var a = 1 // InfiniteInt(10000000)
+    for i in 0..<100 {
+        // a += InfiniteInt(1000000)
+        print(a)
+    }
+}
+
+block(false) {
+    
+    var a : Int8 = Int8.max
+    a = a &+ 1
+    print(a)
+    print(a.hex)
+    print(a.bin)
+    print(a.dec)
+    // print(a.oct)
+    print(a == Int8.min)
+    
+    print("")
+    
+    var b : Int16 = Int16.max
+    b = b &+ 1
+    print(b)
+    print(b.hex)
+    print(b.bin)
+    print(b.dec)
+    print(b == Int16.min)
+    
+    print("")
+    
+    var c : Int32 = Int32.max
+    c = c &+ 1
+    print(c)
+    print(c.bin)
+    print(c.dec)
+    print(c.hex)
+    // print(c.oct) // 20_000_000_000
+    print(c == Int32.min)
+    
+    print("")
+    
+    var d : Int64 = Int64.max
+    d = d &+ 1
+    print(d)
+    print(d.bin)
+    print(d.dec)
+    print(d.hex)
+    // print(d.oct)
+    print(d == Int64.min)
+    
+}
+
+
+block(true) {
+    let a = [[0,1,2,3],[4,5,898403824908460,7],[8,3824068943,10,11], [12,13,14,15]]
+    print(a.toLaTeX())
+}
+
+
+block(true) {
+    let a = [0,1,2,3,4,5,6,7,8,9,10]
+    print(a.filter {
+        print($0)
+        return ($0 > 3) })
+}
+
+
+
+
+*/
+
+
+let a = [[0,1], [2,3]] ^^ 100
+
+
+
+
+
+

@@ -7,17 +7,13 @@
 //
 
 infix operator ⊂ {} // subset
-func ⊂ <T: Comparable>(array1: [T], array2: [T]) -> Bool {
-    if array1.count < 10 {
-        for v in array1 {
-            if !array2.contains({ $0 == v }) {
-                return false
-            }
-        }
-        return true
-    }
-    let mid = array1.count >> 1
-    return ((array1[0..<mid] + []) ⊂ array2) && ((array1[mid..<array1.count] + []) ⊂ array2)
+func ⊂ <C : Collection where C.IndexDistance == Int, C.Iterator.Element: Equatable>(array1: C, array2: C) -> Bool {
+    guard array1.count <= array2.count else { return false }
+    let c = array1.filter({
+        (a: C.Iterator.Element) -> Bool in
+        return array2.contains({ $0 == a })
+    }).count
+    return c == array1.count
 }
 
 prefix operator ∑ {} // sum of all elements

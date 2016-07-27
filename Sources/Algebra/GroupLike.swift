@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct GroupLike<Element where Element : Hashable, Element: Comparable> : SemigroupType, Commutative {
+struct GroupLike<Element where Element : Hashable, Element: Comparable> : SemigroupProtocol, Commutative {
     init(set: Set<Element>, op: (Element,Element) -> Element, neutralElement: Element? = nil, inv: ((Element) -> Element)? = nil, sign: Character = "•") {
         self.set = set
         self.op = op
@@ -41,7 +41,10 @@ struct GroupLike<Element where Element : Hashable, Element: Comparable> : Semigr
             
         }
     }
-
+    
+    var possibleProtocols : (magma: Magma<Element>?, semigroup: Semigroup<Element>?, monoid: Monoid<Element>?, group: Group<Element>?, abelianGroup: AbelianGroup<Element>?)  {
+        return (try? Magma(self), try? Semigroup(self), try? Monoid(self), try? Group(self), try? AbelianGroup(self))
+    }
     
     func test() -> (closed: Bool, associative: Bool, neutralElement: Bool, invertible: Bool, commutative: Bool) {
         return (testClosure(), testAssociative(), testNeutralElement(), testInverse(), testCommutative())
@@ -68,7 +71,7 @@ struct GroupLike<Element where Element : Hashable, Element: Comparable> : Semigr
     }
 }
 
-struct Magma<Element where Element : Hashable, Element: Comparable> : MagmaType {
+struct Magma<Element where Element : Hashable, Element: Comparable> : MagmaProtocol {
     init(set: Set<Element>, op: (Element, Element) -> Element, sign: Character = "•") throws {
         self.set = set
         self.op = op
@@ -91,7 +94,7 @@ struct Magma<Element where Element : Hashable, Element: Comparable> : MagmaType 
     let sign : Character
 }
 
-struct Semigroup<Element where Element : Hashable, Element: Comparable> : SemigroupType {
+struct Semigroup<Element where Element : Hashable, Element: Comparable> : SemigroupProtocol {
     init(set: Set<Element>, op: (Element, Element) -> Element, sign: Character = "•") throws {
         self.set = set
         self.op = op
@@ -114,7 +117,7 @@ struct Semigroup<Element where Element : Hashable, Element: Comparable> : Semigr
     let sign : Character
 }
 
-struct Monoid<Element where Element : Hashable, Element: Comparable> : MonoidType {
+struct Monoid<Element where Element : Hashable, Element: Comparable> : MonoidProtocol {
     init(set: Set<Element>, op: (Element, Element) -> Element, neutralElement: Element, sign: Character = "•") throws {
         self.set = set
         self.op = op
@@ -140,7 +143,7 @@ struct Monoid<Element where Element : Hashable, Element: Comparable> : MonoidTyp
     let sign : Character
 }
 
-struct Group<Element where Element : Hashable, Element: Comparable> : GroupType {
+struct Group<Element where Element : Hashable, Element: Comparable> : GroupProtocol {
     init(set: Set<Element>, op: (Element, Element) -> Element, neutralElement: Element, inv: (Element) -> Element, sign: Character = "•") throws {
         self.set = set
         self.op = op
@@ -169,7 +172,7 @@ struct Group<Element where Element : Hashable, Element: Comparable> : GroupType 
     let sign : Character
 }
 
-struct AbelianGroup<Element where Element : Hashable, Element: Comparable> : AbelianGroupType {
+struct AbelianGroup<Element where Element : Hashable, Element: Comparable> : AbelianGroupProtocol {
     init(set: Set<Element>, op: (Element, Element) -> Element, neutralElement: Element, inv: (Element) -> Element, sign: Character = "•") throws {
         self.set = set
         self.op = op

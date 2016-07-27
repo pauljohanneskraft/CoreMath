@@ -14,10 +14,8 @@
 // var left : [[T]] = [[..., ...], ...]
 // left++
 
-postfix func ++<T: NumericType>(left: inout [[T]]) -> [[T]] {
-    let before = left
-    ++left
-    return before
+postfix func ++<T: NumericType>(left: inout [[T]]) {
+    _ = ++left
 }
 
 prefix func ++<T: NumericType>( left: inout [[T]]) -> [[T]] {
@@ -43,7 +41,7 @@ func * <T: NumericType>(left: [[T]], right: [[T]]) throws -> [[T]] {
     return left
 }
 
-func *= <T: NumericType>( left: inout [[T]], right: [[T]]) throws -> [[T]] {
+func *= <T: NumericType>( left: inout [[T]], right: [[T]]) throws {
     if left[0].count != right.count { throw MatrixError.NotMultipliable }
     var matrix : [[T]] = []
     
@@ -59,17 +57,15 @@ func *= <T: NumericType>( left: inout [[T]], right: [[T]]) throws -> [[T]] {
         matrix.append(array)
     }
     left = matrix
-    return left
 }
 
-func -= <T: NumericType>( left: inout [[T]], right: [[T]]) throws -> [[T]] {
+func -= <T: NumericType>( left: inout [[T]], right: [[T]]) throws {
     if left.count != right.count || left[0].count != right[0].count { throw MatrixError.NotAddable }
     for i in 0..<left.count {
         for j in 0..<left[0].count {
             left[i][j] = left[i][j] - right[i][j]
         }
     }
-    return left
 }
 
 func - <T: NumericType>(left: [[T]], right: [[T]]) throws -> [[T]] {
@@ -79,14 +75,13 @@ func - <T: NumericType>(left: [[T]], right: [[T]]) throws -> [[T]] {
 }
 
 
-func += <T: NumericType>( left: inout [[T]], right: [[T]]) throws -> [[T]] {
+func += <T: NumericType>( left: inout [[T]], right: [[T]]) throws {
     if left.count != right.count || left[0].count != right[0].count { throw MatrixError.NotAddable }
     for i in 0..<left.count {
         for j in 0..<left[0].count {
             left[i][j] = left[i][j] + right[i][j]
         }
     }
-    return left
 }
 
 func + <T: NumericType>(left: [[T]], right: [[T]]) throws -> [[T]] {
@@ -95,13 +90,12 @@ func + <T: NumericType>(left: [[T]], right: [[T]]) throws -> [[T]] {
     return matrix
 }
 
-func *= <T: NumericType>( left: inout [[T]], right: T) -> [[T]] {
+func *= <T: NumericType>( left: inout [[T]], right: T) {
     for row in 0..<left.count {
         for column in 0..<left[row].count {
             left[row][column] = left[row][column]*right
         }
     }
-    return left
 }
 
 func * <T: NumericType>(left: [[T]], right: T) -> [[T]] {
@@ -116,13 +110,12 @@ func * <T: NumericType>(left: T, right: [[T]]) -> [[T]] {
     return right
 }
 
-func /= <T: NumericType>( left: inout [[T]], right: T) -> [[T]] {
+func /= <T: NumericType>( left: inout [[T]], right: T) {
     for row in 0..<left.count {
         for column in 0..<left[row].count {
             left[row][column] = left[row][column]/right
         }
     }
-    return left
 }
 
 func / <T: NumericType>(left: [[T]], right: T) -> [[T]] {
@@ -311,8 +304,8 @@ import Foundation
 
 var count = 0
 
-func ^=<T : NumericType>( left: inout [[T]], right: Int) throws -> [[T]] {
-    print("calculating matrix ^ \(right)")
+func ^=<T : NumericType>( left: inout [[T]], right: Int) throws {
+    // print("calculating matrix ^ \(right)")
     let orig = left
     if right == 0 {
         for i in 0..<left.count {
@@ -332,8 +325,7 @@ func ^=<T : NumericType>( left: inout [[T]], right: Int) throws -> [[T]] {
             left = try left * orig
         }
     }
-    print("calculating matrix ^ \(right) ready.")
-    return left
+    // print("calculating matrix ^ \(right) ready.")
 }
 
 func ^<T : NumericType>(left: [[T]], right: Int) throws -> [[T]] {
@@ -355,7 +347,7 @@ func ^+ <T : NumericType>(left: [[T]], right : UInt) throws -> [[T]] {
     return left
 }
 
-func ^+= <T: NumericType>( left: inout [[T]], right: UInt) throws -> [[T]] {
+func ^+= <T: NumericType>( left: inout [[T]], right: UInt) throws {
     if right < 2 { return left }
     var matrixToPower = left
     let matrix0 = left
@@ -364,16 +356,14 @@ func ^+= <T: NumericType>( left: inout [[T]], right: UInt) throws -> [[T]] {
         try left += matrixToPower
         // print(i, " mat: ", matrixToPower, " left: ", left)
     }
-    return left
 }
 
-func %= <T: NumericType>( left: inout [[T]], right: T) -> [[T]] {
+func %= <T: NumericType>( left: inout [[T]], right: T) {
     for i in 0..<left.count {
         for j in 0..<left[i].count {
             left[i][j] %= right
         }
     }
-    return left
 }
 
 func % <T: NumericType>(left: [[T]], right: T) -> [[T]] {
@@ -398,14 +388,138 @@ prefix func §<T : NumericType>(lhs: [[T]]) -> [[T]] {
 
 prefix operator §! {}
 
-prefix func §! <T : NumericType>( lhs: inout [[T]]) -> [[T]] {
+prefix func §! <T : NumericType>( lhs: inout [[T]]) {
     lhs = §lhs
-    return lhs
 }
 
-extension Array where Element : Collection {
+/*
+private protocol _ArrayProtocol : Sequence {
+    associatedtype Element
+    associatedtype SubSequence : Sequence
+    associatedtype Index
+    func dropLast() -> SubSequence
+    var last: Element? { get }
+}
+
+extension Array : _ArrayProtocol {}
+extension Array where Element : _ArrayProtocol, Index == Element.Index {
+    // matrix
+    
+    func toLaTeX() -> String {
+        var out = "\\begin{pmatrix}\n"
+        for array in self {
+            for value in array.dropLast() {
+                out += "\(value) & "
+            }
+            out += "\(array.last!) \\\\\n"
+        }
+        return out + "\\end{pmatrix}"
+    }
     
 }
+*/
+
+struct Decimal : CustomStringConvertible {
+    private var matisse  : Int
+    private var exponent : Int
+    init<N : NumericType>(_ v: N) {
+        self.matisse = Int(v)
+        self.exponent = 0
+    }
+    var description : String {
+        return "\(Int(self))"
+    }
+}
+
+extension Int {
+    init(_ v: Decimal) {
+        self = v.matisse << exponent
+    }
+}
+
+struct Matrix<Element> {
+    var elements : [[Element]]
+    
+    init(_ elements: [[Element]]) {
+        self.elements = elements
+    }
+    
+    var isSquare : Bool {
+        return elements.count == elements[0].count
+    }
+    
+    mutating func transpose() {
+        self = self.transposed()
+    }
+    
+    func transposed() -> Matrix<Element> {
+        var elems = [[Element]]()
+        for _ in 0..<self.elements[0].count {
+            elems.append([Element]())
+        }
+        for row in self.elements[0].indices {
+            for col in self.elements.indices {
+                elems[row][col] = elemens[col][row]
+            }
+        }
+        return Matrix(elems)
+    }
+}
+
+func outOfPlace<T>(with element: T, _ f: (inout T) throws -> ()) rethrows -> T {
+    var elem = element
+    try f(&elem)
+    return elem
+}
+
+
+
+
+
+
+
+
+enum GermanSchoolGrade : UInt {
+    case sehr_gut = 1
+    case gut = 2
+    case befriedigend = 3
+    case ausreichend = 4
+    case mangelhaft = 5
+    case ungenügend = 6
+}
+
+
+struct RationalNumber {
+    private var numerator : Int
+    private var denominator : Int
+    
+    mutating func shorten() {
+        var i = denominator > numerator ? numerator : denominator
+        while i > 1 {
+            if numerator % i == 0 && denominator % i == 0 {
+                numerator   /= i
+                denominator /= i
+            }
+            i -= 1
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

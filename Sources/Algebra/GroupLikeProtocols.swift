@@ -7,7 +7,7 @@
 //
 
 
-protocol MagmaType : CustomStringConvertible {
+protocol MagmaProtocol : CustomStringConvertible {
     associatedtype Element : Hashable, Equatable, Comparable
     var set : Set<Element> { get }
     var op : (Element, Element) -> Element { get }
@@ -16,7 +16,7 @@ protocol MagmaType : CustomStringConvertible {
     var description : String { get }
 }
 
-extension MagmaType {
+extension MagmaProtocol {
     var description: String {
         return "\(Self.self) ⟨ \(set.sorted()), \(sign) ⟩"
     }
@@ -36,13 +36,13 @@ extension MagmaType {
 
 
 /*
-func == <T: MagmaType>(left: T.Element, right: T.Element) -> Bool { return T.eq(left, right) }
+func == <T: MagmaProtocol>(left: T.Element, right: T.Element) -> Bool { return T.eq(left, right) }
 
 infix operator • {}
-func • <T: MagmaType>(left: T.Element, right: T.Element) -> T.Element { return T.op(left, right) }
+func • <T: MagmaProtocol>(left: T.Element, right: T.Element) -> T.Element { return T.op(left, right) }
 */
  
-internal protocol Commutative : MagmaType {}
+internal protocol Commutative : MagmaProtocol {}
 extension Commutative {
     func testCommutative() -> Bool {
         for u in set { for v in set { if !testCommutative(u,v) { return false } } }
@@ -56,7 +56,7 @@ extension Commutative {
     }
 }
 
-internal protocol hasNeutralElement : MagmaType {
+internal protocol hasNeutralElement : MagmaProtocol {
     var neutralElement : Element { get }
 }
 
@@ -72,7 +72,7 @@ extension hasNeutralElement {
 
 // prefix func ! <T: Invertible> (element: T.Element) -> T.Element { return T.inverse(element) }
 
-internal protocol Invertible : MagmaType, hasNeutralElement {
+internal protocol Invertible : MagmaProtocol, hasNeutralElement {
     var inv : (Element) -> Element { get }
 }
 
@@ -87,7 +87,7 @@ extension Invertible {
     }
 }
 
-internal protocol Idempotent : MagmaType {}
+internal protocol Idempotent : MagmaProtocol {}
 extension Idempotent {  // • is idempotent
     func testIdempotent() -> Bool {
         for u in set { if !testIdempotent(u) { return false } }
@@ -98,7 +98,7 @@ extension Idempotent {  // • is idempotent
     }
 }
 
-internal protocol Associative : MagmaType {}
+internal protocol Associative : MagmaProtocol {}
 
 extension Associative {
     func testAssociative() -> Bool {
@@ -111,36 +111,36 @@ extension Associative {
     }
 }
 
-protocol SemigroupType : MagmaType, Associative {}
-extension SemigroupType {
+protocol SemigroupProtocol : MagmaProtocol, Associative {}
+extension SemigroupProtocol {
     func test() -> (closed: Bool, associative: Bool) {
         return (testClosure(), testAssociative())
     }
 }
 
-protocol MonoidType : SemigroupType, hasNeutralElement {}
-extension MonoidType {
+protocol MonoidProtocol : SemigroupProtocol, hasNeutralElement {}
+extension MonoidProtocol {
     func test() -> (closed: Bool, associative: Bool, neutralElement: Bool) {
         return (testClosure(), testAssociative(), testNeutralElement())
     }
 }
 
-protocol GroupType : MonoidType, Invertible {}
-extension GroupType {
+protocol GroupProtocol : MonoidProtocol, Invertible {}
+extension GroupProtocol {
     func test() -> (closed: Bool, associative: Bool, neutralElement: Bool, invertible: Bool) {
         return (testClosure(), testAssociative(), testNeutralElement(), testInverse())
     }
 }
 
-protocol AbelianGroupType : GroupType, Commutative {}
-extension AbelianGroupType {
+protocol AbelianGroupProtocol : GroupProtocol, Commutative {}
+extension AbelianGroupProtocol {
     func test() -> (closed: Bool, associative: Bool, neutralElement: Bool, invertible: Bool, commutative: Bool) {
         return (testClosure(), testAssociative(), testNeutralElement(), testInverse(), testCommutative())
     }
 }
 
-protocol SemilatticeType  : SemigroupType, Commutative, Idempotent {}
-extension SemilatticeType {
+protocol SemilatticeProtocol  : SemigroupProtocol, Commutative, Idempotent {}
+extension SemilatticeProtocol {
     func test() -> (closed: Bool, associative: Bool, commutative: Bool, idempotent: Bool) {
         return (testClosure(), testAssociative(), testCommutative(), testIdempotent())
     }
@@ -150,10 +150,10 @@ protocol LatinSquareRule {}
 // Latin Square Rule
 // Each element of the set occurs exactly once in each row and exactly once in each column of the quasigroup's multiplication table
 
-protocol QuasiGroupType : MagmaType, LatinSquareRule {}
-extension QuasiGroupType {}
+protocol QuasiGroupProtocol : MagmaProtocol, LatinSquareRule {}
+extension QuasiGroupProtocol {}
 
-protocol LoopType : QuasiGroupType, hasNeutralElement {}
+protocol LoopProtocol : QuasiGroupProtocol, hasNeutralElement {}
 
 
 

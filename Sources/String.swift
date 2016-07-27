@@ -101,6 +101,7 @@ extension String {
     }
     
     func getIndex(_ v: Int) -> Index {
+        assert(v < characters.count)
         var i = self.startIndex
         for _ in 0..<v {
             i = index(after: i)

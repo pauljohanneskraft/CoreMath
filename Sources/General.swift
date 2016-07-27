@@ -44,7 +44,8 @@ func printMeasure<T>(_ desc: String = "Test", _ blocks: (() throws -> T)...) {
     }
 }
 
-@warn_unused_result func measure<T>(_ block: () throws -> T ) rethrows -> (time: NSTimeInterval, result: T) {
+@warn_unused_result
+func measure<T>(_ block: () throws -> T ) rethrows -> (time: NSTimeInterval, result: T) {
     var start : NSDate = NSDate()
     var end   : NSDate = NSDate()
     var res   : T
@@ -153,6 +154,10 @@ public func block<B>(_ block: () throws -> (B)) rethrows -> B {
     return try block()
 }
 
+public func block(_ block: () throws -> ()) rethrows {
+    return try block()
+}
+
 public func block<B>(_ condition: Bool, _ block: () throws -> (B)) rethrows -> B? {
     guard condition else { return nil }
     return try block()
@@ -177,5 +182,88 @@ func loopUntilNotNullAndNotThrowing<T>(_ block: () throws -> T?) -> T {
         if let c = try? block() { return c! }
     } while true;
 }
+
+struct Thread {
+    let group = dispatch_group_create()!
+    let queue : dispatch_queue_t
+    let syncQueue = dispatch_queue_create("syncQueue", nil)!
+    var todo = [() -> ()]()
+    private var wantsToJoin = false
+    
+    init() {
+        self.init(dispatch_get_global_queue(QOS_CLASS_UNSPECIFIED, 0))
+    }
+    
+    init(_ queue: dispatch_queue_t) {
+        self.queue = queue
+        dispatch_group_async(self.group, self.queue) { self.run() }
+    }
+    
+    init(_ qos: dispatch_qos_class_t) {
+        self.init(dispatch_get_global_queue(qos, 0))
+    }
+    
+    var state : State = .CREATED {
+        didSet {
+            if oldValue != state {
+                print("\(oldValue) -> \(state)")
+            }
+        }
+    }
+    
+    enum State {
+        case CREATED, WAITING, SLEEPING, RUNNING, TERMINATED
+    }
+    
+    mutating func run() {
+        while true {
+            state = .RUNNING
+            dispatch_sync(syncQueue) {
+                if !self.todo.isEmpty {
+                    self.todo.removeFirst()()
+                } else {
+                    guard !self.wantsToJoin else {
+                        self.state = .TERMINATED
+                        return
+                    }
+                }
+            }
+            state = .SLEEPING
+            sleep(1)
+        }
+    }
+    
+    mutating func add(_ f: () -> ()) {
+        dispatch_sync(syncQueue) {
+            self.todo.append(f)
+        }
+    }
+    
+    mutating func join() {
+        wantsToJoin = true
+        dispatch_group_wait(group, DISPATCH_TIME_FOREVER)
+        wantsToJoin = false
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

@@ -10,7 +10,21 @@
 
 import Foundation
 
+extension Array where Element : NumericType {
+    func toLaTeX() -> String {
+        var out = "\\begin{pmatrix}\n"
+        for value in self.dropLast() {
+            out += "\(value) & "
+        }
+        if let last = self.last {
+            out += "\(last) \\\\\n"
+        }
+        return out + "\\end{pmatrix}"
+    }
+}
+
 extension Array {
+    
     mutating func swap(_ left: Int, _ right: Int) {
         self[left] <-> self[right]
     }
@@ -109,15 +123,19 @@ func / <T : NumericType>(left: [T], right: T) -> [T] {
     return left
 }
 
-func /= <T : NumericType>( left: inout [T], right: T) -> [T] {
+func /= <T : NumericType>( left: inout [T], right: T) {
     for valueIndex in 0..<left.count {
         left[valueIndex] = left[valueIndex] / right
     }
-    return left
 }
 
 prefix func §<T : NumericType>(lhs: [T]) -> [[T]] {
-    var res : [[T]] = []
+    return (lhs)^⟙
+}
+
+postfix operator ^⟙ {}
+postfix func ^⟙<A>(lhs: [A]) -> [[A]] {
+    var res = [[A]]()
     for v in lhs {
         res.append([v])
     }

@@ -12,8 +12,8 @@ public enum constants {
     static let pi  = 3.14159_26535_89793_23846
     static let tau = 2*pi
     static let e   = 2.71828_18284_59045_23536
-    static let y_0 = (4*pi) * (10.0 ^^ -7)
-    static let h   = 6.6260_7004_0 * (10.0 ^^ -34)
+    static let y_0 = (4*pi) * pow(10.0, -7)
+    static let h   = 6.6260_7004_0 * pow(10.0, -34)
     static let c   = 299_792_458
 }
 
