@@ -1,418 +1,368 @@
 //
 //  Matrix.swift
-//  Math
+//  LinearAlgebra
 //
-//  Created by Paul Kraft on 21.04.16.
+//  Created by Paul Kraft on 04.07.16.
 //  Copyright © 2016 pauljohanneskraft. All rights reserved.
 //
 
-//
-// ++ used on a matrix with numeric values will increment every single element in the matrix
-//
-// example:
-//
-// var left : [[T]] = [[..., ...], ...]
-// left++
-
-postfix func ++<T: NumericType>(left: inout [[T]]) -> [[T]] {
-    let before = left
-    ++left
-    return before
-}
-
-prefix func ++<T: NumericType>( left: inout [[T]]) -> [[T]] {
-    for row in 0..<left.count {
-        for column in 0..<left[row].count {
-            left[row][column]++
-        }
-    }
-    return left
-}
-
-// multiplying matrices can be done using the * operator
-// 
-// @generic T : NumericType
-// @param left : [[T]] - matrix A
-// @param right: [[T]] - matrix B
-// @result : [[T]] - product of matrix A and matrix B
-// @throws MatrixError.NotMultipliable if left[0].count != right.count
-
-func * <T: NumericType>(left: [[T]], right: [[T]]) throws -> [[T]] {
-    var left = left
-    try left *= right
-    return left
-}
-
-func *= <T: NumericType>( left: inout [[T]], right: [[T]]) throws -> [[T]] {
-    if left[0].count != right.count { throw MatrixError.NotMultipliable }
-    var matrix : [[T]] = []
+struct Matrix < N > : ExpressibleByArrayLiteral, CustomStringConvertible {
+    typealias Element = [N]
     
-    for i in 0..<left.count {
-        var array : [T] = []
-        for j in 0..<right[0].count {
-            var value : T = T(0)
-            for k in 0..<right.count {
-                value += (left[i][k]*right[k][j])
+    private(set) var elements : [[N]]
+    
+    init(_ elements: [[N]]) {
+        self.elements = elements
+        assert(isRect)
+    }
+    
+    init(arrayLiteral elements: Element...) {
+        self.init(elements)
+    }
+    
+    var isSquare : Bool {
+        return elements.count == elements[0].count
+    }
+    
+    var size : (rows: Int, columns: Int) {
+        return (elements.count, elements[0].count)
+    }
+    
+    private var isRect : Bool {
+        /* debugging, in O(rows) */
+        let columnCount = elements[0].count
+        for e in elements {
+            guard e.count == columnCount else { return false }
+        }
+        return true
+    }
+    
+    var oneLineDescription : String {
+        let (c,d) = size
+        var desc = "| "
+        for i in 0..<c {
+            for j in 0..<d {
+                desc += "\(elements[i][j]) "
             }
-            array.append(value)
+            desc += "| "
         }
-        matrix.append(array)
+        desc.characters = desc.characters.dropLast()
+        return desc
     }
-    left = matrix
-    return left
+    
+    var description : String {
+        let c = elements.count
+        let d = elements[0].count
+        var desc = ""
+        for i in 0..<c {
+            desc += "| "
+            for j in 0..<d {
+                desc += "\(elements[i][j]) "
+            }
+            desc += "|\n"
+        }
+        return desc
+    }
+    
+    subscript(index: Int) -> [N] {
+        get { return elements[index] }
+        set { elements[index] = newValue }
+    }
 }
 
-func -= <T: NumericType>( left: inout [[T]], right: [[T]]) throws -> [[T]] {
-    if left.count != right.count || left[0].count != right[0].count { throw MatrixError.NotAddable }
-    for i in 0..<left.count {
-        for j in 0..<left[0].count {
-            left[i][j] = left[i][j] - right[i][j]
+extension Matrix where N : BasicArithmetic {
+    
+    static func identity(_ count: Int) -> Matrix<N> {
+        var mat = [[N]](repeating: [N](repeating: 0, count: count), count: count)
+        for i in 0..<count { mat[i][i] = 1 }
+        return Matrix<N> (mat)
+    }
+    
+    var rank : Int {
+        
+        func onlyZeros(_ row: Element) -> Bool {
+            for e in row { if e != 0 { return false } }
+            return true
+        }
+        
+        let rowEchelonForm = self.rowEchelonForm
+        var i = rowEchelonForm.size.rows
+        while i > 0 {
+            if onlyZeros(rowEchelonForm[i - 1]) { i -= 1 }
+            else { return i }
+        }
+        return 0
+    }
+    
+    var rowEchelonForm : Matrix<N> {
+        
+        func removeLeadingNumber(row: inout Element, withLine: Element, startAt: Int) {
+            let coeff = row[startAt] / withLine[startAt]
+            // print(row, withLine, coeff)
+            if coeff != 0 {
+                for i in startAt ..< row.count {
+                    row[i] -= coeff*withLine[i]
+                }
+            }
+            // print("->", row)
+        }
+        
+        func divide(row: inout Element, by: N, startAt: Int) {
+            assert(by != 0)
+            // print("divides", row, "by", by)
+            for i in startAt ..< row.count {
+                row[i] /= by
+            }
+            // print("result", row)
+        }
+        
+        let size = self.size
+        var elements = self.elements
+        
+        for row in 0 ..< min(size.columns, size.rows) {
+            // looking for element which is not 0 at index "row"
+            if elements[row][row] == 0 {
+                for i in (row+1) ..< size.rows {
+                    if elements[i][row] != 0 {
+                        swap(&elements[row], &elements[i])
+                        // print("swapped")
+                        break
+                    }
+                }
+            }
+            // print("did choose changing row")
+            
+            if elements[row][row] == 0 { continue }
+            divide(row: &elements[row], by: elements[row][row], startAt: row)
+            for i in (row+1) ..< size.rows {
+                removeLeadingNumber(row: &elements[i], withLine: elements[row], startAt: row)
+            }
+        }
+        return Matrix(elements) // TODO!!
+    }
+    
+    var strictRowEchelonForm : Matrix<N> {
+        
+        func subtract(line: [N], from: inout [N], multipliedBy: N = 1) {
+            assert(line.count == from.count)
+            for i in line.indices { from[i] -= line[i]*multipliedBy }
+        }
+        
+        func onlyZeros(_ row: Element) -> Bool {
+            for e in row { if e != 0 { return false } }
+            return true
+        }
+        
+        var rowEchelonForm = self.rowEchelonForm
+        let rows = rowEchelonForm.size.rows
+        var i = rows - 1
+        
+        while i >= 0 {
+            if !onlyZeros(rowEchelonForm[i]) {
+                for j in 0 ..< i {
+                    // print("\nbefore:\n", rowEchelonForm, "\n")
+                    if rowEchelonForm[i][i] != 0 {
+                        let factor = rowEchelonForm.elements[j][i] / rowEchelonForm.elements[i][i]
+                        // print(i, j, factor)
+                        subtract(line: rowEchelonForm.elements[i],
+                                 from: &rowEchelonForm.elements[j],
+                         multipliedBy: factor)
+                    }
+                    // print("\nafter:\n", rowEchelonForm, "\n")
+                }
+            }
+            i -= 1
+        }
+        
+        return rowEchelonForm // TODO!!
+    }
+    
+    var inverse : Matrix<N> {
+        assert(isSquare)
+        let rows = size.rows
+        var two = self
+        var id = Matrix<N>.identity(rows)
+        for i in two.elements.indices {
+            two.elements[i].append(contentsOf: id.elements[i])
+        }
+        // print(two)
+        two = two.strictRowEchelonForm
+        // print(two)
+        let drows = rows << 1
+        for i in two.elements.indices {
+            id.elements[i] = two.elements[i][rows..<drows] + []
+        }
+        return id
+    }
+    
+    var determinant : N {
+        assert(isSquare)
+        let count = elements.count
+        
+        switch count {
+        case 0: return 1
+        case 1: return elements[0][0]
+        case 2: return elements[0][0] * elements[1][1] - elements[0][1] * elements[1][0]
+        case 3:
+            let a = elements[0][0]*elements[1][1]*elements[2][2]
+            let b = elements[0][1]*elements[1][2]*elements[2][0]
+            let c = elements[0][2]*elements[1][0]*elements[2][1]
+            let d = elements[2][0]*elements[1][1]*elements[0][2]
+            let e = elements[0][0]*elements[1][2]*elements[2][1]
+            let f = elements[0][1]*elements[1][0]*elements[2][2]
+            return a + b + c - d - e - f
+        default:
+            var res : N = 0
+            for i in 0..<count {
+                var matrix = elements
+                matrix.remove(at: 0)
+                for j in 0..<(count-1) {
+                    matrix[j].remove(at: i)
+                }
+                let det = Matrix(matrix).determinant * elements[0][i]
+                if i % 2 == 0   { res += det }
+                else            { res -= det }
+            }
+            return res
         }
     }
-    return left
 }
 
-func - <T: NumericType>(left: [[T]], right: [[T]]) throws -> [[T]] {
-    var matrix = left
-    try matrix -= right
-    return matrix
+extension Matrix where N : Numeric {
+    var eigenvalues : [N]? {
+        assert(isSquare)
+        let c = size.rows
+        var mat = [[Polynomial<N>]]()
+        for i in 0 ..< c {
+            var arr = [Polynomial<N>]()
+            for j in 0 ..< c {
+                let elem : Polynomial<N>
+                if i == j { elem = Polynomial<N>([self.elements[i][j], -1]) }
+                else      { elem = Polynomial<N>([self.elements[i][j]    ]) }
+                arr.append(elem)
+            }
+            mat.append(arr)
+        }
+        return Matrix< Polynomial<N> >(mat).determinant.zeros
+    }
 }
 
-
-func += <T: NumericType>( left: inout [[T]], right: [[T]]) throws -> [[T]] {
-    if left.count != right.count || left[0].count != right[0].count { throw MatrixError.NotAddable }
-    for i in 0..<left.count {
-        for j in 0..<left[0].count {
-            left[i][j] = left[i][j] + right[i][j]
+func -= < N : Numeric > (lhs: inout Matrix<N>, rhs: Matrix<N>) {
+    assert(lhs.size == rhs.size)
+    let size = lhs.size
+    for i in 0 ..< size.rows {
+        for j in 0 ..< size.columns {
+            lhs.elements[i][j] -= rhs.elements[i][j]
         }
     }
-    return left
 }
 
-func + <T: NumericType>(left: [[T]], right: [[T]]) throws -> [[T]] {
-    var matrix = left
-    try matrix += right
-    return matrix
+func - < N : Numeric > (lhs: Matrix<N>, rhs: Matrix<N>) -> Matrix<N> {
+    var lhs = lhs
+    lhs -= rhs
+    return lhs
 }
 
-func *= <T: NumericType>( left: inout [[T]], right: T) -> [[T]] {
-    for row in 0..<left.count {
-        for column in 0..<left[row].count {
-            left[row][column] = left[row][column]*right
+func *= < N : Numeric > (lhs: inout Matrix<N>, rhs: N) {
+    let size = lhs.size
+    for i in 0 ..< size.rows {
+        for j in 0 ..< size.columns {
+            lhs.elements[i][j] *= rhs
         }
     }
-    return left
 }
 
-func * <T: NumericType>(left: [[T]], right: T) -> [[T]] {
+func * < N : Numeric > (lhs: Matrix<N>, rhs: N) -> Matrix<N> {
+    var lhs = lhs
+    lhs *= rhs
+    return lhs
+}
+
+func * < N : Numeric > (lhs: N, rhs: Matrix<N>) -> Matrix<N> {
+    var rhs = rhs
+    rhs *= lhs
+    return rhs
+}
+
+
+func * <T: BasicArithmetic>(left: Matrix<T>, right: Matrix<T>) -> Matrix<T> {
     var left = left
     left *= right
     return left
 }
 
-func * <T: NumericType>(left: T, right: [[T]]) -> [[T]] {
-    var right = right
-    right *= left
-    return right
-}
-
-func /= <T: NumericType>( left: inout [[T]], right: T) -> [[T]] {
-    for row in 0..<left.count {
-        for column in 0..<left[row].count {
-            left[row][column] = left[row][column]/right
-        }
-    }
-    return left
-}
-
-func / <T: NumericType>(left: [[T]], right: T) -> [[T]] {
-    var left = left
-    left /= right
-    return left
-}
-
-func / <T: NumericType>(left: T, right: [[T]]) -> [[T]] {
-    var right = right
-    right /= left
-    return right
-}
-
-func == <T: NumericType>(left: [[T]], right: [[T]]) -> Bool {
-    if left.count != right.count || left[0].count != right[0].count { return false }
-    var left = left
-    for row in 0..<left.count {
-        for column in 0..<left[row].count {
-            if left[row][column] != right[row][column] {
-                return false
-            }
-        }
-    }
-    return true
-}
-
-func != <T: NumericType>(left: [[T]], right: [[T]]) -> Bool {
-    return !(left == right)
-}
-
-func toLaTeX<T>(_ matrix: [[T]]) -> String {
-    var out = "\\begin{pmatrix}\n"
-    for array in matrix {
-        for value in array.dropLast() {
-            out += "\(value) & "
-        }
-        out += "\(array.last!) \\\\\n"
-    }
-    return out + "\\end{pmatrix}"
-}
-
-func print<T>(matrix: [[T]]) {
-    print(toLaTeX(matrix))
-}
-
-
-// source: https://wiki.freitagsrunde.org/Javakurs/Übungsaufgaben/Gauß-Algorithmus/Musterloesung
-// originally written in Java, rewritten by me in Swift
-
-func solve<T : NumericType>(_ pmatrix: [[T]], _ pvector: [T]) throws -> [T] {
-    if pmatrix.count < pmatrix[0].count { throw MatrixError.Unsolvable }
-    var matrix = pmatrix
-    var vector = pvector
-    var tmpColumn : Int
-    for line in 0..<matrix.count {
-        tmpColumn = -1
-        for column in 0..<matrix[line].count {
-            for row in line..<matrix.count {
-                if matrix[row][column] != T(0) {
-                    tmpColumn = column
-                }
-            }
-            if tmpColumn != -1 { break }
-        }
-        
-        if tmpColumn == -1 {
-            for _ in line..<matrix.count {
-                if vector[line] != T(0) {
-                    //print(matrix)
-                    //print(vector)
-                    throw MatrixError.Unsolvable
-                }
-            }
-            
-            if matrix[0].count - 1 >= line {
-                //print(matrix)
-                //print(vector)
-                throw MatrixError.NoUniqueSolution
-            }
-            break
-        }
-        // Umformungsschritt 2: Die Zahl matrix[line][tmpColumn] soll
-        // UNgleich null sein
-        if matrix[line][tmpColumn] == T(0) {
-            for row in line+1..<matrix.count {
-                if matrix[row][tmpColumn] != T(0) {
-                    //print(matrix, vector)
-                    //print("\nRow \(line + 1) will be swapped with row \(row + 1)")
-                    matrix.swap(line, row)
-                    vector.swap(line, row)
-                    break
-                }
-            }
-        }
-        
-        // Umformungsschritt 3: matrix[line][tmpColumn] soll gleich 1 sein.
-        if matrix[line][tmpColumn] != T(0) {
-            //print(matrix, vector)
-            //print("\nRow \(line + 1) will be divided by \(matrix[line][tmpColumn])")
-            divideLine(line, matrix[line][tmpColumn], &matrix, &vector)
-        }
-        
-        //print(matrix, vector)
-        
-        for row in line+1..<matrix.count {
-            //print(matrix, vector)
-            //print("\nRow \(row + 1) will be subtracted by: \(matrix[row][tmpColumn]) * row \(line + 1)")
-            removeRowLeadingNumber(matrix[row][tmpColumn], line, row, &matrix, &vector)
-        }
-
-    }
+func *= <T: BasicArithmetic>( left: inout Matrix<T>, right: Matrix<T>) {
+    assert(left.size.columns == right.size.rows)
+    var matrix = [[T]]()
+    let ls = left.size
+    let lrows = ls.rows
+    let lcols = ls.columns
+    let rcols = right.size.columns
     
-    for column in 1..<matrix[0].count {
-        for row in 1...column {
-            //print(matrix, vector)
-            //print("\nRow \(row) will be subtracted by \(matrix[row - 1][column]) * row \(column + 1)")
-            removeRowLeadingNumber(matrix[row - 1][column], column, row - 1, &matrix, &vector);
-        }
-    }
-    
-    if !test(matrix: pmatrix, vector: pvector, result: vector) {
-        throw MatrixError.Unsolvable // throws e.g. when there are no Int-results but there was a [[Int]] as input
-    }
-    //print(matrix, vector)
-    return vector
-}
-
-private func removeRowLeadingNumber<T : NumericType>(_ factor: T, _ rowRoot: Int, _ row: Int, _ matrix: inout [[T]], _ vector: inout [T]) {
-    for column in 0..<matrix[row].count {
-        matrix[row][column] = matrix[row][column] - factor * matrix[rowRoot][column];
-    }
-    vector[row] = vector[row] - factor * vector[rowRoot];
-}
-
-private func divideLine< T: NumericType>(_ row : Int, _ div : T, _ matrix : inout [[T]], _ vector: inout [T]){
-    for column in 0..<matrix[row].count {
-        matrix[row][column] = matrix[row][column] / div;
-    }
-    vector[row] = vector[row] / div;
-}
-
-func toLaTeX<T>(matrix: [[T]], vector: [T], result: [T]) -> String {
-    var out = "\\[\n\\left(\n\\begin{matrix}\n"
-    for row in matrix {
-        // out += : a & b & c & d \\
-        for item in row.dropLast() {
-            out += "\(item) & "
-        }
-        out += "\(row.last!) \\\\\n"
-    }
-    out += "\\end{matrix}\n"
-    // end of first part of matrix
-    out += "\\right.\\left|\\left.\n"
-    // start of vector
-    out += "\\begin{matrix}\n"
-    for element in vector {
-        out += "\(element) \\\\\n"
-    }
-    out += "\\end{matrix}\n\\right)\\right."
-    out += "=\n"
-    // in the end the result vector
-    out += result.toLaTeXVector()
-    out += "\n\\]"
-    return out
-}
-
-
-func test<T: NumericType>(matrix: [[T]], vector: [T], result: [T]) -> Bool {
-    if vector.count != result.count || vector.count != matrix.count { return false }
-    for row in 0..<result.count {
-        var value = T(0)
-        for column in 0..<matrix[row].count {
-            //print("\(matrix[row][column]*result[column]) + ", terminator: "")
-            value += matrix[row][column]*result[column]
-        }
-        //print("=\(vector[row])?")
-        if ((value - vector[row])*T(128)).abs >= T(1) {
-            return false
-        }
-    }
-    return true
-}
-
-import Foundation
-
-var count = 0
-
-func ^=<T : NumericType>( left: inout [[T]], right: Int) throws -> [[T]] {
-    print("calculating matrix ^ \(right)")
-    let orig = left
-    if right == 0 {
-        for i in 0..<left.count {
-            for j in 0..<left[i].count {
-                left[i][j] = T(1)
-            }
-        }
-    } else if right < 5 {
-        for _ in 0..<right {
-            try left *= orig
-        }
-    } else {
-        let half = right / 2
-        let m = try orig ^ half
-        left = try m * m
-        if right & 0x1 == 0x1 {
-            left = try left * orig
-        }
-    }
-    print("calculating matrix ^ \(right) ready.")
-    return left
-}
-
-func ^<T : NumericType>(left: [[T]], right: Int) throws -> [[T]] {
-    var left = left
-    try left ^= right
-    return left
-}
-
-func exp<T:NumericType>(left: [[T]], _ right: Int) throws -> [[T]] {
-    return try left ^ right
-}
-
-infix operator ^+ { associativity left precedence 140 }
-infix operator ^+= { associativity left precedence 140 assignment }
-
-func ^+ <T : NumericType>(left: [[T]], right : UInt) throws -> [[T]] {
-    var left = left
-    try left ^+= right
-    return left
-}
-
-func ^+= <T: NumericType>( left: inout [[T]], right: UInt) throws -> [[T]] {
-    if right < 2 { return left }
-    var matrixToPower = left
-    let matrix0 = left
-    for _ in 2...right {
-        try matrixToPower *= matrix0
-        try left += matrixToPower
-        // print(i, " mat: ", matrixToPower, " left: ", left)
-    }
-    return left
-}
-
-func %= <T: NumericType>( left: inout [[T]], right: T) -> [[T]] {
-    for i in 0..<left.count {
-        for j in 0..<left[i].count {
-            left[i][j] %= right
-        }
-    }
-    return left
-}
-
-func % <T: NumericType>(left: [[T]], right: T) -> [[T]] {
-    var left = left
-    left %= right
-    return left
-}
-
-prefix operator § {}
-
-prefix func §<T : NumericType>(lhs: [[T]]) -> [[T]] {
-    var res : [[T]] = []
-    for j in lhs[0].indices {
+    for i in 0 ..< lrows {
         var array : [T] = []
-        for i in lhs.indices {
-            array.append(lhs[i][j])
+        for j in 0 ..< rcols {
+            var value : T = 0
+            for k in 0 ..< lcols {
+                /*
+                print(i, j, k, left.oneLineDescription, right.oneLineDescription)
+                print(left.elements[i])
+                print(left.elements[i][k])
+                print(right.elements[k])
+                print(right.elements[k][j])
+                */
+                value += (left.elements[i][k]*right.elements[k][j])
+            }
+            array.append(value)
         }
-        res.append(array)
+        matrix.append(array)
     }
-    return res
+    // let l = left
+    left = Matrix(matrix)
+    // print(l.oneLineDescription, "*", right.oneLineDescription, "=", left.oneLineDescription)
 }
 
-prefix operator §! {}
-
-prefix func §! <T : NumericType>( lhs: inout [[T]]) -> [[T]] {
-    lhs = §lhs
-    return lhs
+func -= <T : BasicArithmetic>( left: inout Matrix<T>, right: Matrix<T>) {
+    assert(left.size == right.size)
+    for i in 0..<left.size.rows {
+        for j in 0..<left.size.columns {
+            left.elements[i][j] = left.elements[i][j] - right.elements[i][j]
+        }
+    }
 }
 
-extension Array where Element : Collection {
-    
+func - <T : BasicArithmetic>(left: Matrix<T>, right: Matrix<T>) -> Matrix<T> {
+    var matrix = left
+    matrix -= right
+    return matrix
 }
 
 
+func += <T : BasicArithmetic>( left: inout Matrix<T>, right: Matrix<T>) {
+    assert(left.size == right.size)
+    for i in 0..<left.elements.count {
+        for j in 0..<left.elements[0].count {
+            left.elements[i][j] += right.elements[i][j]
+        }
+    }
+}
 
+func + <T : BasicArithmetic>(left: Matrix<T>, right: Matrix<T>) -> Matrix<T> {
+    var matrix = left
+    matrix += right
+    return matrix
+}
 
+func == < T : Equatable >(lhs: Matrix<T>, rhs: Matrix<T>) -> Bool {
+    if lhs.size != rhs.size { return false }
+    return lhs.elements == rhs.elements
+}
 
-
-
-
-
+func == <T: Equatable>(left: [[T]], right: [[T]]) -> Bool {
+    if left.count != right.count { return false }
+    for row in 0..<left.count {
+        if left[row] != right[row] { return false }
+    }
+    return true
+}
 

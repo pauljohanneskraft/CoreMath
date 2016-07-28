@@ -16,7 +16,7 @@ infix operator ⨂ {}
 func ⨂ <T: RingType>(left: T.Element1, right: T.Element1) -> T.Element1 { return T.op1(left, right) }
 */
 
-internal protocol AbelianGroup0 : AbelianGroupType { // definition of an AbelianGroup to use for
+internal protocol AbelianGroup0 : AbelianGroupProtocol { // definition of an AbelianGroup to use for
     associatedtype Element0 : Hashable, Comparable
     // ⟨F, ⨁⟩
     // ⨁ is associative, commutative
