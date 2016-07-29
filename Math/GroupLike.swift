@@ -24,26 +24,16 @@ struct GroupLike<Element where Element : Hashable, Element: Comparable> : Semigr
     let sign : Character
     
     var strictestType : Any?  {
-        
-        switch test() {
-            
-        case ( false , _     , _     , _     , _     ): return nil
-            
-        case ( true  , false , _     , _     , _     ): return try! Magma(self)
-            
-        case ( true  , true  , false , _     , _     ): return try! Semigroup(self)
-            
-        case ( true  , true  , true  , false , _     ): return try! Monoid(self)
-            
-        case ( true  , true  , true  , true  , false ): return try! Group(self)
-            
-        case ( true  , true  , true  , true  , true  ): return try! AbelianGroup(self)
-            
-        }
+        if let o = AbelianGroup(self)   { return o }
+        else if let o = Group(self)     { return o }
+        else if let o = Monoid(self)    { return o }
+        else if let o = Semigroup(self) { return o }
+        else if let o = Magma(self)     { return o }
+        else { return nil }
     }
     
     var possibleProtocols : (magma: Magma<Element>?, semigroup: Semigroup<Element>?, monoid: Monoid<Element>?, group: Group<Element>?, abelianGroup: AbelianGroup<Element>?)  {
-        return (try? Magma(self), try? Semigroup(self), try? Monoid(self), try? Group(self), try? AbelianGroup(self))
+        return (Magma(self), Semigroup(self), Monoid(self), Group(self), AbelianGroup(self))
     }
     
     func test() -> (closed: Bool, associative: Bool, neutralElement: Bool, invertible: Bool, commutative: Bool) {
@@ -72,21 +62,17 @@ struct GroupLike<Element where Element : Hashable, Element: Comparable> : Semigr
 }
 
 struct Magma<Element where Element : Hashable, Element: Comparable> : MagmaProtocol {
-    init(set: Set<Element>, op: (Element, Element) -> Element, sign: Character = "•") throws {
+    init?(set: Set<Element>, op: (Element, Element) -> Element, sign: Character = "•") {
         self.set = set
         self.op = op
         self.sign = sign
-        if test() != true {
-            throw GroupLikeError.TypeNotMatching
-        }
+        if test() != true { return nil }
     }
-    init(_ groupLike: GroupLike<Element>) throws {
+    init?(_ groupLike: GroupLike<Element>) {
         self.set = groupLike.set
         self.op = groupLike.op
         self.sign = groupLike.sign
-        if test() != true {
-            throw GroupLikeError.TypeNotMatching
-        }
+        if test() != true { return nil }
     }
     let set : Set<Element>
     let op : (Element, Element) -> Element
@@ -95,21 +81,17 @@ struct Magma<Element where Element : Hashable, Element: Comparable> : MagmaProto
 }
 
 struct Semigroup<Element where Element : Hashable, Element: Comparable> : SemigroupProtocol {
-    init(set: Set<Element>, op: (Element, Element) -> Element, sign: Character = "•") throws {
+    init?(set: Set<Element>, op: (Element, Element) -> Element, sign: Character = "•") {
         self.set = set
         self.op = op
         self.sign = sign
-        if test() != (true, true) {
-            throw GroupLikeError.TypeNotMatching
-        }
+        if test() != (true, true) { return nil }
     }
-    init(_ groupLike: GroupLike<Element>) throws {
+    init?(_ groupLike: GroupLike<Element>) {
         self.set = groupLike.set
         self.op = groupLike.op
         self.sign = groupLike.sign
-        if test() != (true, true) {
-            throw GroupLikeError.TypeNotMatching
-        }
+        if test() != (true, true) { return nil }
     }
     let set : Set<Element>
     let op : (Element, Element) -> Element
@@ -118,23 +100,19 @@ struct Semigroup<Element where Element : Hashable, Element: Comparable> : Semigr
 }
 
 struct Monoid<Element where Element : Hashable, Element: Comparable> : MonoidProtocol {
-    init(set: Set<Element>, op: (Element, Element) -> Element, neutralElement: Element, sign: Character = "•") throws {
+    init?(set: Set<Element>, op: (Element, Element) -> Element, neutralElement: Element, sign: Character = "•") {
         self.set = set
         self.op = op
         self.neutralElement = neutralElement
         self.sign = sign
-        if test() != (true, true, true) {
-            throw GroupLikeError.TypeNotMatching
-        }
+        if test() != (true, true, true) { return nil }
     }
-    init(_ groupLike: GroupLike<Element>) throws {
+    init?(_ groupLike: GroupLike<Element>) {
         self.set = groupLike.set
         self.op = groupLike.op
         self.neutralElement = groupLike.neutralElement!
         self.sign = groupLike.sign
-        if test() != (true, true,true) {
-            throw GroupLikeError.TypeNotMatching
-        }
+        if test() != (true, true,true) { return nil }
     }
     let set : Set<Element>
     let op : (Element, Element) -> Element
@@ -144,25 +122,21 @@ struct Monoid<Element where Element : Hashable, Element: Comparable> : MonoidPro
 }
 
 struct Group<Element where Element : Hashable, Element: Comparable> : GroupProtocol {
-    init(set: Set<Element>, op: (Element, Element) -> Element, neutralElement: Element, inv: (Element) -> Element, sign: Character = "•") throws {
+    init?(set: Set<Element>, op: (Element, Element) -> Element, neutralElement: Element, inv: (Element) -> Element, sign: Character = "•") {
         self.set = set
         self.op = op
         self.neutralElement = neutralElement
         self.inv = inv
         self.sign = sign
-        if test() != (true, true, true, true) {
-            throw GroupLikeError.TypeNotMatching
-        }
+        if test() != (true, true, true, true) { return nil }
     }
-    init(_ groupLike: GroupLike<Element>) throws {
+    init?(_ groupLike: GroupLike<Element>) {
         self.set = groupLike.set
         self.op = groupLike.op
         self.neutralElement = groupLike.neutralElement!
         self.inv = groupLike.inv!
         self.sign = groupLike.sign
-        if test() != (true, true,true, true) {
-            throw GroupLikeError.TypeNotMatching
-        }
+        if test() != (true, true,true, true) { return nil }
     }
     let set : Set<Element>
     let op : (Element, Element) -> Element
@@ -173,25 +147,21 @@ struct Group<Element where Element : Hashable, Element: Comparable> : GroupProto
 }
 
 struct AbelianGroup<Element where Element : Hashable, Element: Comparable> : AbelianGroupProtocol {
-    init(set: Set<Element>, op: (Element, Element) -> Element, neutralElement: Element, inv: (Element) -> Element, sign: Character = "•") throws {
+    init?(set: Set<Element>, op: (Element, Element) -> Element, neutralElement: Element, inv: (Element) -> Element, sign: Character = "•") {
         self.set = set
         self.op = op
         self.neutralElement = neutralElement
         self.inv = inv
         self.sign = sign
-        if test() != (true, true, true, true, true) {
-            throw GroupLikeError.TypeNotMatching
-        }
+        if test() != (true, true, true, true, true) { return nil }
     }
-    init(_ groupLike: GroupLike<Element>) throws {
+    init?(_ groupLike: GroupLike<Element>) {
         self.set = groupLike.set
         self.op = groupLike.op
         self.neutralElement = groupLike.neutralElement!
         self.inv = groupLike.inv!
         self.sign = groupLike.sign
-        if test() != (true, true,true, true, true) {
-            throw GroupLikeError.TypeNotMatching
-        }
+        if test() != (true, true,true, true, true) { return nil }
     }
     let set : Set<Element>
     let op : (Element, Element) -> Element

@@ -8,6 +8,7 @@
 
 import Foundation
 
+/*
 protocol SubVectorSpaceType {
     associatedtype Element
     var set : [[Element]] { get }
@@ -32,7 +33,7 @@ extension SubVectorSpaceType where Element : NumericType {
         return true
     }
 }
-
+*/
 
 
 
