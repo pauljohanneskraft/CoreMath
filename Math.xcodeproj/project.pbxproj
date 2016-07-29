@@ -26,6 +26,7 @@
 		9B47340F1D4ACD880055A7E8 /* ModuleLikeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4734091D4ACD880055A7E8 /* ModuleLikeProtocols.swift */; };
 		9B4734101D4ACD880055A7E8 /* RingLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B47340A1D4ACD880055A7E8 /* RingLike.swift */; };
 		9B4734111D4ACD880055A7E8 /* RingLikeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B47340B1D4ACD880055A7E8 /* RingLikeProtocols.swift */; };
+		9B4734141D4AD34D0055A7E8 /* ConstantsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4734131D4AD34D0055A7E8 /* ConstantsTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		9B4734091D4ACD880055A7E8 /* ModuleLikeProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleLikeProtocols.swift; sourceTree = "<group>"; };
 		9B47340A1D4ACD880055A7E8 /* RingLike.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RingLike.swift; sourceTree = "<group>"; };
 		9B47340B1D4ACD880055A7E8 /* RingLikeProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RingLikeProtocols.swift; sourceTree = "<group>"; };
+		9B4734131D4AD34D0055A7E8 /* ConstantsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstantsTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 		9B4733C11D4ACBE00055A7E8 /* MathTests */ = {
 			isa = PBXGroup;
 			children = (
+				9B4734131D4AD34D0055A7E8 /* ConstantsTest.swift */,
 				9B4733C21D4ACBE00055A7E8 /* MathTests.swift */,
 				9B4733C41D4ACBE00055A7E8 /* Info.plist */,
 			);
@@ -313,6 +316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B4733C31D4ACBE00055A7E8 /* MathTests.swift in Sources */,
+				9B4734141D4AD34D0055A7E8 /* ConstantsTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,6 +507,7 @@
 				9B4733BB1D4ACBB80055A7E8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9B4733C81D4ACBE00055A7E8 /* Build configuration list for PBXNativeTarget "MathTests" */ = {
 			isa = XCConfigurationList;
@@ -511,6 +516,7 @@
 				9B4733CA1D4ACBE00055A7E8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

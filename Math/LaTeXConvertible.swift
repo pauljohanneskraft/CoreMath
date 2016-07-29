@@ -50,6 +50,7 @@ extension Matrix : LaTeXConvertible {
     }
 }
 
+/*
 extension Vector : LaTeXConvertible {
     var latex : String {
         if Element.self is LaTeXConvertible {
@@ -69,7 +70,7 @@ extension Vector : LaTeXConvertible {
         }
     }
 }
-
+*/
 
 
 

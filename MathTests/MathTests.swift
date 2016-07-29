@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import Math
 
 class MathTests: XCTestCase {
     
@@ -21,6 +22,7 @@ class MathTests: XCTestCase {
     }
     
     func testExample() {
+        print(constants.pi)
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
