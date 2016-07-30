@@ -27,6 +27,14 @@
 		9B4734101D4ACD880055A7E8 /* RingLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B47340A1D4ACD880055A7E8 /* RingLike.swift */; };
 		9B4734111D4ACD880055A7E8 /* RingLikeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B47340B1D4ACD880055A7E8 /* RingLikeProtocols.swift */; };
 		9B4734141D4AD34D0055A7E8 /* ConstantsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4734131D4AD34D0055A7E8 /* ConstantsTest.swift */; };
+		9B4734161D4AD4DF0055A7E8 /* MatrixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4734151D4AD4DF0055A7E8 /* MatrixTests.swift */; };
+		9B4734181D4AD4EC0055A7E8 /* GroupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4734171D4AD4EC0055A7E8 /* GroupTests.swift */; };
+		9B47341A1D4AD50A0055A7E8 /* NumericTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4734191D4AD50A0055A7E8 /* NumericTests.swift */; };
+		9B47341C1D4AD5130055A7E8 /* RationalNumberTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B47341B1D4AD5130055A7E8 /* RationalNumberTests.swift */; };
+		9B47341E1D4AD51D0055A7E8 /* ComplexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B47341D1D4AD51D0055A7E8 /* ComplexTests.swift */; };
+		9B4734201D4AD5360055A7E8 /* EnhancedNumberTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B47341F1D4AD5360055A7E8 /* EnhancedNumberTests.swift */; };
+		9B71D3EB1D4BEDAD001C5BE9 /* TrigonometricFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B71D3EA1D4BEDAD001C5BE9 /* TrigonometricFunctions.swift */; };
+		9B71D3ED1D4BF1C6001C5BE9 /* TermTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B71D3EC1D4BF1C6001C5BE9 /* TermTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +71,14 @@
 		9B47340A1D4ACD880055A7E8 /* RingLike.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RingLike.swift; sourceTree = "<group>"; };
 		9B47340B1D4ACD880055A7E8 /* RingLikeProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RingLikeProtocols.swift; sourceTree = "<group>"; };
 		9B4734131D4AD34D0055A7E8 /* ConstantsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstantsTest.swift; sourceTree = "<group>"; };
+		9B4734151D4AD4DF0055A7E8 /* MatrixTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatrixTests.swift; sourceTree = "<group>"; };
+		9B4734171D4AD4EC0055A7E8 /* GroupTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupTests.swift; sourceTree = "<group>"; };
+		9B4734191D4AD50A0055A7E8 /* NumericTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumericTests.swift; sourceTree = "<group>"; };
+		9B47341B1D4AD5130055A7E8 /* RationalNumberTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RationalNumberTests.swift; sourceTree = "<group>"; };
+		9B47341D1D4AD51D0055A7E8 /* ComplexTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplexTests.swift; sourceTree = "<group>"; };
+		9B47341F1D4AD5360055A7E8 /* EnhancedNumberTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnhancedNumberTests.swift; sourceTree = "<group>"; };
+		9B71D3EA1D4BEDAD001C5BE9 /* TrigonometricFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrigonometricFunctions.swift; sourceTree = "<group>"; };
+		9B71D3EC1D4BF1C6001C5BE9 /* TermTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +136,13 @@
 		9B4733C11D4ACBE00055A7E8 /* MathTests */ = {
 			isa = PBXGroup;
 			children = (
+				9B71D3EC1D4BF1C6001C5BE9 /* TermTests.swift */,
+				9B47341F1D4AD5360055A7E8 /* EnhancedNumberTests.swift */,
+				9B47341D1D4AD51D0055A7E8 /* ComplexTests.swift */,
+				9B47341B1D4AD5130055A7E8 /* RationalNumberTests.swift */,
+				9B4734191D4AD50A0055A7E8 /* NumericTests.swift */,
+				9B4734171D4AD4EC0055A7E8 /* GroupTests.swift */,
+				9B4734151D4AD4DF0055A7E8 /* MatrixTests.swift */,
 				9B4734131D4AD34D0055A7E8 /* ConstantsTest.swift */,
 				9B4733C21D4ACBE00055A7E8 /* MathTests.swift */,
 				9B4733C41D4ACBE00055A7E8 /* Info.plist */,
@@ -142,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				9B4733E21D4ACCF50055A7E8 /* Function.swift */,
+				9B71D3EA1D4BEDAD001C5BE9 /* TrigonometricFunctions.swift */,
 				9B4733E61D4ACCF50055A7E8 /* Polynomial.swift */,
 				9B4733E71D4ACCF50055A7E8 /* PolynomialFields.swift */,
 			);
@@ -307,6 +331,7 @@
 				9B4734111D4ACD880055A7E8 /* RingLikeProtocols.swift in Sources */,
 				9B4733EB1D4ACCF50055A7E8 /* Function.swift in Sources */,
 				9B4733EA1D4ACCF50055A7E8 /* EnhancedNumber.swift in Sources */,
+				9B71D3EB1D4BEDAD001C5BE9 /* TrigonometricFunctions.swift in Sources */,
 				9B4733E91D4ACCF50055A7E8 /* Complex.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -315,8 +340,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B4734161D4AD4DF0055A7E8 /* MatrixTests.swift in Sources */,
+				9B47341E1D4AD51D0055A7E8 /* ComplexTests.swift in Sources */,
+				9B71D3ED1D4BF1C6001C5BE9 /* TermTests.swift in Sources */,
 				9B4733C31D4ACBE00055A7E8 /* MathTests.swift in Sources */,
+				9B47341A1D4AD50A0055A7E8 /* NumericTests.swift in Sources */,
 				9B4734141D4AD34D0055A7E8 /* ConstantsTest.swift in Sources */,
+				9B47341C1D4AD5130055A7E8 /* RationalNumberTests.swift in Sources */,
+				9B4734201D4AD5360055A7E8 /* EnhancedNumberTests.swift in Sources */,
+				9B4734181D4AD4EC0055A7E8 /* GroupTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
