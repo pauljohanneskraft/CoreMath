@@ -35,6 +35,7 @@
 		9B4734201D4AD5360055A7E8 /* EnhancedNumberTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B47341F1D4AD5360055A7E8 /* EnhancedNumberTests.swift */; };
 		9B71D3EB1D4BEDAD001C5BE9 /* TrigonometricFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B71D3EA1D4BEDAD001C5BE9 /* TrigonometricFunctions.swift */; };
 		9B71D3ED1D4BF1C6001C5BE9 /* TermTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B71D3EC1D4BF1C6001C5BE9 /* TermTests.swift */; };
+		9BCF157A1D4CC4DF00CC9EC9 /* Growth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCF15791D4CC4DF00CC9EC9 /* Growth.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		9B47341F1D4AD5360055A7E8 /* EnhancedNumberTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnhancedNumberTests.swift; sourceTree = "<group>"; };
 		9B71D3EA1D4BEDAD001C5BE9 /* TrigonometricFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrigonometricFunctions.swift; sourceTree = "<group>"; };
 		9B71D3EC1D4BF1C6001C5BE9 /* TermTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermTests.swift; sourceTree = "<group>"; };
+		9BCF15791D4CC4DF00CC9EC9 /* Growth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Growth.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				9B4733E21D4ACCF50055A7E8 /* Function.swift */,
+				9BCF15791D4CC4DF00CC9EC9 /* Growth.swift */,
 				9B71D3EA1D4BEDAD001C5BE9 /* TrigonometricFunctions.swift */,
 				9B4733E61D4ACCF50055A7E8 /* Polynomial.swift */,
 				9B4733E71D4ACCF50055A7E8 /* PolynomialFields.swift */,
@@ -330,6 +333,7 @@
 				9B4734101D4ACD880055A7E8 /* RingLike.swift in Sources */,
 				9B4734111D4ACD880055A7E8 /* RingLikeProtocols.swift in Sources */,
 				9B4733EB1D4ACCF50055A7E8 /* Function.swift in Sources */,
+				9BCF157A1D4CC4DF00CC9EC9 /* Growth.swift in Sources */,
 				9B4733EA1D4ACCF50055A7E8 /* EnhancedNumber.swift in Sources */,
 				9B71D3EB1D4BEDAD001C5BE9 /* TrigonometricFunctions.swift in Sources */,
 				9B4733E91D4ACCF50055A7E8 /* Complex.swift in Sources */,
