@@ -68,7 +68,7 @@ struct Term : Function {
     }
     
     func call(x: Double) -> Double {
-        var res = 0.0
+        var res = 1.0
         for f in factors {
             res *= f.call(x: x)
         }
