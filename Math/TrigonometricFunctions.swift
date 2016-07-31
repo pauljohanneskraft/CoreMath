@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct CustomFunction : Function, CustomStringConvertible {
+struct CustomFunction : Function {
     
     init(_ desc: String, function: (Double) -> Double, integral: (Double) -> Function, derivate: () -> Function) {
         self.description = desc
@@ -51,15 +51,27 @@ struct ConstantFunction : Function, ExpressibleByIntegerLiteral, ExpressibleByFl
     }
 }
 
-let sine : CustomFunction = CustomFunction("sin(x)",
-                                           function: { return sin($0) },
-                                           integral: { return Equation(cosine, ConstantFunction(value: $0)) },
-                                           derivate: { return Term(ConstantFunction(value: -1), cosine) })
+let sine    : CustomFunction = CustomFunction("sin(x)",
+                                              function: { return sin($0) },
+                                              integral: { return Equation(cosine, ConstantFunction(value: $0)) },
+                                              derivate: { return Term(ConstantFunction(value: -1), cosine) })
 
-let cosine = CustomFunction("cos(x)",
-                            function: { return cos($0) },
-                            integral: { return Equation(sine, ConstantFunction(value: $0)) },
-                            derivate: { return sine })
+let cosine  : CustomFunction = CustomFunction("cos(x)",
+                                              function: { return cos($0) },
+                                              integral: { return Equation(sine, ConstantFunction(value: $0)) },
+                                              derivate: { return sine })
+
+struct Exponential: Function {
+    var base : Double
+    func call(x: Double) -> Double {
+        return pow(base, x)
+    }
+    func integral(c: Double) -> Function {
+        return Equation(Term(ConstantFunction(value: 1.0/log(base)), self), ConstantFunction(value: c))
+    }
+    var derivate: Function { return Term(ConstantFunction(value: 0.0), self) }
+    var description: String { return "\(self.base)^x" }
+}
 
 /*
 public struct Trigonometric {
