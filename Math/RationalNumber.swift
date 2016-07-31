@@ -8,7 +8,7 @@
 
 import Foundation
 
-typealias Q = RationalNumber
+public typealias Q = RationalNumber
 
 // to create a rational number simply initialize using:
 //

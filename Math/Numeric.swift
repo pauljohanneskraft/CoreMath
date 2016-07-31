@@ -8,9 +8,9 @@
 
 import Foundation
 
-typealias R = Double
-typealias N = UInt
-typealias Z = Int
+public typealias R = Double
+public typealias N = UInt
+public typealias Z = Int
 
 public func Z_(_ v: UInt) -> Set<UInt> {
     return Set<UInt>(0..<v)
