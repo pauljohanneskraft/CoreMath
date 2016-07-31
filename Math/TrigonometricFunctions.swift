@@ -9,14 +9,18 @@
 import Foundation
 
 public struct Trigonometric {
-    static let sine     = Term<Double>(description: "sin(x)") { sin($0) }
-    static let cosine   = Term<Double>(description: "cos(x)") { cos($0) }
-    static let tangent  = Term<Double>(description: "tan(x)") { tan($0) }
+    private init() {}
+    static let sin = sine
+    static let cos = cosine
 }
 
-public struct LogarithmicFunctions {
-    static let baseE   = Term<Double>(description:    "ln(x)") { log  ($0) }
-    static let base10  = Term<Double>(description: "log10(x)") { log10($0) }
-    static let base2   = Term<Double>(description:  "log2(x)") { log2 ($0) }
-}
 
+private let sine    : CustomFunction = CustomFunction("sin(x)",
+                                                      function: { return sin($0) },
+                                                      integral: { return Equation(cosine, ConstantFunction(value: $0)).reduced },
+                                                      derivate: { return Term(ConstantFunction(value: -1), cosine) })
+
+private let cosine  : CustomFunction = CustomFunction("cos(x)",
+                                                      function: { return cos($0) },
+                                                      integral: { return Equation(sine, ConstantFunction(value: $0)).reduced },
+                                                      derivate: { return sine })

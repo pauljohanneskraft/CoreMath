@@ -8,53 +8,89 @@
 
 import Foundation
 
-protocol Function {
-    associatedtype Operand
-    associatedtype Result
-    func call(x: Operand) -> Result
+protocol Function : CustomStringConvertible {
+    func call(x: Double) -> Double
+    var derivate: Function { get }
+    func integral(c: Double) -> Function
+    var reduced : Function { get }
 }
 
-struct Term < Number : BasicArithmetic > : Function, CustomStringConvertible {
-    
-    var term : (Number) -> Number
-    var sign : Bool = false
-    var description: String
-    
-    init(description: String, sign : Bool = false, _ term: (Number) -> Number) {
-        self.term = term
-        self.sign = sign
-        self.description = description
-    }
-    
-    func call(x: Number) -> Number {
-        return sign ? -term(x) : term(x)
+extension Function {
+    var integral: Function { return integral(c: 0)  }
+    func integral(from: Double, to: Double) -> Double {
+        let int = self.integral
+        return int.call(x: from) - int.call(x: to)
     }
 }
 
-func + <N : BasicArithmetic>(lhs: Term<N>, rhs: Term<N>) -> Equation<N> {
-    return Equation(terms: [lhs, rhs])
+func * (lhs: Function, rhs: Function) -> Function {
+    if let l = lhs as? Equation {
+        var res = [Function]()
+        for f1 in l.terms { res.append(f1 * rhs) }
+        return Equation(res).reduced
+    }
+    if let r = rhs as? Equation {
+        var res = [Function]()
+        for f1 in r.terms { res.append(f1 * lhs) }
+        return Equation(res).reduced
+    }
+    if var l = lhs as? Term {
+        l.factors.append(rhs)
+        return l.reduced
+    }
+    if var r = rhs as? Term {
+        r.factors.append(lhs)
+        return r.reduced
+    }
+    return Term(lhs, rhs).reduced
 }
 
-struct Equation < Number : BasicArithmetic > : Function, CustomStringConvertible {
-    typealias T = Term < Number >
-    
-    var terms : [ T ]
-    
-    func call(x: Number) -> Number {
-        var value : Number = 0
-        for t in terms { value += t.call(x: x) }
-        return value
+func + (lhs: Function, rhs: Function) -> Function {
+    if let l = lhs as? Equation {
+        if let r = rhs as? Equation { return Equation(l.terms + r.terms).reduced }
+        return Equation(l.terms + [rhs]).reduced
     }
-    
-    var description : String {
-        if terms.isEmpty { return "0" }
-        var result = "\(terms.first!)"
-        for t in terms.dropFirst() {
-            result += (t.sign ? " - " : " + ") + "\(t)"
+    if let r = rhs as? Equation {
+        return Equation(r.terms + [lhs]).reduced
+    }
+    return Equation(lhs, rhs).reduced
+}
+
+func - (lhs: Function, rhs: Function) -> Function {
+    return lhs + (-rhs)
+}
+
+prefix func - (lhs: Function) -> Function {
+    return Term(lhs, ConstantFunction(value: -1)).reduced
+}
+
+func == (lhs: Function, rhs: Function) -> Bool {
+    let lhs = lhs.reduced
+    let rhs = rhs.reduced
+    if rhs.dynamicType != lhs.dynamicType { return false }
+    else {
+        switch rhs {
+        case is Equation:
+            var r = (rhs as! Equation).terms
+            var l = (lhs as! Equation).terms
+            if r.count != l.count { return false }
+            l = l.sorted(by:{ return "\($0)" < "\($1)" })
+            r = r.sorted(by:{ return "\($0)" < "\($1)" })
+            for i in l.indices {
+                if !(l[i] == r[i]) { return false }
+            }
+            return true
+        case is Term:               return (rhs as! Term) == (lhs as! Term)
+        case is ConstantFunction:   return (rhs as! ConstantFunction).value == (lhs as! ConstantFunction).value
+        case is Exponential:        return (rhs as! Exponential).base == (lhs as! Exponential).base
+        case is CustomFunction:     return rhs.description == lhs.description
+        default: return true
         }
-        return result
     }
-    
+}
+
+func / (lhs: Function, rhs: Function) -> Function {
+    return Fraction(numerator: lhs, denominator: rhs).reduced
 }
 
 struct FunctionWrapper < F : Function > : CustomStringConvertible {

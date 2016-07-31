@@ -8,13 +8,14 @@
 
 import Foundation
 
-public enum constants {
+public enum Constants {
+    public static let values : Set<Double> = [ Constants.pi, Constants.tau, Constants.e, Constants.y_0, Constants.h, Constants.c ]
     public static let pi  = 3.14159_26535_89793_23846
     public static let tau = 2*pi
     public static let e   = 2.71828_18284_59045_23536
-    public static let y_0 = (4*pi) * pow(10.0, -7)
-    public static let h   = 6.6260_7004_0 * pow(10.0, -34)
-    public static let c   = 299_792_458
+    public static let y_0 = (4*pi)*(1e-7)
+    public static let h   = 6.6260_7004_0e-34
+    public static let c   = 299_792_458.0
 }
 
 

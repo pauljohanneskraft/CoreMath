@@ -161,7 +161,9 @@ struct Polynomial < Number : Numeric > : BasicArithmetic, CustomStringConvertibl
             } else {
                 let count = coefficients.count
                 if index >= count {
-                    for _ in count ... index { coefficients.append(0) }
+                    let empty = [Number](repeating: 0, count: index-count+1)
+                    coefficients.append(contentsOf: empty)
+                    // for _ in count ... index { coefficients.append(0) }
                 }
                 coefficients[index] = newValue
             }
@@ -396,11 +398,13 @@ prefix func - <N : Numeric> (lhs: Polynomial<N>) -> Polynomial<N> {
 func *= < N : Numeric > (lhs: inout Polynomial<N>, rhs: Polynomial<N>) {
     var res = Polynomial<N>([])
     for i in 0 ... lhs.degree {
-        for j in 0 ... rhs.degree {
-            let r = rhs[j]
-            let l = lhs[i]
-            if r != 0 && l != 0 {
-                res[i+j] += r * l // example: (x^2 - x) * (x - 1) = x^3 - 2x^2 + x
+        let l = lhs[i]
+        if l != 0 {
+            for j in 0 ... rhs.degree {
+                let r = rhs[j]
+                if r != 0 {
+                    res[i+j] += r * l // example: (x^2 - x) * (x - 1) = x^3 - 2x^2 + x
+                }
             }
         }
     }

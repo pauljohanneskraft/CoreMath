@@ -25,11 +25,11 @@ struct GroupLike<Element where Element : Hashable, Element: Comparable> : Semigr
     
     var strictestType : Any?  {
         if let o = AbelianGroup(self)   { return o }
-        else if let o = Group(self)     { return o }
-        else if let o = Monoid(self)    { return o }
-        else if let o = Semigroup(self) { return o }
-        else if let o = Magma(self)     { return o }
-        else { return nil }
+        if let o = Group(self)          { return o }
+        if let o = Monoid(self)         { return o }
+        if let o = Semigroup(self)      { return o }
+        if let o = Magma(self)          { return o }
+        return nil
     }
     
     var possibleProtocols : (magma: Magma<Element>?, semigroup: Semigroup<Element>?, monoid: Monoid<Element>?, group: Group<Element>?, abelianGroup: AbelianGroup<Element>?)  {

@@ -10,13 +10,19 @@ import XCTest
 import Math
 
 class ConstantsTest: XCTestCase {
+    
+    func testPrintAll() {
+        print(Constants.values)
+    }
+    
+    
     func testPi() {
-        print(constants.pi)
+        print(Constants.pi)
     }
     
     func testTau() {
-        assert(constants.tau == constants.pi * 2)
-        print(constants.tau)
+        assert(Constants.tau == Constants.pi * 2)
+        print(Constants.tau)
     }
     
 }
