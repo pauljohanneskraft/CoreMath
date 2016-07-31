@@ -78,7 +78,7 @@ struct Term : Function {
     var description: String {
         var result = "\(factors.first!)"
         for f in factors.dropFirst() {
-            result += "*\(f)"
+            result += " * \(f)"
         }
         return result
     }
@@ -87,14 +87,23 @@ struct Term : Function {
         var this = self
         var i = 0
         var rest = 1.0
+        var poly = PolynomialFunction(1)
         while i < this.factors.count {
+            // print("testing at", i, ":", this.factors[i], "in", this.factors, "with length", this.factors.count)
             if let r = this.factors[i] as? ConstantFunction {
                 if r.value == 0.0 { return r }
                 rest *= r.value
                 this.factors.remove(at: i)
-            }
-            i += 1
+            } else if let r = this.factors[i] as? PolynomialFunction {
+                // print(r, "is polynomial")
+                if r.polynomial == 0.0 { return ConstantFunction(value: 0.0) }
+                poly.polynomial *= r.polynomial
+                this.factors.remove(at: i)
+            } else { i += 1 }
+            // print("finished -> next()?")
         }
+        // print(this.factors, poly, rest)
+        if poly.polynomial != 1.0 { this.factors.append(poly) }
         if rest != 1.0 { this.factors.append(ConstantFunction(value: rest)) }
         if this.factors.count == 1 { return this.factors[0] }
         return this
@@ -132,9 +141,9 @@ struct Equation : Function, CustomStringConvertible {
     
     var description : String {
         if terms.isEmpty { return "0" }
-        var result = "\(terms.first!)"
+        var result = "(\(terms.first!))"
         for t in terms.dropFirst() {
-            result += " + \(t)"
+            result += " + (\(t))"
         }
         return result
     }
@@ -143,7 +152,7 @@ struct Equation : Function, CustomStringConvertible {
         var this = self
         var i = 0
         var rest = 0.0
-        var poly = PolynomialFunction(polynomial: 0)
+        var poly = PolynomialFunction(0)
         while i < this.terms.count {
             this.terms[i] = this.terms[i].reduced
             if let r = this.terms[i] as? ConstantFunction {
