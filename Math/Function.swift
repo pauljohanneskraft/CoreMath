@@ -12,6 +12,7 @@ protocol Function : CustomStringConvertible {
     func call(x: Double) -> Double
     var derivate: Function { get }
     func integral(c: Double) -> Function
+    var reduced : Function { get }
 }
 
 extension Function {
@@ -77,6 +78,22 @@ struct Term : Function {
         }
         return result
     }
+    
+    var reduced: Function {
+        var this = self
+        var i = 0
+        var rest = 1.0
+        while i < this.factors.count {
+            if let r = this.factors[i] as? ConstantFunction {
+                rest *= r.value
+                this.factors.remove(at: i)
+            }
+            i += 1
+        }
+        if rest != 1.0 { this.factors.append(ConstantFunction(value: rest)) }
+        if this.factors.count == 1 { return this.factors[0] }
+        return this
+    }
 
     var factors : [ Function ]
 }
@@ -117,40 +134,22 @@ struct Equation : Function, CustomStringConvertible {
         return result
     }
     
-}
-
-extension Function {
-    var reduced : Function {
-        if var this = self as? Equation {
-            var i = 0
-            var rest = 0.0
-            while i < this.terms.count {
-                if let r = this.terms[i] as? ConstantFunction {
-                    rest += r.value
-                    this.terms.remove(at: i)
-                }
-                i += 1
+    var reduced: Function {
+        var this = self
+        var i = 0
+        var rest = 0.0
+        while i < this.terms.count {
+            if let r = this.terms[i] as? ConstantFunction {
+                rest += r.value
+                this.terms.remove(at: i)
             }
-            if rest != 0.0 { this.terms.append(ConstantFunction(value: rest)) }
-            if this.terms.count == 1 { return this.terms[0] }
-            return this
+            i += 1
         }
-        if var this = self as? Term {
-            var i = 0
-            var rest = 1.0
-            while i < this.factors.count {
-                if let r = this.factors[i] as? ConstantFunction {
-                    rest *= r.value
-                    this.factors.remove(at: i)
-                }
-                i += 1
-            }
-            if rest != 1.0 { this.factors.append(ConstantFunction(value: rest)) }
-            if this.factors.count == 1 { return this.factors[0] }
-            return this
-        }
-        return self
+        if rest != 0.0 { this.terms.append(ConstantFunction(value: rest)) }
+        if this.terms.count == 1 { return this.terms[0] }
+        return this
     }
+    
 }
 
 func == (lhs: Function, rhs: Function) -> Bool {

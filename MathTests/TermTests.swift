@@ -17,6 +17,12 @@ class TermTests: XCTestCase {
         print(f1.call(x: Constants.pi/4))
     }
     
+    func testDoubleAddition() {
+        let f1 = sine.integral + cosine.derivate + 1.0
+        print(f1)
+        print(f1.call(x: Constants.pi/4))
+    }
+    
     func testExponentialE() {
         var exp = Exponential(base: Constants.e)
         print(exp)
@@ -52,3 +58,8 @@ class TermTests: XCTestCase {
         print(three1, "=?=", three2, "->", three1.reduced, "=?=", three2.reduced, "=>", three1 == three2)
     }
 }
+
+
+
+
+
