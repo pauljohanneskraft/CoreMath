@@ -57,6 +57,11 @@ class TermTests: XCTestCase {
         let three2 = cosine.derivate
         print(three1, "=?=", three2, "->", three1.reduced, "=?=", three2.reduced, "=>", three1 == three2)
     }
+    
+    func testIntegralFromTo() {
+        let one = PolynomialFunction(polynomial: Double.x(3))
+        print(one, one.integral, one.integral(from: 1, to: -1))
+    }
 }
 
 

@@ -17,6 +17,10 @@ protocol Function : CustomStringConvertible {
 
 extension Function {
     var integral: Function { return integral(c: 0)  }
+    func integral(from: Double, to: Double) -> Double {
+        let int = self.integral
+        return int.call(x: from) - int.call(x: to)
+    }
 }
 
 func * (lhs: Function, rhs: Function) -> Function {
