@@ -85,6 +85,15 @@ class TermTests: XCTestCase {
         print(t.call(x: 1.345))
     }
     
+    func testPolynomialReduced() {
+        let poly1 = Polynomial<Double>((2,3), (4,5), (2.0,4))
+        let poly1f = PolynomialFunction(poly1)
+        let t = Term(poly1f, ConstantFunction(value: 2.0), ConstantFunction(value: 4.5))
+        print(t, "->", t.reduced)
+        print(t.reduced.call(x: 1.345))
+        print(t.call(x: 1.345))
+    }
+    
 }
 
 
