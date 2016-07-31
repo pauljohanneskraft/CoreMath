@@ -8,23 +8,23 @@
 
 import Foundation
 
-typealias R = Double
-typealias N = UInt
-typealias Z = Int
+public typealias R = Double
+public typealias N = UInt
+public typealias Z = Int
 
-func Z_(_ v: UInt) -> Set<UInt> {
+public func Z_(_ v: UInt) -> Set<UInt> {
     return Set<UInt>(0..<v)
 }
 
 extension Numeric {
-    var sqrt : Self? {
+    public var sqrt : Self? {
         if let d = self.double {
             if d < 0 { return nil }
             return Self(floatLiteral: pow(d, 1.0/2))
         } else { return nil }
     }
     
-    func power(_ v: Double) -> Self? {
+    public func power(_ v: Double) -> Self? {
         if let d = self.double {
             if d < 0 && v < 1 { return nil }
             return Self(floatLiteral: pow(d, v))
@@ -32,17 +32,17 @@ extension Numeric {
     }
 }
 
-protocol AdvancedNumeric : Numeric {
+public protocol AdvancedNumeric : Numeric {
     static func % (lhs: Self, rhs: Self) -> Self
     static func %= (lhs: inout Self, rhs: Self)
 }
 
-protocol Ordered : Comparable {
+public protocol Ordered : Comparable {
     static var min : Self { get }
     static var max : Self { get }
 }
 
-protocol BasicArithmetic : CustomStringConvertible, ExpressibleByFloatLiteral, ExpressibleByIntegerLiteral, Hashable, Comparable {
+public protocol BasicArithmetic : CustomStringConvertible, ExpressibleByFloatLiteral, ExpressibleByIntegerLiteral, Hashable, Comparable {
     init(integerLiteral: Int)
     init(floatLiteral: Double)
     
@@ -59,7 +59,7 @@ protocol BasicArithmetic : CustomStringConvertible, ExpressibleByFloatLiteral, E
     prefix static func - (lhs: Self) -> Self
 }
 
-protocol Numeric : BasicArithmetic {
+public protocol Numeric : BasicArithmetic {
     var integer : Int?   { get }
     var double : Double? { get }
     var sqrt : Self? { get }
@@ -76,14 +76,14 @@ extension Int {
 }
 
 extension Int    : AdvancedNumeric {
-    var integer : Int? {
+    public var integer : Int? {
         return self
     }
-    var double : Double? {
+    public var double : Double? {
         return Double(self)
     }
     
-    static var random : Int {
+    public static var random : Int {
         return (arc4random() % 2 == 0 ? 1 : -1) * Int(arc4random() % UInt32(UInt8.max))
     }
     
@@ -95,11 +95,11 @@ extension Int    : AdvancedNumeric {
 }
 
 extension Double : AdvancedNumeric {
-    init(integerLiteral: Int) {
+    public init(integerLiteral: Int) {
         self.init(integerLiteral)
     }
     
-    static var random : Double {
+    public static var random : Double {
         var z : Double? = nil
         while z == nil || z!.isNaN || z!.isInfinite {
             z = (arc4random() % 2 == 0 ? -1 : 1) * Double(unsafeBitCast(arc4random(), to: Float.self))
@@ -107,11 +107,11 @@ extension Double : AdvancedNumeric {
         return z!
     }
     
-    var integer : Int?    {
+    public var integer : Int?    {
         if self > Double(Int.max) || self < Double(Int.min) { return nil }
         return Int(self)
     }
-    var double  : Double? { return self }
+    public var double  : Double? { return self }
     
     static var min : Double { return DBL_MAX }
     static var max : Double { return DBL_MIN }
@@ -219,7 +219,7 @@ extension BasicArithmetic {
 
 extension Complex {
     
-    var polarForm : (coefficient: Double, exponent: Double)? {
+    public var polarForm : (coefficient: Double, exponent: Double)? {
         let abs = self.abs.real
         if let di = imaginary.double, let dr = real.double {
             return (abs.double!, atan2(di, dr))
@@ -227,7 +227,7 @@ extension Complex {
         return nil
     }
     
-    func power(_ v: Double) -> Complex<Number>? {
+    public func power(_ v: Double) -> Complex<Number>? {
         // if d < 0 && v < 1 { return nil }
         if var pF = self.polarForm {
             pF.coefficient = pF.coefficient.power(v)!
@@ -242,7 +242,7 @@ extension Complex {
 
 infix operator ~= {}
 
-func ~= (lhs: Double, rhs: Double) -> Bool {
+public func ~= (lhs: Double, rhs: Double) -> Bool {
     let inacc = max(lhs.inaccuracy, rhs.inaccuracy)
     return (lhs - rhs).abs < inacc
 }

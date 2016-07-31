@@ -7,29 +7,24 @@
 //
 
 import XCTest
+import Math
 
-class EnhancedNumberTests: XCTestCase {
-
+class EnhancedNumberTests: XCTestCase, TypeTest {
+    typealias N = Z
+    
     override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        elements.append(.infinity(sign: true))
+        elements.append(.infinity(sign: false))
+        elements.append(.nan)
+        for _ in 0 ..< 10 { elements.append(Enhanced<N>.random) }
     }
     
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
+    var elements : [Enhanced<N>] = []
+    
+    // basic arithmetic
+    func testAddition()         { forAll("+") { $0 + $1 } }
+    func testSubtraction()      { forAll("-") { $0 - $1 } }
+    func testMultiplication()   { forAll("*") { $0 * $1 } }
+    func testDivision()         { forAll("/") { $0 / $1 } }
+    
 }

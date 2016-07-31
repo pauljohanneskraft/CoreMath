@@ -6,25 +6,25 @@
 //  Copyright © 2016 pauljohanneskraft. All rights reserved.
 //
 
-struct Matrix < N > : ExpressibleByArrayLiteral, CustomStringConvertible {
-    typealias Element = [N]
+public struct Matrix < N > : ExpressibleByArrayLiteral, CustomStringConvertible {
+    public typealias Element = [N]
     
     private(set) var elements : [[N]]
     
-    init(_ elements: [[N]]) {
+    public init(_ elements: [[N]]) {
         self.elements = elements
         assert(isRect)
     }
     
-    init(arrayLiteral elements: Element...) {
+    public init(arrayLiteral elements: Element...) {
         self.init(elements)
     }
     
-    var isSquare : Bool {
+    public var isSquare : Bool {
         return elements.count == elements[0].count
     }
     
-    var size : (rows: Int, columns: Int) {
+    public var size : (rows: Int, columns: Int) {
         return (elements.count, elements[0].count)
     }
     
@@ -37,7 +37,7 @@ struct Matrix < N > : ExpressibleByArrayLiteral, CustomStringConvertible {
         return true
     }
     
-    var oneLineDescription : String {
+    internal var oneLineDescription : String {
         let (c,d) = size
         var desc = "| "
         for i in 0..<c {
@@ -50,7 +50,7 @@ struct Matrix < N > : ExpressibleByArrayLiteral, CustomStringConvertible {
         return desc
     }
     
-    var description : String {
+    public var description : String {
         let c = elements.count
         let d = elements[0].count
         var desc = ""
@@ -64,7 +64,7 @@ struct Matrix < N > : ExpressibleByArrayLiteral, CustomStringConvertible {
         return desc
     }
     
-    subscript(index: Int) -> [N] {
+    public subscript(index: Int) -> [N] {
         get { return elements[index] }
         set { elements[index] = newValue }
     }
@@ -72,13 +72,13 @@ struct Matrix < N > : ExpressibleByArrayLiteral, CustomStringConvertible {
 
 extension Matrix where N : BasicArithmetic {
     
-    static func identity(_ count: Int) -> Matrix<N> {
+    public static func identity(_ count: Int) -> Matrix<N> {
         var mat = [[N]](repeating: [N](repeating: 0, count: count), count: count)
         for i in 0..<count { mat[i][i] = 1 }
         return Matrix<N> (mat)
     }
     
-    var rank : Int {
+    public var rank : Int {
         
         func onlyZeros(_ row: Element) -> Bool {
             for e in row { if e != 0 { return false } }
@@ -94,7 +94,7 @@ extension Matrix where N : BasicArithmetic {
         return 0
     }
     
-    var rowEchelonForm : Matrix<N> {
+    public var rowEchelonForm : Matrix<N> {
         
         func removeLeadingNumber(row: inout Element, withLine: Element, startAt: Int) {
             let coeff = row[startAt] / withLine[startAt]
@@ -141,7 +141,7 @@ extension Matrix where N : BasicArithmetic {
         return Matrix(elements) // TODO!!
     }
     
-    var strictRowEchelonForm : Matrix<N> {
+    public var strictRowEchelonForm : Matrix<N> {
         
         func subtract(line: [N], from: inout [N], multipliedBy: N = 1) {
             assert(line.count == from.count)
@@ -177,7 +177,7 @@ extension Matrix where N : BasicArithmetic {
         return rowEchelonForm // TODO!!
     }
     
-    var inverse : Matrix<N> {
+    public var inverse : Matrix<N> {
         assert(isSquare)
         let rows = size.rows
         var two = self
@@ -195,7 +195,7 @@ extension Matrix where N : BasicArithmetic {
         return id
     }
     
-    var determinant : N {
+    public var determinant : N {
         assert(isSquare)
         let count = elements.count
         
@@ -229,7 +229,7 @@ extension Matrix where N : BasicArithmetic {
 }
 
 extension Matrix where N : Numeric {
-    var eigenvalues : [N]? {
+    public var eigenvalues : [N]? {
         assert(isSquare)
         let c = size.rows
         var mat = [[Polynomial<N>]]()
@@ -247,7 +247,7 @@ extension Matrix where N : Numeric {
     }
 }
 
-func -= < N : Numeric > (lhs: inout Matrix<N>, rhs: Matrix<N>) {
+public func -= < N : BasicArithmetic > (lhs: inout Matrix<N>, rhs: Matrix<N>) {
     assert(lhs.size == rhs.size)
     let size = lhs.size
     for i in 0 ..< size.rows {
@@ -257,13 +257,13 @@ func -= < N : Numeric > (lhs: inout Matrix<N>, rhs: Matrix<N>) {
     }
 }
 
-func - < N : Numeric > (lhs: Matrix<N>, rhs: Matrix<N>) -> Matrix<N> {
+public func - < N : BasicArithmetic > (lhs: Matrix<N>, rhs: Matrix<N>) -> Matrix<N> {
     var lhs = lhs
     lhs -= rhs
     return lhs
 }
 
-func *= < N : Numeric > (lhs: inout Matrix<N>, rhs: N) {
+public func *= < N : BasicArithmetic > (lhs: inout Matrix<N>, rhs: N) {
     let size = lhs.size
     for i in 0 ..< size.rows {
         for j in 0 ..< size.columns {
@@ -272,26 +272,26 @@ func *= < N : Numeric > (lhs: inout Matrix<N>, rhs: N) {
     }
 }
 
-func * < N : Numeric > (lhs: Matrix<N>, rhs: N) -> Matrix<N> {
+public func * < N : BasicArithmetic > (lhs: Matrix<N>, rhs: N) -> Matrix<N> {
     var lhs = lhs
     lhs *= rhs
     return lhs
 }
 
-func * < N : Numeric > (lhs: N, rhs: Matrix<N>) -> Matrix<N> {
+public func * < N : BasicArithmetic > (lhs: N, rhs: Matrix<N>) -> Matrix<N> {
     var rhs = rhs
     rhs *= lhs
     return rhs
 }
 
 
-func * <T: BasicArithmetic>(left: Matrix<T>, right: Matrix<T>) -> Matrix<T> {
+public func * < T : BasicArithmetic >(left: Matrix<T>, right: Matrix<T>) -> Matrix<T> {
     var left = left
     left *= right
     return left
 }
 
-func *= <T: BasicArithmetic>( left: inout Matrix<T>, right: Matrix<T>) {
+public func *= < T: BasicArithmetic >( left: inout Matrix<T>, right: Matrix<T>) {
     assert(left.size.columns == right.size.rows)
     var matrix = [[T]]()
     let ls = left.size
@@ -322,23 +322,7 @@ func *= <T: BasicArithmetic>( left: inout Matrix<T>, right: Matrix<T>) {
     // print(l.oneLineDescription, "*", right.oneLineDescription, "=", left.oneLineDescription)
 }
 
-func -= <T : BasicArithmetic>( left: inout Matrix<T>, right: Matrix<T>) {
-    assert(left.size == right.size)
-    for i in 0..<left.size.rows {
-        for j in 0..<left.size.columns {
-            left.elements[i][j] = left.elements[i][j] - right.elements[i][j]
-        }
-    }
-}
-
-func - <T : BasicArithmetic>(left: Matrix<T>, right: Matrix<T>) -> Matrix<T> {
-    var matrix = left
-    matrix -= right
-    return matrix
-}
-
-
-func += <T : BasicArithmetic>( left: inout Matrix<T>, right: Matrix<T>) {
+public func += <T : BasicArithmetic>( left: inout Matrix<T>, right: Matrix<T>) {
     assert(left.size == right.size)
     for i in 0..<left.elements.count {
         for j in 0..<left.elements[0].count {
@@ -347,18 +331,18 @@ func += <T : BasicArithmetic>( left: inout Matrix<T>, right: Matrix<T>) {
     }
 }
 
-func + <T : BasicArithmetic>(left: Matrix<T>, right: Matrix<T>) -> Matrix<T> {
+public func + <T : BasicArithmetic>(left: Matrix<T>, right: Matrix<T>) -> Matrix<T> {
     var matrix = left
     matrix += right
     return matrix
 }
 
-func == < T : Equatable >(lhs: Matrix<T>, rhs: Matrix<T>) -> Bool {
+public func == < T : Equatable >(lhs: Matrix<T>, rhs: Matrix<T>) -> Bool {
     if lhs.size != rhs.size { return false }
     return lhs.elements == rhs.elements
 }
 
-func == <T: Equatable>(left: [[T]], right: [[T]]) -> Bool {
+public func == <T: Equatable>(left: [[T]], right: [[T]]) -> Bool {
     if left.count != right.count { return false }
     for row in 0..<left.count {
         if left[row] != right[row] { return false }
