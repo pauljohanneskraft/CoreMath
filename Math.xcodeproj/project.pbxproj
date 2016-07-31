@@ -110,6 +110,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9B0960311D4E56FF00ED8517 /* Polynomials */ = {
+			isa = PBXGroup;
+			children = (
+				9B0960291D4E54C300ED8517 /* PolynomialFunction.swift */,
+				9B4733E61D4ACCF50055A7E8 /* Polynomial.swift */,
+				9B4733E71D4ACCF50055A7E8 /* PolynomialFields.swift */,
+			);
+			name = Polynomials;
+			sourceTree = "<group>";
+		};
 		9B4733A71D4ACBB80055A7E8 = {
 			isa = PBXGroup;
 			children = (
@@ -178,11 +188,9 @@
 				9BCF15791D4CC4DF00CC9EC9 /* Growth.swift */,
 				9B71D3EA1D4BEDAD001C5BE9 /* TrigonometricFunctions.swift */,
 				9B09602F1D4E551200ED8517 /* ConstantFunction.swift */,
-				9B0960291D4E54C300ED8517 /* PolynomialFunction.swift */,
 				9B09602B1D4E54D100ED8517 /* ExponentialFunction.swift */,
 				9B09602D1D4E54DD00ED8517 /* CustomFunction.swift */,
-				9B4733E61D4ACCF50055A7E8 /* Polynomial.swift */,
-				9B4733E71D4ACCF50055A7E8 /* PolynomialFields.swift */,
+				9B0960311D4E56FF00ED8517 /* Polynomials */,
 			);
 			name = Functions;
 			sourceTree = "<group>";
