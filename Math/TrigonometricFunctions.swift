@@ -17,10 +17,10 @@ public struct Trigonometric {
 
 private let sine    : CustomFunction = CustomFunction("sin(x)",
                                                       function: { return sin($0) },
-                                                      integral: { return Equation(cosine, ConstantFunction(value: $0)) },
+                                                      integral: { return Equation(cosine, ConstantFunction(value: $0)).reduced },
                                                       derivate: { return Term(ConstantFunction(value: -1), cosine) })
 
 private let cosine  : CustomFunction = CustomFunction("cos(x)",
                                                       function: { return cos($0) },
-                                                      integral: { return Equation(sine, ConstantFunction(value: $0)) },
+                                                      integral: { return Equation(sine, ConstantFunction(value: $0)).reduced },
                                                       derivate: { return sine })

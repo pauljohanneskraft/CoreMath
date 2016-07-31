@@ -56,120 +56,12 @@ func + (lhs: Function, rhs: Function) -> Function {
     return Equation(lhs, rhs).reduced
 }
 
-struct Term : Function {
-    func integral(c: Double) -> Function { return self }
-
-    init(_ factors: Function...) {
-        self.factors = factors
-    }
-    
-    var derivate: Function {
-        return self
-    }
-    
-    func call(x: Double) -> Double {
-        var res = 1.0
-        for f in factors {
-            res *= f.call(x: x)
-        }
-        return res
-    }
-    
-    var description: String {
-        var result = "\(factors.first!)"
-        for f in factors.dropFirst() {
-            result += " * \(f)"
-        }
-        return result
-    }
-    
-    var reduced: Function {
-        var this = self
-        var i = 0
-        var rest = 1.0
-        var poly = PolynomialFunction(1)
-        while i < this.factors.count {
-            // print("testing at", i, ":", this.factors[i], "in", this.factors, "with length", this.factors.count)
-            if let r = this.factors[i] as? ConstantFunction {
-                if r.value == 0.0 { return r }
-                rest *= r.value
-                this.factors.remove(at: i)
-            } else if let r = this.factors[i] as? PolynomialFunction {
-                // print(r, "is polynomial")
-                if r.polynomial == 0.0 { return ConstantFunction(value: 0.0) }
-                poly.polynomial *= r.polynomial
-                this.factors.remove(at: i)
-            } else { i += 1 }
-            // print("finished -> next()?")
-        }
-        // print(this.factors, poly, rest)
-        if poly.polynomial != 1.0 { this.factors.append(poly) }
-        if rest != 1.0 { this.factors.append(ConstantFunction(value: rest)) }
-        if this.factors.count == 1 { return this.factors[0] }
-        return this
-    }
-
-    var factors : [ Function ]
+func - (lhs: Function, rhs: Function) -> Function {
+    return lhs + (-rhs)
 }
 
-struct Equation : Function, CustomStringConvertible {
-    var derivate: Function {
-        var funcs = [Function]()
-        for t in terms { funcs.append(t.derivate) }
-        return Equation(funcs)
-    }
-    
-    func integral(c: Double) -> Function {
-        var funcs = [Function]()
-        for t in terms { funcs.append(t.integral) }
-        return Equation(funcs)
-    }
-    
-    var terms : [ Function ]
-    
-    init(_ terms: Function...) { self.init(terms) }
-    
-    init(_ terms: [Function]) {
-        self.terms = terms
-    }
-    
-    func call(x: Double) -> Double {
-        var value = 0.0
-        for t in terms { value += t.call(x: x) }
-        return value
-    }
-    
-    var description : String {
-        if terms.isEmpty { return "0" }
-        var result = "(\(terms.first!))"
-        for t in terms.dropFirst() {
-            result += " + (\(t))"
-        }
-        return result
-    }
-    
-    var reduced: Function {
-        var this = self
-        var i = 0
-        var rest = 0.0
-        var poly = PolynomialFunction(0)
-        while i < this.terms.count {
-            this.terms[i] = this.terms[i].reduced
-            if let r = this.terms[i] as? ConstantFunction {
-                rest += r.value
-                this.terms.remove(at: i)
-            } else if let r = this.terms[i] as? PolynomialFunction {
-                poly.polynomial += r.polynomial
-                this.terms.remove(at: i)
-            }
-            i += 1
-        }
-        if poly.polynomial != 0 { this.terms.append(poly.reduced) }
-        if rest != 0.0 { this.terms.append(ConstantFunction(value: rest)) }
-        if this.terms.count == 1 { return this.terms[0] }
-        return this
-    }
-    
+prefix func - (lhs: Function) -> Function {
+    return Term(lhs, ConstantFunction(value: -1)).reduced
 }
 
 func == (lhs: Function, rhs: Function) -> Bool {
@@ -195,6 +87,10 @@ func == (lhs: Function, rhs: Function) -> Bool {
         default: return true
         }
     }
+}
+
+func / (lhs: Function, rhs: Function) -> Function {
+    return Fraction(numerator: lhs, denominator: rhs).reduced
 }
 
 struct FunctionWrapper < F : Function > : CustomStringConvertible {

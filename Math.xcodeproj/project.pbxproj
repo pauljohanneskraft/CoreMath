@@ -11,6 +11,9 @@
 		9B09602C1D4E54D100ED8517 /* ExponentialFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B09602B1D4E54D100ED8517 /* ExponentialFunction.swift */; };
 		9B09602E1D4E54DD00ED8517 /* CustomFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B09602D1D4E54DD00ED8517 /* CustomFunction.swift */; };
 		9B0960301D4E551200ED8517 /* ConstantFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B09602F1D4E551200ED8517 /* ConstantFunction.swift */; };
+		9B0960371D4E773800ED8517 /* Equation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0960361D4E773800ED8517 /* Equation.swift */; };
+		9B0960391D4E774000ED8517 /* Term.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0960381D4E774000ED8517 /* Term.swift */; };
+		9B09603B1D4E8A8300ED8517 /* Fraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B09603A1D4E8A8300ED8517 /* Fraction.swift */; };
 		9B4733B61D4ACBB80055A7E8 /* Math.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B4733B41D4ACBB80055A7E8 /* Math.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9B4733C51D4ACBE00055A7E8 /* Math.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B4733B11D4ACBB80055A7E8 /* Math.framework */; };
 		9B4733E91D4ACCF50055A7E8 /* Complex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4733E01D4ACCF50055A7E8 /* Complex.swift */; };
@@ -56,6 +59,9 @@
 		9B09602B1D4E54D100ED8517 /* ExponentialFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExponentialFunction.swift; sourceTree = "<group>"; };
 		9B09602D1D4E54DD00ED8517 /* CustomFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomFunction.swift; sourceTree = "<group>"; };
 		9B09602F1D4E551200ED8517 /* ConstantFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstantFunction.swift; sourceTree = "<group>"; };
+		9B0960361D4E773800ED8517 /* Equation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Equation.swift; sourceTree = "<group>"; };
+		9B0960381D4E774000ED8517 /* Term.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Term.swift; sourceTree = "<group>"; };
+		9B09603A1D4E8A8300ED8517 /* Fraction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fraction.swift; sourceTree = "<group>"; };
 		9B4733B11D4ACBB80055A7E8 /* Math.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Math.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B4733B41D4ACBB80055A7E8 /* Math.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Math.h; sourceTree = "<group>"; };
 		9B4733B51D4ACBB80055A7E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -214,6 +220,9 @@
 			isa = PBXGroup;
 			children = (
 				9B4733E21D4ACCF50055A7E8 /* Function.swift */,
+				9B0960361D4E773800ED8517 /* Equation.swift */,
+				9B0960381D4E774000ED8517 /* Term.swift */,
+				9B09603A1D4E8A8300ED8517 /* Fraction.swift */,
 				9BCF15791D4CC4DF00CC9EC9 /* Growth.swift */,
 				9B71D3EA1D4BEDAD001C5BE9 /* TrigonometricFunctions.swift */,
 				9B09602F1D4E551200ED8517 /* ConstantFunction.swift */,
@@ -373,12 +382,14 @@
 				9B47340E1D4ACD880055A7E8 /* ModuleLike.swift in Sources */,
 				9B4733EE1D4ACCF50055A7E8 /* Numeric.swift in Sources */,
 				9B47340D1D4ACD880055A7E8 /* GroupLikeProtocols.swift in Sources */,
+				9B0960391D4E774000ED8517 /* Term.swift in Sources */,
 				9B47340F1D4ACD880055A7E8 /* ModuleLikeProtocols.swift in Sources */,
 				9B4733ED1D4ACCF50055A7E8 /* Matrix.swift in Sources */,
 				9B47340C1D4ACD880055A7E8 /* GroupLike.swift in Sources */,
 				9B4733EF1D4ACCF50055A7E8 /* Polynomial.swift in Sources */,
 				9B4733F01D4ACCF50055A7E8 /* PolynomialFields.swift in Sources */,
 				9B4733F71D4ACD340055A7E8 /* Constants.swift in Sources */,
+				9B0960371D4E773800ED8517 /* Equation.swift in Sources */,
 				9B4733F11D4ACCF50055A7E8 /* RationalNumber.swift in Sources */,
 				9B4734101D4ACD880055A7E8 /* RingLike.swift in Sources */,
 				9B4734111D4ACD880055A7E8 /* RingLikeProtocols.swift in Sources */,
@@ -390,6 +401,7 @@
 				9B09602E1D4E54DD00ED8517 /* CustomFunction.swift in Sources */,
 				9B4733E91D4ACCF50055A7E8 /* Complex.swift in Sources */,
 				9B0960301D4E551200ED8517 /* ConstantFunction.swift in Sources */,
+				9B09603B1D4E8A8300ED8517 /* Fraction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -24,7 +24,7 @@ class TermTests: XCTestCase {
     }
     
     func testExponentialE() {
-        var exp = Exponential(base: Constants.e)
+        let exp = Exponential(base: Constants.e)
         print(exp * 1.0)
         print(exp.derivate)
         print(exp.integral)
@@ -73,9 +73,19 @@ class TermTests: XCTestCase {
         print(t.reduced.call(x: 1.345))
         print(t.call(x: 1.345))
     }
+    
+    func testPolynomialDivision() {
+        let poly1 = Polynomial<Double>((2,3), (4,5), (2.0,4))
+        let poly2 = Polynomial<Double>((6,2), (5,1), (2.0,0))
+        let poly1f = PolynomialFunction(poly1)
+        let poly2f = PolynomialFunction(poly2)
+        let t = Term(poly1f / poly2f, Trigonometric.sin)
+        print(t, "->", t.reduced)
+        print(t.reduced.call(x: 1.345))
+        print(t.call(x: 1.345))
+    }
+    
 }
-
-
 
 
 
