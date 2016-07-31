@@ -28,6 +28,7 @@ struct Term : Function {
     }
     
     var description: String {
+        if factors.isEmpty { return "0" }
         var result = "\(factors.first!)"
         for f in factors.dropFirst() {
             result += " * \(f)"
@@ -55,11 +56,11 @@ struct Term : Function {
             // print("finished -> next()?")
         }
         // print(this.factors, poly, rest)
-        if poly.polynomial != 1.0 { this.factors.append(poly) }
-        if rest != 1.0 { this.factors.append(ConstantFunction(value: rest)) }
+        let r = poly.polynomial * Polynomial<Double>(rest)
+        if r != 1.0 { this.factors.append(PolynomialFunction(r).reduced) }
+        if this.factors.count >  1 { return this }
         if this.factors.count == 1 { return this.factors[0] }
-        if this.factors.count <  1 { return ConstantFunction(value: 1.0) }
-        return this
+        return ConstantFunction(value: 1.0)
     }
     
     var factors : [ Function ]

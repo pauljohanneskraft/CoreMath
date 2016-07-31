@@ -62,8 +62,9 @@ struct Equation : Function, CustomStringConvertible {
         }
         if poly.polynomial != 0 { this.terms.append(poly.reduced) }
         if rest != 0.0 { this.terms.append(ConstantFunction(value: rest)) }
+        if this.terms.count >  1 { return this }
         if this.terms.count == 1 { return this.terms[0] }
-        return this
+        return ConstantFunction(value: 0.0)
     }
     
 }

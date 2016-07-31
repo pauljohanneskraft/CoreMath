@@ -56,6 +56,14 @@ func + (lhs: Function, rhs: Function) -> Function {
     return Equation(lhs, rhs).reduced
 }
 
+func - (lhs: Function, rhs: Function) -> Function {
+    return lhs + (-rhs)
+}
+
+prefix func - (lhs: Function) -> Function {
+    return Term(lhs, ConstantFunction(value: -1)).reduced
+}
+
 func == (lhs: Function, rhs: Function) -> Bool {
     let lhs = lhs.reduced
     let rhs = rhs.reduced
@@ -79,6 +87,10 @@ func == (lhs: Function, rhs: Function) -> Bool {
         default: return true
         }
     }
+}
+
+func / (lhs: Function, rhs: Function) -> Function {
+    return Fraction(numerator: lhs, denominator: rhs).reduced
 }
 
 struct FunctionWrapper < F : Function > : CustomStringConvertible {
