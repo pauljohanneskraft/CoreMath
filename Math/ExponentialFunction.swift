@@ -14,7 +14,7 @@ struct Exponential: Function {
         return pow(base, x)
     }
     func integral(c: Double) -> Function {
-        return Equation(Term(ConstantFunction(value: 1.0/log(base)), self), ConstantFunction(value: c))
+        return Equation(Term(ConstantFunction(value: 1.0/log(base)), self), ConstantFunction(value: c)).reduced
     }
     var reduced: Function {
         if base == 0.0 { return ConstantFunction(value: 0.0) }
@@ -22,6 +22,6 @@ struct Exponential: Function {
         return self
     }
     
-    var derivate: Function { return Term(ConstantFunction(value: 0.0), self) }
+    var derivate: Function { return Term(ConstantFunction(value: log(base)), self).reduced }
     var description: String { return "\(self.base)^x" }
 }

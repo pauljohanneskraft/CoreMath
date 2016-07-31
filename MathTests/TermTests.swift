@@ -25,7 +25,7 @@ class TermTests: XCTestCase {
     
     func testExponentialE() {
         var exp = Exponential(base: Constants.e)
-        print(exp)
+        print(exp * 1.0)
         print(exp.derivate)
         print(exp.integral)
     }

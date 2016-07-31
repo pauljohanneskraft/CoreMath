@@ -85,6 +85,7 @@ struct Term : Function {
         var rest = 1.0
         while i < this.factors.count {
             if let r = this.factors[i] as? ConstantFunction {
+                if r.value == 0.0 { return r }
                 rest *= r.value
                 this.factors.remove(at: i)
             }
@@ -138,13 +139,19 @@ struct Equation : Function, CustomStringConvertible {
         var this = self
         var i = 0
         var rest = 0.0
+        var poly = PolynomialFunction(polynomial: 0)
         while i < this.terms.count {
+            this.terms[i] = this.terms[i].reduced
             if let r = this.terms[i] as? ConstantFunction {
                 rest += r.value
+                this.terms.remove(at: i)
+            } else if let r = this.terms[i] as? PolynomialFunction {
+                poly.polynomial += r.polynomial
                 this.terms.remove(at: i)
             }
             i += 1
         }
+        if poly.polynomial != 0 { this.terms.append(poly.reduced) }
         if rest != 0.0 { this.terms.append(ConstantFunction(value: rest)) }
         if this.terms.count == 1 { return this.terms[0] }
         return this
