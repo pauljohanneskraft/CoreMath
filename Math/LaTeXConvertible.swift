@@ -7,7 +7,7 @@
 //
 
 
-protocol LaTeXConvertible {
+public protocol LaTeXConvertible {
     var latex : String { get }
     // func latex(mode: LaTeXMode) -> String
 }
@@ -18,7 +18,7 @@ enum LaTeXMode {
 
 extension Numeric {
     // all Numeric-inheriting types can easily be made LaTeXConvertible
-    var latex : String {
+    public var latex : String {
         return "\(self)"
     }
 }
@@ -27,13 +27,13 @@ extension Int    : LaTeXConvertible {}
 extension Double : LaTeXConvertible {}
 
 extension String : LaTeXConvertible {
-    var latex : String {
+    public var latex : String {
         return "\"\(self)\""
     }
 }
 
 extension Matrix : LaTeXConvertible {
-    var latex : String {
+    public var latex : String {
         assert(size.rows > 0 && size.columns > 0)
         var out = "\\begin{pmatrix}\n"
         for array in self.elements.dropLast() {

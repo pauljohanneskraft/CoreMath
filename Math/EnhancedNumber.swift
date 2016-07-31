@@ -8,16 +8,16 @@
 
 import Foundation
 
-enum Enhanced < Number : Numeric > : Numeric, Hashable {
+public enum Enhanced < Number : Numeric > : Numeric, Hashable {
     case finite(Number)
     case infinity(sign: Bool)
     case nan
     
-    init(integerLiteral: Int) {
+    public init(integerLiteral: Int) {
         self = .finite(Number(integerLiteral: integerLiteral))
     }
     
-    init(floatLiteral: Double) {
+    public init(floatLiteral: Double) {
         switch floatLiteral {
         case Double.infinity:   self = .infinity(sign: false)
         case -Double.infinity:  self = .infinity(sign: true)
@@ -26,7 +26,7 @@ enum Enhanced < Number : Numeric > : Numeric, Hashable {
         }
     }
     
-    var hashValue: Int {
+    public var hashValue: Int {
         switch self {
         case let .finite(value): return value.hashValue
         case let .infinity(sign): return ( (sign ? -1 : 1) * Double.infinity).hashValue
@@ -34,7 +34,7 @@ enum Enhanced < Number : Numeric > : Numeric, Hashable {
         }
     }
     
-    var sign : Bool {
+    public var sign : Bool {
         switch self {
         case let .finite(value):    return value < 0
         case let .infinity(sign):   return sign
@@ -42,7 +42,7 @@ enum Enhanced < Number : Numeric > : Numeric, Hashable {
         }
     }
     
-    var description: String {
+    public var description: String {
         switch self {
         case let .finite(value):    return "\(value)"
         case let .infinity(sign):   return sign ? "-∞" : "∞"
@@ -50,11 +50,11 @@ enum Enhanced < Number : Numeric > : Numeric, Hashable {
         }
     }
     
-    static var random : Enhanced<Number> {
+    public static var random : Enhanced<Number> {
         return .finite(Number.random)
     }
     
-    var integer : Int? {
+    public var integer : Int? {
         switch self {
         case let .finite(v):        return v.integer
         case let .infinity(sign):   return sign ? Int.min : Int.max
@@ -62,7 +62,7 @@ enum Enhanced < Number : Numeric > : Numeric, Hashable {
         }
     }
     
-    var double : Double? {
+    public var double : Double? {
         switch self {
         case let .finite(v):        return v.double
         case let .infinity(sign):   return sign ? -Double.infinity : Double.infinity
@@ -71,7 +71,7 @@ enum Enhanced < Number : Numeric > : Numeric, Hashable {
     }
 }
 
-func == < N : Numeric >(lhs: Enhanced<N>, rhs: Enhanced<N>) -> Bool {
+public func == < N : Numeric >(lhs: Enhanced<N>, rhs: Enhanced<N>) -> Bool {
     switch (lhs, rhs) {
     case let (.finite(v1), .finite(v2)): return v1 == v2
     case let (.infinity(s1), .infinity(s2)): return s1 == s2
@@ -80,7 +80,7 @@ func == < N : Numeric >(lhs: Enhanced<N>, rhs: Enhanced<N>) -> Bool {
     }
 }
 
-func < < N : Numeric >(lhs: Enhanced<N>, rhs: Enhanced<N>) -> Bool {
+public func < < N : Numeric >(lhs: Enhanced<N>, rhs: Enhanced<N>) -> Bool {
     // if lhs == rhs { return false }
     switch (lhs, rhs) {
     case let (.finite(v1), .finite(v2)): return v1 < v2
@@ -93,7 +93,7 @@ func < < N : Numeric >(lhs: Enhanced<N>, rhs: Enhanced<N>) -> Bool {
     return false
 }
 
-func += < N : Numeric >(lhs: inout Enhanced<N>, rhs: Enhanced<N>) {
+public func += < N : Numeric >(lhs: inout Enhanced<N>, rhs: Enhanced<N>) {
     switch (lhs, rhs) {
     case (.nan, _), (_, .nan): lhs = .nan
     case let (.finite(v1), .finite(v2)): lhs = .finite(v1 + v2)
@@ -103,7 +103,7 @@ func += < N : Numeric >(lhs: inout Enhanced<N>, rhs: Enhanced<N>) {
     }
 }
 
-func -= < N : Numeric >(lhs: inout Enhanced<N>, rhs: Enhanced<N>) {
+public func -= < N : Numeric >(lhs: inout Enhanced<N>, rhs: Enhanced<N>) {
     switch (lhs, rhs) {
     case (.nan, _), (_, .nan): lhs = .nan
     case let (.finite(v1), .finite(v2)): lhs = .finite(v1 + v2)
@@ -114,7 +114,7 @@ func -= < N : Numeric >(lhs: inout Enhanced<N>, rhs: Enhanced<N>) {
     }
 }
 
-func *= < N : Numeric >(lhs: inout Enhanced<N>, rhs: Enhanced<N>) {
+public func *= < N : Numeric >(lhs: inout Enhanced<N>, rhs: Enhanced<N>) {
     switch (lhs, rhs) {
     case (.nan, _), (_, .nan): lhs = .nan
     case let (.finite(v1), .finite(v2)): lhs = .finite(v1 * v2) // maybe if too big for "Number" switching to infinity
@@ -124,7 +124,7 @@ func *= < N : Numeric >(lhs: inout Enhanced<N>, rhs: Enhanced<N>) {
     }
 }
 
-func /= < N : Numeric >(lhs: inout Enhanced<N>, rhs: Enhanced<N>) {
+public func /= < N : Numeric >(lhs: inout Enhanced<N>, rhs: Enhanced<N>) {
     switch (lhs, rhs) {
     case (.nan, _), (_, .nan): lhs = .nan
     case (_, .finite(0)): if lhs.sign { lhs = .infinity(sign: true) } else { lhs = .infinity(sign: false) }
@@ -136,30 +136,30 @@ func /= < N : Numeric >(lhs: inout Enhanced<N>, rhs: Enhanced<N>) {
     }
 }
 
-func + < N : Numeric >(lhs: Enhanced<N>, rhs: Enhanced<N>) -> Enhanced<N> {
+public func + < N : Numeric >(lhs: Enhanced<N>, rhs: Enhanced<N>) -> Enhanced<N> {
     var lhs = lhs
     lhs += rhs
     return lhs
 }
 
-func - < N : Numeric >(lhs: Enhanced<N>, rhs: Enhanced<N>) -> Enhanced<N> {
+public func - < N : Numeric >(lhs: Enhanced<N>, rhs: Enhanced<N>) -> Enhanced<N> {
     var lhs = lhs
     lhs -= rhs
     return lhs
 }
-func * < N : Numeric >(lhs: Enhanced<N>, rhs: Enhanced<N>) -> Enhanced<N> {
+public func * < N : Numeric >(lhs: Enhanced<N>, rhs: Enhanced<N>) -> Enhanced<N> {
     var lhs = lhs
     lhs *= rhs
     return lhs
 }
 
-func / < N : Numeric >(lhs: Enhanced<N>, rhs: Enhanced<N>) -> Enhanced<N> {
+public func / < N : Numeric >(lhs: Enhanced<N>, rhs: Enhanced<N>) -> Enhanced<N> {
     var lhs = lhs
     lhs /= rhs
     return lhs
 }
 
-prefix func - < N : Numeric > (lhs: Enhanced<N>) -> Enhanced<N> {
+prefix public func - < N : Numeric > (lhs: Enhanced<N>) -> Enhanced<N> {
     switch lhs {
     case let .finite(value):    return .finite(-value)
     case let .infinity(s):      return .infinity(sign: !s)
