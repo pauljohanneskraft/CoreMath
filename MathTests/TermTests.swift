@@ -10,9 +10,10 @@ import XCTest
 @testable import Math
 
 class TermTests: XCTestCase {
+    
     func test1() {
-        let f1 = Trigonometric.sine + Trigonometric.cosine
+        let f1 = sine.integral + cosine.derivate
         print(f1)
-        print(f1.call(x: constants.pi/4))
+        print(f1.call(x: Constants.pi/4))
     }
 }

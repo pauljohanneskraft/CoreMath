@@ -8,40 +8,102 @@
 
 import Foundation
 
-protocol Function {
-    associatedtype Operand
-    associatedtype Result
-    func call(x: Operand) -> Result
+protocol Function : CustomStringConvertible {
+    func call(x: Double) -> Double
+    var derivate: Function { get }
+    func integral(c: Double) -> Function
 }
 
-struct Term < Number : BasicArithmetic > : Function, CustomStringConvertible {
-    
-    var term : (Number) -> Number
-    var sign : Bool = false
-    var description: String
-    
-    init(description: String, sign : Bool = false, _ term: (Number) -> Number) {
-        self.term = term
-        self.sign = sign
-        self.description = description
+extension Function {
+    var integral: Function { return integral(c: 0)  }
+}
+
+func * (lhs: Function, rhs: Function) -> Function {
+    if let l = lhs as? Equation {
+        var res = [Function]()
+        for f1 in l.terms { res.append(f1 * rhs) }
+        return Equation(res)
+    }
+    if let r = rhs as? Equation {
+        var res = [Function]()
+        for f1 in r.terms { res.append(f1 * lhs) }
+        return Equation(res)
+    }
+    if var l = lhs as? Term {
+        l.factors.append(rhs)
+        return l
+    }
+    if var r = rhs as? Term {
+        r.factors.append(lhs)
+        return r
+    }
+    return Term(lhs, rhs)
+}
+
+func + (lhs: Function, rhs: Function) -> Equation {
+    if let l = lhs as? Equation {
+        if let r = rhs as? Equation { return Equation(l.terms + r.terms) }
+        return Equation(l.terms + [rhs])
+    }
+    if let r = rhs as? Equation {
+        return Equation(r.terms + [lhs])
+    }
+    return Equation(lhs, rhs)
+}
+
+struct Term : Function {
+    func integral(c: Double) -> Function { return self }
+
+    init(_ factors: Function...) {
+        self.factors = factors
     }
     
-    func call(x: Number) -> Number {
-        return sign ? -term(x) : term(x)
+    var derivate: Function {
+        return self
     }
+    
+    func call(x: Double) -> Double {
+        var res = 0.0
+        for f in factors {
+            res *= f.call(x: x)
+        }
+        return res
+    }
+    
+    var description: String {
+        var result = "\(factors.first!)"
+        for f in factors.dropFirst() {
+            result += "*\(f)"
+        }
+        return result
+    }
+
+    var factors : [ Function ]
 }
 
-func + <N : BasicArithmetic>(lhs: Term<N>, rhs: Term<N>) -> Equation<N> {
-    return Equation(terms: [lhs, rhs])
-}
-
-struct Equation < Number : BasicArithmetic > : Function, CustomStringConvertible {
-    typealias T = Term < Number >
+struct Equation : Function, CustomStringConvertible {
+    var derivate: Function {
+        var funcs = [Function]()
+        for t in terms { funcs.append(t.derivate) }
+        return Equation(funcs)
+    }
     
-    var terms : [ T ]
+    func integral(c: Double) -> Function {
+        var funcs = [Function]()
+        for t in terms { funcs.append(t.integral) }
+        return Equation(funcs)
+    }
     
-    func call(x: Number) -> Number {
-        var value : Number = 0
+    var terms : [ Function ]
+    
+    init(_ terms: Function...) { self.init(terms) }
+    
+    init(_ terms: [Function]) {
+        self.terms = terms
+    }
+    
+    func call(x: Double) -> Double {
+        var value = 0.0
         for t in terms { value += t.call(x: x) }
         return value
     }
@@ -50,7 +112,7 @@ struct Equation < Number : BasicArithmetic > : Function, CustomStringConvertible
         if terms.isEmpty { return "0" }
         var result = "\(terms.first!)"
         for t in terms.dropFirst() {
-            result += (t.sign ? " - " : " + ") + "\(t)"
+            result += " + \(t)"
         }
         return result
     }
