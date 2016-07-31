@@ -8,27 +8,27 @@
 
 import Foundation
 
-typealias Q = RationalNumber
+public typealias Q = RationalNumber
 
 // to create a rational number simply initialize using:
 //
 // var myRationalNumber = Q(1,2)    /* 1/2 */
 //
 
-struct RationalNumber : AdvancedNumeric {
+public struct RationalNumber : AdvancedNumeric, Ordered {
     private(set) var numerator   : Int
     private(set) var denominator : Int
     
-    init(_ numerator: Int, _ denominator: Int) {
+    public init(_ numerator: Int, _ denominator: Int) {
         self.init(numerator: numerator, denominator: denominator)
     }
     
-    init(numerator: Int, denominator: Int) {
+    public init(numerator: Int, denominator: Int) {
         self.numerator   =   numerator
         self.denominator = denominator
     }
     
-    init(_ value: Int) {
+    public init(_ value: Int) {
         self.numerator = value
         self.denominator = 1
     }
@@ -43,23 +43,23 @@ struct RationalNumber : AdvancedNumeric {
         }
     }
     
-    var integer : Int? {
+    public var integer : Int? {
         return numerator / denominator
     }
     
-    var double: Double? {
+    public var double: Double? {
         return Double(numerator) / Double(denominator)
     }
     
-    static var min : RationalNumber {
+    public static var min : RationalNumber {
         return RationalNumber(Int.min, 1)
     }
     
-    static var max : RationalNumber {
+    public static var max : RationalNumber {
         return RationalNumber(Int.max, 1)
     }
     
-    static var random: RationalNumber {
+    public static var random: RationalNumber {
         var z = Q(Int.random, 1)
         z.reduce()
         return z
@@ -86,7 +86,7 @@ struct RationalNumber : AdvancedNumeric {
         return denominator < 0
     }
     
-    var hashValue : Int {
+    public var hashValue : Int {
         return Double(self).hashValue
     }
     
@@ -98,7 +98,7 @@ struct RationalNumber : AdvancedNumeric {
 }
 
 extension RationalNumber : ExpressibleByIntegerLiteral {
-    init(integerLiteral value: Int) {
+    public init(integerLiteral value: Int) {
         self.numerator = value
         self.denominator = 1
     }
@@ -107,7 +107,7 @@ extension RationalNumber : ExpressibleByIntegerLiteral {
 extension RationalNumber : Equatable {}
 
 extension RationalNumber : CustomStringConvertible {
-    var description: String {
+    public var description: String {
         if denominator == 1 { return "\(numerator)" }
         if denominator == 0 { return "nan" }
         return "(\(numerator)/\(denominator))"
@@ -115,7 +115,9 @@ extension RationalNumber : CustomStringConvertible {
 }
 
 extension RationalNumber : ExpressibleByFloatLiteral {
-    init(floatLiteral value: Double) {
+    public init(floatLiteral value: Double) {
+        self.init(readable: value)
+        /*
         let e = -(value.inaccuracy.exponent)
         var result : Q
         if e < 60 {
@@ -134,11 +136,12 @@ extension RationalNumber : ExpressibleByFloatLiteral {
         }
         result.reduce()
         self = result
+         */
     }
 }
 
 extension Double {
-    var inaccuracy : Double {
+    public var inaccuracy : Double {
         return nextafter(self, DBL_MAX) - self
     }
 }
@@ -146,7 +149,7 @@ extension Double {
 extension RationalNumber {
     
     // source: http://stackoverflow.com/questions/95727/how-to-convert-floats-to-human-readable-fractions
-    init(_ value: Double) {
+    private init(_ value: Double) {
         assert(value.isNormal)
         
         let sign        = value < 0
@@ -167,7 +170,7 @@ extension RationalNumber {
     }
     
     // source: http://stackoverflow.com/questions/95727/how-to-convert-floats-to-human-readable-fractions
-    init(readable value: Double, accuracy: Double = 0.00000001) {
+    private init(readable value: Double, accuracy: Double = 0.00000001) {
         let sign = value < 0
         let val : Double
         if sign {
@@ -198,7 +201,7 @@ extension Numeric {
     var sign : Bool { return self < 0 }
 }
 
-func *= (lhs: inout RationalNumber, rhs: RationalNumber) {
+public func *= (lhs: inout RationalNumber, rhs: RationalNumber) {
     let rhs = rhs.reduced
     lhs.reduce()
     lhs.denominator = rhs.denominator * lhs.denominator
@@ -206,13 +209,13 @@ func *= (lhs: inout RationalNumber, rhs: RationalNumber) {
     lhs.reduce()
 }
 
-func * (lhs: RationalNumber, rhs: RationalNumber) -> RationalNumber {
+public func * (lhs: RationalNumber, rhs: RationalNumber) -> RationalNumber {
     var lhs = lhs
     lhs *= rhs
     return lhs
 }
 
-func /= (lhs: inout RationalNumber, rhs: RationalNumber) {
+public func /= (lhs: inout RationalNumber, rhs: RationalNumber) {
     let rhs = rhs.reduced
     lhs.reduce()
     lhs.denominator = rhs.numerator * lhs.denominator
@@ -220,13 +223,13 @@ func /= (lhs: inout RationalNumber, rhs: RationalNumber) {
     lhs.reduce()
 }
 
-func / (lhs: RationalNumber, rhs: RationalNumber) -> RationalNumber {
+public func / (lhs: RationalNumber, rhs: RationalNumber) -> RationalNumber {
     var lhs = lhs
     lhs /= rhs
     return lhs
 }
 
-func += (lhs: inout RationalNumber, rhs: RationalNumber) {
+public func += (lhs: inout RationalNumber, rhs: RationalNumber) {
     let rhs = rhs.reduced
     lhs.reduce()
     lhs.numerator = lhs.numerator * rhs.denominator + rhs.numerator * lhs.denominator
@@ -234,13 +237,13 @@ func += (lhs: inout RationalNumber, rhs: RationalNumber) {
     lhs.reduce()
 }
 
-func + (lhs: RationalNumber, rhs: RationalNumber) -> RationalNumber {
+public func + (lhs: RationalNumber, rhs: RationalNumber) -> RationalNumber {
     var lhs = lhs
     lhs += rhs
     return lhs
 }
 
-func -= (lhs: inout RationalNumber, rhs: RationalNumber) {
+public func -= (lhs: inout RationalNumber, rhs: RationalNumber) {
     let rhs = rhs.reduced
     lhs.reduce()
     lhs.numerator = lhs.numerator * rhs.denominator - rhs.numerator * lhs.denominator
@@ -248,20 +251,20 @@ func -= (lhs: inout RationalNumber, rhs: RationalNumber) {
     lhs.reduce()
 }
 
-prefix func - (lhs: RationalNumber) -> RationalNumber {
+prefix public func - (lhs: RationalNumber) -> RationalNumber {
     var lhs = lhs
     if lhs.denominator < 0 { lhs.denominator = -lhs.denominator }
     else { lhs.numerator = -lhs.numerator }
     return lhs
 }
 
-func - (lhs: RationalNumber, rhs: RationalNumber) -> RationalNumber {
+public func - (lhs: RationalNumber, rhs: RationalNumber) -> RationalNumber {
     var lhs = lhs
     lhs -= rhs
     return lhs
 }
 
-func == (lhs: RationalNumber, rhs: RationalNumber) -> Bool {
+public func == (lhs: RationalNumber, rhs: RationalNumber) -> Bool {
     if lhs.sign != rhs.sign { return false }
     if lhs.numerator == rhs.numerator && lhs.denominator == rhs.denominator {
         return true
@@ -269,7 +272,7 @@ func == (lhs: RationalNumber, rhs: RationalNumber) -> Bool {
     return lhs.numerator == -rhs.numerator && lhs.denominator == -rhs.denominator
 }
 
-func < (lhs: RationalNumber, rhs: RationalNumber) -> Bool {
+public func < (lhs: RationalNumber, rhs: RationalNumber) -> Bool {
     return Double(lhs) < Double(rhs)
 }
 
@@ -287,22 +290,22 @@ extension AdvancedNumeric {
     }
 }
 
-func % (lhs: RationalNumber, rhs: RationalNumber) -> RationalNumber {
+public func % (lhs: RationalNumber, rhs: RationalNumber) -> RationalNumber {
     var lhs = lhs
     lhs %= rhs
     return lhs
 }
 
-func % (lhs: Double, rhs: Double) -> Double {
+public func % (lhs: Double, rhs: Double) -> Double {
     return lhs.truncatingRemainder(dividingBy: rhs)
 }
 
-func %= (lhs: inout RationalNumber, rhs: RationalNumber) {
+public func %= (lhs: inout RationalNumber, rhs: RationalNumber) {
     lhs -= rhs * Q( (lhs / rhs).integer! )
 }
 
 extension Double {
-    init(_ rat: RationalNumber) {
+    public init(_ rat: RationalNumber) {
         self = Double(rat.numerator) / Double(rat.denominator)
     }
 }
