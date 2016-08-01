@@ -59,11 +59,14 @@ public protocol BasicArithmetic : CustomStringConvertible, ExpressibleByFloatLit
     prefix static func - (lhs: Self) -> Self
 }
 
-public protocol Numeric : BasicArithmetic {
+public protocol Numeric : BasicArithmetic, Randomizable {
     var integer : Int?   { get }
     var double : Double? { get }
     var sqrt : Self? { get }
     func power(_ v: Double) -> Self?
+}
+
+public protocol Randomizable {
     static var random : Self { get }
 }
 
@@ -217,7 +220,7 @@ extension BasicArithmetic {
     }
 }
 
-extension Complex {
+extension Complex where Number : Numeric {
     
     public var polarForm : (coefficient: Double, exponent: Double)? {
         let abs = self.abs.real

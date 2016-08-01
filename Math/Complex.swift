@@ -15,35 +15,16 @@ public typealias C = Complex<Double>
 // var myComplex = 2 + 3*i
 //
 
-public struct Complex < Number : AdvancedNumeric > : Numeric {
-    
-    public static var i : C { return C(real: 0, imaginary: 1) }
-    
+public struct Complex < Number : BasicArithmetic > : BasicArithmetic {
     public var real      : Number
     public var imaginary : Number
     
-    public var integer: Int? {
-        if imaginary != 0 { return nil }
-        return real.integer
-    }
-    
+    public static var i : C { return C(real: 0, imaginary: 1) }
+
     public var conjugate : Complex<Number> {
         var this = self
         this.imaginary = -this.imaginary
         return this
-    }
-    
-    public static var random : Complex<Number> {
-        return Complex(Number.random)
-    }
-    
-    public var abs : Complex<Number> {
-        return Complex((real*real + imaginary*imaginary).sqrt!)
-    }
-    
-    public var double: Double? {
-        if imaginary != 0 { return nil }
-        return real.double
     }
     
     public var hashValue: Int {
@@ -70,6 +51,29 @@ public struct Complex < Number : AdvancedNumeric > : Numeric {
     public init(real: Number, imaginary: Number) {
         self.real      = real
         self.imaginary = imaginary
+    }
+}
+
+extension Complex where Number : Numeric {
+    public var integer: Int? {
+        if imaginary != 0 { return nil }
+        return real.integer
+    }
+    
+    public var abs : Complex<Number> {
+        return Complex((real*real + imaginary*imaginary).sqrt!)
+    }
+    
+    public var double: Double? {
+        if imaginary != 0 { return nil }
+        return real.double
+    }
+
+}
+
+extension Complex where Number : Randomizable {
+    public static var random : Complex<Number> {
+        return Complex(Number.random)
     }
 }
 
@@ -108,66 +112,66 @@ extension Complex : CustomStringConvertible {
     }
 }
 
-public func *= <N : Numeric>(lhs: inout Complex<N>, rhs: Complex<N>) {
+public func *= <N : BasicArithmetic>(lhs: inout Complex<N>, rhs: Complex<N>) {
     let l = lhs
     lhs.real = l.real * rhs.real - l.imaginary * rhs.imaginary
     lhs.imaginary = l.real * rhs.imaginary + l.imaginary * rhs.real
 }
 
-public func * <N : Numeric>(lhs: Complex<N>, rhs: Complex<N>) -> Complex<N> {
+public func * <N : BasicArithmetic>(lhs: Complex<N>, rhs: Complex<N>) -> Complex<N> {
     var l = lhs
     l *= rhs
     return l
 }
 
-public func += <N : Numeric>(lhs: inout Complex<N>, rhs: Complex<N>) {
+public func += <N : BasicArithmetic>(lhs: inout Complex<N>, rhs: Complex<N>) {
     lhs.real += rhs.real
     lhs.imaginary += rhs.imaginary
 }
 
-public func + <N : Numeric>(lhs: Complex<N>, rhs: Complex<N>) -> Complex<N> {
+public func + <N : BasicArithmetic>(lhs: Complex<N>, rhs: Complex<N>) -> Complex<N> {
     var l = lhs
     l += rhs
     return l
 }
 
-public func -= <N : Numeric>(lhs: inout Complex<N>, rhs: Complex<N>) {
+public func -= <N : BasicArithmetic>(lhs: inout Complex<N>, rhs: Complex<N>) {
     lhs.real -= rhs.real
     lhs.imaginary -= rhs.imaginary
 }
 
-public func - <N : Numeric>(lhs: Complex<N>, rhs: Complex<N>) -> Complex<N> {
+public func - <N : BasicArithmetic>(lhs: Complex<N>, rhs: Complex<N>) -> Complex<N> {
     var l = lhs
     l -= rhs
     return l
 }
 
-public func < <N : Numeric>(lhs: Complex<N>, rhs: Complex<N>) -> Bool {
+public func < <N : BasicArithmetic>(lhs: Complex<N>, rhs: Complex<N>) -> Bool {
     if lhs.real == 0 && rhs.real == 0 { return lhs.imaginary < rhs.imaginary }
     return lhs.real < rhs.real
 }
 
-public func == <N : Numeric>(lhs: Complex<N>, rhs: Complex<N>) -> Bool {
+public func == <N : BasicArithmetic>(lhs: Complex<N>, rhs: Complex<N>) -> Bool {
     return lhs.real == rhs.real && lhs.imaginary == rhs.imaginary
 }
 
-func += < N : Numeric >(lhs: inout Complex<N>, rhs: N) {
+func += < N : BasicArithmetic >(lhs: inout Complex<N>, rhs: N) {
     lhs.real += rhs
 }
 
-func + < N : Numeric >(lhs: Complex<N>, rhs: N) -> Complex<N> {
+func + < N : BasicArithmetic >(lhs: Complex<N>, rhs: N) -> Complex<N> {
     var lhs = lhs
     lhs += rhs
     return lhs
 }
 
-func + < N : Numeric >(lhs: N, rhs: Complex<N>) -> Complex<N> {
+func + < N : BasicArithmetic >(lhs: N, rhs: Complex<N>) -> Complex<N> {
     var rhs = rhs
     rhs += lhs
     return rhs
 }
 
-public func /= <N : Numeric>(lhs: inout Complex<N>, rhs: Complex<N>) {
+public func /= <N : BasicArithmetic>(lhs: inout Complex<N>, rhs: Complex<N>) {
     let d = rhs.conjugate
     let num = lhs * d
     let den = rhs * d
@@ -175,13 +179,13 @@ public func /= <N : Numeric>(lhs: inout Complex<N>, rhs: Complex<N>) {
     lhs = Complex<N>(real: num.real / den.real, imaginary: num.imaginary / den.real)
 }
 
-public func / <N : Numeric>(lhs: Complex<N>, rhs: Complex<N>) -> Complex<N> {
+public func / <N : BasicArithmetic>(lhs: Complex<N>, rhs: Complex<N>) -> Complex<N> {
     var l = lhs
     l /= rhs
     return l
 }
 
-prefix public func - < N : Numeric > (lhs: Complex<N>) -> Complex<N> {
+prefix public func - < N : BasicArithmetic > (lhs: Complex<N>) -> Complex<N> {
     var lhs = lhs
     lhs.real = -lhs.real
     lhs.imaginary = -lhs.imaginary

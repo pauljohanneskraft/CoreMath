@@ -10,7 +10,7 @@ import XCTest
 import Math
 
 class ComplexTests: XCTestCase, TypeTest {
-    typealias N = Z
+    typealias N = R
     
     override func setUp() {
         for _ in 0 ..< 30 { elements.append(Complex<N>.random) }
@@ -31,7 +31,7 @@ class ComplexTests: XCTestCase, TypeTest {
         forAll("*", assert: { ($0.real * $1.real) + ($0.imaginary * $1.imaginary) == $2.real }) { $0 * $1 }
     }
     func testDivision()         {
-        // forAll("/",   assert: { $0.real / $1.real == $2.real }) { $0 / $1 }
+        forAll("/",   assert: { $0.real / $1.real == $2.real }) { $0 / $1 }
     }
     
     // specials
