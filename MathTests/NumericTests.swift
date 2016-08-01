@@ -9,27 +9,28 @@
 import XCTest
 import Math
 
-class NumericTests: XCTestCase {
+class NumericTests: XCTestCase, TypeTest {
 
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
+    typealias Number = Int
     
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    var elements: [Number] = []
+    
+    func testPrettyMuchEquals() {
+        var i = 0
+        while i < 1e7 {
+            let one = Double.random
+            let two = nextafter(one, DBL_MAX)
+            let eq  = one == two
+            let eqn = one =~ two
+            if eq != eqn {
+                print(i, "\t: Hooray!\t", one.reducedDescription, "\t", two.reducedDescription, "\t", eq, eqn)
+            }
+            i += 1
+            // else { print(one, two) }
         }
     }
 
