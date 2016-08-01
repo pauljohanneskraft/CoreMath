@@ -119,7 +119,7 @@ extension Double : AdvancedNumeric {
 
 extension BasicArithmetic {
     var abs    : Self { return self < 0 ? -self : self }
-    var isZero : Bool { return abs < 1e-14 }
+    var isZero : Bool { return abs <= 1e-14 }
     
 }
 
