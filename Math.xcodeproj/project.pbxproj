@@ -198,9 +198,9 @@
 			isa = PBXGroup;
 			children = (
 				9B09603C1D4EB14900ED8517 /* DataTypeTest.swift */,
+				9B0960341D4E6AE400ED8517 /* Algebra */,
 				9B0960321D4E6ACE00ED8517 /* Numbers */,
 				9B0960331D4E6AD800ED8517 /* Functions */,
-				9B0960341D4E6AE400ED8517 /* Algebra */,
 				9B0960351D4E6AED00ED8517 /* LinearAlgebra */,
 				9B4734131D4AD34D0055A7E8 /* ConstantsTest.swift */,
 				9B4733C41D4ACBE00055A7E8 /* Info.plist */,
