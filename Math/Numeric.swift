@@ -38,8 +38,8 @@ public protocol AdvancedNumeric : Numeric {
 }
 
 public protocol Ordered : Comparable {
-    static var min : Self { get }
-    static var max : Self { get }
+    static var minValue : Self { get }
+    static var maxValue : Self { get }
 }
 
 public protocol BasicArithmetic : CustomStringConvertible, ExpressibleByFloatLiteral, ExpressibleByIntegerLiteral, Hashable, Comparable {
@@ -102,7 +102,7 @@ extension Double : AdvancedNumeric {
     public static var random : Double {
         var z : Double? = nil
         while z == nil || z!.isNaN || z!.isInfinite {
-            z = (arc4random() % 2 == 0 ? -1 : 1) * Double(unsafeBitCast(arc4random(), to: Float.self))
+            z = ((Double(Int.random) / Double(Int.random)) * (Double(Int.random) / Double(Int.random)))
         }
         return z!
     }
@@ -113,8 +113,8 @@ extension Double : AdvancedNumeric {
     }
     public var double  : Double? { return self }
     
-    static var min : Double { return DBL_MAX }
-    static var max : Double { return DBL_MIN }
+    static var minValue : Double { return DBL_MAX }
+    static var maxValue : Double { return DBL_MIN }
 }
 
 extension BasicArithmetic {
@@ -191,7 +191,7 @@ postfix func | < N : Numeric > ( t: (f: (N) -> N, e: N) ) -> N {
 */
 
 extension BasicArithmetic {
-    var reducedDescription : String {
+    public var reducedDescription : String {
         if let s = self as? Double {
             if s.isNaN || s.isInfinite { return "\(s)" }
             if s > Double(Int.min) && s < Double(Int.max) {
@@ -240,9 +240,9 @@ extension Complex {
 }
 
 
-infix operator ~= {}
+infix operator =~ { associativity left precedence 150 }
 
-public func ~= (lhs: Double, rhs: Double) -> Bool {
+public func =~ (lhs: Double, rhs: Double) -> Bool {
     let inacc = max(lhs.inaccuracy, rhs.inaccuracy)
-    return (lhs - rhs).abs < inacc
+    return (lhs - rhs).abs <= inacc
 }

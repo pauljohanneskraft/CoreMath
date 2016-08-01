@@ -51,11 +51,11 @@ public struct RationalNumber : AdvancedNumeric, Ordered {
         return Double(numerator) / Double(denominator)
     }
     
-    public static var min : RationalNumber {
+    public static var minValue : RationalNumber {
         return RationalNumber(Int.min, 1)
     }
     
-    public static var max : RationalNumber {
+    public static var maxValue : RationalNumber {
         return RationalNumber(Int.max, 1)
     }
     
@@ -71,11 +71,11 @@ public struct RationalNumber : AdvancedNumeric, Ordered {
         return this
     }
     
-    var max : RationalNumber {
+    var maxValue : RationalNumber {
         return RationalNumber(Int.max)
     }
     
-    var min : RationalNumber {
+    var minValue : RationalNumber {
         return RationalNumber(Int.min)
     }
     
@@ -170,30 +170,31 @@ extension RationalNumber {
     }
     
     // source: http://stackoverflow.com/questions/95727/how-to-convert-floats-to-human-readable-fractions
-    private init(readable value: Double, accuracy: Double = 0.00000001) {
+    private init(readable value: Double) {
+        assert(value <= Double(Int.max))
+        let accuracy = max(value.inaccuracy, 1e-11)
+        
         let sign = value < 0
-        let val : Double
-        if sign {
-            val = -value
-        } else {
-            val = value
-        }
-        var n = 1
-        var d = 1
-        var frac = Double(n) / Double(d)
+        let val = sign ? -value : value
+        var n = Double(Int(val))
+        var d = 1.0
+        var frac = n / d
+        var inacc = (frac - val).abs
         
-        while (frac - val).abs > accuracy {
-            if frac < value {
-                n += 1
-            } else {
+        while inacc > accuracy {
+            if frac < value { n += 1 }
+            else {
                 d += 1
-                n = Int(val * Double(d))
+                n = Double(Int(val * d))
             }
-            frac = Double(n) / Double(d)
+            frac = n / d
+            inacc = (frac - val).abs
+            // print(frac, n, d)
+            assert(n <= Double(Int.max) && d <= Double(Int.max))
         }
         
-        self = RationalNumber(numerator: sign ? -n : n, denominator: d)
-        
+        self = RationalNumber(numerator: sign ? -Int(n) : Int(n), denominator: Int(d))
+        self.reduce()
     }
 }
 
