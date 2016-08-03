@@ -12,15 +12,14 @@ public protocol LaTeXConvertible {
     // func latex(mode: LaTeXMode) -> String
 }
 
-enum LaTeXMode {
-    case Math, Standard, Comment
+extension LaTeXConvertible where Self : CustomStringConvertible {
+    public var latex: String {
+        return self.description
+    }
 }
 
-extension Numeric {
-    // all Numeric-inheriting types can easily be made LaTeXConvertible
-    public var latex : String {
-        return "\(self)"
-    }
+enum LaTeXMode {
+    case Math, Standard, Comment
 }
 
 extension Int    : LaTeXConvertible {}
@@ -47,6 +46,25 @@ extension Matrix : LaTeXConvertible {
         }
         out += "\(self.elements.last!.last!)\n"
         return out + "\\end{pmatrix}"
+    }
+}
+
+extension RationalNumber : LaTeXConvertible {
+    public var latex: String {
+        return "\\frac{\(self.numerator)}{\(self.denominator)}"
+    }
+    
+}
+
+extension Complex : LaTeXConvertible {
+    public var latex : String {
+        return self.description
+    }
+}
+
+extension Enhanced : LaTeXConvertible {
+    public var latex: String {
+        return self.description
     }
 }
 

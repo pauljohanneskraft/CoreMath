@@ -13,7 +13,7 @@ class ComplexTests: XCTestCase, TypeTest {
     typealias N = R
     
     override func setUp() {
-        for _ in 0 ..< 30 { elements.append(C(real: N.random, imaginary: N.random)) }
+        for _ in 0 ..< 30 { elements.append(Complex<N>.random) }
     }
     
     var elements : [Complex<N>] = []
@@ -28,10 +28,10 @@ class ComplexTests: XCTestCase, TypeTest {
     }
     
     func testMultiplication()   {
-        // forAll("*", assert: { ($0.real * $1.real) + ($0.imaginary * $1.imaginary) == $2.real }) { $0 * $1 }
+        forAll("*", assert: { ($0.real * $1.real) + ($0.imaginary * $1.imaginary) == $2.real }) { $0 * $1 }
     }
     func testDivision()         {
-        // forAll("/",   assert: { $0.real / $1.real == $2.real }) { $0 / $1 }
+        forAll("/",   assert: { $0.real / $1.real == $2.real }) { $0 / $1 }
     }
     
     // specials
