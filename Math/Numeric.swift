@@ -8,12 +8,11 @@
 
 import Foundation
 
-public typealias R = Double
-public typealias N = UInt
-public typealias Z = Int
-
-public func Z_(_ v: UInt) -> Set<UInt> {
-    return Set<UInt>(0..<v)
+public protocol Numeric : BasicArithmetic, Randomizable {
+    var integer : Int?   { get }
+    var double : Double? { get }
+    var sqrt : Self? { get }
+    func power(_ v: Double) -> Self?
 }
 
 extension Numeric {
@@ -30,100 +29,6 @@ extension Numeric {
             return Self(floatLiteral: pow(d, v))
         } else { return nil }
     }
-}
-
-public protocol AdvancedNumeric : Numeric {
-    static func % (lhs: Self, rhs: Self) -> Self
-    static func %= (lhs: inout Self, rhs: Self)
-}
-
-public protocol Ordered : Comparable {
-    static var minValue : Self { get }
-    static var maxValue : Self { get }
-}
-
-public protocol BasicArithmetic : CustomStringConvertible, ExpressibleByFloatLiteral, ExpressibleByIntegerLiteral, Hashable, Comparable {
-    init(integerLiteral: Int)
-    init(floatLiteral: Double)
-    
-    static func + (lhs: Self, rhs: Self) -> Self
-    static func - (lhs: Self, rhs: Self) -> Self
-    static func * (lhs: Self, rhs: Self) -> Self
-    static func / (lhs: Self, rhs: Self) -> Self
-    
-    static func += (lhs: inout Self, rhs: Self)
-    static func -= (lhs: inout Self, rhs: Self)
-    static func *= (lhs: inout Self, rhs: Self)
-    static func /= (lhs: inout Self, rhs: Self)
-    
-    prefix static func - (lhs: Self) -> Self
-}
-
-public protocol Numeric : BasicArithmetic, Randomizable {
-    var integer : Int?   { get }
-    var double : Double? { get }
-    var sqrt : Self? { get }
-    func power(_ v: Double) -> Self?
-}
-
-public protocol Randomizable {
-    static var random : Self { get }
-}
-
-extension Int {
-    init<N : AdvancedNumeric>(_ v: N) {
-        let int = v.integer
-        assert(int != nil)
-        self = int!
-    }
-}
-
-extension Int    : AdvancedNumeric {
-    public var integer : Int? {
-        return self
-    }
-    public var double : Double? {
-        return Double(self)
-    }
-    
-    public static var random : Int {
-        return (arc4random() % 2 == 0 ? 1 : -1) * Int(arc4random() % UInt32(UInt8.max))
-    }
-    
-    var isInteger : Bool { return true }
-    
-    public init(floatLiteral: Double) {
-        self = Int(floatLiteral)
-    }
-}
-
-extension Double : AdvancedNumeric {
-    public init(integerLiteral: Int) {
-        self.init(integerLiteral)
-    }
-    
-    public static var random : Double {
-        var z : Double? = nil
-        while z == nil || z!.isNaN || z!.isInfinite {
-            z = ((Double(Int.random) / Double(Int.random)) * (Double(Int.random) / Double(Int.random)))
-        }
-        return z!
-    }
-    
-    public var integer : Int?    {
-        if self > Double(Int.max) || self < Double(Int.min) { return nil }
-        return Int(self)
-    }
-    public var double  : Double? { return self }
-    
-    static var minValue : Double { return DBL_MAX }
-    static var maxValue : Double { return DBL_MIN }
-}
-
-extension BasicArithmetic {
-    var abs    : Self { return self < 0 ? -self : self }
-    var isZero : Bool { return abs <= 1e-14 }
-    
 }
 
 extension Numeric {
@@ -193,33 +98,6 @@ postfix func | < N : Numeric > ( t: (f: (N) -> N, e: N) ) -> N {
 }
 */
 
-extension BasicArithmetic {
-    public var reducedDescription : String {
-        if let s = self as? Double {
-            if s.isNaN || s.isInfinite { return "\(s)" }
-            if s > Double(Int.min) && s < Double(Int.max) {
-                let si = Int(s)
-                if (Double(si) - s).isZero { return "\(si)" }
-            }
-        }
-        return self.description
-    }
-    
-    func coefficientDescription(first: Bool) -> String {
-        
-        let n : Self
-        var res = ""
-        if !first { n = self.abs; res += self < 0 ? "- " : "+ " }
-        else { n = self }
-        
-        switch n {
-        case 0, 1:  return res
-        case -1:    return "-"
-        default:    return res + n.reducedDescription
-        }
-    }
-}
-
 extension Complex where Number : Numeric {
     
     public var polarForm : (coefficient: Double, exponent: Double)? {
@@ -240,12 +118,4 @@ extension Complex where Number : Numeric {
         }
         return nil
     }
-}
-
-
-infix operator =~ { associativity left precedence 150 }
-
-public func =~ (lhs: Double, rhs: Double) -> Bool {
-    let inacc = max(lhs.inaccuracy, rhs.inaccuracy)
-    return (lhs - rhs).abs <= inacc
 }
