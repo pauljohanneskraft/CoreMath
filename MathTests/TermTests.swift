@@ -7,7 +7,9 @@
 //
 
 import XCTest
-@testable import Math
+import Math
+
+/*
 
 class TermTests: XCTestCase {
     
@@ -95,6 +97,5 @@ class TermTests: XCTestCase {
     }
     
 }
-
-
+*/
 

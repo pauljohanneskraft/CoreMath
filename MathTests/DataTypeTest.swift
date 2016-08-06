@@ -19,40 +19,34 @@ extension TypeTest {
     func forAll<T>(_ char: String = "_", assert cond: (DataType, T) -> Bool = { _,_ in return true }, _ f: (DataType) -> T) {
         let n = self.elements
         var avgtime = 0.0
-        print("\n--------------------------------------------\n")
         for r in n {
             let start = NSDate().timeIntervalSinceReferenceDate
             let fr = f(r)
             let end = NSDate().timeIntervalSinceReferenceDate
             let time = end-start
             print("\(char)(\(r))", "=", fr, "in", time)
-            print("\n--------------------------------------------\n")
             assert(time >= 0.0)
             avgtime += time
             assert(cond(r, fr))
         }
         print("avg time:", avgtime / Double(n.count), "total:", avgtime)
-        print("\n--------------------------------------------\n")
     }
     
     func forAll<T>(_ char: String = "_", assert cond: (DataType, DataType, T) -> Bool = { _,_,_ in return true }, _ f: (DataType, DataType) -> T) {
         let n = self.elements
         var avgtime = 0.0
-        print("\n--------------------------------------------\n")
         for r in n {
             for q in n {
                 let start = NSDate().timeIntervalSinceReferenceDate
                 let frq = f(r, q)
                 let end = NSDate().timeIntervalSinceReferenceDate
                 let time = end-start
-                print(r, char, q, "=", frq, "in", time, separator: "\t")
-                print("\n--------------------------------------------\n")
+                print(r, char, q, "=", frq, "in", time)
                 assert(time >= 0)
                 avgtime += time
                 assert(cond(r,q, frq))
             }
         }
         print("avg time:", avgtime / Double(n.count * n.count), "total:", avgtime)
-        print("\n--------------------------------------------\n")
     }
 }

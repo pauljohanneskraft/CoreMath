@@ -1,4 +1,5 @@
 language: objective-c
+os: osx
 osx_image: xcode8
-xcode_project: Math.xcodeproj
-xcode_scheme: Math
+script:
+  - xcodebuild test -workspace Math.xcworkspace -scheme Math
