@@ -1,7 +1,5 @@
 language: objective-c
 os: osx
 osx_image: xcode8
-xcode_project: Math.xcodeproj # path to your xcodeproj folder
-xcode_scheme: MathTests
 script:
   - xcodebuild test -workspace Math.xcworkspace -scheme Math
