@@ -4,5 +4,9 @@ env: NIMBLE_RUNTIME_OSX_SDK_VERSION=10.12 TYPE=osx
 osx_image: xcode8
 xcode_project: Math.xcodeproj # path to your xcodeproj folder
 xcode_scheme: MathTests
+before_install:
+ - brew update
+ - brew unlink xctool
+ - brew install xctool
 script:
   - xctool -project Math.xcodeproj -scheme Math build
