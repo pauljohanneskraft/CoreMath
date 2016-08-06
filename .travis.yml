@@ -1,6 +1,5 @@
 language: objective-c
+os: osx
 osx_image: xcode8
-before_install:
-    - brew update
-    - brew install xctool
-script: xctool Math.xcodeproj -scheme MathTests test
+script:
+  - xcodebuild test -workspace Math.xcworkspace -scheme Math

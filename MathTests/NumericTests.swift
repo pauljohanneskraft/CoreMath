@@ -21,7 +21,7 @@ class NumericTests: XCTestCase, TypeTest {
     
     func testPrettyMuchEquals() {
         var i = 0
-        while i < 1e7 {
+        while i < 1e3 {
             let one = Double.random
             let two = nextafter(one, DBL_MAX)
             let eq  = one == two
