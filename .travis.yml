@@ -3,7 +3,4 @@ osx_image: xcode8
 before_install:
     - brew update
     - brew install xctool
-install:
-    - gem install travis-xcodebuild
-script: 
-    - travis-xcodebuild
+script: xctool -workspace Math.xcworkspace -scheme MathTests test
