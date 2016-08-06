@@ -3,4 +3,4 @@ osx_image: xcode8
 before_install:
     - brew update
     - brew install xctool
-script: xctool -workspace MyApp.xcworkspace -scheme MyApp test
+script: xctool Math.xcodeproj -scheme MathTests test
