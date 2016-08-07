@@ -5,5 +5,7 @@ branches:
 language: objective-c
 os: osx
 osx_image: xcode8
+install:
+  - gem install xcpretty
 script:
-  - xcodebuild test -workspace Math.xcworkspace -scheme Math
+  - xcodebuild test -workspace Math.xcworkspace -scheme Math | xcpretty
