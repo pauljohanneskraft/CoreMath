@@ -67,7 +67,7 @@ prefix func - (lhs: Function) -> Function {
 func == (lhs: Function, rhs: Function) -> Bool {
     let lhs = lhs.reduced
     let rhs = rhs.reduced
-    if rhs.dynamicType != lhs.dynamicType { return false }
+    if type(of: rhs) != type(of: lhs) { return false }
     else {
         switch rhs {
         case is Equation:

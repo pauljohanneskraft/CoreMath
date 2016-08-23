@@ -66,7 +66,7 @@ struct Polynomial < Number : Numeric > : BasicArithmetic, CustomStringConvertibl
         return res
     }
     
-    var function : (x: Number) -> Number? {
+    var function : (Number) -> Number? {
         return self.call
     }
     
@@ -238,12 +238,10 @@ extension Polynomial where Number : Numeric {
                 if det < 0 { return zeros }
                 if det == 0 { return zeros + [-cs[1] / ( 2 * cs[2] ) ] } // -b / 2a
             }
-            if let ds = det.sqrt {
-                let a = (-cs[1] + ds ) / ( 2 * cs[2] )
-                let b = (-cs[1] - ds ) / ( 2 * cs[2] )
-                return zeros + [a, b]
-            }
-            return zeros
+            let ds = det.sqrt
+			let a = (-cs[1] + ds ) / ( 2 * cs[2] )
+			let b = (-cs[1] - ds ) / ( 2 * cs[2] )
+			return zeros + [a, b]
         default:
             let factors = Polynomial(cs).factors
             
@@ -262,10 +260,9 @@ extension Polynomial where Number : Numeric {
                     }
                     
                 }
-                if let z = (-f[0]/f[f.degree]).power(1 / Double(f.degree)) {
-                    zeros.append(z)
-                    if f.degree % 2 == 0 { zeros.append(-z) }
-                }
+                let z = (-f[0]/f[f.degree]).power(1 / Double(f.degree))
+				zeros.append(z)
+				if f.degree % 2 == 0 { zeros.append(-z) }
             }
             return zeros
         }
@@ -298,13 +295,11 @@ extension Polynomial where Number : Numeric {
                                       Polynomial<Number>((n, 0), (1,1))]
                 } // -b / 2a
             }
-            if let ds = det.sqrt {
-                let a = (-cs[1] + ds ) / ( 2 * cs[2] )
-                let b = (-cs[1] - ds ) / ( 2 * cs[2] )
-                return factors + [Polynomial<Number>((a, 0), (1,1)),
+            let ds = det.sqrt
+			let a = (-cs[1] + ds ) / ( 2 * cs[2] )
+			let b = (-cs[1] - ds ) / ( 2 * cs[2] )
+			return factors + [Polynomial<Number>((a, 0), (1,1)),
                                   Polynomial<Number>((b, 0), (1,1))]
-            }
-            return factors + [Polynomial<Number>(cs)]
         }
         // source: http://www.math.utah.edu/~wortman/1050-text-fp.pdf
         
@@ -346,7 +341,7 @@ func == < N : Numeric > (lhs: Polynomial<N>, rhs: Polynomial<N>) -> Bool {
     return lhs.coefficients == rhs.coefficients
 }
 
-infix operator ?= {}
+infix operator ?=
 
 func ?= < N : Numeric > (lhs: Polynomial<N>, rhs: Polynomial<N>) -> [N]? {
     return (lhs - rhs).zeros
@@ -418,7 +413,7 @@ func * < N : Numeric > (lhs: Polynomial<N>, rhs: Polynomial<N>) -> Polynomial<N>
     return res
 }
 
-infix operator /% {}
+infix operator /%
 
 func % < N : Numeric > (lhs: Polynomial<N>, rhs: Polynomial<N>) -> (numerator: Polynomial<N>, denominator: Polynomial<N>) {
     // loses accuracy because ignoring rest, maybe adding another stored property to fit in rest?

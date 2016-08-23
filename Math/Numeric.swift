@@ -9,39 +9,32 @@
 import Foundation
 
 public protocol Numeric : BasicArithmetic, Randomizable {
-    var integer : Int?   { get }
-    var double : Double? { get }
-    var sqrt : Self? { get }
-    func power(_ v: Double) -> Self?
+    var integer : Int		{ get }
+    var double	: Double	{ get }
+    var sqrt	: Self		{ get }
+    func power(_ v: Double) -> Self
 }
 
 extension Numeric {
-    public var sqrt : Self? {
-        if let d = self.double {
-            if d < 0 { return nil }
-            return Self(floatLiteral: pow(d, 1.0/2))
-        } else { return nil }
+    public var sqrt : Self {
+        return Self(floatLiteral: pow(self.double, 1.0/2))
     }
     
-    public func power(_ v: Double) -> Self? {
-        if let d = self.double {
-            if d < 0 && v < 1 { return nil }
-            return Self(floatLiteral: pow(d, v))
-        } else { return nil }
+    public func power(_ v: Double) -> Self {
+		return Self(floatLiteral: pow(self.double, v))
     }
 }
 
 extension Numeric {
     var isInteger : Bool {
-        if let int = self.integer { return Self(integerLiteral: int) == self }
-        return false
-    }
+        return Self(integerLiteral: self.integer) == self
+	}
 }
 
 extension Numeric {
     var primeFactors : [Int] {
         guard self.isInteger else { return [] }
-        var this = self.integer!
+        var this = self.integer
         var i = 0
         var primes = Int.getPrimes(upTo: this)
         var factors = [Int]()
@@ -100,22 +93,16 @@ postfix func | < N : Numeric > ( t: (f: (N) -> N, e: N) ) -> N {
 
 extension Complex where Number : Numeric {
     
-    public var polarForm : (coefficient: Double, exponent: Double)? {
-        let abs = self.abs.real
-        if let di = imaginary.double, let dr = real.double {
-            return (abs.double!, atan2(di, dr))
-        }
-        return nil
+    public var polarForm : (coefficient: Double, exponent: Double) {
+		return (self.abs.real.double, atan2(imaginary.double, real.double))
     }
     
-    public func power(_ v: Double) -> Complex<Number>? {
+    public func power(_ v: Double) -> Complex<Number> {
         // if d < 0 && v < 1 { return nil }
-        if var pF = self.polarForm {
-            pF.coefficient = pF.coefficient.power(v)!
-            pF.exponent = pF.exponent * v
-            // print(pF)
-            return Complex(polarForm: pF)
-        }
-        return nil
+        var pF = self.polarForm
+		pF.coefficient = pF.coefficient.power(v)
+		pF.exponent = pF.exponent * v
+		// print(pF)
+		return Complex(polarForm: pF)
     }
 }
