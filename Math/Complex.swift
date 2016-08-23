@@ -55,8 +55,8 @@ public struct Complex < Number : BasicArithmetic > : BasicArithmetic {
 }
 
 extension Complex where Number : Numeric {
-    public var integer: Int? {
-        if imaginary != 0 { return nil }
+    public var integer: Int {
+		assert(imaginary != 0, "imaginary part != 0")
         return real.integer
     }
     
@@ -64,8 +64,8 @@ extension Complex where Number : Numeric {
         return Complex((real*real + imaginary*imaginary).sqrt)
     }
     
-    public var double: Double? {
-        if imaginary != 0 { return nil }
+    public var double: Double {
+		assert(imaginary != 0, "imaginary part != 0")
         return real.double
     }
 
@@ -78,7 +78,7 @@ extension Complex where Number : Randomizable {
 }
 
 extension Complex where Number : AdvancedNumeric {
-    public var sqrt : Complex<Number>? {
+    public var sqrt : Complex<Number> {
         var this = self
         if this.imaginary == 0 {
             if real < 0 {
