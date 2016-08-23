@@ -43,11 +43,11 @@ public struct RationalNumber : AdvancedNumeric, Ordered {
         }
     }
     
-    public var integer : Int? {
+    public var integer : Int {
         return numerator / denominator
     }
     
-    public var double: Double? {
+    public var double: Double {
         return Double(numerator) / Double(denominator)
     }
     
@@ -302,7 +302,7 @@ public func % (lhs: Double, rhs: Double) -> Double {
 }
 
 public func %= (lhs: inout RationalNumber, rhs: RationalNumber) {
-    lhs -= rhs * Q( (lhs / rhs).integer! )
+    lhs -= rhs * Q( (lhs / rhs).integer )
 }
 
 extension Double {
