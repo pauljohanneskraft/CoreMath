@@ -25,7 +25,7 @@ public protocol Randomizable {
     static var random : Self { get }
 }
 
-infix operator =~ { associativity left precedence 150 }
+infix operator =~
 
 public func =~ (lhs: Double, rhs: Double) -> Bool {
     let inacc = max(lhs.inaccuracy, rhs.inaccuracy)

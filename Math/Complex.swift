@@ -28,7 +28,7 @@ public struct Complex < Number : BasicArithmetic > : BasicArithmetic {
     }
     
     public var hashValue: Int {
-        if(sizeofValue(real) == sizeof(Int.self)) {
+        if(MemoryLayout<Number>.size == MemoryLayout<Int>.size) {
             return unsafeBitCast(real, to: Int.self) &+ unsafeBitCast(imaginary, to: Int.self)
         } else { return -real.hashValue &+ imaginary.hashValue }
     }

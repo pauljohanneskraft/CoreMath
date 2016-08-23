@@ -10,7 +10,7 @@ import Foundation
 
 struct CustomFunction : Function {
     
-    init(_ desc: String, function: (Double) -> Double, integral: (Double) -> Function, derivate: () -> Function) {
+    init(_ desc: String, function: @escaping (Double) -> Double, integral: @escaping (Double) -> Function, derivate: @escaping () -> Function) {
         self.description = desc
         self.function = function
         self._integral = integral
@@ -20,9 +20,9 @@ struct CustomFunction : Function {
     var _derivate: () -> Function
     var derivate: Function { return _derivate() }
     var _integral: (Double) -> Function
-    var function: (x: Double) -> Double
+    var function: (Double) -> Double
     func call(x: Double) -> Double {
-        return function(x: x)
+        return function(x)
     }
     var reduced: Function { return self } // TODO!
     func integral(c: Double) -> Function {

@@ -66,7 +66,7 @@ struct Polynomial < Number : Numeric > : BasicArithmetic, CustomStringConvertibl
         return res
     }
     
-    var function : (x: Number) -> Number? {
+    var function : (Number) -> Number? {
         return self.call
     }
     
@@ -346,7 +346,7 @@ func == < N : Numeric > (lhs: Polynomial<N>, rhs: Polynomial<N>) -> Bool {
     return lhs.coefficients == rhs.coefficients
 }
 
-infix operator ?= {}
+infix operator ?=
 
 func ?= < N : Numeric > (lhs: Polynomial<N>, rhs: Polynomial<N>) -> [N]? {
     return (lhs - rhs).zeros
@@ -418,7 +418,7 @@ func * < N : Numeric > (lhs: Polynomial<N>, rhs: Polynomial<N>) -> Polynomial<N>
     return res
 }
 
-infix operator /% {}
+infix operator /%
 
 func % < N : Numeric > (lhs: Polynomial<N>, rhs: Polynomial<N>) -> (numerator: Polynomial<N>, denominator: Polynomial<N>) {
     // loses accuracy because ignoring rest, maybe adding another stored property to fit in rest?
