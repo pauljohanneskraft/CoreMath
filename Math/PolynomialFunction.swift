@@ -14,15 +14,14 @@ struct PolynomialFunction: Function {
     }
     
     var polynomial : Polynomial<Double>
-    var derivate: Function { return PolynomialFunction(self.polynomial.derivate).reduced }
-    func integral(c: Double) -> Function {
-        return PolynomialFunction(self.polynomial.integral(c: c)).reduced
-    }
+    var derivative: Function { return PolynomialFunction(self.polynomial.derivative).reduced }
+	var integral: Function { return PolynomialFunction(self.polynomial.integral).reduced }
+	
     func call(x: Double) -> Double {
         return self.polynomial.call(x: x)!
     }
     var reduced: Function {
-        if self.polynomial.degree == 0 { return ConstantFunction(value: self.polynomial[0]) }
+        if self.polynomial.degree == 0 { return Constant(self.polynomial[0]) }
         return self
     }
     var description: String { return "(\(polynomial.reducedDescription))" }
