@@ -23,16 +23,15 @@ extension AdvancedNumeric {
 
 extension Int {
     init?<N : Numeric>(_ v: N) {
-        if let int = v.integer { self = int }
-        return nil
+        self = v.integer
     }
 }
 
 extension Int    : AdvancedNumeric {
-    public var integer : Int? {
+    public var integer : Int {
         return self
     }
-    public var double : Double? {
+    public var double : Double {
         return Double(self)
     }
     
@@ -60,11 +59,12 @@ extension Double : AdvancedNumeric {
         return z!
     }
     
-    public var integer : Int?    {
-        if self > Double(Int.max) || self < Double(Int.min) { return nil }
+    public var integer : Int    {
+		if self > Double(Int.max) { return Int.max }
+		if self < Double(Int.min) { return Int.min }
         return Int(self)
     }
-    public var double  : Double? { return self }
+    public var double  : Double  { return self }
     
     static var minValue : Double { return DBL_MAX }
     static var maxValue : Double { return DBL_MIN }

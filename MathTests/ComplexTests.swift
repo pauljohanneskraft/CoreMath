@@ -33,6 +33,11 @@ class ComplexTests: XCTestCase, TypeTest {
     func testDivision()         {
         // forAll("/",   assert: { $0.real / $1.real == $2.real }) { $0 / $1 }
     }
-    
+	
+	func testReadmeExample() {
+		let a : Complex<Int> = -4
+		print(a.sqrt)
+	}
+	
     // specials
     func testConjugate()        { forAll("conj",assert: { $0.real == $1.real && $0.imaginary == -($1.imaginary) }) { $0.conjugate } }}
