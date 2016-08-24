@@ -8,20 +8,40 @@
 
 import Foundation
 
-struct Exponential: Function {
-    var base : Double
-    func call(x: Double) -> Double {
+public struct Exponential: Function {
+	
+	public internal(set) var base : Double
+	
+	public init(base: Double) { self.base = base }
+	
+	public func call(x: Double) -> Double {
         return pow(base, x)
     }
-    func integral(c: Double) -> Function {
-        return Equation(Term(ConstantFunction(value: 1.0/log(base)), self), ConstantFunction(value: c)).reduced
+	
+	public var integral : Function {
+		// 1/log(b) * b^x
+        return Term(Constant(1.0/log(base)), self).reduced
     }
-    var reduced: Function {
-        if base == 0.0 { return ConstantFunction(value: 0.0) }
-        if base == 1.0 { return ConstantFunction(value: 1.0) }
+	
+    public var reduced: Function {
+        if base == 0.0 { return Constant(0.0) }
+        if base == 1.0 { return Constant(1.0) }
         return self
     }
     
-    var derivate: Function { return Term(ConstantFunction(value: log(base)), self).reduced }
-    var description: String { return "\(self.base)^x" }
+    public var derivative: Function { return Term(Constant(log(base)), self).reduced }
+	
+	public var description	: String { return "\(self.base.reducedDescription)^x"	}
+	public var latex		: String { return description		}
+}
+
+postfix operator ^^
+
+public postfix func ^^ (lhs: Double) -> Function {
+	return Exponential(base: lhs).reduced
+}
+
+public func ^ (lhs: Double, rhs: _Polynomial) -> Function {
+	assert(rhs.degree == 1)
+	return Exponential(base: lhs).reduced
 }
