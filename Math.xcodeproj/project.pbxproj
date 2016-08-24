@@ -44,6 +44,7 @@
 		9B5790E41D52240000A07E28 /* Numbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5790E31D52240000A07E28 /* Numbers.swift */; };
 		9B71D3EB1D4BEDAD001C5BE9 /* TrigonometricFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B71D3EA1D4BEDAD001C5BE9 /* TrigonometricFunctions.swift */; };
 		9B71D3ED1D4BF1C6001C5BE9 /* TermTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B71D3EC1D4BF1C6001C5BE9 /* TermTests.swift */; };
+		9BAC04461D6CF8080003AAD6 /* _Polynomial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAC04451D6CF8080003AAD6 /* _Polynomial.swift */; };
 		9BCF157A1D4CC4DF00CC9EC9 /* Growth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCF15791D4CC4DF00CC9EC9 /* Growth.swift */; };
 /* End PBXBuildFile section */
 
@@ -98,6 +99,7 @@
 		9B5790E31D52240000A07E28 /* Numbers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Numbers.swift; sourceTree = "<group>"; };
 		9B71D3EA1D4BEDAD001C5BE9 /* TrigonometricFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrigonometricFunctions.swift; sourceTree = "<group>"; };
 		9B71D3EC1D4BF1C6001C5BE9 /* TermTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermTests.swift; sourceTree = "<group>"; };
+		9BAC04451D6CF8080003AAD6 /* _Polynomial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _Polynomial.swift; sourceTree = "<group>"; };
 		9BCF15791D4CC4DF00CC9EC9 /* Growth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Growth.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -237,6 +239,7 @@
 				9B09602F1D4E551200ED8517 /* ConstantFunction.swift */,
 				9B09602B1D4E54D100ED8517 /* ExponentialFunction.swift */,
 				9B09602D1D4E54DD00ED8517 /* CustomFunction.swift */,
+				9BAC04451D6CF8080003AAD6 /* _Polynomial.swift */,
 				9B0960311D4E56FF00ED8517 /* Polynomials */,
 			);
 			name = Functions;
@@ -404,6 +407,7 @@
 				9B5790E41D52240000A07E28 /* Numbers.swift in Sources */,
 				9B4734111D4ACD880055A7E8 /* RingLikeProtocols.swift in Sources */,
 				9B4733EB1D4ACCF50055A7E8 /* Function.swift in Sources */,
+				9BAC04461D6CF8080003AAD6 /* _Polynomial.swift in Sources */,
 				9BCF157A1D4CC4DF00CC9EC9 /* Growth.swift in Sources */,
 				9B09602A1D4E54C300ED8517 /* PolynomialFunction.swift in Sources */,
 				9B4733EA1D4ACCF50055A7E8 /* EnhancedNumber.swift in Sources */,
@@ -538,6 +542,7 @@
 		9B4733BA1D4ACBB80055A7E8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -559,6 +564,7 @@
 		9B4733BB1D4ACBB80055A7E8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;

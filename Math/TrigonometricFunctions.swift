@@ -8,19 +8,18 @@
 
 import Foundation
 
-public struct Trigonometric {
-    private init() {}
-    static let sin = sine
-    static let cos = cosine
+public enum Trigonometric {
+    public static let sin = sine
+    public static let cos = cosine
 }
 
 
 private let sine    : CustomFunction = CustomFunction("sin(x)",
                                                       function: { return sin($0) },
-                                                      integral: { return Equation(cosine, ConstantFunction(value: $0)).reduced },
-                                                      derivate: { return Term(ConstantFunction(value: -1), cosine) })
+                                                      integral: { return cosine },
+                                                      derivative: { return -cosine })
 
 private let cosine  : CustomFunction = CustomFunction("cos(x)",
                                                       function: { return cos($0) },
-                                                      integral: { return Equation(sine, ConstantFunction(value: $0)).reduced },
-                                                      derivate: { return sine })
+                                                      integral: { return sine },
+                                                      derivative: { return -sine })

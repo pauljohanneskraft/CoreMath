@@ -89,7 +89,7 @@ extension Complex where Number : AdvancedNumeric {
         } else {
             // source: http://www.mathpropress.com/stan/bibliography/complexSquareRoot.pdf
             let part = (real*real + imaginary*imaginary).sqrt
-            let coeff = (Number(integerLiteral: 1) / Number(floatLiteral: 2.0).sqrt)
+            let coeff = (Number(integerLiteral: 1) / Number(integerLiteral: 2).sqrt)
             let sgn = imaginary < 0 ? Number(integerLiteral: -1) : Number(integerLiteral: 1)
             this.real = coeff * (self.real + part).sqrt
             this.imaginary = sgn * coeff * (part - self.real).sqrt

@@ -70,7 +70,7 @@ struct Polynomial < Number : Numeric > : BasicArithmetic, CustomStringConvertibl
         return self.call
     }
     
-    var derivate : Polynomial<Element> {
+    var derivative : Polynomial<Element> {
         if self.coefficients.count == 1 { return Polynomial([0]) }
         let c = self.coefficients.count - 1
         var coefficients = [Number](repeating: 0, count: c)

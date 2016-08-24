@@ -17,3 +17,10 @@ extension Numeric {
     static var x : Polynomial<Self> { return Self.x(1) }
     
 }
+
+public func x(_ v: Double = 1) -> _Polynomial {
+	return _Polynomial(degree: v)
+}
+	
+public var x : _Polynomial { return x(1) }
+

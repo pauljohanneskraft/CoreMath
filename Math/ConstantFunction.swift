@@ -8,44 +8,39 @@
 
 import Foundation
 
-struct ConstantFunction : Function, ExpressibleByIntegerLiteral, ExpressibleByFloatLiteral {
-    init(value: Double) {
-        self.value = value
-    }
-    init(integerLiteral: Int) {
-        self.init(value: Double(integerLiteral))
-    }
-    init(floatLiteral: Double) {
-        self.init(value: floatLiteral)
-    }
-    var value : Double
-    var description: String { return self.value.reducedDescription }
-    var derivate: Function { return ConstantFunction(value: 0.0) }
-    var _integral: (Double) -> Function { assert(false) }
-    func call(x: Double) -> Double {
-        return value
-    }
-    
-    var reduced: Function { return self }
-    func integral(c: Double) -> Function {
-        return _integral(c)
-    }
+internal typealias Constant = ConstantFunction
+
+public struct ConstantFunction : Function, ExpressibleByIntegerLiteral, ExpressibleByFloatLiteral {
+	
+	public var value : Double
+	
+    public init(_ value: Double) { self.value = value }
+    public init(integerLiteral:	Int		) { self.init(Double(integerLiteral)) }
+    public init(floatLiteral:	Double	) { self.init(floatLiteral			) }
+	
+    public var description	: String	{ return self.value.reducedDescription				}
+    public var derivative	: Function	{ return ConstantFunction(0.0)						}
+	public var integral		: Function	{ return value * _Polynomial(degree: 1)				} // f = a, F = a * x
+	public var reduced		: Function	{ return self										} // not reducable
+	
+	public func call(x: Double) -> Double { return value }
 }
 
-func + (lhs: Function, rhs: Double) -> Function {
-    return Equation(lhs, ConstantFunction(value: rhs)).reduced
+public func + (lhs: Function, rhs: Double) -> Function {
+    return lhs + Constant(rhs)
 }
 
-func * (lhs: Function, rhs: Double) -> Function {
-    return Term(lhs, ConstantFunction(value: rhs)).reduced
+public func + (lhs: Double, rhs: Function) -> Function {
+	return Constant(lhs) + rhs
 }
 
+public func * (lhs: Function, rhs: Double) -> Function {
+    return lhs * Constant(rhs)
+}
 
-
-
-
-
-
+public func * (lhs: Double, rhs: Function) -> Function {
+	return Constant(lhs) * rhs
+}
 
 
 

@@ -9,62 +9,68 @@
 import Foundation
 
 struct Equation : Function, CustomStringConvertible {
-    var derivate: Function {
-        var funcs = [Function]()
-        for t in terms { funcs.append(t.derivate) }
-        return Equation(funcs)
+	
+	// stored properties
+	var terms : [ Function ]
+	
+	// initializers
+	init(_ terms: Function...)	{ self.init(terms)		}
+	init(_ terms: [Function])	{ self.terms = terms	}
+	
+	// computed properties
+    var derivative: Function {
+		return Equation(terms.map { $0.derivative.reduced }).reduced
     }
     
-    func integral(c: Double) -> Function {
-        var funcs = [Function]()
-        for t in terms { funcs.append(t.integral) }
-        return Equation(funcs)
+	var integral : Function {
+		return Equation(terms.map { $0.integral.reduced }).reduced
     }
-    
-    var terms : [ Function ]
-    
-    init(_ terms: Function...) { self.init(terms) }
-    
-    init(_ terms: [Function]) {
-        self.terms = terms
-    }
-    
+	
+	var description : String {
+		if terms.isEmpty { return "0" }
+		var result = "\(terms.first!)"
+		for t in terms.dropFirst() {
+			result += " + \(t)"
+		}
+		return result
+	}
+	
+	var latex : String {
+		if terms.isEmpty { return "0" }
+		var result = "\(terms.first!.latex)"
+		for t in terms.dropFirst() {
+			result += " + \(t.latex)"
+		}
+		return result
+	}
+	
+	var reduced: Function {
+		var this = self
+		var i	 = 0
+		var rest = 0.0
+		var poly = PolynomialFunction(0)
+		while i < this.terms.count {
+			this.terms[i] = this.terms[i].reduced
+			if let r = this.terms[i] as? ConstantFunction {
+				rest += r.value
+				this.terms.remove(at: i)
+			} else if let r = this.terms[i] as? PolynomialFunction {
+				poly.polynomial += r.polynomial
+				this.terms.remove(at: i)
+			}
+			i += 1
+		}
+		if poly.polynomial != 0 { this.terms.append(poly.reduced) }
+		if rest != 0.0 { this.terms.append(Constant(rest)) }
+		if this.terms.count >  1 { return this }
+		if this.terms.count == 1 { return this.terms[0] }
+		return Constant(0.0)
+	}
+	
+	// functions
     func call(x: Double) -> Double {
         var value = 0.0
         for t in terms { value += t.call(x: x) }
         return value
     }
-    
-    var description : String {
-        if terms.isEmpty { return "0" }
-        var result = "\(terms.first!)"
-        for t in terms.dropFirst() {
-            result += " + \(t)"
-        }
-        return result
-    }
-    
-    var reduced: Function {
-        var this = self
-        var i = 0
-        var rest = 0.0
-        var poly = PolynomialFunction(0)
-        while i < this.terms.count {
-            this.terms[i] = this.terms[i].reduced
-            if let r = this.terms[i] as? ConstantFunction {
-                rest += r.value
-                this.terms.remove(at: i)
-            } else if let r = this.terms[i] as? PolynomialFunction {
-                poly.polynomial += r.polynomial
-                this.terms.remove(at: i)
-            }
-            i += 1
-        }
-        if poly.polynomial != 0 { this.terms.append(poly.reduced) }
-        if rest != 0.0 { this.terms.append(ConstantFunction(value: rest)) }
-        if this.terms.count >  1 { return this }
-        if this.terms.count == 1 { return this.terms[0] }
-        return ConstantFunction(value: 0.0)
-    }
-    
 }
