@@ -1,6 +1,6 @@
 # Math [![Build Status](https://travis-ci.org/pauljohanneskraft/Math.svg?branch=master)](https://travis-ci.org/pauljohanneskraft/Math)
 
-## [Constants](Math/Constants.swift)
+## [Constants](https://github.com/pauljohanneskraft/Math/tree/master/Math/Constants.swift)
 
 Easily access constants using the Constants-enum, e.g. 
 ```swift 
@@ -17,11 +17,11 @@ Math will also be offering simple structs to check if a certain operator on a se
 
 Numbers and other math constructs are separated into three categories:
 
-- [BasicArithmetic](Math/BasicArithmetic.swift): operators +, -, *, /, +=, -=, *=, /=
-- [Numeric](Math/Numeric.swift): being BasicArithmetic, having an integer, double, sqrt value, raising to a power is possible
-- [AdvancedNumeric](Math/AdvancedNumeric.swift): being Numeric and remainder-calculation is possible
+- [BasicArithmetic](https://github.com/pauljohanneskraft/Math/tree/master/Math/BasicArithmetic.swift): operators +, -, *, /, +=, -=, *=, /=
+- [Numeric](https://github.com/pauljohanneskraft/Math/tree/master/Math/Numeric.swift): being BasicArithmetic, having an integer, double, sqrt value, raising to a power is possible
+- [AdvancedNumeric](https://github.com/pauljohanneskraft/Math/tree/master/Math/AdvancedNumeric.swift): being Numeric and remainder-calculation is possible
 
-### [Complex Numbers](Math/Complex.swift)
+### [Complex Numbers](https://github.com/pauljohanneskraft/Math/tree/master/Math/Complex.swift)
 
 Complex represents complex numbers and conforms to BasicArithmetic, but offers all the advantages of Numeric, if the generic type is Numeric. It is designed using a generic type for the real and imaginary part of the number. Operators such as +, -, *, /, +=, -=, *=, /= are also implemented.
 
@@ -31,7 +31,7 @@ print(a.sqrt)
 // Prints "2i"
 ```
 
-### [Rational Numbers](Math/RationalNumber.swift)
+### [Rational Numbers](https://github.com/pauljohanneskraft/Math/tree/master/Math/RationalNumber.swift)
 
 RationalNumber uses two Int-values to represent a rational number (a fraction of two integers). RationalNumber implements AdvancedNumeric. For a cleaner look the typealias Q has also been coded.
 
@@ -41,7 +41,7 @@ print(a)
 // Prints "1/2"
 ```
 
-### [Enhanced Numbers](Math/EnhancedNumber.swift)
+### [Enhanced Numbers](https://github.com/pauljohanneskraft/Math/tree/master/Math/EnhancedNumber.swift)
 
 Enhanced is a wrapper struct for e.g. Int to add Double-like behavior, when dividing by 0 etc. It offers additional cases like infinity or nan.
 
@@ -51,7 +51,7 @@ print(a / 0)
 // Prints "∞"
 ```
 
-## [TeX](Math/LaTeXConvertible.swift)
+## [TeX](https://github.com/pauljohanneskraft/Math/tree/master/Math/LaTeXConvertible.swift)
 
 To implement the protocol LaTeXConvertible, a type needs to have one property:
 
@@ -61,12 +61,12 @@ public protocol LaTeXConvertible {
 }
 ```
 
-## [Functions](Math/Function.swift)
+## [Functions](https://github.com/pauljohanneskraft/Math/tree/master/Math/Function.swift)
 
 Functions is a protocol that tries to combine all functions that are imaginable in math, e.g. x^5 + x^3, sin(x), cos(x), etc.
 They can all be reduced, e.g. a Term with only one factor returns the factor and therefore keeps the function as simple as possible. It is planned that for all Functions a derivate and an integral is available.
 
-### [Term](Math/Term.swift)
+### [Term](https://github.com/pauljohanneskraft/Math/tree/master/Math/Term.swift)
 
 A Term is a product of functions, which is implemented in the Term-struct.
 
@@ -84,7 +84,7 @@ Trigonometric Functions, Constant Functions, as well as Exponential Functions ar
 
 ## LinearAlgebra
 
-### [Matrix](Math/Matrix.swift)
+### [Matrix](https://github.com/pauljohanneskraft/Math/tree/master/Math/Matrix.swift)
 
 The struct Matrix implements the most common matrix behavior, including ``` rank, rowEchelonForm, strictRowEchelon, inverse, determinant, eigenvalues, +, -, *, ==  ```.
 
