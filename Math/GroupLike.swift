@@ -8,8 +8,8 @@
 
 import Foundation
 
-struct GroupLike<Element where Element : Hashable, Element: Comparable> : SemigroupProtocol, Commutative {
-    init(set: Set<Element>, op: (Element,Element) -> Element, neutralElement: Element? = nil, inv: ((Element) -> Element)? = nil, sign: Character = "•") {
+struct GroupLike<Element> : SemigroupProtocol, Commutative where Element : Hashable, Element: Comparable {
+    init(set: Set<Element>, op: @escaping (Element,Element) -> Element, neutralElement: Element? = nil, inv: ((Element) -> Element)? = nil, sign: Character = "•") {
         self.set = set
         self.op = op
         self.neutralElement = neutralElement
@@ -61,8 +61,8 @@ struct GroupLike<Element where Element : Hashable, Element: Comparable> : Semigr
     }
 }
 
-struct Magma<Element where Element : Hashable, Element: Comparable> : MagmaProtocol {
-    init?(set: Set<Element>, op: (Element, Element) -> Element, sign: Character = "•") {
+struct Magma<Element> : MagmaProtocol where Element : Hashable, Element: Comparable {
+    init?(set: Set<Element>, op: @escaping (Element, Element) -> Element, sign: Character = "•") {
         self.set = set
         self.op = op
         self.sign = sign
@@ -80,8 +80,8 @@ struct Magma<Element where Element : Hashable, Element: Comparable> : MagmaProto
     let sign : Character
 }
 
-struct Semigroup<Element where Element : Hashable, Element: Comparable> : SemigroupProtocol {
-    init?(set: Set<Element>, op: (Element, Element) -> Element, sign: Character = "•") {
+struct Semigroup<Element> : SemigroupProtocol where Element : Hashable, Element: Comparable {
+    init?(set: Set<Element>, op: @escaping (Element, Element) -> Element, sign: Character = "•") {
         self.set = set
         self.op = op
         self.sign = sign
@@ -99,8 +99,8 @@ struct Semigroup<Element where Element : Hashable, Element: Comparable> : Semigr
     let sign : Character
 }
 
-struct Monoid<Element where Element : Hashable, Element: Comparable> : MonoidProtocol {
-    init?(set: Set<Element>, op: (Element, Element) -> Element, neutralElement: Element, sign: Character = "•") {
+struct Monoid<Element> : MonoidProtocol where Element : Hashable, Element: Comparable {
+    init?(set: Set<Element>, op: @escaping (Element, Element) -> Element, neutralElement: Element, sign: Character = "•") {
         self.set = set
         self.op = op
         self.neutralElement = neutralElement
@@ -121,8 +121,8 @@ struct Monoid<Element where Element : Hashable, Element: Comparable> : MonoidPro
     let sign : Character
 }
 
-struct Group<Element where Element : Hashable, Element: Comparable> : GroupProtocol {
-    init?(set: Set<Element>, op: (Element, Element) -> Element, neutralElement: Element, inv: (Element) -> Element, sign: Character = "•") {
+struct Group<Element> : GroupProtocol where Element : Hashable, Element: Comparable {
+	init?(set: Set<Element>, op: @escaping (Element, Element) -> Element, neutralElement: Element, inv: @escaping (Element) -> Element, sign: Character = "•") {
         self.set = set
         self.op = op
         self.neutralElement = neutralElement
@@ -146,8 +146,8 @@ struct Group<Element where Element : Hashable, Element: Comparable> : GroupProto
     let sign : Character
 }
 
-struct AbelianGroup<Element where Element : Hashable, Element: Comparable> : AbelianGroupProtocol {
-    init?(set: Set<Element>, op: (Element, Element) -> Element, neutralElement: Element, inv: (Element) -> Element, sign: Character = "•") {
+struct AbelianGroup<Element> : AbelianGroupProtocol where Element : Hashable, Element: Comparable {
+    init?(set: Set<Element>, op: @escaping (Element, Element) -> Element, neutralElement: Element, inv: @escaping (Element) -> Element, sign: Character = "•") {
         self.set = set
         self.op = op
         self.neutralElement = neutralElement

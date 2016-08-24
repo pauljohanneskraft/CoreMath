@@ -16,8 +16,8 @@ public typealias Q = RationalNumber
 //
 
 public struct RationalNumber : AdvancedNumeric, Ordered {
-    private(set) var numerator   : Int
-    private(set) var denominator : Int
+    fileprivate(set) var numerator   : Int
+    fileprivate(set) var denominator : Int
     
     public init(_ numerator: Int, _ denominator: Int) {
         self.init(numerator: numerator, denominator: denominator)
@@ -43,11 +43,11 @@ public struct RationalNumber : AdvancedNumeric, Ordered {
         }
     }
     
-    public var integer : Int? {
+    public var integer : Int {
         return numerator / denominator
     }
     
-    public var double: Double? {
+    public var double: Double {
         return Double(numerator) / Double(denominator)
     }
     
@@ -170,7 +170,7 @@ extension RationalNumber {
     }
     
     // source: http://stackoverflow.com/questions/95727/how-to-convert-floats-to-human-readable-fractions
-    private init(readable value: Double) {
+    fileprivate init(readable value: Double) {
         assert(value <= Double(Int.max))
         let accuracy = max(value.inaccuracy, 1e-11)
         
@@ -302,7 +302,7 @@ public func % (lhs: Double, rhs: Double) -> Double {
 }
 
 public func %= (lhs: inout RationalNumber, rhs: RationalNumber) {
-    lhs -= rhs * Q( (lhs / rhs).integer! )
+    lhs -= rhs * Q( (lhs / rhs).integer )
 }
 
 extension Double {

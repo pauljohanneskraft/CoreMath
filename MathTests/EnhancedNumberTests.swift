@@ -26,5 +26,10 @@ class EnhancedNumberTests: XCTestCase, TypeTest {
     func testSubtraction()      { forAll("-") { $0 - $1 } }
     func testMultiplication()   { forAll("*") { $0 * $1 } }
     func testDivision()         { forAll("/") { $0 / $1 } }
+	
+	func testReadmeExample() {
+		let a : Enhanced<Int> = 5
+		print( a / 0 )
+	}
     
 }

@@ -28,7 +28,7 @@ public struct Complex < Number : BasicArithmetic > : BasicArithmetic {
     }
     
     public var hashValue: Int {
-        if(sizeofValue(real) == sizeof(Int.self)) {
+        if(MemoryLayout<Number>.size == MemoryLayout<Int>.size) {
             return unsafeBitCast(real, to: Int.self) &+ unsafeBitCast(imaginary, to: Int.self)
         } else { return -real.hashValue &+ imaginary.hashValue }
     }
@@ -55,17 +55,17 @@ public struct Complex < Number : BasicArithmetic > : BasicArithmetic {
 }
 
 extension Complex where Number : Numeric {
-    public var integer: Int? {
-        if imaginary != 0 { return nil }
+    public var integer: Int {
+		assert(imaginary != 0, "imaginary part != 0")
         return real.integer
     }
     
     public var abs : Complex<Number> {
-        return Complex((real*real + imaginary*imaginary).sqrt!)
+        return Complex((real*real + imaginary*imaginary).sqrt)
     }
     
-    public var double: Double? {
-        if imaginary != 0 { return nil }
+    public var double: Double {
+		assert(imaginary != 0, "imaginary part != 0")
         return real.double
     }
 
@@ -78,21 +78,21 @@ extension Complex where Number : Randomizable {
 }
 
 extension Complex where Number : AdvancedNumeric {
-    public var sqrt : Complex<Number>? {
+    public var sqrt : Complex<Number> {
         var this = self
         if this.imaginary == 0 {
             if real < 0 {
-                this.imaginary = (-(this.real)).sqrt!
+                this.imaginary = (-(this.real)).sqrt
                 this.real = 0
-            } else { this.real = real.sqrt! }
+            } else { this.real = real.sqrt }
             return this
         } else {
             // source: http://www.mathpropress.com/stan/bibliography/complexSquareRoot.pdf
-            let part = (real*real + imaginary*imaginary).sqrt!
-            let coeff = (Number(integerLiteral: 1) / Number(floatLiteral: 2.0).sqrt!)
+            let part = (real*real + imaginary*imaginary).sqrt
+            let coeff = (Number(integerLiteral: 1) / Number(floatLiteral: 2.0).sqrt)
             let sgn = imaginary < 0 ? Number(integerLiteral: -1) : Number(integerLiteral: 1)
-            this.real = coeff * (self.real + part).sqrt!
-            this.imaginary = sgn * coeff * (part - self.real).sqrt!
+            this.real = coeff * (self.real + part).sqrt
+            this.imaginary = sgn * coeff * (part - self.real).sqrt
             // print(part, coeff, sgn, self, this)
             return this
         }

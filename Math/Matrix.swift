@@ -9,7 +9,7 @@
 public struct Matrix < N > : ExpressibleByArrayLiteral, CustomStringConvertible {
     public typealias Element = [N]
     
-    private(set) var elements : [[N]]
+    fileprivate(set) var elements : [[N]]
     
     public init(_ elements: [[N]]) {
         self.elements = elements

@@ -54,15 +54,15 @@ public enum Enhanced < Number : Numeric > : Numeric, Hashable {
         return .finite(Number.random)
     }
     
-    public var integer : Int? {
+    public var integer : Int	{
         switch self {
         case let .finite(v):        return v.integer
         case let .infinity(sign):   return sign ? Int.min : Int.max
-        case .nan:                  return nil
+		default: assert(false, "illegal state \(self)")
         }
     }
     
-    public var double : Double? {
+    public var double : Double {
         switch self {
         case let .finite(v):        return v.double
         case let .infinity(sign):   return sign ? -Double.infinity : Double.infinity

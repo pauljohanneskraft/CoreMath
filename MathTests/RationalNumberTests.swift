@@ -18,10 +18,10 @@ class RationalNumberTests: XCTestCase, TypeTest {
     
     // basic arithmetic
     func testAddition()         {
-        forAll("+", assert: { a,b,c in return ((a.double! + b.double!) - (c.double!)) < 1e-10 } ) { $0 + $1 }
+        forAll("+", assert: { a,b,c in return ((a.double + b.double) - (c.double)) < 1e-10 } ) { $0 + $1 }
     }
     func testSubtraction()      {
-        forAll("-", assert: { a,b,c in return ((a.double! - b.double!) - (c.double!)) < 1e-10 } ) { $0 - $1 }
+        forAll("-", assert: { a,b,c in return ((a.double - b.double) - (c.double)) < 1e-10 } ) { $0 - $1 }
     }
     func testMultiplication()   {
         // forAll("*", assert: { a,b,c in return ((a.double! * b.double!) - (c.double!)) < 1e-10 } ) { $0 * $1 }
@@ -37,7 +37,7 @@ class RationalNumberTests: XCTestCase, TypeTest {
             let start = NSDate().timeIntervalSinceReferenceDate
             let rat = Q(floatLiteral: value)
             let end = NSDate().timeIntervalSinceReferenceDate
-            let ratDouble = rat.double!
+            let ratDouble = rat.double
             let _time = end - start
             print(rat, ratDouble, ratDouble =~ value, "took", _time)
             time += _time
@@ -46,7 +46,7 @@ class RationalNumberTests: XCTestCase, TypeTest {
     }
     
     func testDoublesEasy() {
-        doubles(values: [0.125, 0.00125, 2.0.sqrt!, 3.0.sqrt!, 3e32.sqrt!, nextafter(0.0, DBL_MAX) ])
+        doubles(values: [0.125, 0.00125, 2.0.sqrt, 3.0.sqrt, 3e32.sqrt, nextafter(0.0, DBL_MAX) ])
     }
 }
 
