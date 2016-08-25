@@ -154,6 +154,7 @@ public func - (lhs: Function, rhs: Function) -> Function {
 }
 
 public prefix func - (lhs: Function) -> Function {
+	if let l = lhs as? Constant { return Constant(-(l.value)) }
 	return -1 * lhs
 }
 
