@@ -63,15 +63,17 @@ struct Equation : Function, CustomStringConvertible {
 		var rest = 0.0
 		var poly = PolynomialFunction(0)
 		while i < this.terms.count {
-			this.terms[i] = this.terms[i].reduced
-			if let r = this.terms[i] as? ConstantFunction {
+			let t = this.terms[i].reduced
+			if let r = t as? ConstantFunction {
 				rest += r.value
 				this.terms.remove(at: i)
-			} else if let r = this.terms[i] as? PolynomialFunction {
+			} else if let r = t as? PolynomialFunction {
 				poly.polynomial += r.polynomial
 				this.terms.remove(at: i)
+			} else {
+				this.terms[i] = t
+				i += 1
 			}
-			i += 1
 		}
 		/*
 		for i in this.terms.indices.dropLast() {
