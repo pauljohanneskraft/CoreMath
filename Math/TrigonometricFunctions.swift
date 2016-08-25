@@ -9,8 +9,8 @@
 import Foundation
 
 public enum Trigonometric {
-    public static let sin = sine
-    public static let cos = cosine
+	public static let sin = sine
+	public static let cos = cosine
 }
 
 private let sine    : CustomFunction = CustomFunction("sin(x)",

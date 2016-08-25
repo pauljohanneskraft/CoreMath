@@ -11,16 +11,16 @@ import Math
 
 class BasicArithmeticTests: XCTestCase {
 	
-    func testConformanceToAdvancedNumeric() {
+	func testConformanceToAdvancedNumeric() {
 		conformsToAdvancedNumeric(Int   .self)
 		conformsToAdvancedNumeric(Int8  .self)
 		conformsToAdvancedNumeric(Int16 .self)
 		conformsToAdvancedNumeric(Int32 .self)
 		conformsToAdvancedNumeric(Int64 .self)
-    }
+	}
 	
 	func conformsToAdvancedNumeric<N : AdvancedNumeric>(_ type: N.Type) {
 		print(type, "\tconforms to AdvancedNumeric.")
 	}
-
+	
 }

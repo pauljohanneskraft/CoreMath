@@ -10,15 +10,15 @@ import XCTest
 import Math
 
 class ConstantsTest: XCTestCase {
-    
-    func testPi() {
-        print(Constants.pi)
-    }
-    
-    func testTau() {
-        assert(Constants.tau == Constants.pi * 2)
-        print(Constants.tau)
-    }
+	
+	func testPi() {
+		print(Constants.pi)
+	}
+	
+	func testTau() {
+		assert(Constants.tau == Constants.pi * 2)
+		print(Constants.tau)
+	}
 	
 	func testGoldenRatio() {
 		print("pi:         ", Constants.pi)
@@ -49,5 +49,5 @@ class ConstantsTest: XCTestCase {
 		print("-----------------------------------------------------")
 		print("y_0:        ", Constants.Physics.y_0)
 	}
-    
+	
 }

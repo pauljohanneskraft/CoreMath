@@ -60,16 +60,16 @@ struct Term : Function {
 		// print(self, "end of integrating with result:", result)
 		return result
 	}
-    
-    init(_ factors: Function...) {
-        self.factors = factors
-    }
+	
+	init(_ factors: Function...) {
+		self.factors = factors
+	}
 	
 	init(_ factors: [Function]) {
 		self.factors = factors
 	}
 	
-    var derivative: Function {
+	var derivative: Function {
 		var terms = [Function]()
 		for fi in factors.indices {
 			var facs = self.factors
@@ -80,20 +80,20 @@ struct Term : Function {
 			// print(b)
 			terms.append(b)
 		}
-        return Equation(terms)
-    }
-    
-    func call(x: Double) -> Double {
-        var res = 1.0
-        for f in factors {
-            res *= f.call(x: x)
-        }
-        return res
-    }
-    
-    var description: String {
-       return coefficientDescription(first: true)
-    }
+		return Equation(terms)
+	}
+	
+	func call(x: Double) -> Double {
+		var res = 1.0
+		for f in factors {
+			res *= f.call(x: x)
+		}
+		return res
+	}
+	
+	var description: String {
+		return coefficientDescription(first: true)
+	}
 	
 	public var debugDescription: String {
 		guard factors.count > 0 else { return "Term()" }
@@ -149,7 +149,7 @@ struct Term : Function {
 		}
 	}
 	
-    var reduced: Function {
+	var reduced: Function {
 		guard factors.count > 0 else { return Constant(0) }
 		guard factors.count > 1 else { return factors[0] }
 		if factors.count == 2 {
@@ -179,12 +179,12 @@ struct Term : Function {
 			}
 		}
 		var this = self
-        var i = 0
-        var rest = 1.0
-        var poly = PolynomialFunction(1)
+		var i = 0
+		var rest = 1.0
+		var poly = PolynomialFunction(1)
 		var poly1 = _Polynomial(degree: 0)
-        while i < this.factors.count {
-            // print("testing at", i, ":", this.factors[i], "in", this.factors, "with length", this.factors.count)
+		while i < this.factors.count {
+			// print("testing at", i, ":", this.factors[i], "in", this.factors, "with length", this.factors.count)
 			switch this.factors[i] {
 			case let r as Term:
 				this.factors.append(contentsOf: r.factors)
@@ -202,18 +202,18 @@ struct Term : Function {
 				this.factors.remove(at: i)
 			default: i += 1
 			}
-        }
-        // print(this.factors, poly, rest)
+		}
+		// print(this.factors, poly, rest)
 		if poly1.degree != 0 { this.factors.append(poly1) }
-        let r = poly.polynomial * Polynomial<Double>(rest)
+		let r = poly.polynomial * Polynomial<Double>(rest)
 		if r != 1.0 {
 			if r.degree == 0 { this.factors = [Constant(r[0])] + this.factors }
 			else { this.factors.append(PolynomialFunction(r).reduced) }
 		}
-        if this.factors.count >  1 { return this }
-        if this.factors.count == 1 { return this.factors[0] }
-        return Constant(1.0)
-    }
-    
-    var factors : [ Function ]
+		if this.factors.count >  1 { return this }
+		if this.factors.count == 1 { return this.factors[0] }
+		return Constant(1.0)
+	}
+	
+	var factors : [ Function ]
 }
