@@ -17,8 +17,8 @@ public func Z_(_ v: UInt) -> Set<UInt> {
 }
 
 public protocol Ordered : Comparable {
-	static var minValue : Self { get }
-	static var maxValue : Self { get }
+	static var min : Self { get }
+	static var max : Self { get }
 }
 
 public protocol Randomizable {

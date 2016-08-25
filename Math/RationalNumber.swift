@@ -51,11 +51,11 @@ public struct RationalNumber : AdvancedNumeric, Ordered {
 		return Double(numerator) / Double(denominator)
 	}
 	
-	public static var minValue : RationalNumber {
+	public static var min : RationalNumber {
 		return RationalNumber(Int.min, 1)
 	}
 	
-	public static var maxValue : RationalNumber {
+	public static var max : RationalNumber {
 		return RationalNumber(Int.max, 1)
 	}
 	
@@ -172,7 +172,7 @@ extension RationalNumber {
 	// source: http://stackoverflow.com/questions/95727/how-to-convert-floats-to-human-readable-fractions
 	fileprivate init(readable value: Double) {
 		assert(value <= Double(Int.max))
-		let accuracy = max(value.inaccuracy, 1e-11)
+		let accuracy = [value.inaccuracy, 1e-11].max()!
 		
 		let sign = value < 0
 		let val = sign ? -value : value
