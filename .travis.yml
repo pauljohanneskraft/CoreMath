@@ -2,6 +2,7 @@ branches:
   only:
   - master
   - Development
+  - travis-ci-on-linux
 language: objective-c
 os:
 - linux
