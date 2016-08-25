@@ -37,6 +37,14 @@ public func + (lhs: Double, rhs: Function) -> Function {
 	return Constant(lhs) + rhs
 }
 
+public func - (lhs: Function, rhs: Double) -> Function {
+	return lhs + Constant(-rhs)
+}
+
+public func - (lhs: Double, rhs: Function) -> Function {
+	return Constant(lhs) + (-rhs)
+}
+
 public func * (lhs: Function, rhs: Double) -> Function {
     return lhs * Constant(rhs)
 }
