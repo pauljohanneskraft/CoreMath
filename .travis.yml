@@ -3,7 +3,9 @@ branches:
   - master
   - Development
 language: objective-c
-os: osx
+os:
+- linux
+- osx
 osx_image: xcode8
 install:
   - gem install xcpretty
