@@ -28,14 +28,14 @@ struct Fraction : Function {
             denominator: denominator * denominator )
     }
 	var integral : Function {
-        assert(false)
+        assert(false, "integral not yet supported for fractions.")
         return self
     }
     var reduced: Function {
         let denominator = self.denominator.reduced
         let numerator   = self.numerator.reduced
         if let d = denominator.reduced as? ConstantFunction {
-            return Term(numerator, Constant(1.0/d.value)).reduced
+            return numerator * (1.0/d.value)
         }
         if let n = numerator as? PolynomialFunction, let d = denominator as? PolynomialFunction {
             let frac = n.polynomial /% d.polynomial

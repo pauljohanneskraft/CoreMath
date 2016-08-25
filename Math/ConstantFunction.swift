@@ -22,6 +22,9 @@ public struct ConstantFunction : Function, ExpressibleByIntegerLiteral, Expressi
     public var derivative	: Function	{ return ConstantFunction(0.0)						}
 	public var integral		: Function	{ return value * _Polynomial(degree: 1)				} // f = a, F = a * x
 	public var reduced		: Function	{ return self										} // not reducable
+	public func coefficientDescription(first: Bool) -> String {
+		return value.coefficientDescription(first: first)
+	}
 	
 	public func call(x: Double) -> Double { return value }
 }

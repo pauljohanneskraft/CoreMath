@@ -20,7 +20,7 @@ public struct Exponential: Function {
 	
 	public var integral : Function {
 		// 1/log(b) * b^x
-        return Term(Constant(1.0/log(base)), self).reduced
+        return Constant(1.0/log(base)) * self
     }
 	
     public var reduced: Function {
@@ -29,7 +29,7 @@ public struct Exponential: Function {
         return self
     }
     
-    public var derivative: Function { return Term(Constant(log(base)), self).reduced }
+    public var derivative: Function { return log(base) * self }
 	
 	public var description	: String { return "\(self.base.reducedDescription)^x"	}
 	public var latex		: String { return description		}

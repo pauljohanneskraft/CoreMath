@@ -26,11 +26,24 @@ struct Equation : Function, CustomStringConvertible {
 		return Equation(terms.map { $0.integral.reduced }).reduced
     }
 	
+	var debugDescription: String {
+		guard terms.count > 0 else { return "Term()" }
+		var arr = ""
+		for i in terms.dropLast() {
+			arr += "\(i.debugDescription), "
+		}
+		return "Equation(\(arr)\(terms.last!.debugDescription))"
+	}
+	
+	func coefficientDescription(first: Bool) -> String {
+		return first ? "(\(description))" : "+ \(description)"
+	}
+	
 	var description : String {
 		if terms.isEmpty { return "0" }
-		var result = "\(terms.first!)"
+		var result = "\(terms.first!.coefficientDescription(first: true))"
 		for t in terms.dropFirst() {
-			result += " + \(t)"
+			result += " \(t.coefficientDescription(first: false))"
 		}
 		return result
 	}
@@ -60,6 +73,33 @@ struct Equation : Function, CustomStringConvertible {
 			}
 			i += 1
 		}
+		/*
+		for i in this.terms.indices.dropLast() {
+			if let ti = this.terms[i] as? Term {
+				for j in (i+1) ..< this.terms.count {
+					if let tj = this.terms[j] as? Term {
+						var tif = ti.factors.sorted { $0.description < $1.description }
+						var tjf = tj.factors.sorted { $0.description < $1.description }
+						var terms = [Function]()
+						var ii = 0
+						var jj = 0
+						while ii < tif.count && jj < tjf.count {
+							let elemI = tif[ii]
+							let elemJ = tjf[jj]
+							if elemI == elemJ {
+								terms.append(tif.remove(at: ii))
+								tjf.remove(at: jj)
+							} else if elemI.description < elemJ.description {
+								ii += 1
+							} else { jj += 1 }
+						}
+						this.terms.remove(at: j)
+						this.terms[i] = Term(terms).reduced * ( Term(tif).reduced + Term(tjf).reduced )
+					}
+				}
+			}
+		}
+		*/
 		if poly.polynomial != 0 { this.terms.append(poly.reduced) }
 		if rest != 0.0 { this.terms.append(Constant(rest)) }
 		if this.terms.count >  1 { return this }
