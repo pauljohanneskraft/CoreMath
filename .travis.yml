@@ -8,7 +8,7 @@ before_install:
   - export PATH=${PWD}/swift-3.0-PREVIEW-6-ubuntu14.04.tar.gz/usr/bin:"${PATH}"
 script:
   - git clone https://github.com/apple/swift-package-manager
-  - cd swift-package-manager && cd ../
-  - swift-package-manager/Utilities/bootstrap
-  - swift-package-manager/.build/debug/swift-build
-  - swift-package-manager/.build/debug/swift-test
+  - cd swift-package-manager
+  - Utilities/bootstrap
+  - .build/debug/swift-build
+  - .build/debug/swift-test
