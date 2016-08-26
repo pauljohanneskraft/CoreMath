@@ -1,14 +1,28 @@
-os: linux
+branches:
+  only:
+  - master
+  - Development
+  - Feature
+os: 
+	- linux
+	- osx
 sudo: required
 dist: trusty
 before_install:
-  - wget -q -O - https://swift.org/keys/all-keys.asc | gpg --import -
-  - wget https://swift.org/builds/swift-3.0-preview-6/ubuntu1404/swift-3.0-PREVIEW-6/swift-3.0-PREVIEW-6-ubuntu14.04.tar.gz
-  - tar xzf swift-3.0-PREVIEW-6-ubuntu14.04.tar.gz
-  - export PATH=${PWD}/swift-3.0-PREVIEW-6-ubuntu14.04/usr/bin:"${PATH}"
-  - wget https://github.com/apple/swift-package-manager/archive/swift-DEVELOPMENT-SNAPSHOT-2016-08-25-a.tar.gz
-  - tar xzf swift-DEVELOPMENT-SNAPSHOT-2016-08-25-a.tar.gz
-  - export PATH=${PWD}/swift-DEVELOPMENT-SNAPSHOT-2016-08-25-a/usr/bin:"${PATH}"
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then
+  		wget -q -O - https://swift.org/keys/all-keys.asc | gpg --import -
+		wget https://swift.org/builds/swift-3.0-preview-6/ubuntu1404/swift-3.0-PREVIEW-6/swift-3.0-PREVIEW-6-ubuntu14.04.tar.gz
+		tar xzf swift-3.0-PREVIEW-6-ubuntu14.04.tar.gz
+		export PATH=${PWD}/swift-3.0-PREVIEW-6-ubuntu14.04/usr/bin:"${PATH}"
+		wget https://github.com/apple/swift-package-manager/archive/swift-DEVELOPMENT-SNAPSHOT-2016-08-25-a.tar.gz
+		tar xzf swift-DEVELOPMENT-SNAPSHOT-2016-08-25-a.tar.gz
+		export PATH=${PWD}/swift-DEVELOPMENT-SNAPSHOT-2016-08-25-a/usr/bin:"${PATH}"
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then
+  		gem install xcpretty-travis-formatter
 script:
-  - swift package --version
-  - swift build
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then
+  		swift package --version
+		swift build
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then
+  		xcodebuild test -workspace Math.xcworkspace -scheme Math | xcpretty -f `xcpretty-travis-formatter` && exit ${PIPESTATUS[0]}
+  		
