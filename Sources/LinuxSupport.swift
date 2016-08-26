@@ -9,8 +9,10 @@
 import Foundation
 
 #if os(Linux)
-	public func arc4random() -> UInt32 {
-		return random()
-	}
 	public var DBL_MAX : Double { return unsafeBitCast(Int.max, to: Double.self) }
+	public var DBL_MIN : Double { return unsafeBitCast(Int.min, to: Double.self) }
+#else
+	public func random() -> Int {
+		return Int(arc4random())
+	}
 #endif

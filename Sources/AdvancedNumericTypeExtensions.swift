@@ -21,7 +21,7 @@ public extension IntegerAdvancedNumeric {
 	public var integer : Int { return hashValue }
 	public var isInteger : Bool { return true }
 	public static var random : Self {
-		return Self(integerLiteral: Int(arc4random() % UInt32(Self.max.integer)))
+		return Self(integerLiteral: Math.random())
 	}
 }
 
@@ -36,7 +36,7 @@ extension Int    : AdvancedNumeric {
 	}
 	
 	public static var random : Int {
-		return (arc4random() % 2 == 0 ? 1 : -1) * Int(arc4random() % UInt32(UInt8.max))
+		return (Math.random() % 2 == 0 ? 1 : -1) * Int(Math.random() % Int(UInt8.max))
 	}
 	
 	var isInteger : Bool { return true }

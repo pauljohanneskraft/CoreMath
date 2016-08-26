@@ -56,8 +56,8 @@ struct Polynomial < Number : Numeric > : BasicArithmetic, CustomStringConvertibl
 		var res = [Polynomial<Number>]()
 		for _ in 0 ..< count {
 			var p = Polynomial<Number>()
-			for j in 0 ..< (Int(arc4random()) % deg) + 1 {
-				if arc4random() % 2 == 0 {
+			for j in 0 ..< (Math.random() % deg) + 1 {
+				if Math.random() % 2 == 0 {
 					p[j] = Number.random
 				}
 			}
