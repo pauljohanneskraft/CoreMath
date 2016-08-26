@@ -2,6 +2,7 @@ branches:
   only:
   - master
   - Development
+  - Feature
 language: objective-c
 os: osx
 osx_image: xcode8
