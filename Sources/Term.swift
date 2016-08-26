@@ -22,7 +22,7 @@ struct Term : Function {
 		
 		var terms = [Function]()
 		let indices = factors.indices
-		let integratedIndex = (Int(arc4random()) % (factors.count))
+		let integratedIndex = (Math.random() % factors.count)
 		let factor = factors[integratedIndex].integral.reduced
 		var product = [factor]
 		for i in indices {
