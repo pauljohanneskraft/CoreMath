@@ -11,3 +11,5 @@ before_install:
   - export PATH=${PWD}/swift-DEVELOPMENT-SNAPSHOT-2016-08-25-a/usr/bin:"${PATH}"
 script:
   - swift package --version
+  - swift-build
+  - swift-test
