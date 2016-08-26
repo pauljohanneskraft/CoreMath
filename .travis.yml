@@ -8,6 +8,7 @@ os:
 - osx
 sudo: required
 dist: trusty
+language: objective-c
 before_install:
 - if [ "$TRAVIS_OS_NAME" == "linux" ]; then
     wget -q -O - https://swift.org/keys/all-keys.asc | gpg --import -
