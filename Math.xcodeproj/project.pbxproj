@@ -49,6 +49,7 @@
 		9BD8A69E1D705C2F00C2618E /* RingLikeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A67F1D705C2F00C2618E /* RingLikeProtocols.swift */; };
 		9BD8A69F1D705C2F00C2618E /* Term.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A6801D705C2F00C2618E /* Term.swift */; };
 		9BD8A6A01D705C2F00C2618E /* TrigonometricFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A6811D705C2F00C2618E /* TrigonometricFunctions.swift */; };
+		9BD8A6A31D705D6500C2618E /* LinuxSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A6A21D705D6500C2618E /* LinuxSupport.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +107,7 @@
 		9BD8A67F1D705C2F00C2618E /* RingLikeProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RingLikeProtocols.swift; path = Sources/RingLikeProtocols.swift; sourceTree = "<group>"; };
 		9BD8A6801D705C2F00C2618E /* Term.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Term.swift; path = Sources/Term.swift; sourceTree = "<group>"; };
 		9BD8A6811D705C2F00C2618E /* TrigonometricFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TrigonometricFunctions.swift; path = Sources/TrigonometricFunctions.swift; sourceTree = "<group>"; };
+		9BD8A6A21D705D6500C2618E /* LinuxSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinuxSupport.swift; path = Sources/LinuxSupport.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +200,7 @@
 		9BD8A6A11D705C3F00C2618E /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				9BD8A6A21D705D6500C2618E /* LinuxSupport.swift */,
 				9BD8A6631D705C2F00C2618E /* _Polynomial.swift */,
 				9BD8A6641D705C2F00C2618E /* AdvancedNumeric.swift */,
 				9BD8A6651D705C2F00C2618E /* AdvancedNumericTypeExtensions.swift */,
@@ -355,6 +358,7 @@
 				9BD8A69F1D705C2F00C2618E /* Term.swift in Sources */,
 				9BD8A6851D705C2F00C2618E /* BasicArithmetic.swift in Sources */,
 				9BD8A68B1D705C2F00C2618E /* Equation.swift in Sources */,
+				9BD8A6A31D705D6500C2618E /* LinuxSupport.swift in Sources */,
 				9BD8A69C1D705C2F00C2618E /* RationalNumber.swift in Sources */,
 				9BD8A6821D705C2F00C2618E /* _Polynomial.swift in Sources */,
 				9BD8A69E1D705C2F00C2618E /* RingLikeProtocols.swift in Sources */,
