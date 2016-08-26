@@ -1,4 +1,24 @@
-# Math [![Build Status](https://travis-ci.org/pauljohanneskraft/Math.svg?branch=master)](https://travis-ci.org/pauljohanneskraft/Math)
+# Math
+
+## Branches
+
+<table>
+    <tr> 
+        <th>master</th>
+        <th>Mostly ready to use</th>
+        <th> <img src="https://travis-ci.org/pauljohanneskraft/Math.svg?branch=master"> </th>
+    </tr>
+    <tr> 
+        <th>Development</th>
+        <th>Unready modules / not enough tested</th>
+        <th> <img src="https://travis-ci.org/pauljohanneskraft/Math.svg?branch=Development"> </th>
+    </tr>
+    <tr> 
+        <th>Feature</th>
+        <th>Anything, possibly not working</th>
+        <th> <img src="https://travis-ci.org/pauljohanneskraft/Math.svg?branch=Feature"> </th>
+    </tr>
+</table>
 
 ## [Constants](https://github.com/pauljohanneskraft/Math/tree/master/Math/Constants.swift)
 
