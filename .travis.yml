@@ -1,3 +1,5 @@
+sudo: required
+dist: trusty
 before_install:
   - wget -q -O - https://swift.org/keys/all-keys.asc | gpg --import -
   - wget https://swift.org/builds/development/ubuntu1404/swift-DEVELOPMENT-SNAPSHOT-2016-02-08-a/swift-DEVELOPMENT-SNAPSHOT-2016-02-08-a-ubuntu14.04.tar.gz
