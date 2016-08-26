@@ -6,7 +6,7 @@ branches:
 os:
 - linux
 - osx
-language: generic
+language: objective-c
 sudo: required
 dist: trusty
 osx_image: xcode8
