@@ -3,10 +3,12 @@ branches:
   - master
   - Development
   - travis-ci-on-linux
-language: objective-c
 os:
 - linux
 - osx
+language: generic
+sudo: required
+dist: trusty
 osx_image: xcode8
 install:
   - gem install xcpretty
