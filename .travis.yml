@@ -12,4 +12,3 @@ before_install:
 script:
   - swift package --version
   - swift build
-  - swift test
