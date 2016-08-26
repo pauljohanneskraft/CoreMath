@@ -23,4 +23,3 @@ script:
 - if [ "$TRAVIS_OS_NAME" == "linux" ]; then swift package --version
 - if [ "$TRAVIS_OS_NAME" == "linux" ]; then swift build
 - if [ "$TRAVIS_OS_NAME" == "osx" ]; then xcodebuild test -workspace Math.xcworkspace -scheme Math | xcpretty -f `xcpretty-travis-formatter` && exit ${PIPESTATUS[0]}
-  		
