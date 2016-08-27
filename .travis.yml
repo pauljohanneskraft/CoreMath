@@ -5,6 +5,7 @@ branches:
   - Feature
 
 matrix:
+  include:
     - os: linux
       language: objective-c
       dist: trusty
