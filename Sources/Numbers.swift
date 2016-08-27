@@ -13,21 +13,21 @@ public typealias N = UInt
 public typealias Z = Int
 
 public func Z_(_ v: UInt) -> Set<UInt> {
-    return Set<UInt>(0..<v)
+	return Set<UInt>(0..<v)
 }
 
 public protocol Ordered : Comparable {
-    static var minValue : Self { get }
-    static var maxValue : Self { get }
+	static var min : Self { get }
+	static var max : Self { get }
 }
 
 public protocol Randomizable {
-    static var random : Self { get }
+	static var random : Self { get }
 }
 
-infix operator =~
+infix operator =~ : ComparisonPrecedence
 
 public func =~ (lhs: Double, rhs: Double) -> Bool {
-    let inacc = max(lhs.inaccuracy, rhs.inaccuracy)
-    return (lhs - rhs).abs <= inacc
+	let inacc = max(lhs.inaccuracy, rhs.inaccuracy)
+	return (lhs - rhs).abs <= inacc
 }

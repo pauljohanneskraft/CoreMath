@@ -10,26 +10,26 @@ import XCTest
 import Math
 
 class EnhancedNumberTests: XCTestCase, TypeTest {
-    typealias N = Z
-    
-    override func setUp() {
-        elements.append(.infinity(sign: true))
-        elements.append(.infinity(sign: false))
-        elements.append(.nan)
-        for _ in 0 ..< 10 { elements.append(Enhanced<N>.random) }
-    }
-    
-    var elements : [Enhanced<N>] = []
-    
-    // basic arithmetic
-    func testAddition()         { forAll("+") { $0 + $1 } }
-    func testSubtraction()      { forAll("-") { $0 - $1 } }
-    func testMultiplication()   { forAll("*") { $0 * $1 } }
-    func testDivision()         { forAll("/") { $0 / $1 } }
+	typealias N = Z
+	
+	override func setUp() {
+		elements.append(.infinity(sign: true))
+		elements.append(.infinity(sign: false))
+		elements.append(.nan)
+		for _ in 0 ..< 10 { elements.append(Enhanced<N>.random) }
+	}
+	
+	var elements : [Enhanced<N>] = []
+	
+	// basic arithmetic
+	func testAddition()         { forAll("+") { $0 + $1 } }
+	func testSubtraction()      { forAll("-") { $0 - $1 } }
+	func testMultiplication()   { forAll("*") { $0 * $1 } }
+	func testDivision()         { forAll("/") { $0 / $1 } }
 	
 	func testReadmeExample() {
 		let a : Enhanced<Int> = 5
 		print( a / 0 )
 	}
-    
+	
 }
