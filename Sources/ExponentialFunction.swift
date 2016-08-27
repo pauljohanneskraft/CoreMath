@@ -35,12 +35,6 @@ public struct Exponential: Function {
 	public var latex		: String { return description		}
 }
 
-postfix operator ^^
-
-public postfix func ^^ (lhs: Double) -> Function {
-	return Exponential(base: lhs).reduced
-}
-
 public func ^ (lhs: Double, rhs: _Polynomial) -> Function {
 	assert(rhs.degree == 1)
 	return Exponential(base: lhs).reduced
