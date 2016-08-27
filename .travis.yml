@@ -27,8 +27,7 @@ if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
   wget https://github.com/apple/swift-package-manager/archive/${PACKAGE_MANAGER_VERSION}.tar.gz
   tar xzf ${PACKAGE_MANAGER_VERSION}.tar.gz
   export PATH=${PWD}/${PACKAGE_MANAGER_VERSION}/usr/bin:"${PATH}"
-fi
-if [[ $TRAVIS_OS_NAME == osx ]]; then
+else
   gem install xcpretty-travis-formatter
 fi
 
@@ -36,7 +35,6 @@ script:
 if [[ $TRAVIS_OS_NAME == linux ]]; then 
   swift package --version
   swift build
-fi
-if [[ $TRAVIS_OS_NAME == osx   ]]; then
+else
   xcodebuild test -workspace Math.xcworkspace -scheme Math | xcpretty -f `xcpretty-travis-formatter` && exit ${PIPESTATUS[0]}
 fi
