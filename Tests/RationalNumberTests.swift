@@ -49,3 +49,17 @@ class RationalNumberTests: XCTestCase, TypeTest {
 		doubles(values: [0.125, 0.00125, 2.0.sqrt, 3.0.sqrt, 3e32.sqrt, nextafter(0.0, DBL_MAX) ])
 	}
 }
+
+
+
+extension RationalNumberTests {
+	static var allTests : [(String, (RationalNumberTests) -> () throws -> Void)] {
+		return [
+			("testAddition", testAddition),
+			("testSubtraction", testSubtraction),
+			("testMultiplication", testMultiplication),
+			("testDivision", testDivision),
+			("testDoublesEasy", testDoublesEasy)
+		]
+	}
+}

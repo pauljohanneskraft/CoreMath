@@ -29,3 +29,13 @@ class TermTests: XCTestCase {
 		print(5.0 == Double(5.0))
 	}
 }
+
+#if os(Linux)
+	extension TermTests {
+		static var allTests : [(String, TermTests -> () throws -> Void)] {
+			return [
+				("testPolynomial", testPolynomial),
+			]
+		}
+	}
+#endif

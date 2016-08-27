@@ -24,3 +24,11 @@ class BasicArithmeticTests: XCTestCase {
 	}
 	
 }
+
+extension BasicArithmeticTests {
+	static var allTests : [(String, (BasicArithmeticTests) -> () throws -> Void)] {
+		return [
+			("testConformanceToAdvancedNumeric", testConformanceToAdvancedNumeric)
+		]
+	}
+}

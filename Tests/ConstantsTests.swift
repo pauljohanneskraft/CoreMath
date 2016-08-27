@@ -11,16 +11,7 @@ import Math
 
 class ConstantsTest: XCTestCase {
 	
-	func testPi() {
-		print(Constants.pi)
-	}
-	
-	func testTau() {
-		assert(Constants.tau == Constants.pi * 2)
-		print(Constants.tau)
-	}
-	
-	func testGoldenRatio() {
+	func testEverything() {
 		print("pi:         ", Constants.pi)
 		XCTAssert(Constants.pi == Double.pi)
 		print("-----------------------------------------------------")
@@ -50,4 +41,12 @@ class ConstantsTest: XCTestCase {
 		print("y_0:        ", Constants.Physics.y_0)
 	}
 	
+}
+
+extension ConstantsTest {
+	static var allTests : [(String, (ConstantsTest) -> () throws -> Void)] {
+		return [
+			("testEverything", testEverything)
+		]
+	}
 }

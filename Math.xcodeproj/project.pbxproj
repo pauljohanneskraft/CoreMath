@@ -32,7 +32,6 @@
 		9BD8A68F1D705C2F00C2618E /* GroupLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A6701D705C2F00C2618E /* GroupLike.swift */; };
 		9BD8A6901D705C2F00C2618E /* GroupLikeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A6711D705C2F00C2618E /* GroupLikeProtocols.swift */; };
 		9BD8A6911D705C2F00C2618E /* Growth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A6721D705C2F00C2618E /* Growth.swift */; };
-		9BD8A6921D705C2F00C2618E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9BD8A6731D705C2F00C2618E /* Info.plist */; };
 		9BD8A6931D705C2F00C2618E /* LaTeXConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A6741D705C2F00C2618E /* LaTeXConvertible.swift */; };
 		9BD8A6941D705C2F00C2618E /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A6751D705C2F00C2618E /* Matrix.swift */; };
 		9BD8A6951D705C2F00C2618E /* ModuleLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A6761D705C2F00C2618E /* ModuleLike.swift */; };
@@ -72,6 +71,7 @@
 		9B3907531D7239C000147ADD /* RationalNumberTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RationalNumberTests.swift; sourceTree = "<group>"; };
 		9B3907551D7239DE00147ADD /* TermTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermTests.swift; sourceTree = "<group>"; };
 		9B4733B11D4ACBB80055A7E8 /* Math.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Math.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B53C3B41D723EBA00D69F82 /* LinuxMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinuxMain.swift; sourceTree = "<group>"; };
 		9BD8A6631D705C2F00C2618E /* _Polynomial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _Polynomial.swift; path = Sources/_Polynomial.swift; sourceTree = "<group>"; };
 		9BD8A6641D705C2F00C2618E /* AdvancedNumeric.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AdvancedNumeric.swift; path = Sources/AdvancedNumeric.swift; sourceTree = "<group>"; };
 		9BD8A6651D705C2F00C2618E /* AdvancedNumericTypeExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AdvancedNumericTypeExtensions.swift; path = Sources/AdvancedNumericTypeExtensions.swift; sourceTree = "<group>"; };
@@ -128,6 +128,7 @@
 		9B39073D1D7237A000147ADD /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				9B53C3B41D723EBA00D69F82 /* LinuxMain.swift */,
 				9B3907551D7239DE00147ADD /* TermTests.swift */,
 				9B3907531D7239C000147ADD /* RationalNumberTests.swift */,
 				9B3907511D7239A600147ADD /* NumericTests.swift */,
@@ -236,7 +237,6 @@
 				9B4733AC1D4ACBB80055A7E8 /* Sources */,
 				9B4733AD1D4ACBB80055A7E8 /* Frameworks */,
 				9B4733AE1D4ACBB80055A7E8 /* Headers */,
-				9B4733AF1D4ACBB80055A7E8 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -294,14 +294,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9B4733AF1D4ACBB80055A7E8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9BD8A6921D705C2F00C2618E /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

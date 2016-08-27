@@ -40,4 +40,18 @@ class ComplexTests: XCTestCase, TypeTest {
 	}
 	
 	// specials
-	func testConjugate()        { forAll("conj",assert: { $0.real == $1.real && $0.imaginary == -($1.imaginary) }) { $0.conjugate } }}
+	func testConjugate()        { forAll("conj",assert: { $0.real == $1.real && $0.imaginary == -($1.imaginary) }) { $0.conjugate } }
+}
+
+extension ComplexTests {
+	static var allTests : [(String, (ComplexTests) -> () throws -> Void)] {
+		return [
+			("testAddition", testAddition),
+			("testSubtraction", testSubtraction),
+			("testMultiplication", testMultiplication),
+			("testDivision", testDivision),
+			("testReadmeExample", testReadmeExample),
+			("testConjugate", testConjugate)
+		]
+	}
+}

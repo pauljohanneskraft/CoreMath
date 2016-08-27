@@ -35,3 +35,11 @@ class NumericTests: XCTestCase, TypeTest {
 	}
 	
 }
+
+extension NumericTests {
+	static var allTests : [(String, (NumericTests) -> () throws -> Void)] {
+		return [
+			("testPrettyMuchEquals", testPrettyMuchEquals)
+		]
+	}
+}
