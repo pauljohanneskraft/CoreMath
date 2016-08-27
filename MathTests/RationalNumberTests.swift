@@ -52,14 +52,19 @@ class RationalNumberTests: XCTestCase, TypeTest {
 
 
 
-extension RationalNumberTests {
-	static var allTests : [(String, (RationalNumberTests) -> () throws -> Void)] {
-		return [
-			("testAddition", testAddition),
-			("testSubtraction", testSubtraction),
-			("testMultiplication", testMultiplication),
-			("testDivision", testDivision),
-			("testDoublesEasy", testDoublesEasy)
-		]
-	}
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
