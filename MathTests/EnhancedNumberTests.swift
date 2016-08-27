@@ -33,15 +33,3 @@ class EnhancedNumberTests: XCTestCase, TypeTest {
 	}
 	
 }
-
-extension EnhancedNumberTests {
-	static var allTests : [(String, (EnhancedNumberTests) -> () throws -> Void)] {
-		return [
-			("testAddition",		testAddition),
-			("testSubtraction",		testSubtraction),
-			("testMultiplication",	testMultiplication),
-			("testDivision",		testDivision),
-			("testReadmeExample",	testReadmeExample)
-		]
-	}
-}
