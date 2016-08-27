@@ -18,6 +18,7 @@ matrix:
     - os: linux
 
 before_install:
+- if [[ $TRAVIS_OS_NAME == linux ]]; then sudo apt-get -y update -qq ; fi
 - if [[ $TRAVIS_OS_NAME == linux ]]; then sudo apt-get install gpg; fi
 
 install:
