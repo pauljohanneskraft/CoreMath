@@ -7,7 +7,6 @@ branches:
 matrix:
   include:
     - os: linux
-      language: objective-c
       sudo: required
       dist: trusty
     - os: osx
