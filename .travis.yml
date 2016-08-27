@@ -6,10 +6,11 @@ branches:
 
 os:
 - linux
-  dist: trusty
-  sudo: required
 - osx
-  osx_image: xcode8
+
+dist: trusty
+sudo: required
+osx_image: xcode8
 
 matrix:
   allow_failures:
