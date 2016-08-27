@@ -6,13 +6,15 @@ branches:
 
 matrix:
   include:
+      - os: osx
+      language: objective-c
+      osx_image: xcode8
+  allow_failures:
     - os: linux
       language: objective-c
       dist: trusty
       sudo: required
-    - os: osx
-      language: objective-c
-      osx_image: xcode8
+
 
 before_install:
 - if [[ $TRAVIS_OS_NAME == linux ]]; then wget https://swift.org/builds/swift-3.0-preview-6/ubuntu1404/swift-3.0-PREVIEW-6/swift-3.0-PREVIEW-6-ubuntu14.04.tar.gz; fi
