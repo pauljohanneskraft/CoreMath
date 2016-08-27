@@ -16,21 +16,21 @@ matrix:
 
 install:
 - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-	DIR="$(pwd)"
-	cd ..
-	export SWIFT_VERSION=swift-3.0-preview-6
-	wget https://swift.org/builds/development/ubuntu1404/${SWIFT_VERSION}/${SWIFT_VERSION}-ubuntu14.04.tar.gz
-	tar xzf $SWIFT_VERSION-ubuntu14.04.tar.gz
-	export PATH="${PWD}/${SWIFT_VERSION}-ubuntu14.04/usr/bin:${PATH}"
-	cd "$DIR"
-	export PACKAGE_MANAGER_VERSION=swift-DEVELOPMENT-SNAPSHOT-2016-08-25-a
-	wget https://github.com/apple/swift-package-manager/archive/${PACKAGE_MANAGER_VERSION}.tar.gz
-	tar xzf ${PACKAGE_MANAGER_VERSION}.tar.gz
-	export PATH=${PWD}/${PACKAGE_MANAGER_VERSION}/usr/bin:"${PATH}"
-fi
+  DIR="$(pwd)"
+  cd ..
+  export SWIFT_VERSION=swift-3.0-preview-6
+  wget https://swift.org/builds/development/ubuntu1404/${SWIFT_VERSION}/${SWIFT_VERSION}-ubuntu14.04.tar.gz
+  tar xzf $SWIFT_VERSION-ubuntu14.04.tar.gz
+  export PATH="${PWD}/${SWIFT_VERSION}-ubuntu14.04/usr/bin:${PATH}"
+  cd "$DIR"
+  export PACKAGE_MANAGER_VERSION=swift-DEVELOPMENT-SNAPSHOT-2016-08-25-a
+  wget https://github.com/apple/swift-package-manager/archive/${PACKAGE_MANAGER_VERSION}.tar.gz
+  tar xzf ${PACKAGE_MANAGER_VERSION}.tar.gz
+  export PATH=${PWD}/${PACKAGE_MANAGER_VERSION}/usr/bin:"${PATH}"
+  fi
 - if [[ $TRAVIS_OS_NAME == osx ]]; then
-	gem install xcpretty-travis-formatter
-fi
+  gem install xcpretty-travis-formatter
+  fi
 
 script:
 - if [[ $TRAVIS_OS_NAME == linux ]]; then 
