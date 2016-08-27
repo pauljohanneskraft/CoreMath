@@ -15,7 +15,7 @@ language: objective-c
 
 matrix:
   allow_failures:
-    - linux
+    - os: linux
 
 before_install:
 - if [[ $TRAVIS_OS_NAME == linux ]]; then wget https://swift.org/builds/swift-3.0-preview-6/ubuntu1404/swift-3.0-PREVIEW-6/swift-3.0-PREVIEW-6-ubuntu14.04.tar.gz; fi
