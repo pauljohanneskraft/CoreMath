@@ -14,7 +14,6 @@ matrix:
       osx_image: xcode8
 
 install:
-- if [[ $TRAVIS_OS_NAME == linux ]]; then sudo apt-get install clang libicu-dev; fi
 - if [[ $TRAVIS_OS_NAME == linux ]]; then wget -q -O - https://swift.org/keys/all-keys.asc | gpg --import -; fi
 - if [[ $TRAVIS_OS_NAME == linux ]]; then wget https://swift.org/builds/swift-3.0-preview-6/ubuntu1404/swift-3.0-PREVIEW-6/swift-3.0-PREVIEW-6-ubuntu14.04.tar.gz; fi
 - if [[ $TRAVIS_OS_NAME == linux ]]; then wget https://swift.org/builds/swift-3.0-preview-6/ubuntu1404/swift-3.0-PREVIEW-6/swift-3.0-PREVIEW-6-ubuntu14.04.tar.gz; fi
