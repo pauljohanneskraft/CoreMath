@@ -11,6 +11,7 @@ os:
 dist: trusty
 sudo: required
 osx_image: xcode8
+language: objective-c
 
 matrix:
   allow_failures:
