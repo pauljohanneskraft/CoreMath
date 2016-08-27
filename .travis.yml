@@ -4,24 +4,19 @@ branches:
   - Development
   - Feature
 
-os:
-- linux
-- osx
-
-dist: trusty
-sudo: required
-osx_image: xcode8
-language: objective-c
-
 matrix:
-  allow_failures:
+  include:
     - os: linux
-
-before_install:
-- if [[ $TRAVIS_OS_NAME == linux ]]; then sudo apt-get -y update -qq ; fi
-- if [[ $TRAVIS_OS_NAME == linux ]]; then sudo apt-get install gpg; fi
+      language: objective-c
+      sudo: required
+      dist: trusty
+    - os: osx
+      language: objective-c
+      osx_image: xcode8
 
 install:
+- if [[ $TRAVIS_OS_NAME == linux ]]; then wget -q -O - https://swift.org/keys/all-keys.asc | gpg --import -; fi
+- if [[ $TRAVIS_OS_NAME == linux ]]; then wget https://swift.org/builds/swift-3.0-preview-6/ubuntu1404/swift-3.0-PREVIEW-6/swift-3.0-PREVIEW-6-ubuntu14.04.tar.gz; fi
 - if [[ $TRAVIS_OS_NAME == linux ]]; then wget https://swift.org/builds/swift-3.0-preview-6/ubuntu1404/swift-3.0-PREVIEW-6/swift-3.0-PREVIEW-6-ubuntu14.04.tar.gz; fi
 - if [[ $TRAVIS_OS_NAME == linux ]]; then tar xzf swift-3.0-PREVIEW-6-ubuntu14.04.tar.gz; fi
 - if [[ $TRAVIS_OS_NAME == linux ]]; then export PATH=${PWD}/swift-3.0-PREVIEW-6-ubuntu14.04/usr/bin:"${PATH}"; fi
