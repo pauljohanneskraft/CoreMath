@@ -5,12 +5,10 @@ branches:
   - Feature
 
 matrix:
-  allow_failures:
     - os: linux
       language: objective-c
       dist: trusty
       sudo: required
-  include:
     - os: osx
       language: objective-c
       osx_image: xcode8
