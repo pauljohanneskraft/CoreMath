@@ -14,5 +14,5 @@ import Foundation
 	public var DBL_MIN : Double { return unsafeBitCast(Int.min, to: Double.self) }
 	public func random() -> Int { return Glibc.random() }
 #else
-	public func random() -> Int { return Int(arc4random()) }
+	public func random() -> Int { return Int(arc4random()) << 32 | Int(arc4random()) }
 #endif
