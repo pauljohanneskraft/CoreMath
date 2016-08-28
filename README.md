@@ -9,17 +9,17 @@ Only on macOS, the tests are run.
     <tr> 
         <th>master</th>
         <th>Mostly ready to use</th>
-        <th> <img src="https://travis-ci.org/pauljohanneskraft/Math.svg?branch=master"> </th>
+        <th> <a href="https://travis-ci.org/pauljohanneskraft/Math/branches"> <img src="https://travis-ci.org/pauljohanneskraft/Math.svg?branch=master" link=""> </a> </th>
     </tr>
     <tr> 
         <th>Development</th>
         <th>Unready modules / not enough tested</th>
-        <th> <img src="https://travis-ci.org/pauljohanneskraft/Math.svg?branch=Development"> </th>
+        <th> <a href="https://travis-ci.org/pauljohanneskraft/Math/branches"> <img src="https://travis-ci.org/pauljohanneskraft/Math.svg?branch=Development" link=""> </a> </th>
     </tr>
     <tr> 
         <th>Feature</th>
         <th>Anything, possibly not working</th>
-        <th> <img src="https://travis-ci.org/pauljohanneskraft/Math.svg?branch=Feature"> </th>
+        <th> <a href="https://travis-ci.org/pauljohanneskraft/Math/branches"> <img src="https://travis-ci.org/pauljohanneskraft/Math.svg?branch=Feature" link=""> </a> </th>
     </tr>
 </table>
 
