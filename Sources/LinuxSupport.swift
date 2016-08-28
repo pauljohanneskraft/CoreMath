@@ -10,8 +10,8 @@ import Foundation
 
 #if os(Linux)
 	import Glibc
-	public var DBL_MAX : Double { return unsafeBitCast(9218868437227405311, to: Double.self) }
-	public var DBL_MIN : Double { return unsafeBitCast(   4503599627370496, to: Double.self) }
+	public let DBL_MAX : Double = unsafeBitCast(9218868437227405311, to: Double.self)
+	public let DBL_MIN : Double = unsafeBitCast(   4503599627370496, to: Double.self)
 	public func random() -> Int { return Glibc.random() }
 #else
 	public func random() -> Int { return Int(arc4random()) << 32 | Int(arc4random()) }
