@@ -22,7 +22,8 @@ class GroupTests: XCTestCase {
 	func testGroupLikeGroups() {
 		for i in Z_(20).sorted() {
 			let g = GroupLike(set: Z_(i), op: { ($0 + $1) % i }, neutralElement: 0, inv: { i - $0 }, sign: "+")
-			let st = g.strictestType!
+			let st = g.strictestType
+			XCTAssert(st != nil)
 			// print(i, "\t", st) // XCTAssert(type(of: st) == AbelianGroup<Int>.self)
 		}
 	}
