@@ -115,4 +115,10 @@ struct Equation : Function, CustomStringConvertible {
 		for t in terms { value += t.call(x: x) }
 		return value
 	}
+	func equals(to: Function) -> Bool {
+		if let e = to as? Equation {
+			return e.terms == self.terms
+		}
+		return false
+	}
 }

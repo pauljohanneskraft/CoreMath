@@ -47,7 +47,6 @@
 		9BD8A68F1D705C2F00C2618E /* GroupLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A6701D705C2F00C2618E /* GroupLike.swift */; };
 		9BD8A6901D705C2F00C2618E /* GroupLikeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A6711D705C2F00C2618E /* GroupLikeProtocols.swift */; };
 		9BD8A6911D705C2F00C2618E /* Growth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A6721D705C2F00C2618E /* Growth.swift */; };
-		9BD8A6921D705C2F00C2618E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9BD8A6731D705C2F00C2618E /* Info.plist */; };
 		9BD8A6931D705C2F00C2618E /* LaTeXConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A6741D705C2F00C2618E /* LaTeXConvertible.swift */; };
 		9BD8A6941D705C2F00C2618E /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A6751D705C2F00C2618E /* Matrix.swift */; };
 		9BD8A6951D705C2F00C2618E /* ModuleLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A6761D705C2F00C2618E /* ModuleLike.swift */; };
@@ -383,7 +382,6 @@
 				9B4733AC1D4ACBB80055A7E8 /* Sources */,
 				9B4733AD1D4ACBB80055A7E8 /* Frameworks */,
 				9B4733AE1D4ACBB80055A7E8 /* Headers */,
-				9B4733AF1D4ACBB80055A7E8 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -456,14 +454,6 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		9B4733AF1D4ACBB80055A7E8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9BD8A6921D705C2F00C2618E /* Info.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		9B4733BE1D4ACBE00055A7E8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;

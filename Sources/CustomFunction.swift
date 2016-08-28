@@ -28,4 +28,8 @@ public struct CustomFunction : Function {
 	public var reduced: Function { return self } // TODO!
 	
 	public func call(x: Double) -> Double { return function(x) }
+	public func equals(to: Function) -> Bool {
+		return type(of: to) == CustomFunction.self && description == to.description
+	}
+	
 }

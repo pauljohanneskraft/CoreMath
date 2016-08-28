@@ -7,29 +7,30 @@
 //
 
 import XCTest
+import Math
 
 class TrigonometricFunctionTests: XCTestCase {
+	
+	func testPropertiesSin() {
+		let sin = Trigonometric.sin
+		let cos = Trigonometric.cos
+		XCTAssert(sin.derivative	==  cos)
+		XCTAssert(sin.integral		== -cos)
+		XCTAssert(cos.derivative	== -sin)
+		XCTAssert(cos.integral		==  sin)
+		XCTAssert(sin.description == "sin(x)")
+		XCTAssert(cos.description == "cos(x)")
+	}
 
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
+	func test1() {
+		let f1 = Trigonometric.sin.integral + Trigonometric.cos.derivative
+		print(f1)
+		print(f1.call(x: Constants.pi/2))
+		XCTAssert(f1.call(x: Constants.pi/2) == -1)
+		let f2 = f1 + 1.0
+		print(f2.debugDescription)
+		print(f2.call(x: Constants.pi/2))
+		XCTAssert(f2.call(x: Constants.pi/2) == 0)
+	}
 
 }
