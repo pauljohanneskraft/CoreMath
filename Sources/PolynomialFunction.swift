@@ -9,6 +9,13 @@
 import Foundation
 
 struct PolynomialFunction: Function {
+	public func equals(to: Function) -> Bool {
+		if let p = to as? PolynomialFunction {
+			return p.polynomial == self.polynomial
+		}
+		return false
+	}
+
 	init(_ poly: Polynomial<Double>) {
 		self.polynomial = poly
 	}

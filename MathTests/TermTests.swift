@@ -28,20 +28,8 @@ class TermTests: XCTestCase {
 		print(type(of: a))
 		print(5.0 == Double(5.0))
 	}
-	
+
 	/*
-    func test1() {
-        let f1 = Trigonometric.sin.integral + Trigonometric.cos.derivative
-        print(f1)
-        print(f1.call(x: Constants.pi/4))
-    }
-    
-    func testDoubleAddition() {
-        let f1 = Trigonometric.sin.integral + Trigonometric.cos.derivative + 1.0
-        print(f1)
-        print(f1.call(x: Constants.pi/4))
-    }
-    
     func testExponentialE() {
         let exp = Exponential(base: Constants.e)
         print(exp * 1.0)
@@ -112,6 +100,6 @@ class TermTests: XCTestCase {
         print(t.reduced.call(x: 1.345))
         print(t.call(x: 1.345))
     }
-    */
+	*/
 }
 

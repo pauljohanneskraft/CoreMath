@@ -8,38 +8,6 @@
 
 import Foundation
 
-public struct FunctionType {
-	var type : Function.Type
-}
-
-extension FunctionType : Hashable {
-	public var hashValue : Int { return "\(type)".hashValue }
-}
-
-public func == (lhs: FunctionType, rhs: FunctionType) -> Bool {
-	return lhs.type == rhs.type
-}
-
-var FunctionEquality : [FunctionType:(Function, Function) -> Bool] = [
-	FunctionType(type: Equation.self)			: { a,b in return
-		(a as! Equation).terms == (b as! Equation).terms },
-	
-	FunctionType(type: Term.self)				: { a,b in return
-		(a as! Term  ).factors == (b as! Term  ).factors },
-	
-	FunctionType(type: Fraction.self)			: { a,b in return
-		(a as! Fraction).numerator == (b as! Fraction).numerator && (a as! Fraction).denominator == (b as! Fraction).denominator },
-	
-	FunctionType(type: Exponential.self)		: { a,b in return
-		(a as! Exponential).base == (b as! Exponential).base },
-	
-	FunctionType(type: ConstantFunction.self)	: { a,b in return
-		(a as! ConstantFunction).value == (b as! ConstantFunction).value },
-	
-	FunctionType(type: _Polynomial.self)		: { a,b in return
-		(a as! _Polynomial).degree == (b as! _Polynomial).degree }
-]
-
 public protocol Function : CustomStringConvertible, LaTeXConvertible {
 	
 	// properties
@@ -51,6 +19,7 @@ public protocol Function : CustomStringConvertible, LaTeXConvertible {
 	// functions
 	func call(x: Double) -> Double
 	func coefficientDescription(first: Bool) -> String
+	func equals(to: Function) -> Bool
 	
 	// operators
 	static func ==(lhs: Function, rhs: Function) -> Bool
@@ -158,7 +127,7 @@ public prefix func - (lhs: Function) -> Function {
 	return -1 * lhs
 }
 
-private func == (lhs: [Function], rhs: [Function]) -> Bool {
+internal func == (lhs: [Function], rhs: [Function]) -> Bool {
 	guard lhs.count == rhs.count else { return false }
 	let l = lhs.sorted { $0.description < $1.description }
 	let r = rhs.sorted { $0.description < $1.description }
@@ -167,14 +136,7 @@ private func == (lhs: [Function], rhs: [Function]) -> Bool {
 }
 
 public func == (lhs: Function, rhs: Function) -> Bool {
-	let lhs = lhs.reduced
-	let rhs = rhs.reduced
-	if type(of: rhs) != type(of: lhs) { return false }
-	else {
-		// print(lhs, "=?=", rhs)
-		let res = FunctionEquality[FunctionType(type: type(of: rhs))]?(lhs, rhs)
-		return res != nil ? res! : rhs.description == lhs.description
-	}
+	return lhs.reduced.equals(to: rhs.reduced)
 }
 
 public func / (lhs: Function, rhs: Function) -> Function {

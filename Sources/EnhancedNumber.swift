@@ -58,7 +58,7 @@ public enum Enhanced < Number : Numeric > : Numeric, Hashable {
 		switch self {
 		case let .finite(v):        return v.integer
 		case let .infinity(sign):   return sign ? Int.min : Int.max
-		default: assert(false, "illegal state \(self)")
+		default: fatalError("illegal state \(self)")
 		}
 	}
 	

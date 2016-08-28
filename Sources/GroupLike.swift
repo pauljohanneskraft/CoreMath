@@ -8,22 +8,22 @@
 
 import Foundation
 
-struct GroupLike<Element> : SemigroupProtocol, Commutative where Element : Hashable, Element: Comparable {
-	init(set: Set<Element>, op: @escaping (Element,Element) -> Element, neutralElement: Element? = nil, inv: ((Element) -> Element)? = nil, sign: Character = "•") {
+public struct GroupLike<Element> : SemigroupProtocol, Commutative where Element : Hashable, Element: Comparable {
+	public init(set: Set<Element>, op: @escaping (Element,Element) -> Element, neutralElement: Element? = nil, inv: ((Element) -> Element)? = nil, sign: Character = "•") {
 		self.set = set
 		self.op = op
 		self.neutralElement = neutralElement
 		self.inv = inv
 		self.sign = sign
 	}
-	let set : Set<Element>
-	let op : (Element, Element) -> Element
-	let eq : (Element, Element) -> Bool = { $0 == $1 }
+	public let set : Set<Element>
+	public let op : (Element, Element) -> Element
+	public let eq : (Element, Element) -> Bool = { $0 == $1 }
 	let neutralElement : Element?
 	let inv : ((Element) -> Element)?
-	let sign : Character
+	public let sign : Character
 	
-	var strictestType : Any?  {
+	public var strictestType : Any?  {
 		if let o = AbelianGroup(self)   { return o }
 		if let o = Group(self)          { return o }
 		if let o = Monoid(self)         { return o }
@@ -32,7 +32,7 @@ struct GroupLike<Element> : SemigroupProtocol, Commutative where Element : Hasha
 		return nil
 	}
 	
-	var possibleProtocols : (magma: Magma<Element>?, semigroup: Semigroup<Element>?, monoid: Monoid<Element>?, group: Group<Element>?, abelianGroup: AbelianGroup<Element>?)  {
+	public var possibleTypes : (magma: Magma<Element>?, semigroup: Semigroup<Element>?, monoid: Monoid<Element>?, group: Group<Element>?, abelianGroup: AbelianGroup<Element>?)  {
 		return (Magma(self), Semigroup(self), Monoid(self), Group(self), AbelianGroup(self))
 	}
 	
@@ -61,68 +61,60 @@ struct GroupLike<Element> : SemigroupProtocol, Commutative where Element : Hasha
 	}
 }
 
-struct Magma<Element> : MagmaProtocol where Element : Hashable, Element: Comparable {
-	init?(set: Set<Element>, op: @escaping (Element, Element) -> Element, sign: Character = "•") {
+public struct Magma<Element> : MagmaProtocol where Element : Hashable, Element: Comparable {
+	public init?(set: Set<Element>, op: @escaping (Element, Element) -> Element, sign: Character = "•") {
 		self.set = set
 		self.op = op
 		self.sign = sign
 		if test() != true { return nil }
 	}
-	init?(_ groupLike: GroupLike<Element>) {
-		self.set = groupLike.set
-		self.op = groupLike.op
-		self.sign = groupLike.sign
-		if test() != true { return nil }
+	public init?(_ groupLike: GroupLike<Element>) {
+		self.init(set: groupLike.set, op: groupLike.op, sign: groupLike.sign)
 	}
-	let set : Set<Element>
-	let op : (Element, Element) -> Element
-	var eq : (Element, Element) -> Bool = { $0 == $1 }
-	let sign : Character
+	public let set : Set<Element>
+	public let op : (Element, Element) -> Element
+	public var eq : (Element, Element) -> Bool = { $0 == $1 }
+	public let sign : Character
 }
 
-struct Semigroup<Element> : SemigroupProtocol where Element : Hashable, Element: Comparable {
-	init?(set: Set<Element>, op: @escaping (Element, Element) -> Element, sign: Character = "•") {
+public struct Semigroup<Element> : SemigroupProtocol where Element : Hashable, Element: Comparable {
+	public init?(set: Set<Element>, op: @escaping (Element, Element) -> Element, sign: Character = "•") {
 		self.set = set
 		self.op = op
 		self.sign = sign
 		if test() != (true, true) { return nil }
 	}
-	init?(_ groupLike: GroupLike<Element>) {
-		self.set = groupLike.set
-		self.op = groupLike.op
-		self.sign = groupLike.sign
-		if test() != (true, true) { return nil }
+	public init?(_ groupLike: GroupLike<Element>) {
+		self.init(set: groupLike.set, op: groupLike.op, sign: groupLike.sign)
 	}
-	let set : Set<Element>
-	let op : (Element, Element) -> Element
-	var eq : (Element, Element) -> Bool = { $0 == $1 }
-	let sign : Character
+	public let set : Set<Element>
+	public let op : (Element, Element) -> Element
+	public var eq : (Element, Element) -> Bool = { $0 == $1 }
+	public let sign : Character
 }
 
-struct Monoid<Element> : MonoidProtocol where Element : Hashable, Element: Comparable {
-	init?(set: Set<Element>, op: @escaping (Element, Element) -> Element, neutralElement: Element, sign: Character = "•") {
+public struct Monoid<Element> : MonoidProtocol where Element : Hashable, Element: Comparable {
+	public init?(set: Set<Element>, op: @escaping (Element, Element) -> Element, neutralElement: Element, sign: Character = "•") {
 		self.set = set
 		self.op = op
 		self.neutralElement = neutralElement
 		self.sign = sign
 		if test() != (true, true, true) { return nil }
 	}
-	init?(_ groupLike: GroupLike<Element>) {
-		self.set = groupLike.set
-		self.op = groupLike.op
-		self.neutralElement = groupLike.neutralElement!
-		self.sign = groupLike.sign
-		if test() != (true, true,true) { return nil }
+	public init?(_ groupLike: GroupLike<Element>) {
+		if let neutralElement = groupLike.neutralElement {
+			self.init(set: groupLike.set, op: groupLike.op, neutralElement: neutralElement, sign: groupLike.sign)
+		} else { return nil }
 	}
-	let set : Set<Element>
-	let op : (Element, Element) -> Element
-	let eq : (Element, Element) -> Bool = { $0 == $1 }
-	let neutralElement : Element
-	let sign : Character
+	public let set : Set<Element>
+	public let op : (Element, Element) -> Element
+	public let eq : (Element, Element) -> Bool = { $0 == $1 }
+	public let neutralElement : Element
+	public let sign : Character
 }
 
-struct Group<Element> : GroupProtocol where Element : Hashable, Element: Comparable {
-	init?(set: Set<Element>, op: @escaping (Element, Element) -> Element, neutralElement: Element, inv: @escaping (Element) -> Element, sign: Character = "•") {
+public struct Group<Element> : GroupProtocol where Element : Hashable, Element: Comparable {
+	public init?(set: Set<Element>, op: @escaping (Element, Element) -> Element, neutralElement: Element, inv: @escaping (Element) -> Element, sign: Character = "•") {
 		self.set = set
 		self.op = op
 		self.neutralElement = neutralElement
@@ -130,24 +122,21 @@ struct Group<Element> : GroupProtocol where Element : Hashable, Element: Compara
 		self.sign = sign
 		if test() != (true, true, true, true) { return nil }
 	}
-	init?(_ groupLike: GroupLike<Element>) {
-		self.set = groupLike.set
-		self.op = groupLike.op
-		self.neutralElement = groupLike.neutralElement!
-		self.inv = groupLike.inv!
-		self.sign = groupLike.sign
-		if test() != (true, true,true, true) { return nil }
+	public init?(_ groupLike: GroupLike<Element>) {
+		if let neutralElement = groupLike.neutralElement, let inv = groupLike.inv {
+			self.init(set: groupLike.set, op: groupLike.op, neutralElement: neutralElement, inv: inv, sign: groupLike.sign)
+		} else { return nil }
 	}
-	let set : Set<Element>
-	let op : (Element, Element) -> Element
-	let eq : (Element, Element) -> Bool = { $0 == $1 }
-	let neutralElement : Element
-	let inv : (Element) -> Element
-	let sign : Character
+	public let set : Set<Element>
+	public let op : (Element, Element) -> Element
+	public let eq : (Element, Element) -> Bool = { $0 == $1 }
+	public let neutralElement : Element
+	public let inv : (Element) -> Element
+	public let sign : Character
 }
 
-struct AbelianGroup<Element> : AbelianGroupProtocol where Element : Hashable, Element: Comparable {
-	init?(set: Set<Element>, op: @escaping (Element, Element) -> Element, neutralElement: Element, inv: @escaping (Element) -> Element, sign: Character = "•") {
+public struct AbelianGroup<Element> : AbelianGroupProtocol where Element : Hashable, Element: Comparable {
+	public init?(set: Set<Element>, op: @escaping (Element, Element) -> Element, neutralElement: Element, inv: @escaping (Element) -> Element, sign: Character = "•") {
 		self.set = set
 		self.op = op
 		self.neutralElement = neutralElement
@@ -155,20 +144,17 @@ struct AbelianGroup<Element> : AbelianGroupProtocol where Element : Hashable, El
 		self.sign = sign
 		if test() != (true, true, true, true, true) { return nil }
 	}
-	init?(_ groupLike: GroupLike<Element>) {
-		self.set = groupLike.set
-		self.op = groupLike.op
-		self.neutralElement = groupLike.neutralElement!
-		self.inv = groupLike.inv!
-		self.sign = groupLike.sign
-		if test() != (true, true,true, true, true) { return nil }
+	public init?(_ groupLike: GroupLike<Element>) {
+		if let neutralElement = groupLike.neutralElement, let inv = groupLike.inv {
+			self.init(set: groupLike.set, op: groupLike.op, neutralElement: neutralElement, inv: inv, sign: groupLike.sign)
+		} else { return nil }
 	}
-	let set : Set<Element>
-	let op : (Element, Element) -> Element
-	let eq : (Element, Element) -> Bool = { $0 == $1 }
-	let neutralElement : Element
-	let inv : (Element) -> Element
-	let sign : Character
+	public let set : Set<Element>
+	public let op : (Element, Element) -> Element
+	public let eq : (Element, Element) -> Bool = { $0 == $1 }
+	public let neutralElement : Element
+	public let inv : (Element) -> Element
+	public let sign : Character
 }
 
 

@@ -26,6 +26,10 @@ public struct ConstantFunction : Function, ExpressibleByIntegerLiteral, Expressi
 		return value.coefficientDescription(first: first)
 	}
 	
+	public func equals(to: Function) -> Bool {
+		return Optional(value) == (to as? Constant)?.value
+	}
+	
 	public func call(x: Double) -> Double { return value }
 }
 

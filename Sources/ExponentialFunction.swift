@@ -33,6 +33,12 @@ public struct Exponential: Function {
 	
 	public var description	: String { return "\(self.base.reducedDescription)^x"	}
 	public var latex		: String { return description		}
+	public func equals(to: Function) -> Bool {
+		if let e = to as? Exponential {
+			return e.base == self.base
+		}
+		return false
+	}
 }
 
 public func ^ (lhs: Double, rhs: _Polynomial) -> Function {

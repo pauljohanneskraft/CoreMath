@@ -9,6 +9,10 @@
 import Foundation
 
 public struct _Polynomial : Function {
+	public func equals(to: Function) -> Bool {
+		return Optional(degree) == (to as? _Polynomial)?.degree
+	}
+
 	
 	// stored properties
 	public internal(set) var degree: Double

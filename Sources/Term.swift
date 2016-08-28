@@ -216,4 +216,11 @@ struct Term : Function {
 	}
 	
 	var factors : [ Function ]
+	
+	func equals(to: Function) -> Bool {
+		if let t = to as? Term {
+			return t.factors == self.factors
+		}
+		return false
+	}
 }
