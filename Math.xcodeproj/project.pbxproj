@@ -29,6 +29,7 @@
 		9B5BE2651D72E49D006C5B96 /* GrowthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5BE2641D72E49D006C5B96 /* GrowthTests.swift */; };
 		9B5BE2671D72E4B3006C5B96 /* FractionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5BE2661D72E4B3006C5B96 /* FractionTests.swift */; };
 		9B5BE26A1D72E4FA006C5B96 /* AdvancedNumericTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5BE2691D72E4FA006C5B96 /* AdvancedNumericTests.swift */; };
+		9B5BE26D1D72F9FD006C5B96 /* LinuxCompatibilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5BE26C1D72F9FD006C5B96 /* LinuxCompatibilityTests.swift */; };
 		9B71D3ED1D4BF1C6001C5BE9 /* TermTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B71D3EC1D4BF1C6001C5BE9 /* TermTests.swift */; };
 		9BC8BBDB1D6F0E1D0010AC02 /* BasicArithmeticTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC8BBDA1D6F0E1D0010AC02 /* BasicArithmeticTests.swift */; };
 		9BD8A6821D705C2F00C2618E /* _Polynomial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A6631D705C2F00C2618E /* _Polynomial.swift */; };
@@ -99,6 +100,7 @@
 		9B5BE2641D72E49D006C5B96 /* GrowthTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrowthTests.swift; sourceTree = "<group>"; };
 		9B5BE2661D72E4B3006C5B96 /* FractionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FractionTests.swift; sourceTree = "<group>"; };
 		9B5BE2691D72E4FA006C5B96 /* AdvancedNumericTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedNumericTests.swift; sourceTree = "<group>"; };
+		9B5BE26C1D72F9FD006C5B96 /* LinuxCompatibilityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinuxCompatibilityTests.swift; sourceTree = "<group>"; };
 		9B71D3EC1D4BF1C6001C5BE9 /* TermTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermTests.swift; sourceTree = "<group>"; };
 		9BC8BBDA1D6F0E1D0010AC02 /* BasicArithmeticTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicArithmeticTests.swift; sourceTree = "<group>"; };
 		9BD8A6631D705C2F00C2618E /* _Polynomial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _Polynomial.swift; path = Sources/_Polynomial.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				9B09603C1D4EB14900ED8517 /* DataTypeTest.swift */,
+				9B5BE26C1D72F9FD006C5B96 /* LinuxCompatibilityTests.swift */,
 				9B5BE24E1D72E36C006C5B96 /* General */,
 				9B0960341D4E6AE400ED8517 /* Algebra */,
 				9B0960331D4E6AD800ED8517 /* Functions */,
@@ -511,6 +514,7 @@
 				9B5BE26A1D72E4FA006C5B96 /* AdvancedNumericTests.swift in Sources */,
 				9B47341E1D4AD51D0055A7E8 /* ComplexTests.swift in Sources */,
 				9B5BE25D1D72E43F006C5B96 /* PolynomialFunctionTests.swift in Sources */,
+				9B5BE26D1D72F9FD006C5B96 /* LinuxCompatibilityTests.swift in Sources */,
 				9B71D3ED1D4BF1C6001C5BE9 /* TermTests.swift in Sources */,
 				9B5BE25F1D72E450006C5B96 /* ConstantFunctionTests.swift in Sources */,
 				9B47341A1D4AD50A0055A7E8 /* NumericTests.swift in Sources */,
