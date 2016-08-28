@@ -1,6 +1,9 @@
 # Math
 
-## Branches
+## Continuos Integration
+
+Travis-CI builds the project on macOS and Linux. 
+Only on macOS, the tests are run.
 
 <table>
     <tr> 
