@@ -206,7 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				9BD8A6A11D705C3F00C2618E /* Sources */,
-				9B4733C11D4ACBE00055A7E8 /* MathTests */,
+				9B4733C11D4ACBE00055A7E8 /* Tests */,
 				9B4733B21D4ACBB80055A7E8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -220,7 +220,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9B4733C11D4ACBE00055A7E8 /* MathTests */ = {
+		9B4733C11D4ACBE00055A7E8 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				9B09603C1D4EB14900ED8517 /* DataTypeTest.swift */,
@@ -233,6 +233,7 @@
 				9B5BE2511D72E390006C5B96 /* TeX */,
 				9B4733C41D4ACBE00055A7E8 /* Info.plist */,
 			);
+			name = Tests;
 			path = MathTests;
 			sourceTree = "<group>";
 		};
