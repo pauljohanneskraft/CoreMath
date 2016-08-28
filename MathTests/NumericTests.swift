@@ -11,10 +11,6 @@ import Math
 
 class NumericTests: XCTestCase, TypeTest {
 	
-	override func setUp() {
-		super.setUp()
-		// Put setup code here. This method is called before the invocation of each test method in the class.
-	}
 	typealias Number = Int
 	
 	var elements: [Number] = []
