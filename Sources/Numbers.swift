@@ -16,6 +16,11 @@ public func Z_(_ v: UInt) -> Set<UInt> {
 	return Set<UInt>(0..<v)
 }
 
+public func Z_(_ v: Int) -> Set<Int> {
+	return Set<Int>(0..<v)
+}
+
+
 public protocol Ordered : Comparable {
 	static var min : Self { get }
 	static var max : Self { get }

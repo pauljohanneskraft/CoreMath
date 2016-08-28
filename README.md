@@ -1,22 +1,25 @@
 # Math
 
-## Branches
+## Continuos Integration
+
+Travis-CI builds the project on macOS and Linux. 
+Only on macOS, the tests are run.
 
 <table>
     <tr> 
         <th>master</th>
         <th>Mostly ready to use</th>
-        <th> <img src="https://travis-ci.org/pauljohanneskraft/Math.svg?branch=master"> </th>
+        <th> <a href="https://travis-ci.org/pauljohanneskraft/Math/branches"> <img src="https://travis-ci.org/pauljohanneskraft/Math.svg?branch=master"> </a> </th>
     </tr>
     <tr> 
         <th>Development</th>
         <th>Unready modules / not enough tested</th>
-        <th> <img src="https://travis-ci.org/pauljohanneskraft/Math.svg?branch=Development"> </th>
+        <th> <a href="https://travis-ci.org/pauljohanneskraft/Math/branches"> <img src="https://travis-ci.org/pauljohanneskraft/Math.svg?branch=Development"> </a> </th>
     </tr>
     <tr> 
         <th>Feature</th>
         <th>Anything, possibly not working</th>
-        <th> <img src="https://travis-ci.org/pauljohanneskraft/Math.svg?branch=Feature"> </th>
+        <th> <a href="https://travis-ci.org/pauljohanneskraft/Math/branches"> <img src="https://travis-ci.org/pauljohanneskraft/Math.svg?branch=Feature"> </a> </th>
     </tr>
 </table>
 
@@ -120,7 +123,7 @@ Exponential Factors in the form of b^x with b being a Double-value are also curr
 let a = 5^x
 ```
 
-## LinearAlgebra
+## Linear Algebra
 
 ### [Matrix](https://github.com/pauljohanneskraft/Math/tree/master/Math/Matrix.swift)
 

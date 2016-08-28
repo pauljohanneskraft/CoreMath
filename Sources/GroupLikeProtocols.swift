@@ -7,7 +7,7 @@
 //
 
 
-protocol MagmaProtocol : CustomStringConvertible {
+public protocol MagmaProtocol : CustomStringConvertible {
 	associatedtype Element : Hashable, Equatable, Comparable
 	var set : Set<Element> { get }
 	var op : (Element, Element) -> Element { get }
@@ -17,7 +17,7 @@ protocol MagmaProtocol : CustomStringConvertible {
 }
 
 extension MagmaProtocol {
-	var description: String {
+	public var description: String {
 		return "\(Self.self) ⟨ \(set.sorted()), \(sign) ⟩"
 	}
 	func test() -> Bool {
@@ -42,7 +42,7 @@ infix operator • {}
 func • <T: MagmaProtocol>(left: T.Element, right: T.Element) -> T.Element { return T.op(left, right) }
 */
 
-internal protocol Commutative : MagmaProtocol {}
+public protocol Commutative : MagmaProtocol {}
 extension Commutative {
 	func testCommutative() -> Bool {
 		for u in set { for v in set { if !testCommutative(u,v) { return false } } }
@@ -56,7 +56,7 @@ extension Commutative {
 	}
 }
 
-internal protocol hasNeutralElement : MagmaProtocol {
+public protocol hasNeutralElement : MagmaProtocol {
 	var neutralElement : Element { get }
 }
 
@@ -72,7 +72,7 @@ extension hasNeutralElement {
 
 // prefix func ! <T: Invertible> (element: T.Element) -> T.Element { return T.inverse(element) }
 
-internal protocol Invertible : MagmaProtocol, hasNeutralElement {
+public protocol Invertible : MagmaProtocol, hasNeutralElement {
 	var inv : (Element) -> Element { get }
 }
 
@@ -87,7 +87,7 @@ extension Invertible {
 	}
 }
 
-internal protocol Idempotent : MagmaProtocol {}
+public protocol Idempotent : MagmaProtocol {}
 extension Idempotent {  // • is idempotent
 	func testIdempotent() -> Bool {
 		for u in set { if !testIdempotent(u) { return false } }
@@ -98,7 +98,7 @@ extension Idempotent {  // • is idempotent
 	}
 }
 
-internal protocol Associative : MagmaProtocol {}
+public protocol Associative : MagmaProtocol {}
 
 extension Associative {
 	func testAssociative() -> Bool {
@@ -111,35 +111,35 @@ extension Associative {
 	}
 }
 
-protocol SemigroupProtocol : MagmaProtocol, Associative {}
+public protocol SemigroupProtocol : MagmaProtocol, Associative {}
 extension SemigroupProtocol {
 	func test() -> (closed: Bool, associative: Bool) {
 		return (testClosure(), testAssociative())
 	}
 }
 
-protocol MonoidProtocol : SemigroupProtocol, hasNeutralElement {}
+public protocol MonoidProtocol : SemigroupProtocol, hasNeutralElement {}
 extension MonoidProtocol {
 	func test() -> (closed: Bool, associative: Bool, neutralElement: Bool) {
 		return (testClosure(), testAssociative(), testNeutralElement())
 	}
 }
 
-protocol GroupProtocol : MonoidProtocol, Invertible {}
+public protocol GroupProtocol : MonoidProtocol, Invertible {}
 extension GroupProtocol {
 	func test() -> (closed: Bool, associative: Bool, neutralElement: Bool, invertible: Bool) {
 		return (testClosure(), testAssociative(), testNeutralElement(), testInverse())
 	}
 }
 
-protocol AbelianGroupProtocol : GroupProtocol, Commutative {}
+public protocol AbelianGroupProtocol : GroupProtocol, Commutative {}
 extension AbelianGroupProtocol {
 	func test() -> (closed: Bool, associative: Bool, neutralElement: Bool, invertible: Bool, commutative: Bool) {
 		return (testClosure(), testAssociative(), testNeutralElement(), testInverse(), testCommutative())
 	}
 }
 
-protocol SemilatticeProtocol  : SemigroupProtocol, Commutative, Idempotent {}
+public protocol SemilatticeProtocol  : SemigroupProtocol, Commutative, Idempotent {}
 extension SemilatticeProtocol {
 	func test() -> (closed: Bool, associative: Bool, commutative: Bool, idempotent: Bool) {
 		return (testClosure(), testAssociative(), testCommutative(), testIdempotent())

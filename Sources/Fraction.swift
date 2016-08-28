@@ -45,4 +45,11 @@ struct Fraction : Function {
 		}
 		return self
 	}
+	
+	func equals(to: Function) -> Bool {
+		if let f = to as? Fraction {
+			return f.denominator == self.denominator && f.numerator == self.numerator
+		}
+		return false
+	}
 }
