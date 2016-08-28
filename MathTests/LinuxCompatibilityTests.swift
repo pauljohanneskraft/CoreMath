@@ -20,10 +20,8 @@ class LinuxCompatibilityTests: XCTestCase {
 		XCTAssert(DBL_MAX == unsafeBitCast(DBL_MAX.hashValue, to: Double.self))
 		print(DBL_MIN.hashValue)
 		XCTAssert(DBL_MIN == unsafeBitCast(DBL_MIN.hashValue, to: Double.self))
-		print("-----------------------------------------")
-		for _ in 0..<100 {
-			print(Math.random())
-		}
+		// print("-----------------------------------------")
+		// for _ in 0..<100 { print(Math.random()) }
 	}
 	
 }

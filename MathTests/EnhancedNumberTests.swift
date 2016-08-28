@@ -30,6 +30,7 @@ class EnhancedNumberTests: XCTestCase, TypeTest {
 	func testReadmeExample() {
 		let a : Enhanced<Int> = 5
 		print( a / 0 )
+		XCTAssert( a / 0 == Enhanced<Int>.infinity(sign: false))
 	}
 	
 }

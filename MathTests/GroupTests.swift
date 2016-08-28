@@ -23,7 +23,7 @@ class GroupTests: XCTestCase {
 		for i in Z_(20).sorted() {
 			let g = GroupLike(set: Z_(i), op: { ($0 + $1) % i }, neutralElement: 0, inv: { i - $0 }, sign: "+")
 			let st = g.strictestType!
-			print(i, "\t", st) // XCTAssert(type(of: st) == AbelianGroup<Int>.self)
+			// print(i, "\t", st) // XCTAssert(type(of: st) == AbelianGroup<Int>.self)
 		}
 	}
 	

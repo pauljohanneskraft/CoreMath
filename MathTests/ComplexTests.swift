@@ -36,7 +36,7 @@ class ComplexTests: XCTestCase, TypeTest {
 	
 	func testReadmeExample() {
 		let a : Complex<Int> = -4
-		print(a.sqrt)
+		XCTAssert(a.sqrt == Complex<Int>(real: 0, imaginary: 2))
 	}
 	
 	// specials
