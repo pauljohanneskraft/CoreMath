@@ -138,13 +138,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		9B4733AD1D4ACBB80055A7E8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		9B4733BD1D4ACBE00055A7E8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -368,24 +361,12 @@
 		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		9B4733AE1D4ACBB80055A7E8 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
 		9B4733B01D4ACBB80055A7E8 /* Math */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9B4733B91D4ACBB80055A7E8 /* Build configuration list for PBXNativeTarget "Math" */;
 			buildPhases = (
 				9B4733AC1D4ACBB80055A7E8 /* Sources */,
-				9B4733AD1D4ACBB80055A7E8 /* Frameworks */,
-				9B4733AE1D4ACBB80055A7E8 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -402,7 +383,6 @@
 			buildPhases = (
 				9B4733BC1D4ACBE00055A7E8 /* Sources */,
 				9B4733BD1D4ACBE00055A7E8 /* Frameworks */,
-				9B4733BE1D4ACBE00055A7E8 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -456,16 +436,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		9B4733BE1D4ACBE00055A7E8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9B4733AC1D4ACBB80055A7E8 /* Sources */ = {
