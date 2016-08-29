@@ -11,10 +11,10 @@ import Foundation
 public protocol Function : CustomStringConvertible, LaTeXConvertible {
 	
 	// properties
-	var derivative: Function { get }
-	var integral: Function { get }
-	var reduced : Function { get }
-	var debugDescription: String { get }
+	var derivative		: Function	{ get }
+	var integral		: Function	{ get }
+	var reduced			: Function	{ get }
+	var debugDescription: String	{ get }
 	
 	// functions
 	func call(x: Double) -> Double
@@ -52,16 +52,16 @@ public extension Function {
 public func * (lhs: Function, rhs: Function) -> Function {
 	if let l = lhs as? Equation {
 		if !(rhs is CustomFunction) {
-			var res = [Function]()
-			for f1 in l.terms { res.append(f1 * rhs) }
-			return Equation(res).reduced
+			var res : Function = Constant(0)
+			for f1 in l.terms { res = res + (f1 * rhs) }
+			return res.reduced
 		}
 	}
 	if let r = rhs as? Equation {
 		if !(lhs is CustomFunction) {
-			var res = [Function]()
-			for f1 in r.terms { res.append(f1 * lhs) }
-			return Equation(res).reduced
+			var res : Function = Constant(0)
+			for f1 in r.terms { res = res + (f1 * lhs) }
+			return res.reduced
 		}
 	}
 	if var l = lhs as? Term {
