@@ -22,30 +22,29 @@ public protocol Function : CustomStringConvertible, LaTeXConvertible {
 	func equals(to: Function) -> Bool
 	
 	// operators
-	static func ==(lhs: Function, rhs: Function) -> Bool
+	static func == (lhs: Function, rhs: Function) -> Bool
 	
-	static func + (lhs: Function, rhs: Function) -> Function
-	static func * (lhs: Function, rhs: Function) -> Function
-	static func / (lhs: Function, rhs: Function) -> Function
-	static func - (lhs: Function, rhs: Function) -> Function
+	static func +  (lhs: Function, rhs: Function) -> Function
+	static func -  (lhs: Function, rhs: Function) -> Function
+	static func *  (lhs: Function, rhs: Function) -> Function
+	static func /  (lhs: Function, rhs: Function) -> Function
 	
 	prefix static func - (lhs: Function) -> Function
 }
 
 public extension Function {
-	func integral(c: Double) -> Function {
-		return integral + Constant(c)
-	}
-	func integral(from: Double, to: Double) -> Double {
+	
+	// properties
+	var debugDescription : String { return description }
+	
+	// functions
+	func coefficientDescription(first: Bool	) -> String		{ return first ? description : "+ \(description)" }
+	
+	func integral(c:	Double				) -> Function	{ return integral + Constant(c) }
+	
+	func integral(from: Double, to: Double	) -> Double		{
 		let int = self.integral
 		return int.call(x: from) - int.call(x: to)
-	}
-	var debugDescription : String {
-		return description
-	}
-	func coefficientDescription(first: Bool) -> String {
-		guard first else { return "+ \(self.description)" }
-		return description
 	}
 }
 
@@ -75,36 +74,6 @@ public func * (lhs: Function, rhs: Function) -> Function {
 	return Term(lhs, rhs).reduced
 }
 
-public func *= (lhs: inout Function, rhs: Function) {
-	if let l = lhs as? Equation {
-		if !(rhs is CustomFunction) {
-			var res = [Function]()
-			for f1 in l.terms { res.append(f1 * rhs) }
-			lhs = Equation(res).reduced
-			return
-		}
-	}
-	if let r = rhs as? Equation {
-		if !(lhs is CustomFunction) {
-			var res = [Function]()
-			for f1 in r.terms { res.append(f1 * lhs) }
-			lhs = Equation(res).reduced
-			return
-		}
-	}
-	if var l = lhs as? Term {
-		l.factors.append(rhs)
-		lhs = l.reduced
-		return
-	}
-	if var r = rhs as? Term {
-		r.factors.append(lhs)
-		lhs = r.reduced
-		return
-	}
-	lhs = Term(lhs, rhs).reduced
-}
-
 public func + (lhs: Function, rhs: Function) -> Function {
 	let lhs = lhs.reduced
 	let rhs = rhs.reduced
@@ -118,13 +87,10 @@ public func + (lhs: Function, rhs: Function) -> Function {
 	return Equation(lhs, rhs).reduced
 }
 
-public func - (lhs: Function, rhs: Function) -> Function {
-	return lhs + (-rhs)
-}
 
 public prefix func - (lhs: Function) -> Function {
 	if let l = lhs as? Constant { return Constant(-(l.value)) }
-	return -1 * lhs
+	return Constant(-1) * lhs
 }
 
 internal func == (lhs: [Function], rhs: [Function]) -> Bool {
@@ -135,21 +101,11 @@ internal func == (lhs: [Function], rhs: [Function]) -> Bool {
 	return true
 }
 
-public func == (lhs: Function, rhs: Function) -> Bool {
-	return lhs.reduced.equals(to: rhs.reduced)
-}
+public func *= (lhs: inout Function, rhs: Function) { lhs = lhs * rhs }
+public func += (lhs: inout Function, rhs: Function) { lhs = lhs + rhs }
 
-public func / (lhs: Function, rhs: Function) -> Function {
-	return Fraction(numerator: lhs, denominator: rhs).reduced
-}
+public func -  (lhs: Function, rhs: Function) -> Function	{ return lhs + (-rhs) }
 
-struct FunctionWrapper : CustomStringConvertible, LaTeXConvertible {
-	var function : Function
-	var name : String
-	var description: String {
-		return "\(self.name)(x) = \(self.function)"
-	}
-	var latex : String {
-		return "\(self.name)(x) = \(self.function.latex)"
-	}
-}
+public func == (lhs: Function, rhs: Function) -> Bool		{ return lhs.reduced.equals(to: rhs.reduced) }
+
+public func /  (lhs: Function, rhs: Function) -> Function	{ return Fraction(numerator: lhs, denominator: rhs).reduced }
