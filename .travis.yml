@@ -3,6 +3,7 @@ branches:
   - master
   - Development
   - Feature
+  - codecov
 
 matrix:
   include:
