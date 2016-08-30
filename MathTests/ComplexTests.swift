@@ -20,15 +20,15 @@ class ComplexTests: XCTestCase, TypeTest {
 	
 	// basic arithmetic
 	func testAddition() {
-		forAll("+", assert: { $0.real + $1.real == $2.real && $0.imaginary + $1.imaginary == $2.imaginary }) { $0 + $1 }
+		forAll("+") { $0 + $1 }
 	}
 	
 	func testSubtraction() {
-		forAll("-", assert: { $0.real - $1.real == $2.real && $0.imaginary - $1.imaginary == $2.imaginary }) { $0 - $1 }
+		forAll("-") { $0 - $1 }
 	}
 	
 	func testMultiplication()   {
-		forAll("*", assert: { ($0.real * $1.real) + ($0.imaginary * $1.imaginary) == $2.real }) { $0 * $1 }
+		forAll("*") { $0 * $1 }
 	}
 	func testDivision()         {
 		// forAll("/",   assert: { $0.real / $1.real == $2.real }) { $0 / $1 }
