@@ -40,12 +40,8 @@ public extension Function {
 	// functions
 	func coefficientDescription(first: Bool	) -> String		{ return first ? description : "+ \(description)" }
 	
-	func integral(c:	Double				) -> Function	{ return integral + Constant(c) }
-	
-	func integral(from: Double, to: Double	) -> Double		{
-		let int = self.integral
-		return int.call(x: from) - int.call(x: to)
-	}
+	func integral(c:	Double				) -> Function	{ return integral + Constant(c)											}
+	func integral(from: Double, to: Double	) -> Double		{ let int = self.integral; return int.call(x: from) - int.call(x: to)	}
 }
 
 public func * (lhs: Function, rhs: Function) -> Function {
@@ -63,14 +59,9 @@ public func * (lhs: Function, rhs: Function) -> Function {
 			return res.reduced
 		}
 	}
-	if var l = lhs as? Term {
-		l.factors.append(rhs)
-		return l.reduced
-	}
-	if var r = rhs as? Term {
-		r.factors.append(lhs)
-		return r.reduced
-	}
+	if var l = lhs as? Term { l.factors.append(rhs); return l.reduced }
+	if var r = rhs as? Term { r.factors.append(lhs); return r.reduced }
+	
 	return Term(lhs, rhs).reduced
 }
 
@@ -81,9 +72,7 @@ public func + (lhs: Function, rhs: Function) -> Function {
 		if let r = rhs as? Equation { return Equation(l.terms + r.terms).reduced }
 		return Equation(l.terms + [rhs]).reduced
 	}
-	if let r = rhs as? Equation {
-		return Equation([lhs] + r.terms).reduced
-	}
+	if let r = rhs as? Equation { return Equation([lhs] + r.terms).reduced }
 	return Equation(lhs, rhs).reduced
 }
 
@@ -104,8 +93,6 @@ internal func == (lhs: [Function], rhs: [Function]) -> Bool {
 public func *= (lhs: inout Function, rhs: Function) { lhs = lhs * rhs }
 public func += (lhs: inout Function, rhs: Function) { lhs = lhs + rhs }
 
-public func -  (lhs: Function, rhs: Function) -> Function	{ return lhs + (-rhs) }
-
-public func == (lhs: Function, rhs: Function) -> Bool		{ return lhs.reduced.equals(to: rhs.reduced) }
-
+public func -  (lhs: Function, rhs: Function) -> Function	{ return lhs + (-rhs)										}
+public func == (lhs: Function, rhs: Function) -> Bool		{ return lhs.reduced.equals(to: rhs.reduced)				}
 public func /  (lhs: Function, rhs: Function) -> Function	{ return Fraction(numerator: lhs, denominator: rhs).reduced }
