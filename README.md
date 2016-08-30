@@ -10,9 +10,15 @@ Only on macOS, the tests are run.
         <th>master</th>
         <th>Mostly ready to use</th>
         <th> <a href="https://travis-ci.org/pauljohanneskraft/Math/branches"> <img src="https://travis-ci.org/pauljohanneskraft/Math.svg?branch=master"> </a> </th>
-        <th> <a href="https://codecov.io/gh/pauljohanneskraft/Math/branch/master"> 
+        <th> 
+            <a href="https://codecov.io/gh/pauljohanneskraft/Math/branch/master"> 
             <img src="https://codecov.io/gh/pauljohanneskraft/Math/branch/master/graph/badge.svg" alt="Codecov" />
-        </a> </th>
+            </a>
+        </th><th>
+            <a href="https://codecov.io/gh/pauljohanneskraft/Math/branch/master"> 
+            <img src="https://codecov.io/gh/pauljohanneskraft/Math/branch/master/graphs/sunburst.svg" height="50" width="50" alt="Codecov" />
+            </a> 
+        </th>
     </tr>
     <tr> 
         <th>Development</th>
@@ -20,7 +26,11 @@ Only on macOS, the tests are run.
         <th> <a href="https://travis-ci.org/pauljohanneskraft/Math/branches"> <img src="https://travis-ci.org/pauljohanneskraft/Math.svg?branch=Development"> </a> </th>
         <th> <a href="https://codecov.io/gh/pauljohanneskraft/Math/branch/Development"> 
             <img src="https://codecov.io/gh/pauljohanneskraft/Math/branch/Development/graph/badge.svg" alt="Codecov" />
-        </a> </th>
+        </a> </th><th>
+            <a href="https://codecov.io/gh/pauljohanneskraft/Math/branch/Development"> 
+            <img src="https://codecov.io/gh/pauljohanneskraft/Math/branch/Development/graphs/sunburst.svg" height="50" width="50" alt="Codecov" />
+            </a> 
+        </th>
     </tr>
     <tr> 
         <th>Feature</th>
@@ -28,7 +38,11 @@ Only on macOS, the tests are run.
         <th> <a href="https://travis-ci.org/pauljohanneskraft/Math/branches"> <img src="https://travis-ci.org/pauljohanneskraft/Math.svg?branch=Feature"> </a> </th>
         <th> <a href="https://codecov.io/gh/pauljohanneskraft/Math/branch/Feature"> 
             <img src="https://codecov.io/gh/pauljohanneskraft/Math/branch/Feature/graph/badge.svg" alt="Codecov" />
-        </a> </th>
+        </a> </th><th>
+            <a href="https://codecov.io/gh/pauljohanneskraft/Math/branch/Feature"> 
+            <img src="https://codecov.io/gh/pauljohanneskraft/Math/branch/Feature/graphs/sunburst.svg" height="50" width="50" alt="Codecov" />
+            </a> 
+        </th>
     </tr>
 </table>
 
