@@ -10,10 +10,10 @@ import Foundation
 
 public struct CustomFunction : Function {
 	
-	var function: (Double) -> Double
-	var _derivative: () -> Function
-	var _integral: () -> Function
-	public var description: String
+	private var function	: (Double)	-> Double
+	private var _derivative	: ()		-> Function
+	private var _integral	: ()		-> Function
+	public	var description	: String
 	
 	init(_ desc: String, function: @escaping (Double) -> Double, integral: @escaping () -> Function, derivative: @escaping () -> Function) {
 		self.description = desc
@@ -22,14 +22,12 @@ public struct CustomFunction : Function {
 		self._derivative = derivative
 	}
 	
-	public var latex: String { return description }
-	public var derivative: Function { return _derivative() }
-	public var integral : Function { return _integral() }
-	public var reduced: Function { return self } // TODO!
+	public var latex		: String	{ return description	}
+	public var derivative	: Function	{ return _derivative()	}
+	public var integral		: Function	{ return _integral()	}
+	public var reduced		: Function	{ return self			} // LOW_PRIO
 	
-	public func call(x: Double) -> Double { return function(x) }
-	public func equals(to: Function) -> Bool {
-		return type(of: to) == CustomFunction.self && description == to.description
-	}
+	public func call	(x:		Double	) -> Double	{ return function(x)															}
+	public func equals	(to:	Function) -> Bool	{ return type(of: to) == CustomFunction.self && description == to.description	}
 	
 }
