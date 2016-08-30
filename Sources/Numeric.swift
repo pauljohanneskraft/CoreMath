@@ -8,10 +8,11 @@
 
 import Foundation
 
-public protocol Numeric : BasicArithmetic, Randomizable {
-	var integer : Int		{ get }
-	var double	: Double	{ get }
-	var sqrt	: Self		{ get }
+public protocol Numeric : BasicArithmetic, Randomizable, Ordered {
+	var integer		: Int		{ get }
+	var isInteger	: Bool		{ get }
+	var double		: Double	{ get }
+	var sqrt		: Self		{ get }
 	func power(_ v: Double) -> Self
 }
 
@@ -24,7 +25,7 @@ extension Numeric {
 		return Self(floatLiteral: pow(self.double, v))
 	}
 	
-	var isInteger : Bool {
+	public var isInteger : Bool {
 		return Self(integerLiteral: self.integer) == self
 	}
 	
