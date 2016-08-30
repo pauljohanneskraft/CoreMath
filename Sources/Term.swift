@@ -9,6 +9,15 @@
 import Foundation
 
 struct Term : Function {
+	
+	// stored properties
+	var factors : [ Function ]
+	
+	// initializers
+	init(_ factors: Function...	) { self.factors = factors }
+	init(_ factors: [Function]	) { self.factors = factors }
+	
+	// computed properties
 	var integral : Function {
 		var factors = self.factors
 		// print("integral of", self)
@@ -61,14 +70,6 @@ struct Term : Function {
 		return result
 	}
 	
-	init(_ factors: Function...) {
-		self.factors = factors
-	}
-	
-	init(_ factors: [Function]) {
-		self.factors = factors
-	}
-	
 	var derivative: Function {
 		var terms = [Function]()
 		for fi in factors.indices {
@@ -82,18 +83,8 @@ struct Term : Function {
 		}
 		return Equation(terms)
 	}
-	
-	func call(x: Double) -> Double {
-		var res = 1.0
-		for f in factors {
-			res *= f.call(x: x)
-		}
-		return res
-	}
-	
-	var description: String {
-		return coefficientDescription(first: true)
-	}
+
+	var description: String { return coefficientDescription(first: true) }
 	
 	public var debugDescription: String {
 		guard factors.count > 0 else { return "Term()" }
@@ -105,48 +96,10 @@ struct Term : Function {
 	}
 	
 	public var latex: String {
-		if factors.isEmpty { return "0" }
+		guard !factors.isEmpty else { return "0" }
 		var result = "\(factors.first!.latex)"
-		for f in factors.dropFirst() {
-			result += " \\cdot \(f.latex)"
-		}
+		for f in factors.dropFirst() { result += " \\cdot \(f.latex)" }
 		return result
-	}
-	
-	public func coefficientDescription(first: Bool) -> String {
-		guard factors.count > 1 else { return factors.count == 0 ? "0" : factors[0].coefficientDescription(first: false) }
-		if let coeff = factors[0] as? Constant {
-			let hasMinusOne = coeff.value.abs == 1
-			var result = "\(factors[0].coefficientDescription(first: first))"
-			guard factors.count > 2 else {
-				let f = factors[1]
-				switch f {
-				case is Equation: return result + "·(\(f))"
-				case is _Polynomial, is CustomFunction: return result + "\(f)"
-				default: return result + "·\(f)"
-				}
-			}
-			if !hasMinusOne { result += "·( " }
-			let f = factors[1]
-			if f is Equation	{ result += "(\(f))"	}
-			else				{ result +=  "\(f)"		}
-			for f in factors.dropFirst(2) {
-				if f is Equation	{ result += "·(\(f))"	}
-				else				{ result +=  "·\(f)"	}
-			}
-			guard !hasMinusOne else { return result }
-			return result + " )"
-		} else {
-			var result = first ? "" : "+ "
-			let f = factors[0]
-			if f is Equation	{ result += "(\(f))"	}
-			else				{ result +=  "\(f)"		}
-			for f in factors.dropFirst() {
-				if f is Equation	{ result += "·(\(f))"	}
-				else				{ result +=  "·\(f)"	}
-			}
-			return result
-		}
 	}
 	
 	var reduced: Function {
@@ -214,13 +167,53 @@ struct Term : Function {
 		if this.factors.count == 1 { return this.factors[0] }
 		return Constant(1.0)
 	}
+
 	
-	var factors : [ Function ]
+	// functions
+	func call(x: Double) -> Double {
+		var res = 1.0
+		for f in factors { res *= f.call(x: x) }
+		return res
+	}
+	
+	public func coefficientDescription(first: Bool) -> String {
+		guard factors.count > 1 else { return factors.count == 0 ? "0" : factors[0].coefficientDescription(first: false) }
+		if let coeff = factors[0] as? Constant {
+			let hasMinusOne = coeff.value.abs == 1
+			var result = "\(factors[0].coefficientDescription(first: first))"
+			guard factors.count > 2 else {
+				let f = factors[1]
+				switch f {
+				case is Equation: return result + "·(\(f))"
+				case is _Polynomial, is CustomFunction: return result + "\(f)"
+				default: return result + "·\(f)"
+				}
+			}
+			if !hasMinusOne { result += "·( " }
+			let f = factors[1]
+			if f is Equation	{ result += "(\(f))"	}
+			else				{ result +=  "\(f)"		}
+			for f in factors.dropFirst(2) {
+				if f is Equation	{ result += "·(\(f))"	}
+				else				{ result +=  "·\(f)"	}
+			}
+			guard !hasMinusOne else { return result }
+			return result + " )"
+		} else {
+			var result = first ? "" : "+ "
+			let f = factors[0]
+			if f is Equation	{ result += "(\(f))"	}
+			else				{ result +=  "\(f)"		}
+			for f in factors.dropFirst() {
+				if f is Equation	{ result += "·(\(f))"	}
+				else				{ result +=  "·\(f)"	}
+			}
+			return result
+		}
+	}
 	
 	func equals(to: Function) -> Bool {
-		if let t = to as? Term {
-			return t.factors == self.factors
-		}
+		if let t = to as? Term { return t.factors == self.factors }
 		return false
 	}
 }

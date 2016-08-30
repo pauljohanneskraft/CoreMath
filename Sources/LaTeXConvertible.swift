@@ -13,22 +13,28 @@ public protocol LaTeXConvertible {
 }
 
 extension LaTeXConvertible where Self : CustomStringConvertible {
-	public var latex: String {
-		return self.description
-	}
+	public var latex: String { return self.description }
 }
 
-enum LaTeXMode {
-	case Math, Standard, Comment
-}
+enum LaTeXMode { case Math, Standard, Comment }
 
 extension Int    : LaTeXConvertible {}
+extension Int8   : LaTeXConvertible {}
+extension Int16  : LaTeXConvertible {}
+extension Int32  : LaTeXConvertible {}
+extension Int64  : LaTeXConvertible {}
+extension UInt   : LaTeXConvertible {}
+extension UInt8  : LaTeXConvertible {}
+extension UInt16 : LaTeXConvertible {}
+extension UInt32 : LaTeXConvertible {}
+extension UInt64 : LaTeXConvertible {}
+
+extension Float  : LaTeXConvertible {}
+extension Float80: LaTeXConvertible {}
 extension Double : LaTeXConvertible {}
 
 extension String : LaTeXConvertible {
-	public var latex : String {
-		return "\"\(self)\""
-	}
+	public var latex : String { return "\"\(self)\"" }
 }
 
 extension Matrix : LaTeXConvertible {
@@ -56,39 +62,8 @@ extension RationalNumber : LaTeXConvertible {
 	
 }
 
-extension Complex : LaTeXConvertible {
-	public var latex : String {
-		return self.description
-	}
-}
-
-extension Enhanced : LaTeXConvertible {
-	public var latex: String {
-		return self.description
-	}
-}
-
-/*
-extension Vector : LaTeXConvertible {
-var latex : String {
-if Element.self is LaTeXConvertible {
-var out = "\\begin{pmatrix}\n"
-for e in elements.dropLast() {
-out += "\(e.latex) \\\\\n"
-}
-out += "\(elements.last!.latex)\n"
-return out + "\\end{pmatrix}"
-} else {
-var out = "\\begin{pmatrix}\n"
-for e in elements.dropLast() {
-out += "\(e) \\\\\n"
-}
-out += "\(elements.last!)\n"
-return out + "\\end{pmatrix}"
-}
-}
-}
-*/
+extension Complex	: LaTeXConvertible {}
+extension Enhanced	: LaTeXConvertible {}
 
 
 
