@@ -14,12 +14,12 @@ class TrigonometricFunctionTests: XCTestCase {
 	func testPropertiesSin() {
 		let sin = Trigonometric.sin
 		let cos = Trigonometric.cos
-		XCTAssert(sin.derivative	==  cos)
-		XCTAssert(sin.integral		== -cos)
-		XCTAssert(cos.derivative	== -sin)
-		XCTAssert(cos.integral		==  sin)
-		XCTAssert(sin.description == "sin(x)")
-		XCTAssert(cos.description == "cos(x)")
+		XCTAssert(sin.derivative	==  cos		)
+		XCTAssert(sin.integral		== -cos		)
+		XCTAssert(cos.derivative	== -sin		)
+		XCTAssert(cos.integral		==  sin		)
+		XCTAssert(sin.description	== "sin(x)"	)
+		XCTAssert(cos.description	== "cos(x)"	)
 	}
 
 	func test1() {

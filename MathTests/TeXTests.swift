@@ -25,4 +25,13 @@ class TeXTests: XCTestCase {
 			XCTAssert(type is LaTeXConvertible, "\(type(of: type)): \(type)")
 		}
 	}
+	
+	func testLaTeXOutputs() {
+		XCTAssert( (x^12)			.latex	== "x^{12}"			)
+		XCTAssert(((x^12) + (x^15))	.latex	== "x^{12} + x^{15}")
+		XCTAssert(( (x^6) *  (x^6))	.latex	== "x^{12}"			)
+		XCTAssert(Q(1,2).latex == "\\frac{1}{2}")
+		XCTAssert(Enhanced<Int>(integerLiteral: 1).latex == "1")
+		XCTAssert(Complex <Int>(integerLiteral: 1).latex == "1")
+	}
 }

@@ -69,6 +69,9 @@ public enum Enhanced < Number : Numeric > : Numeric, Hashable {
 		case .nan:                  return Double.nan
 		}
 	}
+	
+	public static var min: Enhanced<Number> { return .finite(Number.min) }
+	public static var max: Enhanced<Number> { return .finite(Number.max) }
 }
 
 public func == < N : Numeric >(lhs: Enhanced<N>, rhs: Enhanced<N>) -> Bool {
