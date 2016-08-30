@@ -21,5 +21,4 @@ script:
 - if [[ $TRAVIS_OS_NAME == linux ]]; then swift package --version; fi
 - if [[ $TRAVIS_OS_NAME == linux ]]; then swift build; fi
 - if [[ $TRAVIS_OS_NAME == osx   ]]; then xcodebuild -workspace Math.xcworkspace -scheme MathTests test | xcpretty -f `xcpretty-travis-formatter` && exit ${PIPESTATUS[0]}; fi
-after_success:
 - if [[ $TRAVIS_OS_NAME == osx   ]]; then bash <(curl -s https://codecov.io/bash) -d; fi
