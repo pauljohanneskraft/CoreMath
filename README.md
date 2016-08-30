@@ -10,7 +10,7 @@ Only on macOS, the tests are run.
         <th>master</th>
         <th>Mostly ready to use</th>
         <th> <a href="https://travis-ci.org/pauljohanneskraft/Math/branches"> <img src="https://travis-ci.org/pauljohanneskraft/Math.svg?branch=master"> </a> </th>
-        <th> <a href="https://codecov.io/gh/pauljohanneskraft/Math"> 
+        <th> <a href="https://codecov.io/gh/pauljohanneskraft/Math/branch/master"> 
             <img src="https://codecov.io/gh/pauljohanneskraft/Math/branch/master/graph/badge.svg" alt="Codecov" />
         </a> </th>
     </tr>
@@ -18,7 +18,7 @@ Only on macOS, the tests are run.
         <th>Development</th>
         <th>Unready modules / not enough tested</th>
         <th> <a href="https://travis-ci.org/pauljohanneskraft/Math/branches"> <img src="https://travis-ci.org/pauljohanneskraft/Math.svg?branch=Development"> </a> </th>
-        <th> <a href="https://codecov.io/gh/pauljohanneskraft/Math"> 
+        <th> <a href="https://codecov.io/gh/pauljohanneskraft/Math/branch/Development"> 
             <img src="https://codecov.io/gh/pauljohanneskraft/Math/branch/Development/graph/badge.svg" alt="Codecov" />
         </a> </th>
     </tr>
@@ -26,7 +26,7 @@ Only on macOS, the tests are run.
         <th>Feature</th>
         <th>Anything, possibly not working</th>
         <th> <a href="https://travis-ci.org/pauljohanneskraft/Math/branches"> <img src="https://travis-ci.org/pauljohanneskraft/Math.svg?branch=Feature"> </a> </th>
-        <th> <a href="https://codecov.io/gh/pauljohanneskraft/Math"> 
+        <th> <a href="https://codecov.io/gh/pauljohanneskraft/Math/branch/Feature"> 
             <img src="https://codecov.io/gh/pauljohanneskraft/Math/branch/Feature/graph/badge.svg" alt="Codecov" />
         </a> </th>
     </tr>
