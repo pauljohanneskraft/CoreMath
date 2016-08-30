@@ -1,17 +1,10 @@
-branches:
-  only:
-  - master
-  - Development
-  - Feature
-  - codecov
-
 matrix:
   include:
     - os: linux
       sudo: required
       dist: trusty
     - os: osx
-      language: objective-c
+      language: swift
       osx_image: xcode8
 
 install:
