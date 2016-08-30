@@ -9,31 +9,19 @@
 public struct Matrix < N > : ExpressibleByArrayLiteral, CustomStringConvertible {
 	public typealias Element = [N]
 	
-	fileprivate(set) var elements : [[N]]
+	public fileprivate(set) var elements : [[N]]
 	
-	public init(_ elements: [[N]]) {
-		self.elements = elements
-		assert(isRect)
-	}
+	public init(_			 elements: [[N]]	 ) { self.elements = elements; assert(isRect)	}
+	public init(arrayLiteral elements: Element...) { self.init(elements)						}
 	
-	public init(arrayLiteral elements: Element...) {
-		self.init(elements)
-	}
+	public var isSquare : Bool { return elements.count == elements[0].count }
 	
-	public var isSquare : Bool {
-		return elements.count == elements[0].count
-	}
-	
-	public var size : (rows: Int, columns: Int) {
-		return (elements.count, elements[0].count)
-	}
+	public var size : (rows: Int, columns: Int) { return (elements.count, elements[0].count) }
 	
 	private var isRect : Bool {
 		/* debugging, in O(rows) */
 		let columnCount = elements[0].count
-		for e in elements {
-			guard e.count == columnCount else { return false }
-		}
+		for e in elements { guard e.count == columnCount else { return false } }
 		return true
 	}
 	
@@ -41,9 +29,7 @@ public struct Matrix < N > : ExpressibleByArrayLiteral, CustomStringConvertible 
 		let (c,d) = size
 		var desc = "| "
 		for i in 0..<c {
-			for j in 0..<d {
-				desc += "\(elements[i][j]) "
-			}
+			for j in 0..<d { desc += "\(elements[i][j]) " }
 			desc += "| "
 		}
 		desc.characters = desc.characters.dropLast()
@@ -56,9 +42,7 @@ public struct Matrix < N > : ExpressibleByArrayLiteral, CustomStringConvertible 
 		var desc = ""
 		for i in 0..<c {
 			desc += "| "
-			for j in 0..<d {
-				desc += "\(elements[i][j]) "
-			}
+			for j in 0..<d { desc += "\(elements[i][j]) " }
 			desc += "|\n"
 		}
 		return desc
@@ -79,17 +63,16 @@ extension Matrix where N : BasicArithmetic {
 	}
 	
 	public var rank : Int {
-		
 		func onlyZeros(_ row: Element) -> Bool {
-			for e in row { if e != 0 { return false } }
+			for e in row { guard e == 0 else { return false } }
 			return true
 		}
 		
 		let rowEchelonForm = self.rowEchelonForm
 		var i = rowEchelonForm.size.rows
 		while i > 0 {
-			if onlyZeros(rowEchelonForm[i - 1]) { i -= 1 }
-			else { return i }
+			guard onlyZeros(rowEchelonForm[i - 1]) else { return i }
+			i -= 1
 		}
 		return 0
 	}
@@ -98,22 +81,13 @@ extension Matrix where N : BasicArithmetic {
 		
 		func removeLeadingNumber(row: inout Element, withLine: Element, startAt: Int) {
 			let coeff = row[startAt] / withLine[startAt]
-			// print(row, withLine, coeff)
-			if coeff != 0 {
-				for i in startAt ..< row.count {
-					row[i] -= coeff*withLine[i]
-				}
-			}
-			// print("->", row)
+			
+			if coeff != 0 { for i in startAt ..< row.count { row[i] -= coeff*withLine[i] } }
 		}
 		
 		func divide(row: inout Element, by: N, startAt: Int) {
 			assert(by != 0)
-			// print("divides", row, "by", by)
-			for i in startAt ..< row.count {
-				row[i] /= by
-			}
-			// print("result", row)
+			for i in startAt ..< row.count { row[i] /= by }
 		}
 		
 		let size = self.size
@@ -149,7 +123,7 @@ extension Matrix where N : BasicArithmetic {
 		}
 		
 		func onlyZeros(_ row: Element) -> Bool {
-			for e in row { if e != 0 { return false } }
+			for e in row { guard e == 0 else { return false } }
 			return true
 		}
 		
@@ -182,16 +156,10 @@ extension Matrix where N : BasicArithmetic {
 		let rows = size.rows
 		var two = self
 		var id = Matrix<N>.identity(rows)
-		for i in two.elements.indices {
-			two.elements[i].append(contentsOf: id.elements[i])
-		}
-		// print(two)
+		for i in two.elements.indices { two.elements[i].append(contentsOf: id.elements[i]) }
 		two = two.strictRowEchelonForm
-		// print(two)
 		let drows = rows << 1
-		for i in two.elements.indices {
-			id.elements[i] = two.elements[i][rows..<drows] + []
-		}
+		for i in two.elements.indices { id.elements[i] = two.elements[i][rows..<drows] + [] }
 		return id
 	}
 	
@@ -216,9 +184,7 @@ extension Matrix where N : BasicArithmetic {
 			for i in 0..<count {
 				var matrix = elements
 				matrix.remove(at: 0)
-				for j in 0..<(count-1) {
-					matrix[j].remove(at: i)
-				}
+				for j in 0..<(count-1) { matrix[j].remove(at: i) }
 				let det = Matrix(matrix).determinant * elements[0][i]
 				if i % 2 == 0   { res += det }
 				else            { res -= det }
@@ -251,9 +217,7 @@ public func -= < N : BasicArithmetic > (lhs: inout Matrix<N>, rhs: Matrix<N>) {
 	assert(lhs.size == rhs.size)
 	let size = lhs.size
 	for i in 0 ..< size.rows {
-		for j in 0 ..< size.columns {
-			lhs.elements[i][j] -= rhs.elements[i][j]
-		}
+		for j in 0 ..< size.columns { lhs.elements[i][j] -= rhs.elements[i][j] }
 	}
 }
 
@@ -266,9 +230,7 @@ public func - < N : BasicArithmetic > (lhs: Matrix<N>, rhs: Matrix<N>) -> Matrix
 public func *= < N : BasicArithmetic > (lhs: inout Matrix<N>, rhs: N) {
 	let size = lhs.size
 	for i in 0 ..< size.rows {
-		for j in 0 ..< size.columns {
-			lhs.elements[i][j] *= rhs
-		}
+		for j in 0 ..< size.columns { lhs.elements[i][j] *= rhs }
 	}
 }
 
@@ -303,31 +265,18 @@ public func *= < T: BasicArithmetic >( left: inout Matrix<T>, right: Matrix<T>) 
 		var array : [T] = []
 		for j in 0 ..< rcols {
 			var value : T = 0
-			for k in 0 ..< lcols {
-				/*
-				print(i, j, k, left.oneLineDescription, right.oneLineDescription)
-				print(left.elements[i])
-				print(left.elements[i][k])
-				print(right.elements[k])
-				print(right.elements[k][j])
-				*/
-				value += (left.elements[i][k]*right.elements[k][j])
-			}
+			for k in 0 ..< lcols { value += (left.elements[i][k]*right.elements[k][j]) }
 			array.append(value)
 		}
 		matrix.append(array)
 	}
-	// let l = left
 	left = Matrix(matrix)
-	// print(l.oneLineDescription, "*", right.oneLineDescription, "=", left.oneLineDescription)
 }
 
 public func += <T : BasicArithmetic>( left: inout Matrix<T>, right: Matrix<T>) {
 	assert(left.size == right.size)
 	for i in 0..<left.elements.count {
-		for j in 0..<left.elements[0].count {
-			left.elements[i][j] += right.elements[i][j]
-		}
+		for j in 0..<left.elements[0].count { left.elements[i][j] += right.elements[i][j] }
 	}
 }
 
@@ -338,15 +287,13 @@ public func + <T : BasicArithmetic>(left: Matrix<T>, right: Matrix<T>) -> Matrix
 }
 
 public func == < T : Equatable >(lhs: Matrix<T>, rhs: Matrix<T>) -> Bool {
-	if lhs.size != rhs.size { return false }
+	guard lhs.size == rhs.size else { return false }
 	return lhs.elements == rhs.elements
 }
 
-public func == <T: Equatable>(left: [[T]], right: [[T]]) -> Bool {
-	if left.count != right.count { return false }
-	for row in 0..<left.count {
-		if left[row] != right[row] { return false }
-	}
+private func == <T: Equatable>(left: [[T]], right: [[T]]) -> Bool {
+	guard left.count == right.count else { return false }
+	for row in 0..<left.count { guard left[row] == right[row] else { return false } }
 	return true
 }
 

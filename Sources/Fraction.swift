@@ -9,34 +9,33 @@
 import Foundation
 
 struct Fraction : Function {
-	var description: String { return "(\(numerator)) / (\(denominator))" }
-	var latex: String { return "\\frac{\(numerator.latex)}{\(denominator.latex)}" } // \frac{n}{d}
-	var numerator: Function
+
+	// stored properties
+	var numerator	: Function
 	var denominator : Function
 	
+	// initializers
 	init(numerator: Function, denominator: Function) {
 		self.numerator = numerator
 		self.denominator = denominator
 	}
 	
-	func call(x: Double) -> Double {
-		return numerator.call(x: x) / denominator.call(x: x)
-	}
+	// computed properties
 	var derivative: Function {
 		return Fraction(
 			numerator: (numerator.derivative * denominator) - (denominator.derivative * numerator),
 			denominator: denominator * denominator )
 	}
+	
 	var integral : Function {
-		assert(false, "integral not yet supported for fractions.")
-		return self
+		assert(false)
+		fatalError("integral not yet supported for fractions.")
 	}
+	
 	var reduced: Function {
 		let denominator = self.denominator.reduced
-		let numerator   = self.numerator.reduced
-		if let d = denominator.reduced as? ConstantFunction {
-			return numerator * (1.0/d.value)
-		}
+		let numerator   = self.numerator  .reduced
+		if let d = denominator.reduced as? ConstantFunction { return numerator * (1.0/d.value) }
 		if let n = numerator as? PolynomialFunction, let d = denominator as? PolynomialFunction {
 			let frac = n.polynomial /% d.polynomial
 			return Equation(
@@ -46,10 +45,15 @@ struct Fraction : Function {
 		return self
 	}
 	
+	var description	: String { return "(\(numerator)) / (\(denominator))"					} // e.g. x^1 / 2
+	var latex		: String { return "\\frac{\(numerator.latex)}{\(denominator.latex)}"	} // \frac{n}{d}
+	
+	// functions
 	func equals(to: Function) -> Bool {
-		if let f = to as? Fraction {
-			return f.denominator == self.denominator && f.numerator == self.numerator
-		}
+		if let f = to as? Fraction { return f.denominator == self.denominator && f.numerator == self.numerator }
 		return false
 	}
+	
+	func call(x: Double) -> Double { return numerator.call(x: x) / denominator.call(x: x) }
+	
 }
