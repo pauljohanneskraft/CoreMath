@@ -74,8 +74,6 @@ struct Equation : Function, CustomStringConvertible {
 		return value
 	}
 	
-	func coefficientDescription(first: Bool) -> String { return first ? "(\(description))" : "+ \(description)" }
-
 	func equals(to: Function) -> Bool {
 		if let e = to as? Equation { return e.terms == self.terms }
 		return false
