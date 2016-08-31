@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import XCTest
 
 protocol TypeTest {
 	associatedtype DataType
@@ -25,9 +26,9 @@ extension TypeTest {
 			let end = NSDate().timeIntervalSinceReferenceDate
 			let time = end-start
 			// print("\(char)(\(r))", "=", fr, "in", time)
-			assert(time >= 0.0)
+			assert(time >= 0.0, time.description)
 			// avgtime += time
-			assert(cond(r, fr))
+			XCTAssert(cond(r, fr), "cond(\(r), \(fr))")
 		}
 		// print("avg time:", avgtime / Double(n.count), "total:", avgtime)
 	}
@@ -42,9 +43,11 @@ extension TypeTest {
 				let end = NSDate().timeIntervalSinceReferenceDate
 				let time = end-start
 				// print(r, char, q, "=", frq, "in", time)
-				assert(time >= 0)
+				XCTAssert(time >= 0, "\(time)")
 				// avgtime += time
-				assert(cond(r,q, frq))
+				let t = cond(r,q, frq)
+				if !t { print(".", terminator: "") }
+				XCTAssert(t, "cond(\(r), \(q), \(frq))")
 			}
 		}
 		// print("avg time:", avgtime / Double(n.count * n.count), "total:", avgtime)

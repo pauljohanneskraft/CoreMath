@@ -130,7 +130,7 @@ extension RationalNumber {
 	// source: http://stackoverflow.com/questions/95727/how-to-convert-floats-to-human-readable-fractions
 	fileprivate init(readable value: Double) {
 		assert(value <= Double(Int.max))
-		let accuracy = [value.inaccuracy, 1e-11].max()!
+		let accuracy = [value.inaccuracy, 1e-11].min()!
 		
 		let sign = value < 0
 		let val = sign ? -value : value
@@ -140,18 +140,23 @@ extension RationalNumber {
 		var inacc = (frac - val).abs
 		
 		while inacc > accuracy {
-			if frac < value { n += 1 }
+			if frac < val {
+				let a = (n / 10).integer.double
+				n += a < 1 ? 1 : a
+			}
 			else {
-				d += 1
+				let a = (d / 10).integer.double
+				d += a < 1 ? 1 : a
 				n = Double(Int(val * d))
 			}
 			frac = n / d
 			inacc = (frac - val).abs
-			// print(frac, n, d)
-			assert(n <= Double(Int.max) && d <= Double(Int.max))
+			let maxInt = Int.max.double
+			if d > maxInt || n > maxInt { break }
+			// print(value, "?", frac, "=", n.reducedDescription, "/", d.reducedDescription)
 		}
 		
-		self = RationalNumber(numerator: sign ? -Int(n) : Int(n), denominator: Int(d))
+		self = RationalNumber(numerator: sign ? -n.integer : n.integer, denominator: d.integer)
 		self.reduce()
 	}
 }

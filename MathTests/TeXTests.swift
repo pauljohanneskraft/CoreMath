@@ -33,5 +33,7 @@ class TeXTests: XCTestCase {
 		XCTAssert(Q(1,2).latex == "\\frac{1}{2}")
 		XCTAssert(Enhanced<Int>(integerLiteral: 1).latex == "1")
 		XCTAssert(Complex <Int>(integerLiteral: 1).latex == "1")
+		XCTAssert("Hallo".latex == "\"Hallo\"")
+		XCTAssert(Matrix([[0,1], [2,3]]).latex == "\\begin{pmatrix}\n0 & 1 \\\\\n2 & 3\n\\end{pmatrix}")
 	}
 }

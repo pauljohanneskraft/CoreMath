@@ -22,10 +22,12 @@ class EnhancedNumberTests: XCTestCase, TypeTest {
 	var elements : [Enhanced<N>] = []
 	
 	// basic arithmetic
-	func testAddition()         { forAll("+") { $0 + $1 } }
-	func testSubtraction()      { forAll("-") { $0 - $1 } }
-	func testMultiplication()   { forAll("*") { $0 * $1 } }
-	func testDivision()         { forAll("/") { $0 / $1 } }
+	func testAddition()         { forAll("+")	{ $0 + $1 } }
+	func testSubtraction()      { forAll("-")	{ $0 - $1 } }
+	func testMultiplication()   { forAll("*")	{ $0 * $1 } }
+	func testDivision()         { forAll("/")	{ $0 / $1 } }
+	
+	func testPrefix()			{ forAll("-", assert: { $0 == -$1 })	{ -$0 } }
 	
 	func testReadmeExample() {
 		let a : Enhanced<Int> = 5

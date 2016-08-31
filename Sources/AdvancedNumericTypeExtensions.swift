@@ -36,6 +36,8 @@ extension Double : AdvancedNumeric, Ordered {
 		self.init(integerLiteral)
 	}
 	
+	public var sqrt : Double { return pow(self, 1.0/2) }
+	
 	public static var random : Double {
 		return unsafeBitCast(Math.random(), to: Double.self)
 	}
@@ -44,6 +46,10 @@ extension Double : AdvancedNumeric, Ordered {
 		if !isNormal { return "\(self)" }
 		if isInteger { return integer.description }
 		return description
+	}
+	
+	public var isInteger : Bool {
+		return isNormal && Double(integerLiteral: self.integer) == self
 	}
 	
 	public var integer : Int    {

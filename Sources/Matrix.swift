@@ -11,14 +11,14 @@ public struct Matrix < N > : ExpressibleByArrayLiteral, CustomStringConvertible 
 	
 	public fileprivate(set) var elements : [[N]]
 	
-	public init(_			 elements: [[N]]	 ) { self.elements = elements; assert(isRect)	}
+	public init(_			 elements: [[N]]	 ) { self.elements = elements; precondition(isRect, "Matrix needs to be a rect.") }
 	public init(arrayLiteral elements: Element...) { self.init(elements)						}
 	
-	public var isSquare : Bool { return elements.count == elements[0].count }
-	
-	public var size : (rows: Int, columns: Int) { return (elements.count, elements[0].count) }
+	public var isSquare : Bool						{ return elements.count == elements[0].count }
+	public var size		: (rows: Int, columns: Int) { return (elements.count, elements[0].count) }
 	
 	private var isRect : Bool {
+		guard elements.count > 0 else { return true }
 		/* debugging, in O(rows) */
 		let columnCount = elements[0].count
 		for e in elements { guard e.count == columnCount else { return false } }

@@ -22,9 +22,7 @@ public struct Complex < Number : BasicArithmetic > : BasicArithmetic {
 	public static var i : C { return C(real: 0, imaginary: 1) }
 	
 	public var conjugate : Complex<Number> {
-		var this = self
-		this.imaginary = -this.imaginary
-		return this
+		return Complex<Number>(real: self.real, imaginary: -(self.imaginary))
 	}
 	
 	public var hashValue: Int {
@@ -101,7 +99,7 @@ extension Complex where Number : AdvancedNumeric {
 
 extension Complex : CustomStringConvertible {
 	public var description : String {
-		switch (real.isZero, imaginary.isZero) {
+		switch (real == 0, imaginary == 0) {
 		case (true, true):  return "0"
 		case (true, false):
 			return imaginary.coefficientDescription(first: true) + "i"
@@ -116,6 +114,7 @@ public func *= <N : BasicArithmetic>(lhs: inout Complex<N>, rhs: Complex<N>) {
 	let l = lhs
 	lhs.real = l.real * rhs.real - l.imaginary * rhs.imaginary
 	lhs.imaginary = l.real * rhs.imaginary + l.imaginary * rhs.real
+	// print(l, "*", rhs, "=", lhs)
 }
 
 public func * <N : BasicArithmetic>(lhs: Complex<N>, rhs: Complex<N>) -> Complex<N> {
@@ -175,7 +174,7 @@ public func /= <N : BasicArithmetic>(lhs: inout Complex<N>, rhs: Complex<N>) {
 	let d = rhs.conjugate
 	let num = lhs * d
 	let den = rhs * d
-	assert(den.imaginary.isZero)
+	assert(den.imaginary == 0)
 	lhs = Complex<N>(real: num.real / den.real, imaginary: num.imaginary / den.real)
 }
 
