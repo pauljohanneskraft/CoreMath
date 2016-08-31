@@ -58,10 +58,7 @@ class RationalNumberTests: XCTestCase, TypeTest {
 	func testEasyFractionsUpTo45() {
 		for i in 1..<45 {
 			for j in 1..<45 {
-				let start = NSDate().timeIntervalSinceReferenceDate
 				let rat = Q(floatLiteral: i.double/j.double)
-				let time = NSDate().timeIntervalSinceReferenceDate - start
-				XCTAssert(time <= 0.01, "\(time)")
 				XCTAssert(rat.numerator <= i && rat.denominator <= j, "\(rat.description) != \(i.double) / \(j.double)")
 				// values.append(i.double/j.double)
 			}

@@ -18,11 +18,13 @@ class NumericTests: XCTestCase, TypeTest {
 	func testPrettyMuchEquals() {
 		for _ in  0 ..< 1000 {
 			let one = Double.random
-			let two = nextafter(one, DBL_MAX)
-			let eq  = one == two
-			let eqn = one =~ two
-			XCTAssert(eqn)
-			XCTAssert(!eq)
+			if one.isNormal {
+				let two = nextafter(one, DBL_MAX)
+				let eq  = one == two
+				let eqn = one =~ two
+				XCTAssert(eqn)
+				XCTAssert(!eq)
+			}
 		}
 	}
 	

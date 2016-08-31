@@ -16,7 +16,7 @@ class EnhancedNumberTests: XCTestCase, TypeTest {
 		elements.append(.infinity(sign: true))
 		elements.append(.infinity(sign: false))
 		elements.append(.nan)
-		for _ in 0 ..< 10 { elements.append(Enhanced<N>.random) }
+		for _ in 0 ..< 10 { elements.append(Enhanced<N>(integerLiteral: N.random % Int16.max.integer)) }
 	}
 	
 	var elements : [Enhanced<N>] = []
