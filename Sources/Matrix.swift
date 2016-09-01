@@ -11,14 +11,13 @@ public struct Matrix < N > : ExpressibleByArrayLiteral, CustomStringConvertible 
 	
 	public fileprivate(set) var elements : [[N]]
 	
-	public init(_			 elements: [[N]]	 ) { self.elements = elements; precondition(isRect) }
+	public init(_			 elements: [[N]]	 ) { self.elements = elements; precondition(elements.count > 0 && isRect) }
 	public init(arrayLiteral elements: Element...) { self.init(elements)						}
 	
 	public var isSquare : Bool						{ return elements.count == elements[0].count }
 	public var size		: (rows: Int, columns: Int) { return (elements.count, elements[0].count) }
 	
 	private var isRect : Bool {
-		guard elements.count > 0 else { return true }
 		/* debugging, in O(rows) */
 		let columnCount = elements[0].count
 		for e in elements { guard e.count == columnCount else { return false } }
@@ -174,7 +173,6 @@ extension Matrix where N : BasicArithmetic {
 		let count = elements.count
 		
 		switch count {
-		case 0: return 1
 		case 1: return elements[0][0]
 		case 2: return elements[0][0] * elements[1][1] - elements[0][1] * elements[1][0]
 		case 3:
