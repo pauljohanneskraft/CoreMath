@@ -9,7 +9,24 @@
 import XCTest
 import Math
 
-class MatrixTests: XCTestCase {
+class MatrixTests: XCTestCase, TypeTest {
+	
+	override func setUp() {
+		for _ in 0..<30 {
+			let size = (columns: (random() & 0xF) + 1, rows: (random() & 0xF) + 1)
+			var elem = [[Int]]()
+			for _ in 0..<size.rows {
+				var e = [Int]()
+				for _ in 0..<size.columns {
+					e.append(random() % Int8.max.integer)
+				}
+				elem.append(e)
+			}
+			elements.append(Matrix(elem))
+		}
+	}
+	
+	var elements : [Matrix<Int>] = []
 	
 	let abc = [[0,1,2], [3,4,5], [6,7,8]]
 	
@@ -29,10 +46,7 @@ class MatrixTests: XCTestCase {
 	}
 	
 	func testRowEchelonForm() {
-		let a = Matrix(abc)
-		let aref = a.rowEchelonForm
-		let asref = a.reducedRowEchelonForm
-		XCTAssert(aref.rank == 2 && asref.rank == 2)
+		forAll(assert: { $1 == true }) { $0.rowEchelonForm.rank == $0.reducedRowEchelonForm.rank }
 	}
 	
 	func testIsSquare() {
@@ -87,7 +101,7 @@ class MatrixTests: XCTestCase {
 		XCTAssert(Matrix(c).rank == 0)
 	}
 	
-	func testStrictRowEchelonForm() {
+	func testReducedRowEchelonForm() {
 		print(Matrix(abc).reducedRowEchelonForm)
 	}
 	
@@ -104,5 +118,80 @@ class MatrixTests: XCTestCase {
 		XCTAssert((b[0] - 7.87298334620742	).abs <= 1e-14	)
 		XCTAssert((b[1] - 0.127016653792583	).abs <= 1e-14	)
 	}
+
+	func testOperators() {
+		operatorTest({ $0 + $1 }) { $0 + $1 }
+		operatorTest({ $0 - $1 }) { $0 - $1 }
+		operatorTest({ $0 * $1 }) { $0 * $1 }
+	}
 	
+	func operatorTest(_ op0: (Int, Int) -> Int, _ op1: (Matrix<Int>, Matrix<Int>) -> Matrix<Int>) {
+		for i in 0..<10 {
+			for j in 10..<20 {
+				XCTAssert(op0(i,j) == op1(Matrix([[i]]), Matrix([[j]]))[0][0])
+			}
+		}
+	}
+	
+	func testAddition() {
+		forAll("+", assert: { a,b,c -> Bool in
+			if c == nil { return true }
+			let c = c!
+			let s = c.size
+			for i in 0..<s.rows {
+				let ai = a[i]
+				let bi = b[i]
+				let ci = c[i]
+				for j in 0..<s.columns {
+					guard ci[j] == ai[j] + bi[j] else { return false }
+				}
+			}
+			return true
+		}) { a,b -> Matrix<Int>? in if a.size == b.size { return a + b } else { return nil } }
+	}
+	
+	func testSubtraction() {
+		forAll("+", assert: { a,b,c -> Bool in
+			if c == nil { return true }
+			let c = c!
+			let s = c.size
+			for i in 0..<s.rows {
+				let ai = a[i]
+				let bi = b[i]
+				let ci = c[i]
+				for j in 0..<s.columns {
+					guard ci[j] == ai[j] - bi[j] else { return false }
+				}
+			}
+			return true
+		}) { a,b -> Matrix<Int>? in if a.size == b.size { return a - b } else { return nil } }
+	}
+	
+	func testScalarMultiplication() {
+		let rdm = random() % 1000
+		print("rdm:", rdm)
+		forAll("*", assert: { a,b -> Bool in
+			let s = b.size
+			for i in 0..<s.rows {
+				let ai = a[i]
+				let bi = b[i]
+				for j in 0..<s.columns {
+					guard ai[j] * rdm == bi[j] else { print(i,j); return false }
+				}
+			}
+			return true
+		}) { a -> Matrix<Int> in return rdm * a }
+		
+		forAll("*", assert: { a,b -> Bool in
+			let s = b.size
+			for i in 0..<s.rows {
+				let ai = a[i]
+				let bi = b[i]
+				for j in 0..<s.columns {
+					guard ai[j] * rdm == bi[j] else { print(i,j); return false }
+				}
+			}
+			return true
+		}) { a -> Matrix<Int> in return a * rdm }
+	}
 }
