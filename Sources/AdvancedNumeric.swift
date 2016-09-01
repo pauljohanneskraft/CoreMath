@@ -8,15 +8,15 @@
 
 import Foundation
 
-public protocol AdvancedNumeric : Numeric {
+public protocol AdvancedNumeric : Numeric, Ordered {
 	static func % (lhs: Self, rhs: Self) -> Self
 	static func %= (lhs: inout Self, rhs: Self)
 }
 
-extension AdvancedNumeric {
+public extension AdvancedNumeric {
 	func mod(_ v: Int) -> Self {
 		let m = self % Self(integerLiteral: v)
-		if m < 0 { return m + self }
+		if m < 0 { return m + Self(integerLiteral: v) }
 		return m
 	}
 }

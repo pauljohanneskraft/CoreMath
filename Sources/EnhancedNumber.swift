@@ -71,6 +71,11 @@ public enum Enhanced < Number : Numeric > : Numeric, Hashable {
 	}
 }
 
+extension Enhanced where Number : Ordered {
+	public static var min: Enhanced<Number> { return .finite(Number.min) }
+	public static var max: Enhanced<Number> { return .finite(Number.max) }
+}
+
 public func == < N : Numeric >(lhs: Enhanced<N>, rhs: Enhanced<N>) -> Bool {
 	switch (lhs, rhs) {
 	case let (.finite(v1), .finite(v2)): return v1 == v2

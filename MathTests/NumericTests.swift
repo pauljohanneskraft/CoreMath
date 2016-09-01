@@ -18,11 +18,25 @@ class NumericTests: XCTestCase, TypeTest {
 	func testPrettyMuchEquals() {
 		for _ in  0 ..< 1000 {
 			let one = Double.random
-			let two = nextafter(one, DBL_MAX)
-			let eq  = one == two
-			let eqn = one =~ two
-			XCTAssert(eqn)
-			XCTAssert(!eq)
+			if one.isNormal {
+				let two = nextafter(one, DBL_MAX)
+				let eq  = one == two
+				let eqn = one =~ two
+				XCTAssert(eqn)
+				XCTAssert(!eq)
+			}
+		}
+	}
+	
+	func testPrimeFactors() {
+		for i in 0 ..< 100 {
+			// print(i)
+			let pf = i.primeFactors
+			var v = 1
+			for e in pf {
+				v *= e
+			}
+			XCTAssert(v == i)
 		}
 	}
 	

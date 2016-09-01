@@ -12,6 +12,8 @@ public protocol BasicArithmetic : CustomStringConvertible, ExpressibleByFloatLit
 	init(integerLiteral: Int)
 	init(floatLiteral: Double)
 	
+	var reducedDescription	: String	{ get }
+	
 	static func + (lhs: Self, rhs: Self) -> Self
 	static func - (lhs: Self, rhs: Self) -> Self
 	static func * (lhs: Self, rhs: Self) -> Self
@@ -25,25 +27,16 @@ public protocol BasicArithmetic : CustomStringConvertible, ExpressibleByFloatLit
 	prefix static func - (lhs: Self) -> Self
 }
 
-extension BasicArithmetic {
+public extension BasicArithmetic {
 	
-	var abs    : Self { return self < 0 ? -self : self }
+	public init(_ v: Int	) { self.init(integerLiteral:	v) }
+	public init(_ v: Double	) { self.init(floatLiteral:		v) }
 	
-	var isZero : Bool { return abs <= 1e-14 }
+	public var abs		: Self { return self < 0 ? -self : self }
 	
-	public var reducedDescription : String {
-		if let s = self as? Double {
-			if s.isNaN || s.isInfinite { return "\(s)" }
-			if s > Double(Int.min) && s < Double(Int.max) {
-				let si = Int(s)
-				if (Double(si) - s).isZero { return "\(si)" }
-			}
-		}
-		return self.description
-	}
+	public var reducedDescription : String { return self.description }
 	
-	func coefficientDescription(first: Bool) -> String {
-		
+	internal func coefficientDescription(first: Bool) -> String {
 		let n : Self
 		var res = ""
 		if !first { n = self.abs; res += self < 0 ? "- " : "+ " }

@@ -16,22 +16,16 @@ public typealias Q = RationalNumber
 //
 
 public struct RationalNumber : AdvancedNumeric, Ordered {
-	fileprivate(set) var numerator   : Int
-	fileprivate(set) var denominator : Int
-	
-	public init(_ numerator: Int, _ denominator: Int) {
-		self.init(numerator: numerator, denominator: denominator)
-	}
+	public fileprivate(set) var numerator   : Int
+	public fileprivate(set) var denominator : Int
 	
 	public init(numerator: Int, denominator: Int) {
 		self.numerator   =   numerator
 		self.denominator = denominator
 	}
 	
-	public init(_ value: Int) {
-		self.numerator = value
-		self.denominator = 1
-	}
+	public init(_ numerator: Int, _ denominator: Int) { self.init(numerator: numerator	, denominator: denominator	) }
+	public init(_ value:	 Int					) { self.init(numerator: value		, denominator: 1			) }
 	
 	mutating func reduce() {
 		let gcd = numerator.greatestCommonDivisor(with: denominator)
@@ -43,58 +37,22 @@ public struct RationalNumber : AdvancedNumeric, Ordered {
 		}
 	}
 	
-	public var integer : Int {
-		return numerator / denominator
-	}
+	public var integer	: Int		{ return numerator			/ denominator			}
+	public var double	: Double	{ return Double(numerator)	/ Double(denominator)	}
 	
-	public var double: Double {
-		return Double(numerator) / Double(denominator)
-	}
+	public static var min	: RationalNumber { return Q(Int.min, 1) }
+	public static var max	: RationalNumber { return Q(Int.max, 1) }
+	public static var random: RationalNumber { return Q(Math.random(), Math.random()).reduced }
 	
-	public static var min : RationalNumber {
-		return RationalNumber(Int.min, 1)
-	}
-	
-	public static var max : RationalNumber {
-		return RationalNumber(Int.max, 1)
-	}
-	
-	public static var random: RationalNumber {
-		var z = Q(Int.random, 1)
-		z.reduce()
-		return z
-	}
-	
-	var reduced : RationalNumber {
+	public var reduced : RationalNumber {
 		var this = self
 		this.reduce()
 		return this
 	}
 	
-	var maxValue : RationalNumber {
-		return RationalNumber(Int.max)
-	}
-	
-	var minValue : RationalNumber {
-		return RationalNumber(Int.min)
-	}
-	
-	var sign : Bool {
-		if numerator < 0 {
-			return !(denominator < 0)
-		}
-		return denominator < 0
-	}
-	
-	public var hashValue : Int {
-		return Double(self).hashValue
-	}
-	
-	var abs : RationalNumber {
-		return RationalNumber(
-			numerator: self.numerator.abs,
-			denominator: self.denominator.abs)
-	}
+	public var sign			: Bool				{ return numerator < 0 ? denominator >= 0 : denominator < 0 }
+	public var hashValue	: Int				{ return Double(self).hashValue								}
+	public var abs			: RationalNumber	{ return Q(numerator.abs, denominator.abs)					}
 }
 
 extension RationalNumber : ExpressibleByIntegerLiteral {
@@ -172,7 +130,7 @@ extension RationalNumber {
 	// source: http://stackoverflow.com/questions/95727/how-to-convert-floats-to-human-readable-fractions
 	fileprivate init(readable value: Double) {
 		assert(value <= Double(Int.max))
-		let accuracy = [value.inaccuracy, 1e-11].max()!
+		let accuracy = [value.inaccuracy, 1e-11].min()!
 		
 		let sign = value < 0
 		let val = sign ? -value : value
@@ -182,18 +140,23 @@ extension RationalNumber {
 		var inacc = (frac - val).abs
 		
 		while inacc > accuracy {
-			if frac < value { n += 1 }
+			if frac < val {
+				let a = (n / 10).integer.double
+				n += a < 1 ? 1 : a
+			}
 			else {
-				d += 1
+				let a = (d / 10).integer.double
+				d += a < 1 ? 1 : a
 				n = Double(Int(val * d))
 			}
 			frac = n / d
 			inacc = (frac - val).abs
-			// print(frac, n, d)
-			assert(n <= Double(Int.max) && d <= Double(Int.max))
+			let maxInt = Int.max.double
+			if d > maxInt || n > maxInt { break }
+			// print(value, "?", frac, "=", n.reducedDescription, "/", d.reducedDescription)
 		}
 		
-		self = RationalNumber(numerator: sign ? -Int(n) : Int(n), denominator: Int(d))
+		self = RationalNumber(numerator: sign ? -n.integer : n.integer, denominator: d.integer)
 		self.reduce()
 	}
 }
@@ -306,7 +269,5 @@ public func %= (lhs: inout RationalNumber, rhs: RationalNumber) {
 }
 
 extension Double {
-	public init(_ rat: RationalNumber) {
-		self = Double(rat.numerator) / Double(rat.denominator)
-	}
+	public init(_ rat: RationalNumber) { self = rat.double }
 }
