@@ -110,6 +110,26 @@ class MatrixTests: XCTestCase, TypeTest {
 		XCTAssert(Matrix([[0,1], [1,0]]).determinant == -1)
 		XCTAssert(Matrix([[1,2,3], [2,3,4], [5,6,8]]).determinant == -1)
 		XCTAssert(Matrix([[4,5,6,7,8], [3,4,5,8,3], [7,3,4,5,6], [1,2,3,8,7], [3,7,9,0,4]]).determinant == 1240)
+		
+		let a = random() % 0xFFFF
+		let b = random() % 0xFFFF
+		let c = random() & 0xFFFF
+		let d = random() & 0xFFFF
+		XCTAssert(Matrix([[a,b],[c,d]]).determinant == a*d - b*c)
+		
+		for i in 1 ..< 9 {
+			var id = Matrix<Double>.identity(i)
+			var value = 1.0
+			for j in 0..<i {
+				let rdm = Double(random() % 0x4F)
+				value *= rdm
+				id[j][j] = rdm
+			}
+			let start = NSDate().timeIntervalSinceReferenceDate
+			XCTAssert(value == id.determinant)
+			let time = NSDate().timeIntervalSinceReferenceDate - start
+			print(i, "time:", time)
+		}
 	}
 	
 	func testEigenvalues() {
