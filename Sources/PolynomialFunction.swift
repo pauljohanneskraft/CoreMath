@@ -9,27 +9,22 @@
 import Foundation
 
 public struct PolynomialFunction: Function {
-	public func equals(to: Function) -> Bool {
-		if let p = to as? PolynomialFunction {
-			return p.polynomial == self.polynomial
-		}
-		return false
-	}
-
-	public init(_ poly: Polynomial<Double>) {
-		self.polynomial = poly
-	}
 	
+	// stored properties
 	public var polynomial : Polynomial<Double>
-	public var derivative: Function { return PolynomialFunction(self.polynomial.derivative).reduced }
-	public var integral: Function { return PolynomialFunction(self.polynomial.integral).reduced }
 	
-	public func call(x: Double) -> Double {
-		return self.polynomial.call(x: x)!
-	}
-	public var reduced: Function {
-		if self.polynomial.degree == 0 { return Constant(self.polynomial[0]) }
-		return self
-	}
-	public var description: String { return "(\(polynomial.reducedDescription))" }
+	// initializers
+	public init(_ poly: Polynomial<Double>) { self.polynomial = poly }
+	
+	// computed properties
+	public var derivative	: Function	{ return PolynomialFunction(polynomial.derivative	).reduced	}
+	public var integral		: Function	{ return PolynomialFunction(polynomial.integral		).reduced	}
+	public var reduced		: Function	{ return degree == 0 ? Constant(polynomial[0]) : self			}
+	public var description	: String	{ return degree == 0 ? polynomial[0].reducedDescription : "(\(polynomial.reducedDescription))" }
+	public var degree		: Int		{ return polynomial.degree }
+	
+	// functions
+	public func equals	(to:	Function) -> Bool	{ return (to as? PolynomialFunction)?.polynomial == Optional(polynomial)	}
+	public func call	(x:		Double	) -> Double { return polynomial.call(x: x)!												}
+	
 }

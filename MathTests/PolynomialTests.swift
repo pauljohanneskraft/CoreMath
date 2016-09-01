@@ -79,10 +79,7 @@ class PolynomialTests: XCTestCase {
 		for _ in 0..<0x20 {
 			var p = Polynomial<Int>()
 			for j in 0..<(random() & 0xF) { p[j] = random() & 0xF }
-			let z1 = p.zeros
-			let z2 = p ?= 0
-			if z1 == nil { XCTAssert(z2 == nil) }
-			else { XCTAssert(z2 != nil && z1! == z2!) }
+			XCTAssert(p.zeros == (p ?= 0))
 		}
 		
 	}
