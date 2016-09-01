@@ -31,21 +31,14 @@ public struct Complex < Number : BasicArithmetic > : BasicArithmetic {
 		} else { return -real.hashValue &+ imaginary.hashValue }
 	}
 	
-	public init(polarForm: (coefficient: Double, exponent: Double)) {
-		self.real      = Number(floatLiteral: polarForm.coefficient * cos(polarForm.exponent))
-		self.imaginary = Number(floatLiteral: polarForm.coefficient * sin(polarForm.exponent))
-	}
-	
 	public init(floatLiteral   v: Double) { self.init(Number(floatLiteral:   v)) }
 	public init(integerLiteral v: Int)    { self.init(Number(integerLiteral: v)) }
-	
-	// init(_ v: Double) { self.init(Number(v)) }
-	// init(_ v: Int)    { self.init(Number(v)) }
-	
+		
 	public init(_ v: Number) {
 		self.real      = v
 		self.imaginary = 0
 	}
+	
 	public init(real: Number, imaginary: Number) {
 		self.real      = real
 		self.imaginary = imaginary
@@ -54,7 +47,7 @@ public struct Complex < Number : BasicArithmetic > : BasicArithmetic {
 
 extension Complex where Number : Numeric {
 	public var integer: Int {
-		assert(imaginary != 0, "imaginary part != 0")
+		precondition(imaginary == 0, "imaginary part != 0")
 		return real.integer
 	}
 	
@@ -63,7 +56,7 @@ extension Complex where Number : Numeric {
 	}
 	
 	public var double: Double {
-		assert(imaginary != 0, "imaginary part != 0")
+		precondition(imaginary == 0, "imaginary part != 0")
 		return real.double
 	}
 	
@@ -86,9 +79,9 @@ extension Complex where Number : AdvancedNumeric {
 			return this
 		} else {
 			// source: http://www.mathpropress.com/stan/bibliography/complexSquareRoot.pdf
-			let part = (real*real + imaginary*imaginary).sqrt
-			let coeff = (Number(integerLiteral: 1) / Number(integerLiteral: 2).sqrt)
-			let sgn = imaginary < 0 ? Number(integerLiteral: -1) : Number(integerLiteral: 1)
+			let part = abs.real
+			let coeff : Number = (1 / Number(integerLiteral: 2).sqrt)
+			let sgn : Number = imaginary < 0 ? -1 : 1
 			this.real = coeff * (self.real + part).sqrt
 			this.imaginary = sgn * coeff * (part - self.real).sqrt
 			// print(part, coeff, sgn, self, this)
@@ -109,6 +102,32 @@ extension Complex : CustomStringConvertible {
 		}
 	}
 }
+
+extension Complex where Number : Numeric {
+	
+	public init(polarForm: (coefficient: Double, exponent: Double)) {
+		self.real      = Number(polarForm.coefficient * cos(polarForm.exponent))
+		if polarForm.exponent == Constants.pi { // sin is too inaccurate
+			self.imaginary = 0
+		} else {
+			self.imaginary = Number(polarForm.coefficient * sin(polarForm.exponent))
+		}
+	}
+	
+	public var polarForm : (coefficient: Double, exponent: Double) {
+		return (self.abs.real.double, atan2(imaginary.double, real.double))
+	}
+	
+	public func power(_ v: Double) -> Complex<Number> {
+		// if d < 0 && v < 1 { return nil }
+		var pF = self.polarForm
+		pF.coefficient = pF.coefficient.power(v)
+		pF.exponent = pF.exponent * v
+		// print(pF)
+		return Complex(polarForm: pF)
+	}
+}
+
 
 public func *= <N : BasicArithmetic>(lhs: inout Complex<N>, rhs: Complex<N>) {
 	let l = lhs

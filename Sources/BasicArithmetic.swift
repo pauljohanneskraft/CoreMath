@@ -29,6 +29,9 @@ public protocol BasicArithmetic : CustomStringConvertible, ExpressibleByFloatLit
 
 public extension BasicArithmetic {
 	
+	public init(_ v: Int	) { self.init(integerLiteral:	v) }
+	public init(_ v: Double	) { self.init(floatLiteral:		v) }
+	
 	public var abs		: Self { return self < 0 ? -self : self }
 	
 	public var isZero	: Bool { return abs <= 1e-14 }

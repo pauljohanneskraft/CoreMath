@@ -74,19 +74,3 @@ extension Numeric {
 		}
 	}
 }
-
-extension Complex where Number : Numeric {
-	
-	public var polarForm : (coefficient: Double, exponent: Double) {
-		return (self.abs.real.double, atan2(imaginary.double, real.double))
-	}
-	
-	public func power(_ v: Double) -> Complex<Number> {
-		// if d < 0 && v < 1 { return nil }
-		var pF = self.polarForm
-		pF.coefficient = pF.coefficient.power(v)
-		pF.exponent = pF.exponent * v
-		// print(pF)
-		return Complex(polarForm: pF)
-	}
-}

@@ -36,28 +36,30 @@ class ComplexTests: XCTestCase, TypeTest {
 		forAll("-", assert: { $0.real - $1.real == $2.real }) { $0 - $1 }
 	}
 	
-	func testMultiplication()   {
+	func testMultiplication() {
 		forAll("*", assert: { $0.real * $1.real == $2.real }) { $0 * $1 }
 	}
 	
-	func testDivision()         {
-		forAll("/", assert: { $0.real == 0.0 || $1.real == 0.0 || (($0.real / $1.real) - $2.real).isZero }) { $0 / $1 }
+	func testDivision() {
+		forAll("/", assert: { ($0.real / $1.real) == $2.real }) { $0 / $1 }
 	}
 	
-	func testPrefix()         {
+	func testPrefix() {
 		forAll("-", assert: { $0.real == -$1.real && $0.imaginary == -$1.imaginary }) { -$0 }
 	}
 	
 	func testPolarForm() {
-		forAll("p", assert: { $0.real == $1.real && ($0.imaginary - $1.imaginary).abs <= 1e-9 }) { a -> Complex<N> in Complex<N>(polarForm: a.polarForm) }
+		forAll("p", assert: { $0.real == $1.real && $0.imaginary == $1.imaginary }) { a -> Complex<N> in
+			return Complex<N>(polarForm: a.polarForm)
+		}
 	}
 	
 	func testHashValue() {
-		hashValueTest(for: Int.self)
-		hashValueTest(for: Int8.self)
+		hashValueTest(for: Int	.self)
+		hashValueTest(for: Int8	.self)
 	}
 	
-	func hashValueTest< T : Numeric >(for: T.Type) {
+	func hashValueTest < T : Numeric > (for: T.Type) {
 		print(Complex<T>(T(integerLiteral: 3)).hashValue)
 	}
 	
@@ -67,4 +69,7 @@ class ComplexTests: XCTestCase, TypeTest {
 	}
 	
 	// specials
-	func testConjugate()        { forAll("conj",assert: { $0.real == $1.real && $0.imaginary == -($1.imaginary) }) { $0.conjugate } }}
+	func testConjugate() {
+		forAll("conj",assert: { $0.real == $1.real && $0.imaginary == -($1.imaginary) }) { $0.conjugate }
+	}
+}
