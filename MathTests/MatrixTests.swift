@@ -151,7 +151,7 @@ class MatrixTests: XCTestCase, TypeTest {
 	}
 	
 	func testSubtraction() {
-		forAll("+", assert: { a,b,c -> Bool in
+		forAll("-", assert: { a,b,c -> Bool in
 			if c == nil { return true }
 			let c = c!
 			let s = c.size
@@ -170,7 +170,7 @@ class MatrixTests: XCTestCase, TypeTest {
 	func testScalarMultiplication() {
 		let rdm = random() % 1000
 		print("rdm:", rdm)
-		forAll("*", assert: { a,b -> Bool in
+		forAll("\(rdm) *", assert: { a,b -> Bool in
 			let s = b.size
 			for i in 0..<s.rows {
 				let ai = a[i]
@@ -182,7 +182,7 @@ class MatrixTests: XCTestCase, TypeTest {
 			return true
 		}) { a -> Matrix<Int> in return rdm * a }
 		
-		forAll("*", assert: { a,b -> Bool in
+		forAll("\(rdm) *", assert: { a,b -> Bool in
 			let s = b.size
 			for i in 0..<s.rows {
 				let ai = a[i]

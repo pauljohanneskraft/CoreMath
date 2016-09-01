@@ -28,7 +28,7 @@ extension TypeTest {
 			// print("\(char)(\(r))", "=", fr, "in", time)
 			assert(time >= 0.0, time.description)
 			// avgtime += time
-			XCTAssert(cond(r, fr), "cond(\(r), \(fr))")
+			XCTAssert(cond(r, fr), "\(char)(\(r)) != \(fr)")
 		}
 		// print("avg time:", avgtime / Double(n.count), "total:", avgtime)
 	}
@@ -47,7 +47,7 @@ extension TypeTest {
 				// avgtime += time
 				let t = cond(r,q, frq)
 				if !t { print(".", terminator: "") }
-				XCTAssert(t, "cond(\(r), \(q), \(frq))")
+				XCTAssert(t, "\(r) \(char) \(q) != \(frq)")
 			}
 		}
 		// print("avg time:", avgtime / Double(n.count * n.count), "total:", avgtime)
