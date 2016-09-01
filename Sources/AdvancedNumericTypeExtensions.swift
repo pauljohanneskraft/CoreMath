@@ -21,56 +21,44 @@ public extension IntegerAdvancedNumeric {
 	public var integer : Int { return hashValue }
 	public var isInteger : Bool { return true }
 	public static var random : Self {
-		return Self(integerLiteral: Math.random())
+		return Self(integerLiteral: Math.random() % Self.max.integer)
 	}
 }
 
-extension Int    : AdvancedNumeric {
-	init?<N : Numeric>(_ v: N) { self = v.integer }
-	
-	public var integer : Int {
-		return self
-	}
-	public var double : Double {
-		return Double(self)
-	}
-	
-	public static var random : Int {
-		return (Math.random() % 2 == 0 ? 1 : -1) * Int(Math.random() % Int(UInt8.max))
-	}
-	
-	var isInteger : Bool { return true }
-	
-	public init(floatLiteral: Double) {
-		self = Int(floatLiteral)
-	}
-}
-
+extension Int   : IntegerAdvancedNumeric {}
 extension Int8	: IntegerAdvancedNumeric {}
 extension Int16	: IntegerAdvancedNumeric {}
 extension Int32 : IntegerAdvancedNumeric {}
 extension Int64 : IntegerAdvancedNumeric {}
 
-extension Double : AdvancedNumeric {
+extension Double : AdvancedNumeric, Ordered {
 	public init(integerLiteral: Int) {
 		self.init(integerLiteral)
 	}
 	
+	public var sqrt : Double { return pow(self, 1.0/2) }
+	
 	public static var random : Double {
-		var z : Double? = nil
-		while z == nil || z!.isNaN || z!.isInfinite {
-			z = ((Double(Int.random) / Double(Int.random)) * (Double(Int.random) / Double(Int.random)))
-		}
-		return z!
+		return unsafeBitCast(Math.random(), to: Double.self)
+	}
+	
+	public var reducedDescription : String {
+		if !isNormal { return "\(self)" }
+		if isInteger { return integer.description }
+		return description
+	}
+	
+	public var isInteger : Bool {
+		return isNormal && Double(integerLiteral: self.integer) == self
 	}
 	
 	public var integer : Int    {
-		if self > Double(Int.max) { return Int.max }
-		if self < Double(Int.min) { return Int.min }
+		if self > Double(Int.max)	{ return Int.max }
+		if self < Double(Int.min)	{ return Int.min }
 		return Int(self)
 	}
-	public var double  : Double  { return self }
+	public var double  : Double		{ return self }
 	
-	static var minValue : Double { return DBL_MAX }
-	static var maxValue : Double { return DBL_MIN }
+	public static var min : Double	{ return DBL_MIN }
+	public static var max : Double	{ return DBL_MAX }
 }

@@ -9,9 +9,10 @@
 import Foundation
 
 public protocol Numeric : BasicArithmetic, Randomizable {
-	var integer : Int		{ get }
-	var double	: Double	{ get }
-	var sqrt	: Self		{ get }
+	var integer		: Int		{ get }
+	var isInteger	: Bool		{ get }
+	var double		: Double	{ get }
+	var sqrt		: Self		{ get }
 	func power(_ v: Double) -> Self
 }
 
@@ -24,68 +25,54 @@ extension Numeric {
 		return Self(floatLiteral: pow(self.double, v))
 	}
 	
-	var isInteger : Bool {
+	public var isInteger : Bool {
 		return Self(integerLiteral: self.integer) == self
 	}
 	
-	var primeFactors : [Int] {
+	public var primeFactors : [Int] {
 		guard self.isInteger else { return [] }
 		var this = self.integer
 		var i = 0
-		var primes = Int.getPrimes(upTo: this)
+		var primes = Int.getPrimes(upTo: this.sqrt)
 		var factors = [Int]()
-		while this > 1 {
+		while this > 1 && primes.count > i {
 			let p = primes[i]
 			if this % p == 0 {
 				this /= p
 				factors.append(p)
 			} else { i += 1 }
 		}
+		if this != 1 { factors.append(this) }
 		return factors
 	}
 	
-	static func getPrimes(upTo: Int) -> [Int] {
+	public static func getPrimes(upTo: Int) -> [Int] {
 		// print("did start", upTo)
 		if upTo <= 1 { return [] }
 		
-		var candidate = 1
-		var test      = 3
-		var res       = [2]
+		var res = [2]
+		var last = 1
 		
-		while candidate <= upTo {
-			test = 3
-			candidate += 2
-			while candidate % test != 0 { test += 2 }
-			if candidate == test { res.append(candidate) }
-		}
+		repeat {
+			last = Int.getNextPrime(from: last)
+			if last > upTo { break }
+			res.append(last)
+		} while true
+		
 		// print("did end", upTo)
 		return res
 	}
 	
-	static func getNextPrime(from: Int) -> Int {
-		var candidate = from % 2 == 0 ? from : from - 1
+	public static func getNextPrime(from: Int) -> Int {
+		guard from > 3 else { return from < 2 ? 2 : from < 3 ? 3 : 5 }
+		var candidate = from % 2 == 0 ? from - 1 : from
 		var test = 3
 		while true {
 			test = 3
 			candidate += 2
-			while candidate % test != 0 { test += 2 }
+			// print("next prime candidate", candidate, "from", from)
+			while candidate % test != 0 && test < candidate { test += 2 }
 			if candidate == test { return candidate }
 		}
-	}
-}
-
-extension Complex where Number : Numeric {
-	
-	public var polarForm : (coefficient: Double, exponent: Double) {
-		return (self.abs.real.double, atan2(imaginary.double, real.double))
-	}
-	
-	public func power(_ v: Double) -> Complex<Number> {
-		// if d < 0 && v < 1 { return nil }
-		var pF = self.polarForm
-		pF.coefficient = pF.coefficient.power(v)
-		pF.exponent = pF.exponent * v
-		// print(pF)
-		return Complex(polarForm: pF)
 	}
 }

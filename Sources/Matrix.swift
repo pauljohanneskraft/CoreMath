@@ -11,12 +11,11 @@ public struct Matrix < N > : ExpressibleByArrayLiteral, CustomStringConvertible 
 	
 	public fileprivate(set) var elements : [[N]]
 	
-	public init(_			 elements: [[N]]	 ) { self.elements = elements; assert(isRect)	}
+	public init(_			 elements: [[N]]	 ) { self.elements = elements; precondition(elements.count > 0 && isRect) }
 	public init(arrayLiteral elements: Element...) { self.init(elements)						}
 	
-	public var isSquare : Bool { return elements.count == elements[0].count }
-	
-	public var size : (rows: Int, columns: Int) { return (elements.count, elements[0].count) }
+	public var isSquare : Bool						{ return elements.count == elements[0].count }
+	public var size		: (rows: Int, columns: Int) { return (elements.count, elements[0].count) }
 	
 	private var isRect : Bool {
 		/* debugging, in O(rows) */
@@ -25,7 +24,7 @@ public struct Matrix < N > : ExpressibleByArrayLiteral, CustomStringConvertible 
 		return true
 	}
 	
-	internal var oneLineDescription : String {
+	public var oneLineDescription : String {
 		let (c,d) = size
 		var desc = "| "
 		for i in 0..<c {
@@ -69,9 +68,11 @@ extension Matrix where N : BasicArithmetic {
 		}
 		
 		let rowEchelonForm = self.rowEchelonForm
-		var i = rowEchelonForm.size.rows
-		while i > 0 {
-			guard onlyZeros(rowEchelonForm[i - 1]) else { return i }
+		var i = rowEchelonForm.size.rows - 1
+		// print(rowEchelonForm)
+		while i >= 0 {
+			// print("checking line", i, ":", rowEchelonForm[i])
+			guard onlyZeros(rowEchelonForm[i]) else { return i + 1 }
 			i -= 1
 		}
 		return 0
@@ -92,12 +93,14 @@ extension Matrix where N : BasicArithmetic {
 		
 		let size = self.size
 		var elements = self.elements
+		var column	= 0
+		var row		= 0
 		
-		for row in 0 ..< min(size.columns, size.rows) {
+		while column < min(size.rows, size.columns) {
 			// looking for element which is not 0 at index "row"
-			if elements[row][row] == 0 {
+			if elements[row][column] == 0 {
 				for i in (row+1) ..< size.rows {
-					if elements[i][row] != 0 {
+					if elements[i][column] != 0 {
 						swap(&elements[row], &elements[i])
 						// print("swapped")
 						break
@@ -106,16 +109,18 @@ extension Matrix where N : BasicArithmetic {
 			}
 			// print("did choose changing row")
 			
-			if elements[row][row] == 0 { continue }
-			divide(row: &elements[row], by: elements[row][row], startAt: row)
+			if elements[row][column] == 0 { column += 1; continue }
+			divide(row: &elements[row], by: elements[row][column], startAt: row)
 			for i in (row+1) ..< size.rows {
-				removeLeadingNumber(row: &elements[i], withLine: elements[row], startAt: row)
+				removeLeadingNumber(row: &elements[i], withLine: elements[row], startAt: column)
 			}
+			column += 1
+			row += 1
 		}
 		return Matrix(elements) // TODO!!
 	}
 	
-	public var strictRowEchelonForm : Matrix<N> {
+	public var reducedRowEchelonForm : Matrix<N> {
 		
 		func subtract(line: [N], from: inout [N], multipliedBy: N = 1) {
 			assert(line.count == from.count)
@@ -157,7 +162,7 @@ extension Matrix where N : BasicArithmetic {
 		var two = self
 		var id = Matrix<N>.identity(rows)
 		for i in two.elements.indices { two.elements[i].append(contentsOf: id.elements[i]) }
-		two = two.strictRowEchelonForm
+		two = two.reducedRowEchelonForm
 		let drows = rows << 1
 		for i in two.elements.indices { id.elements[i] = two.elements[i][rows..<drows] + [] }
 		return id
@@ -168,7 +173,6 @@ extension Matrix where N : BasicArithmetic {
 		let count = elements.count
 		
 		switch count {
-		case 0: return 1
 		case 1: return elements[0][0]
 		case 2: return elements[0][0] * elements[1][1] - elements[0][1] * elements[1][0]
 		case 3:
@@ -209,7 +213,11 @@ extension Matrix where N : Numeric {
 			}
 			mat.append(arr)
 		}
-		return Matrix< Polynomial<N> >(mat).determinant.zeros
+		let pm = Matrix< Polynomial<N> >(mat)
+		print(pm)
+		let pmd = pm.determinant
+		print(pmd)
+		return pmd.zeros
 	}
 }
 

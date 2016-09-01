@@ -10,16 +10,17 @@ import XCTest
 import Math
 
 #if os(Linux)
-
 #else
 	
 class LinuxCompatibilityTests: XCTestCase {
 
 	func test() {
 		print(DBL_MAX.hashValue)
-		XCTAssert(DBL_MAX == unsafeBitCast(DBL_MAX.hashValue, to: Double.self))
+		print(unsafeBitCast(Double.max, to: Int.self))
+		XCTAssert(Double.max == unsafeBitCast(DBL_MAX.hashValue, to: Double.self))
 		print(DBL_MIN.hashValue)
-		XCTAssert(DBL_MIN == unsafeBitCast(DBL_MIN.hashValue, to: Double.self))
+		print(unsafeBitCast(Double.min, to: Int.self))
+		XCTAssert(Double.min == unsafeBitCast(DBL_MIN.hashValue, to: Double.self))
 		// print("-----------------------------------------")
 		// for _ in 0..<100 { print(Math.random()) }
 	}
