@@ -11,7 +11,7 @@ public struct Matrix < N > : ExpressibleByArrayLiteral, CustomStringConvertible 
 	
 	public fileprivate(set) var elements : [[N]]
 	
-	public init(_			 elements: [[N]]	 ) { self.elements = elements; precondition(isRect, "Matrix needs to be a rect.") }
+	public init(_			 elements: [[N]]	 ) { self.elements = elements; precondition(isRect) }
 	public init(arrayLiteral elements: Element...) { self.init(elements)						}
 	
 	public var isSquare : Bool						{ return elements.count == elements[0].count }
@@ -25,7 +25,7 @@ public struct Matrix < N > : ExpressibleByArrayLiteral, CustomStringConvertible 
 		return true
 	}
 	
-	internal var oneLineDescription : String {
+	public var oneLineDescription : String {
 		let (c,d) = size
 		var desc = "| "
 		for i in 0..<c {
