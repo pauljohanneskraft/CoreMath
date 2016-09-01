@@ -74,8 +74,48 @@ class PolynomialTests: XCTestCase {
 		}
 	}
 	
-	func testFactors() {
+	func testZeros() {
 		
+		for _ in 0..<0x20 {
+			var p = Polynomial<Int>()
+			for j in 0..<(random() & 0xF) { p[j] = random() & 0xF }
+			let z1 = p.zeros
+			let z2 = p ?= 0
+			if z1 == nil { XCTAssert(z2 == nil) }
+			else { XCTAssert(z2 != nil && z1! == z2!) }
+		}
+		
+	}
+	
+	func testComparable() {
+		for _ in 0..<0xF {
+			var p = Polynomial<Int>()
+			for j in 0..<10 { p[j] = random() & 0xF }
+			XCTAssert(!(p < p))
+			var q = p
+			q[0] = p[0] + 1
+			XCTAssert(p < q && q > p)
+			q = p
+			q[10] = 1
+			XCTAssert(q > p && p < q)
+		}
+	}
+	
+	func testAddition() {
+		for _ in 0..<0xF {
+			var p = Polynomial<Int>()
+			for j in 0..<10 { p[j] = random() & 0xF }
+			XCTAssert((p * 2) == (p + p))
+			XCTAssert(((p + p) - p) == p)
+			XCTAssert(p - p == 0)
+		}
+	}
+	
+	func testFields() {
+		for _ in 0..<100 {
+			let rdm = random() & 0xF
+			XCTAssert(Double.x(rdm) == Polynomial<Double>((1.0, rdm)))
+		}
 	}
 	
 }
