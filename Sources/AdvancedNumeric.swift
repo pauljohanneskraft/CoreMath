@@ -20,3 +20,17 @@ public extension AdvancedNumeric {
 		return m
 	}
 }
+
+public extension AdvancedNumeric {
+	public func greatestCommonDivisor(with other: Self) -> Self {
+		var a = self > other ? self : other
+		var b = self < other ? self : other
+		while b.abs > 0 {
+			let t = b
+			b = a % b
+			a = t
+		}
+		if a == 0 { return 1 }
+		return a
+	}
+}

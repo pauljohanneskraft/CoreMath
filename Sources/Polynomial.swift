@@ -157,20 +157,6 @@ extension Polynomial {
 		}
 		return res
 	}
-	
-	public static func random(maxDegree deg: Int, count: Int) -> [Polynomial<Number>] {
-		var res = [Polynomial<Number>]()
-		for _ in 0 ..< count {
-			var p = Polynomial<Number>()
-			for j in 0 ..< (Math.random() % deg) + 1 {
-				if Math.random() % 2 == 0 {
-					p[j] = Number.random
-				}
-			}
-			res.append(p)
-		}
-		return res
-	}
 }
 
 extension Polynomial where Number : Numeric {
