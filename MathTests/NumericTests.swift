@@ -28,4 +28,16 @@ class NumericTests: XCTestCase, TypeTest {
 		}
 	}
 	
+	func testPrimeFactors() {
+		for i in 0 ..< 100 {
+			// print(i)
+			let pf = i.primeFactors
+			var v = 1
+			for e in pf {
+				v *= e
+			}
+			XCTAssert(v == i)
+		}
+	}
+	
 }
