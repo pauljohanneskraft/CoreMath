@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol Numeric : BasicArithmetic, Randomizable, Ordered {
+public protocol Numeric : BasicArithmetic, Randomizable {
 	var integer		: Int		{ get }
 	var isInteger	: Bool		{ get }
 	var double		: Double	{ get }

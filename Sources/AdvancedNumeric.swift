@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol AdvancedNumeric : Numeric {
+public protocol AdvancedNumeric : Numeric, Ordered {
 	static func % (lhs: Self, rhs: Self) -> Self
 	static func %= (lhs: inout Self, rhs: Self)
 }

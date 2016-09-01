@@ -14,7 +14,7 @@ class MatrixTests: XCTestCase {
 	let abc = [[0,1,2], [3,4,5], [6,7,8]]
 	
 	func testIdentity() {
-		for i in 1..<100 {
+		for i in 1..<20 {
 			print(i, "started")
 			let a = Matrix<Int>.identity(i)
 			for j in 0..<i {
@@ -31,7 +31,7 @@ class MatrixTests: XCTestCase {
 	func testRowEchelonForm() {
 		let a = Matrix(abc)
 		let aref = a.rowEchelonForm
-		let asref = a.strictRowEchelonForm
+		let asref = a.reducedRowEchelonForm
 		XCTAssert(aref.rank == 2 && asref.rank == 2)
 	}
 	
@@ -66,6 +66,43 @@ class MatrixTests: XCTestCase {
 		for i in abc.indices {
 			XCTAssert(mabc[i] == abc[(abc.count - i) - 1])
 		}
+	}
+	
+	func testRank() {
+		let a = [
+			[0,1,2],
+			[0,1,2],
+			[0,2,3]
+		]
+		XCTAssert(Matrix(a).rank == 2, "\(Matrix(a).rank) != 2")
+		let b = [
+			[0,1,2],
+			[0,1,2],
+			[0,1,2]
+		]
+		XCTAssert(Matrix(b).rank == 1, "\(Matrix(b).rank) != 2")
+		let c = [
+			[0,0,0], [0,0,0], [0,0,0]
+		]
+		XCTAssert(Matrix(c).rank == 0)
+	}
+	
+	func testStrictRowEchelonForm() {
+		print(Matrix(abc).reducedRowEchelonForm)
+	}
+	
+	func testDeterminant() {
+		XCTAssert(Matrix([[4]]).determinant == 4)
+		XCTAssert(Matrix([[0,1], [1,0]]).determinant == -1)
+		XCTAssert(Matrix([[1,2,3], [2,3,4], [5,6,8]]).determinant == -1)
+		XCTAssert(Matrix([[4,5,6,7,8], [3,4,5,8,3], [7,3,4,5,6], [1,2,3,8,7], [3,7,9,0,4]]).determinant == 1240)
+	}
+	
+	func testEigenvalues() {
+		let b = Matrix<C>([[4,5], [3,4]]).eigenvalues!
+		print(b)
+		XCTAssert((b[0] - 7.87298334620742	).abs <= 1e-14	)
+		XCTAssert((b[1] - 0.127016653792583	).abs <= 1e-14	)
 	}
 	
 }

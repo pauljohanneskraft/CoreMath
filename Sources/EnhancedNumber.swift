@@ -69,7 +69,9 @@ public enum Enhanced < Number : Numeric > : Numeric, Hashable {
 		case .nan:                  return Double.nan
 		}
 	}
-	
+}
+
+extension Enhanced where Number : Ordered {
 	public static var min: Enhanced<Number> { return .finite(Number.min) }
 	public static var max: Enhanced<Number> { return .finite(Number.max) }
 }

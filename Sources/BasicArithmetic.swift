@@ -34,14 +34,9 @@ public extension BasicArithmetic {
 	
 	public var abs		: Self { return self < 0 ? -self : self }
 	
-	public var isZero	: Bool { return abs <= 1e-14 }
-	
-	public var reducedDescription : String {
-		return self.description
-	}
+	public var reducedDescription : String { return self.description }
 	
 	internal func coefficientDescription(first: Bool) -> String {
-		
 		let n : Self
 		var res = ""
 		if !first { n = self.abs; res += self < 0 ? "- " : "+ " }

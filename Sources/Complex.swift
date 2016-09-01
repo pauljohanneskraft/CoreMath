@@ -15,7 +15,7 @@ public typealias C = Complex<Double>
 // var myComplex = 2 + 3*i
 //
 
-public struct Complex < Number : BasicArithmetic > : BasicArithmetic {
+public struct Complex < Number : Numeric > : Numeric {
 	public var real      : Number
 	public var imaginary : Number
 	
@@ -68,7 +68,7 @@ extension Complex where Number : Randomizable {
 	}
 }
 
-extension Complex where Number : AdvancedNumeric {
+extension Complex where Number : Numeric {
 	public var sqrt : Complex<Number> {
 		var this = self
 		if this.imaginary == 0 {
