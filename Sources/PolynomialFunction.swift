@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct PolynomialFunction: Function {
+public struct PolynomialFunction: Function {
 	public func equals(to: Function) -> Bool {
 		if let p = to as? PolynomialFunction {
 			return p.polynomial == self.polynomial
@@ -16,20 +16,20 @@ struct PolynomialFunction: Function {
 		return false
 	}
 
-	init(_ poly: Polynomial<Double>) {
+	public init(_ poly: Polynomial<Double>) {
 		self.polynomial = poly
 	}
 	
-	var polynomial : Polynomial<Double>
-	var derivative: Function { return PolynomialFunction(self.polynomial.derivative).reduced }
-	var integral: Function { return PolynomialFunction(self.polynomial.integral).reduced }
+	public var polynomial : Polynomial<Double>
+	public var derivative: Function { return PolynomialFunction(self.polynomial.derivative).reduced }
+	public var integral: Function { return PolynomialFunction(self.polynomial.integral).reduced }
 	
-	func call(x: Double) -> Double {
+	public func call(x: Double) -> Double {
 		return self.polynomial.call(x: x)!
 	}
-	var reduced: Function {
+	public var reduced: Function {
 		if self.polynomial.degree == 0 { return Constant(self.polynomial[0]) }
 		return self
 	}
-	var description: String { return "(\(polynomial.reducedDescription))" }
+	public var description: String { return "(\(polynomial.reducedDescription))" }
 }
