@@ -69,6 +69,8 @@ public enum Enhanced < Number : Numeric > : Numeric, Hashable {
 		case .nan:                  return Double.nan
 		}
 	}
+	
+	public var isNormal : Bool { return double.isNormal }
 }
 
 extension Enhanced where Number : Ordered {

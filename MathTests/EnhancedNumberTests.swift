@@ -23,21 +23,21 @@ class EnhancedNumberTests: XCTestCase, TypeTest {
 	
 	// basic arithmetic
 	func testAddition()         {
-		forAll("+", assert: { !$0.double.isNormal || !$1.double.isNormal || $0.integer + $1.integer == $2.integer })	{ $0 + $1 }
+		forAll("+", assert: { !$0.isNormal || !$1.isNormal || $0.integer + $1.integer == $2.integer })	{ $0 + $1 }
 	}
 	func testSubtraction()      {
-		forAll("-", assert: { !$0.double.isNormal || !$1.double.isNormal || $0.integer - $1.integer == $2.integer })	{ $0 - $1 }
+		forAll("-", assert: { !$0.isNormal || !$1.isNormal || $0.integer - $1.integer == $2.integer })	{ $0 - $1 }
 	}
 	func testMultiplication()   {
-		forAll("*", assert: { !$0.double.isNormal || !$1.double.isNormal || $0.integer * $1.integer == $2.integer })	{ $0 * $1 }
+		forAll("*", assert: { !$0.isNormal || !$1.isNormal || $0.integer * $1.integer == $2.integer })	{ $0 * $1 }
 	}
 	func testDivision()         {
-		forAll("/", assert: { !$0.double.isNormal || !$1.double.isNormal || $0.integer / $1.integer == $2.integer })	{ $0 / $1 }
+		forAll("/", assert: { !$0.isNormal || !$1.isNormal || $0.integer / $1.integer == $2.integer })	{ $0 / $1 }
 	}
 	
-	func testPrefix()			{ forAll("-", assert: { $0 == -$1 })	{ -$0 } }
+	func testPrefixMinus()		{ forAll("-", assert: { $0 == -$1 })	{ -$0 } }
 	
-	func testReadmeExample() {
+	func testReadmeExample()	{
 		let a : Enhanced<Int> = 5
 		print( a / 0 )
 		XCTAssert( a / 0 == Enhanced<Int>.infinity(sign: false))
