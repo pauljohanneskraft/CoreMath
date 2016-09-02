@@ -8,6 +8,37 @@
 
 /* Begin PBXBuildFile section */
 		9B09603D1D4EB14900ED8517 /* DataTypeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B09603C1D4EB14900ED8517 /* DataTypeTest.swift */; };
+		9B46A07A1D78FEC900C1059E /* GroupLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0531D78FEC900C1059E /* GroupLike.swift */; };
+		9B46A07B1D78FEC900C1059E /* GroupLikeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0541D78FEC900C1059E /* GroupLikeProtocols.swift */; };
+		9B46A07C1D78FEC900C1059E /* ModuleLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0551D78FEC900C1059E /* ModuleLike.swift */; };
+		9B46A07D1D78FEC900C1059E /* ModuleLikeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0561D78FEC900C1059E /* ModuleLikeProtocols.swift */; };
+		9B46A07E1D78FEC900C1059E /* RingLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0571D78FEC900C1059E /* RingLike.swift */; };
+		9B46A07F1D78FEC900C1059E /* RingLikeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0581D78FEC900C1059E /* RingLikeProtocols.swift */; };
+		9B46A0801D78FEC900C1059E /* ConstantFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A05A1D78FEC900C1059E /* ConstantFunction.swift */; };
+		9B46A0811D78FEC900C1059E /* CustomFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A05B1D78FEC900C1059E /* CustomFunction.swift */; };
+		9B46A0821D78FEC900C1059E /* Equation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A05C1D78FEC900C1059E /* Equation.swift */; };
+		9B46A0831D78FEC900C1059E /* ExponentialFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A05D1D78FEC900C1059E /* ExponentialFunction.swift */; };
+		9B46A0841D78FEC900C1059E /* Fraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A05E1D78FEC900C1059E /* Fraction.swift */; };
+		9B46A0851D78FEC900C1059E /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A05F1D78FEC900C1059E /* Function.swift */; };
+		9B46A0861D78FEC900C1059E /* Growth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0601D78FEC900C1059E /* Growth.swift */; };
+		9B46A0871D78FEC900C1059E /* _Polynomial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0611D78FEC900C1059E /* _Polynomial.swift */; };
+		9B46A0881D78FEC900C1059E /* Polynomial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0621D78FEC900C1059E /* Polynomial.swift */; };
+		9B46A0891D78FEC900C1059E /* PolynomialFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0631D78FEC900C1059E /* PolynomialFields.swift */; };
+		9B46A08A1D78FEC900C1059E /* PolynomialFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0641D78FEC900C1059E /* PolynomialFunction.swift */; };
+		9B46A08B1D78FEC900C1059E /* Term.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0661D78FEC900C1059E /* Term.swift */; };
+		9B46A08C1D78FEC900C1059E /* TrigonometricFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0671D78FEC900C1059E /* TrigonometricFunctions.swift */; };
+		9B46A08D1D78FEC900C1059E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0691D78FEC900C1059E /* Constants.swift */; };
+		9B46A08E1D78FEC900C1059E /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A06B1D78FEC900C1059E /* Matrix.swift */; };
+		9B46A08F1D78FEC900C1059E /* LinuxSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A06D1D78FEC900C1059E /* LinuxSupport.swift */; };
+		9B46A0901D78FEC900C1059E /* Complex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A06E1D78FEC900C1059E /* Complex.swift */; };
+		9B46A0911D78FEC900C1059E /* EnhancedNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A06F1D78FEC900C1059E /* EnhancedNumber.swift */; };
+		9B46A0921D78FEC900C1059E /* Numbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0701D78FEC900C1059E /* Numbers.swift */; };
+		9B46A0931D78FEC900C1059E /* AdvancedNumeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0711D78FEC900C1059E /* AdvancedNumeric.swift */; };
+		9B46A0941D78FEC900C1059E /* AdvancedNumericTypeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0721D78FEC900C1059E /* AdvancedNumericTypeExtensions.swift */; };
+		9B46A0951D78FEC900C1059E /* BasicArithmetic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0731D78FEC900C1059E /* BasicArithmetic.swift */; };
+		9B46A0961D78FEC900C1059E /* Numeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0741D78FEC900C1059E /* Numeric.swift */; };
+		9B46A0971D78FEC900C1059E /* RationalNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0761D78FEC900C1059E /* RationalNumber.swift */; };
+		9B46A0981D78FEC900C1059E /* LaTeXConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0781D78FEC900C1059E /* LaTeXConvertible.swift */; };
 		9B4733C51D4ACBE00055A7E8 /* Math.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B4733B11D4ACBB80055A7E8 /* Math.framework */; };
 		9B4734141D4AD34D0055A7E8 /* ConstantsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4734131D4AD34D0055A7E8 /* ConstantsTest.swift */; };
 		9B4734161D4AD4DF0055A7E8 /* MatrixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4734151D4AD4DF0055A7E8 /* MatrixTests.swift */; };
@@ -32,37 +63,6 @@
 		9B5BE26D1D72F9FD006C5B96 /* LinuxCompatibilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5BE26C1D72F9FD006C5B96 /* LinuxCompatibilityTests.swift */; };
 		9B71D3ED1D4BF1C6001C5BE9 /* TermTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B71D3EC1D4BF1C6001C5BE9 /* TermTests.swift */; };
 		9BC8BBDB1D6F0E1D0010AC02 /* BasicArithmeticTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC8BBDA1D6F0E1D0010AC02 /* BasicArithmeticTests.swift */; };
-		9BD8A6821D705C2F00C2618E /* _Polynomial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A6631D705C2F00C2618E /* _Polynomial.swift */; };
-		9BD8A6831D705C2F00C2618E /* AdvancedNumeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A6641D705C2F00C2618E /* AdvancedNumeric.swift */; };
-		9BD8A6841D705C2F00C2618E /* AdvancedNumericTypeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A6651D705C2F00C2618E /* AdvancedNumericTypeExtensions.swift */; };
-		9BD8A6851D705C2F00C2618E /* BasicArithmetic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A6661D705C2F00C2618E /* BasicArithmetic.swift */; };
-		9BD8A6861D705C2F00C2618E /* Complex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A6671D705C2F00C2618E /* Complex.swift */; };
-		9BD8A6871D705C2F00C2618E /* ConstantFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A6681D705C2F00C2618E /* ConstantFunction.swift */; };
-		9BD8A6881D705C2F00C2618E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A6691D705C2F00C2618E /* Constants.swift */; };
-		9BD8A6891D705C2F00C2618E /* CustomFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A66A1D705C2F00C2618E /* CustomFunction.swift */; };
-		9BD8A68A1D705C2F00C2618E /* EnhancedNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A66B1D705C2F00C2618E /* EnhancedNumber.swift */; };
-		9BD8A68B1D705C2F00C2618E /* Equation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A66C1D705C2F00C2618E /* Equation.swift */; };
-		9BD8A68C1D705C2F00C2618E /* ExponentialFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A66D1D705C2F00C2618E /* ExponentialFunction.swift */; };
-		9BD8A68D1D705C2F00C2618E /* Fraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A66E1D705C2F00C2618E /* Fraction.swift */; };
-		9BD8A68E1D705C2F00C2618E /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A66F1D705C2F00C2618E /* Function.swift */; };
-		9BD8A68F1D705C2F00C2618E /* GroupLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A6701D705C2F00C2618E /* GroupLike.swift */; };
-		9BD8A6901D705C2F00C2618E /* GroupLikeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A6711D705C2F00C2618E /* GroupLikeProtocols.swift */; };
-		9BD8A6911D705C2F00C2618E /* Growth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A6721D705C2F00C2618E /* Growth.swift */; };
-		9BD8A6931D705C2F00C2618E /* LaTeXConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A6741D705C2F00C2618E /* LaTeXConvertible.swift */; };
-		9BD8A6941D705C2F00C2618E /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A6751D705C2F00C2618E /* Matrix.swift */; };
-		9BD8A6951D705C2F00C2618E /* ModuleLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A6761D705C2F00C2618E /* ModuleLike.swift */; };
-		9BD8A6961D705C2F00C2618E /* ModuleLikeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A6771D705C2F00C2618E /* ModuleLikeProtocols.swift */; };
-		9BD8A6971D705C2F00C2618E /* Numbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A6781D705C2F00C2618E /* Numbers.swift */; };
-		9BD8A6981D705C2F00C2618E /* Numeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A6791D705C2F00C2618E /* Numeric.swift */; };
-		9BD8A6991D705C2F00C2618E /* Polynomial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A67A1D705C2F00C2618E /* Polynomial.swift */; };
-		9BD8A69A1D705C2F00C2618E /* PolynomialFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A67B1D705C2F00C2618E /* PolynomialFields.swift */; };
-		9BD8A69B1D705C2F00C2618E /* PolynomialFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A67C1D705C2F00C2618E /* PolynomialFunction.swift */; };
-		9BD8A69C1D705C2F00C2618E /* RationalNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A67D1D705C2F00C2618E /* RationalNumber.swift */; };
-		9BD8A69D1D705C2F00C2618E /* RingLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A67E1D705C2F00C2618E /* RingLike.swift */; };
-		9BD8A69E1D705C2F00C2618E /* RingLikeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A67F1D705C2F00C2618E /* RingLikeProtocols.swift */; };
-		9BD8A69F1D705C2F00C2618E /* Term.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A6801D705C2F00C2618E /* Term.swift */; };
-		9BD8A6A01D705C2F00C2618E /* TrigonometricFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A6811D705C2F00C2618E /* TrigonometricFunctions.swift */; };
-		9BD8A6A31D705D6500C2618E /* LinuxSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8A6A21D705D6500C2618E /* LinuxSupport.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +77,37 @@
 
 /* Begin PBXFileReference section */
 		9B09603C1D4EB14900ED8517 /* DataTypeTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTypeTest.swift; sourceTree = "<group>"; };
+		9B46A0531D78FEC900C1059E /* GroupLike.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupLike.swift; sourceTree = "<group>"; };
+		9B46A0541D78FEC900C1059E /* GroupLikeProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupLikeProtocols.swift; sourceTree = "<group>"; };
+		9B46A0551D78FEC900C1059E /* ModuleLike.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleLike.swift; sourceTree = "<group>"; };
+		9B46A0561D78FEC900C1059E /* ModuleLikeProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleLikeProtocols.swift; sourceTree = "<group>"; };
+		9B46A0571D78FEC900C1059E /* RingLike.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RingLike.swift; sourceTree = "<group>"; };
+		9B46A0581D78FEC900C1059E /* RingLikeProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RingLikeProtocols.swift; sourceTree = "<group>"; };
+		9B46A05A1D78FEC900C1059E /* ConstantFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstantFunction.swift; sourceTree = "<group>"; };
+		9B46A05B1D78FEC900C1059E /* CustomFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomFunction.swift; sourceTree = "<group>"; };
+		9B46A05C1D78FEC900C1059E /* Equation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Equation.swift; sourceTree = "<group>"; };
+		9B46A05D1D78FEC900C1059E /* ExponentialFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExponentialFunction.swift; sourceTree = "<group>"; };
+		9B46A05E1D78FEC900C1059E /* Fraction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fraction.swift; sourceTree = "<group>"; };
+		9B46A05F1D78FEC900C1059E /* Function.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Function.swift; sourceTree = "<group>"; };
+		9B46A0601D78FEC900C1059E /* Growth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Growth.swift; sourceTree = "<group>"; };
+		9B46A0611D78FEC900C1059E /* _Polynomial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _Polynomial.swift; sourceTree = "<group>"; };
+		9B46A0621D78FEC900C1059E /* Polynomial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Polynomial.swift; sourceTree = "<group>"; };
+		9B46A0631D78FEC900C1059E /* PolynomialFields.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PolynomialFields.swift; sourceTree = "<group>"; };
+		9B46A0641D78FEC900C1059E /* PolynomialFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PolynomialFunction.swift; sourceTree = "<group>"; };
+		9B46A0661D78FEC900C1059E /* Term.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Term.swift; sourceTree = "<group>"; };
+		9B46A0671D78FEC900C1059E /* TrigonometricFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrigonometricFunctions.swift; sourceTree = "<group>"; };
+		9B46A0691D78FEC900C1059E /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		9B46A06B1D78FEC900C1059E /* Matrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
+		9B46A06D1D78FEC900C1059E /* LinuxSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinuxSupport.swift; path = Sources/LinuxSupport.swift; sourceTree = "<group>"; };
+		9B46A06E1D78FEC900C1059E /* Complex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Complex.swift; sourceTree = "<group>"; };
+		9B46A06F1D78FEC900C1059E /* EnhancedNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnhancedNumber.swift; sourceTree = "<group>"; };
+		9B46A0701D78FEC900C1059E /* Numbers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Numbers.swift; sourceTree = "<group>"; };
+		9B46A0711D78FEC900C1059E /* AdvancedNumeric.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedNumeric.swift; sourceTree = "<group>"; };
+		9B46A0721D78FEC900C1059E /* AdvancedNumericTypeExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedNumericTypeExtensions.swift; sourceTree = "<group>"; };
+		9B46A0731D78FEC900C1059E /* BasicArithmetic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicArithmetic.swift; sourceTree = "<group>"; };
+		9B46A0741D78FEC900C1059E /* Numeric.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Numeric.swift; sourceTree = "<group>"; };
+		9B46A0761D78FEC900C1059E /* RationalNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RationalNumber.swift; sourceTree = "<group>"; };
+		9B46A0781D78FEC900C1059E /* LaTeXConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaTeXConvertible.swift; sourceTree = "<group>"; };
 		9B4733B11D4ACBB80055A7E8 /* Math.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Math.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B4733C01D4ACBE00055A7E8 /* MathTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MathTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B4733C41D4ACBE00055A7E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -103,38 +134,7 @@
 		9B5BE26C1D72F9FD006C5B96 /* LinuxCompatibilityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinuxCompatibilityTests.swift; sourceTree = "<group>"; };
 		9B71D3EC1D4BF1C6001C5BE9 /* TermTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermTests.swift; sourceTree = "<group>"; };
 		9BC8BBDA1D6F0E1D0010AC02 /* BasicArithmeticTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicArithmeticTests.swift; sourceTree = "<group>"; };
-		9BD8A6631D705C2F00C2618E /* _Polynomial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = _Polynomial.swift; path = Sources/_Polynomial.swift; sourceTree = "<group>"; };
-		9BD8A6641D705C2F00C2618E /* AdvancedNumeric.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AdvancedNumeric.swift; path = Sources/AdvancedNumeric.swift; sourceTree = "<group>"; };
-		9BD8A6651D705C2F00C2618E /* AdvancedNumericTypeExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AdvancedNumericTypeExtensions.swift; path = Sources/AdvancedNumericTypeExtensions.swift; sourceTree = "<group>"; };
-		9BD8A6661D705C2F00C2618E /* BasicArithmetic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BasicArithmetic.swift; path = Sources/BasicArithmetic.swift; sourceTree = "<group>"; };
-		9BD8A6671D705C2F00C2618E /* Complex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Complex.swift; path = Sources/Complex.swift; sourceTree = "<group>"; };
-		9BD8A6681D705C2F00C2618E /* ConstantFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConstantFunction.swift; path = Sources/ConstantFunction.swift; sourceTree = "<group>"; };
-		9BD8A6691D705C2F00C2618E /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Sources/Constants.swift; sourceTree = "<group>"; };
-		9BD8A66A1D705C2F00C2618E /* CustomFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomFunction.swift; path = Sources/CustomFunction.swift; sourceTree = "<group>"; };
-		9BD8A66B1D705C2F00C2618E /* EnhancedNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EnhancedNumber.swift; path = Sources/EnhancedNumber.swift; sourceTree = "<group>"; };
-		9BD8A66C1D705C2F00C2618E /* Equation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Equation.swift; path = Sources/Equation.swift; sourceTree = "<group>"; };
-		9BD8A66D1D705C2F00C2618E /* ExponentialFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExponentialFunction.swift; path = Sources/ExponentialFunction.swift; sourceTree = "<group>"; };
-		9BD8A66E1D705C2F00C2618E /* Fraction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Fraction.swift; path = Sources/Fraction.swift; sourceTree = "<group>"; };
-		9BD8A66F1D705C2F00C2618E /* Function.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Function.swift; path = Sources/Function.swift; sourceTree = "<group>"; };
-		9BD8A6701D705C2F00C2618E /* GroupLike.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GroupLike.swift; path = Sources/GroupLike.swift; sourceTree = "<group>"; };
-		9BD8A6711D705C2F00C2618E /* GroupLikeProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GroupLikeProtocols.swift; path = Sources/GroupLikeProtocols.swift; sourceTree = "<group>"; };
-		9BD8A6721D705C2F00C2618E /* Growth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Growth.swift; path = Sources/Growth.swift; sourceTree = "<group>"; };
 		9BD8A6731D705C2F00C2618E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Sources/Info.plist; sourceTree = "<group>"; };
-		9BD8A6741D705C2F00C2618E /* LaTeXConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LaTeXConvertible.swift; path = Sources/LaTeXConvertible.swift; sourceTree = "<group>"; };
-		9BD8A6751D705C2F00C2618E /* Matrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Matrix.swift; path = Sources/Matrix.swift; sourceTree = "<group>"; };
-		9BD8A6761D705C2F00C2618E /* ModuleLike.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModuleLike.swift; path = Sources/ModuleLike.swift; sourceTree = "<group>"; };
-		9BD8A6771D705C2F00C2618E /* ModuleLikeProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModuleLikeProtocols.swift; path = Sources/ModuleLikeProtocols.swift; sourceTree = "<group>"; };
-		9BD8A6781D705C2F00C2618E /* Numbers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Numbers.swift; path = Sources/Numbers.swift; sourceTree = "<group>"; };
-		9BD8A6791D705C2F00C2618E /* Numeric.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Numeric.swift; path = Sources/Numeric.swift; sourceTree = "<group>"; };
-		9BD8A67A1D705C2F00C2618E /* Polynomial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Polynomial.swift; path = Sources/Polynomial.swift; sourceTree = "<group>"; };
-		9BD8A67B1D705C2F00C2618E /* PolynomialFields.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PolynomialFields.swift; path = Sources/PolynomialFields.swift; sourceTree = "<group>"; };
-		9BD8A67C1D705C2F00C2618E /* PolynomialFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PolynomialFunction.swift; path = Sources/PolynomialFunction.swift; sourceTree = "<group>"; };
-		9BD8A67D1D705C2F00C2618E /* RationalNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RationalNumber.swift; path = Sources/RationalNumber.swift; sourceTree = "<group>"; };
-		9BD8A67E1D705C2F00C2618E /* RingLike.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RingLike.swift; path = Sources/RingLike.swift; sourceTree = "<group>"; };
-		9BD8A67F1D705C2F00C2618E /* RingLikeProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RingLikeProtocols.swift; path = Sources/RingLikeProtocols.swift; sourceTree = "<group>"; };
-		9BD8A6801D705C2F00C2618E /* Term.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Term.swift; path = Sources/Term.swift; sourceTree = "<group>"; };
-		9BD8A6811D705C2F00C2618E /* TrigonometricFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TrigonometricFunctions.swift; path = Sources/TrigonometricFunctions.swift; sourceTree = "<group>"; };
-		9BD8A6A21D705D6500C2618E /* LinuxSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinuxSupport.swift; path = Sources/LinuxSupport.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +195,100 @@
 			name = LinearAlgebra;
 			sourceTree = "<group>";
 		};
+		9B46A0591D78FEC900C1059E /* Algebra */ = {
+			isa = PBXGroup;
+			children = (
+				9B46A0531D78FEC900C1059E /* GroupLike.swift */,
+				9B46A0541D78FEC900C1059E /* GroupLikeProtocols.swift */,
+				9B46A0551D78FEC900C1059E /* ModuleLike.swift */,
+				9B46A0561D78FEC900C1059E /* ModuleLikeProtocols.swift */,
+				9B46A0571D78FEC900C1059E /* RingLike.swift */,
+				9B46A0581D78FEC900C1059E /* RingLikeProtocols.swift */,
+			);
+			name = Algebra;
+			path = Sources/Algebra;
+			sourceTree = "<group>";
+		};
+		9B46A0651D78FEC900C1059E /* Polynomials */ = {
+			isa = PBXGroup;
+			children = (
+				9B46A0611D78FEC900C1059E /* _Polynomial.swift */,
+				9B46A0621D78FEC900C1059E /* Polynomial.swift */,
+				9B46A0631D78FEC900C1059E /* PolynomialFields.swift */,
+				9B46A0641D78FEC900C1059E /* PolynomialFunction.swift */,
+			);
+			path = Polynomials;
+			sourceTree = "<group>";
+		};
+		9B46A0681D78FEC900C1059E /* Functions */ = {
+			isa = PBXGroup;
+			children = (
+				9B46A05A1D78FEC900C1059E /* ConstantFunction.swift */,
+				9B46A05B1D78FEC900C1059E /* CustomFunction.swift */,
+				9B46A05C1D78FEC900C1059E /* Equation.swift */,
+				9B46A05D1D78FEC900C1059E /* ExponentialFunction.swift */,
+				9B46A05E1D78FEC900C1059E /* Fraction.swift */,
+				9B46A05F1D78FEC900C1059E /* Function.swift */,
+				9B46A0601D78FEC900C1059E /* Growth.swift */,
+				9B46A0651D78FEC900C1059E /* Polynomials */,
+				9B46A0661D78FEC900C1059E /* Term.swift */,
+				9B46A0671D78FEC900C1059E /* TrigonometricFunctions.swift */,
+			);
+			name = Functions;
+			path = Sources/Functions;
+			sourceTree = "<group>";
+		};
+		9B46A06A1D78FEC900C1059E /* General */ = {
+			isa = PBXGroup;
+			children = (
+				9B46A0691D78FEC900C1059E /* Constants.swift */,
+			);
+			name = General;
+			path = Sources/General;
+			sourceTree = "<group>";
+		};
+		9B46A06C1D78FEC900C1059E /* Linear Algebra */ = {
+			isa = PBXGroup;
+			children = (
+				9B46A06B1D78FEC900C1059E /* Matrix.swift */,
+			);
+			name = "Linear Algebra";
+			path = "Sources/Linear Algebra";
+			sourceTree = "<group>";
+		};
+		9B46A0751D78FEC900C1059E /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				9B46A0711D78FEC900C1059E /* AdvancedNumeric.swift */,
+				9B46A0721D78FEC900C1059E /* AdvancedNumericTypeExtensions.swift */,
+				9B46A0731D78FEC900C1059E /* BasicArithmetic.swift */,
+				9B46A0741D78FEC900C1059E /* Numeric.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		9B46A0771D78FEC900C1059E /* Numbers */ = {
+			isa = PBXGroup;
+			children = (
+				9B46A06E1D78FEC900C1059E /* Complex.swift */,
+				9B46A06F1D78FEC900C1059E /* EnhancedNumber.swift */,
+				9B46A0701D78FEC900C1059E /* Numbers.swift */,
+				9B46A0751D78FEC900C1059E /* Protocols */,
+				9B46A0761D78FEC900C1059E /* RationalNumber.swift */,
+			);
+			name = Numbers;
+			path = Sources/Numbers;
+			sourceTree = "<group>";
+		};
+		9B46A0791D78FEC900C1059E /* TeX */ = {
+			isa = PBXGroup;
+			children = (
+				9B46A0781D78FEC900C1059E /* LaTeXConvertible.swift */,
+			);
+			name = TeX;
+			path = Sources/TeX;
+			sourceTree = "<group>";
+		};
 		9B4733A71D4ACBB80055A7E8 = {
 			isa = PBXGroup;
 			children = (
@@ -230,83 +324,6 @@
 			path = MathTests;
 			sourceTree = "<group>";
 		};
-		9B5BE2471D72E2C7006C5B96 /* Numbers */ = {
-			isa = PBXGroup;
-			children = (
-				9BD8A6781D705C2F00C2618E /* Numbers.swift */,
-				9B5BE24B1D72E31B006C5B96 /* Protocols */,
-				9BD8A6671D705C2F00C2618E /* Complex.swift */,
-				9BD8A66B1D705C2F00C2618E /* EnhancedNumber.swift */,
-				9BD8A67D1D705C2F00C2618E /* RationalNumber.swift */,
-			);
-			name = Numbers;
-			sourceTree = "<group>";
-		};
-		9B5BE2481D72E2E2006C5B96 /* Functions */ = {
-			isa = PBXGroup;
-			children = (
-				9B5BE26B1D72E522006C5B96 /* Polynomials */,
-				9BD8A6681D705C2F00C2618E /* ConstantFunction.swift */,
-				9BD8A66A1D705C2F00C2618E /* CustomFunction.swift */,
-				9BD8A66C1D705C2F00C2618E /* Equation.swift */,
-				9BD8A66D1D705C2F00C2618E /* ExponentialFunction.swift */,
-				9BD8A66E1D705C2F00C2618E /* Fraction.swift */,
-				9BD8A66F1D705C2F00C2618E /* Function.swift */,
-				9BD8A6721D705C2F00C2618E /* Growth.swift */,
-				9BD8A6801D705C2F00C2618E /* Term.swift */,
-				9BD8A6811D705C2F00C2618E /* TrigonometricFunctions.swift */,
-			);
-			name = Functions;
-			sourceTree = "<group>";
-		};
-		9B5BE2491D72E2F7006C5B96 /* Algebra */ = {
-			isa = PBXGroup;
-			children = (
-				9BD8A6701D705C2F00C2618E /* GroupLike.swift */,
-				9BD8A6711D705C2F00C2618E /* GroupLikeProtocols.swift */,
-				9BD8A6761D705C2F00C2618E /* ModuleLike.swift */,
-				9BD8A6771D705C2F00C2618E /* ModuleLikeProtocols.swift */,
-				9BD8A67E1D705C2F00C2618E /* RingLike.swift */,
-				9BD8A67F1D705C2F00C2618E /* RingLikeProtocols.swift */,
-			);
-			name = Algebra;
-			sourceTree = "<group>";
-		};
-		9B5BE24A1D72E300006C5B96 /* Linear Algebra */ = {
-			isa = PBXGroup;
-			children = (
-				9BD8A6751D705C2F00C2618E /* Matrix.swift */,
-			);
-			name = "Linear Algebra";
-			sourceTree = "<group>";
-		};
-		9B5BE24B1D72E31B006C5B96 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				9BD8A6641D705C2F00C2618E /* AdvancedNumeric.swift */,
-				9BD8A6651D705C2F00C2618E /* AdvancedNumericTypeExtensions.swift */,
-				9BD8A6661D705C2F00C2618E /* BasicArithmetic.swift */,
-				9BD8A6791D705C2F00C2618E /* Numeric.swift */,
-			);
-			name = Protocols;
-			sourceTree = "<group>";
-		};
-		9B5BE24C1D72E34A006C5B96 /* TeX */ = {
-			isa = PBXGroup;
-			children = (
-				9BD8A6741D705C2F00C2618E /* LaTeXConvertible.swift */,
-			);
-			name = TeX;
-			sourceTree = "<group>";
-		};
-		9B5BE24D1D72E35D006C5B96 /* General */ = {
-			isa = PBXGroup;
-			children = (
-				9BD8A6691D705C2F00C2618E /* Constants.swift */,
-			);
-			name = General;
-			sourceTree = "<group>";
-		};
 		9B5BE24E1D72E36C006C5B96 /* General */ = {
 			isa = PBXGroup;
 			children = (
@@ -333,27 +350,16 @@
 			name = Protocols;
 			sourceTree = "<group>";
 		};
-		9B5BE26B1D72E522006C5B96 /* Polynomials */ = {
-			isa = PBXGroup;
-			children = (
-				9BD8A67A1D705C2F00C2618E /* Polynomial.swift */,
-				9BD8A67B1D705C2F00C2618E /* PolynomialFields.swift */,
-				9BD8A67C1D705C2F00C2618E /* PolynomialFunction.swift */,
-				9BD8A6631D705C2F00C2618E /* _Polynomial.swift */,
-			);
-			name = Polynomials;
-			sourceTree = "<group>";
-		};
 		9BD8A6A11D705C3F00C2618E /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				9BD8A6A21D705D6500C2618E /* LinuxSupport.swift */,
-				9B5BE24D1D72E35D006C5B96 /* General */,
-				9B5BE2491D72E2F7006C5B96 /* Algebra */,
-				9B5BE2481D72E2E2006C5B96 /* Functions */,
-				9B5BE24A1D72E300006C5B96 /* Linear Algebra */,
-				9B5BE2471D72E2C7006C5B96 /* Numbers */,
-				9B5BE24C1D72E34A006C5B96 /* TeX */,
+				9B46A0591D78FEC900C1059E /* Algebra */,
+				9B46A0681D78FEC900C1059E /* Functions */,
+				9B46A06A1D78FEC900C1059E /* General */,
+				9B46A06C1D78FEC900C1059E /* Linear Algebra */,
+				9B46A06D1D78FEC900C1059E /* LinuxSupport.swift */,
+				9B46A0771D78FEC900C1059E /* Numbers */,
+				9B46A0791D78FEC900C1059E /* TeX */,
 				9BD8A6731D705C2F00C2618E /* Info.plist */,
 			);
 			name = Sources;
@@ -442,37 +448,37 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9BD8A69A1D705C2F00C2618E /* PolynomialFields.swift in Sources */,
-				9BD8A6891D705C2F00C2618E /* CustomFunction.swift in Sources */,
-				9BD8A68D1D705C2F00C2618E /* Fraction.swift in Sources */,
-				9BD8A6861D705C2F00C2618E /* Complex.swift in Sources */,
-				9BD8A69F1D705C2F00C2618E /* Term.swift in Sources */,
-				9BD8A6851D705C2F00C2618E /* BasicArithmetic.swift in Sources */,
-				9BD8A68B1D705C2F00C2618E /* Equation.swift in Sources */,
-				9BD8A6A31D705D6500C2618E /* LinuxSupport.swift in Sources */,
-				9BD8A69C1D705C2F00C2618E /* RationalNumber.swift in Sources */,
-				9BD8A6821D705C2F00C2618E /* _Polynomial.swift in Sources */,
-				9BD8A69E1D705C2F00C2618E /* RingLikeProtocols.swift in Sources */,
-				9BD8A6951D705C2F00C2618E /* ModuleLike.swift in Sources */,
-				9BD8A6911D705C2F00C2618E /* Growth.swift in Sources */,
-				9BD8A68C1D705C2F00C2618E /* ExponentialFunction.swift in Sources */,
-				9BD8A69B1D705C2F00C2618E /* PolynomialFunction.swift in Sources */,
-				9BD8A6981D705C2F00C2618E /* Numeric.swift in Sources */,
-				9BD8A6841D705C2F00C2618E /* AdvancedNumericTypeExtensions.swift in Sources */,
-				9BD8A6831D705C2F00C2618E /* AdvancedNumeric.swift in Sources */,
-				9BD8A69D1D705C2F00C2618E /* RingLike.swift in Sources */,
-				9BD8A6991D705C2F00C2618E /* Polynomial.swift in Sources */,
-				9BD8A6901D705C2F00C2618E /* GroupLikeProtocols.swift in Sources */,
-				9BD8A68F1D705C2F00C2618E /* GroupLike.swift in Sources */,
-				9BD8A6931D705C2F00C2618E /* LaTeXConvertible.swift in Sources */,
-				9BD8A6871D705C2F00C2618E /* ConstantFunction.swift in Sources */,
-				9BD8A6971D705C2F00C2618E /* Numbers.swift in Sources */,
-				9BD8A6881D705C2F00C2618E /* Constants.swift in Sources */,
-				9BD8A6A01D705C2F00C2618E /* TrigonometricFunctions.swift in Sources */,
-				9BD8A6941D705C2F00C2618E /* Matrix.swift in Sources */,
-				9BD8A68E1D705C2F00C2618E /* Function.swift in Sources */,
-				9BD8A6961D705C2F00C2618E /* ModuleLikeProtocols.swift in Sources */,
-				9BD8A68A1D705C2F00C2618E /* EnhancedNumber.swift in Sources */,
+				9B46A0811D78FEC900C1059E /* CustomFunction.swift in Sources */,
+				9B46A0881D78FEC900C1059E /* Polynomial.swift in Sources */,
+				9B46A0831D78FEC900C1059E /* ExponentialFunction.swift in Sources */,
+				9B46A0901D78FEC900C1059E /* Complex.swift in Sources */,
+				9B46A08A1D78FEC900C1059E /* PolynomialFunction.swift in Sources */,
+				9B46A07D1D78FEC900C1059E /* ModuleLikeProtocols.swift in Sources */,
+				9B46A0851D78FEC900C1059E /* Function.swift in Sources */,
+				9B46A0821D78FEC900C1059E /* Equation.swift in Sources */,
+				9B46A0871D78FEC900C1059E /* _Polynomial.swift in Sources */,
+				9B46A07E1D78FEC900C1059E /* RingLike.swift in Sources */,
+				9B46A0961D78FEC900C1059E /* Numeric.swift in Sources */,
+				9B46A07B1D78FEC900C1059E /* GroupLikeProtocols.swift in Sources */,
+				9B46A08F1D78FEC900C1059E /* LinuxSupport.swift in Sources */,
+				9B46A0951D78FEC900C1059E /* BasicArithmetic.swift in Sources */,
+				9B46A0801D78FEC900C1059E /* ConstantFunction.swift in Sources */,
+				9B46A08B1D78FEC900C1059E /* Term.swift in Sources */,
+				9B46A0911D78FEC900C1059E /* EnhancedNumber.swift in Sources */,
+				9B46A08C1D78FEC900C1059E /* TrigonometricFunctions.swift in Sources */,
+				9B46A07A1D78FEC900C1059E /* GroupLike.swift in Sources */,
+				9B46A08E1D78FEC900C1059E /* Matrix.swift in Sources */,
+				9B46A07F1D78FEC900C1059E /* RingLikeProtocols.swift in Sources */,
+				9B46A08D1D78FEC900C1059E /* Constants.swift in Sources */,
+				9B46A0891D78FEC900C1059E /* PolynomialFields.swift in Sources */,
+				9B46A0931D78FEC900C1059E /* AdvancedNumeric.swift in Sources */,
+				9B46A0861D78FEC900C1059E /* Growth.swift in Sources */,
+				9B46A0921D78FEC900C1059E /* Numbers.swift in Sources */,
+				9B46A0971D78FEC900C1059E /* RationalNumber.swift in Sources */,
+				9B46A07C1D78FEC900C1059E /* ModuleLike.swift in Sources */,
+				9B46A0841D78FEC900C1059E /* Fraction.swift in Sources */,
+				9B46A0941D78FEC900C1059E /* AdvancedNumericTypeExtensions.swift in Sources */,
+				9B46A0981D78FEC900C1059E /* LaTeXConvertible.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -675,6 +681,7 @@
 		9B4733C91D4ACBE00055A7E8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = MathTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
@@ -687,6 +694,7 @@
 		9B4733CA1D4ACBE00055A7E8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = MathTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
