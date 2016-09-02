@@ -43,8 +43,7 @@ extension Double : AdvancedNumeric, Ordered {
 	}
 	
 	public var reducedDescription : String {
-		if !isNormal { return "\(self)" }
-		if isInteger { return integer.description }
+		guard !isInteger	else { return integer.description }
 		return description
 	}
 	
@@ -53,6 +52,7 @@ extension Double : AdvancedNumeric, Ordered {
 	}
 	
 	public var integer : Int    {
+		precondition(self != Double.nan, "Cannot return an Int-value for Double.nan.")
 		if self > Double(Int.max)	{ return Int.max }
 		if self < Double(Int.min)	{ return Int.min }
 		return Int(self)

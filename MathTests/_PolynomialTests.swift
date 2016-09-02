@@ -13,27 +13,29 @@ class _PolynomialTests: XCTestCase {
 	// MID_PRIO
 	
 	func testEqualsToPolynomial() {
-		for _ in 0..<20 {
-			var coefficients = [Double]()
-			for _ in 0 ..< (random() & 0xF + 0xF) {
-				coefficients.append((random() & 0xF + 0xF).double)
+		for _ in 0..<200 {
+			print(".", terminator: "")
+			var coefficients = [Int]()
+			for _ in 0 ..< (random() & 0xF) {
+				coefficients.append((random() & 0xF))
 			}
 			var p = Polynomial<Double>()
 			var f : Function = ConstantFunction(0)
 			for i in coefficients.indices.reversed() {
-				p[i] = coefficients[i]
+				p[i] = coefficients[i].double
 				f += coefficients[i].double * (x^i.double)
 			}
 			XCTAssert(p.description == f.description, "Polynomial: \(p), Function: \(f)")
 			for _ in 0..<100 {
-				let r = Double.random
-				var pc = p.call(x: r)!.description
-				var fc = f.call(x: r).description
-				if pc == fc { continue }
-				if pc.characters.count > 7 { pc = pc.substring(to: pc.index(pc.startIndex, offsetBy: 5)) }
-				if fc.characters.count > 7 { fc = fc.substring(to: fc.index(fc.startIndex, offsetBy: 5)) }
-				XCTAssert(pc == fc)
+				let r = (random() & 0xF).double
+				let pc = p.call(x: r)!.integer
+				let fc = f.call(x: r).integer
+				if pc < 0xFFF { XCTAssert(pc == fc, "\(pc) != \(fc)") }
 			}
+			let pd = p.derivative
+			let fd = f.derivative
+			XCTAssert(pd.description == fd.description, "\n\(pd)\n != \n\(fd)")
 		}
+		print()
 	}
 }

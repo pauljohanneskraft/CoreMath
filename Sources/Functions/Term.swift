@@ -180,7 +180,7 @@ struct Term : Function {
 		guard factors.count > 1 else { return factors.count == 0 ? "0" : factors[0].coefficientDescription(first: false) }
 		if let coeff = factors[0] as? Constant {
 			let hasMinusOne = coeff.value.abs == 1
-			var result = "\(factors[0].coefficientDescription(first: first))"
+			var result = "\(coeff.value.coefficientDescription(first: first))"
 			guard factors.count > 2 else {
 				let f = factors[1]
 				switch f {
