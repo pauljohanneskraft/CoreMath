@@ -1,4 +1,5 @@
 matrix:
+  fast-finish: true
   include:
     - os: osx
       language: swift
