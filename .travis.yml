@@ -1,13 +1,13 @@
 matrix:
-  allow_failures:
-    - os: linux
-      sudo: required
-      dist: trusty
-  
   include:
     - os: osx
       language: swift
       osx_image: xcode8
+    - os: linux
+      sudo: required
+      dist: trusty
+  allow_failures:
+   - os: linux
 
 install:
 - if [[ $TRAVIS_OS_NAME == linux ]]; then wget -q -O - https://swift.org/keys/all-keys.asc | gpg --import -; fi
