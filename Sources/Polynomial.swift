@@ -128,24 +128,14 @@ extension Polynomial {
 	
 	public subscript(index: Int) -> Number {
 		get {
-			assert(index >= 0) // TODO!! remainder!
-			if index < coefficients.count { return coefficients[index] }
-			else { return 0 }
+			precondition(index >= 0, "precondition(index >= 0)")
+			return index < coefficients.count ? coefficients[index] : 0
 		}
 		set {
-			if index < 0 {
-				assert(false)
-				// save into remainder
-				// TODO!!
-			} else {
-				let count = coefficients.count
-				if index >= count {
-					let empty = [Number](repeating: 0, count: index-count+1)
-					coefficients.append(contentsOf: empty)
-					// for _ in count ... index { coefficients.append(0) }
-				}
-				coefficients[index] = newValue
-			}
+			precondition(index >= 0, "precondition(index >= 0)")
+			let count = coefficients.count
+			if index >= count { coefficients.append(contentsOf: [Number](repeating: 0, count: index-count+1)) }
+			coefficients[index] = newValue
 		}
 	}
 	
