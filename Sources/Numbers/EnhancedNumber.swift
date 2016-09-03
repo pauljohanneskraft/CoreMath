@@ -18,11 +18,11 @@ public enum Enhanced < Number : Numeric > : Numeric, Hashable {
 	}
 	
 	public init(floatLiteral: Double) {
-		switch floatLiteral {
-		case  Double.infinity:	self = .infinity(sign: false)
-		case -Double.infinity:	self = .infinity(sign: true)
-		case Double.nan:		self = .nan
-		default:				self = .finite(Number(floatLiteral: floatLiteral))
+		switch floatLiteral.description {
+		case "inf"	:	self = .infinity(sign: false)
+		case "-inf"	:	self = .infinity(sign: true)
+		case "nan"	:	self = .nan
+		default		:	self = .finite(Number(floatLiteral: floatLiteral))
 		}
 	}
 	
@@ -69,6 +69,8 @@ public enum Enhanced < Number : Numeric > : Numeric, Hashable {
 		case .nan:                  return Double.nan
 		}
 	}
+	
+	public var isNormal : Bool { return double.isNormal }
 }
 
 extension Enhanced where Number : Ordered {
@@ -111,7 +113,7 @@ public func += < N : Numeric >(lhs: inout Enhanced<N>, rhs: Enhanced<N>) {
 public func -= < N : Numeric >(lhs: inout Enhanced<N>, rhs: Enhanced<N>) {
 	switch (lhs, rhs) {
 	case (.nan, _), (_, .nan): lhs = .nan
-	case let (.finite(v1), .finite(v2)): lhs = .finite(v1 + v2)
+	case let (.finite(v1), .finite(v2)): lhs = .finite(v1 - v2)
 	case (.infinity(false), .infinity(false)), (.infinity(true), .infinity(true)): lhs = .finite(0)
 	case (.infinity(false), _), (_, .infinity(true)): lhs = .infinity(sign: true)
 	case (_, .infinity(false)), (.infinity(true), _): lhs = .infinity(sign: false)

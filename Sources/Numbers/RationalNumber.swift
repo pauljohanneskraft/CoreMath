@@ -229,39 +229,17 @@ public func - (lhs: RationalNumber, rhs: RationalNumber) -> RationalNumber {
 }
 
 public func == (lhs: RationalNumber, rhs: RationalNumber) -> Bool {
-	if lhs.sign != rhs.sign { return false }
-	if lhs.numerator == rhs.numerator && lhs.denominator == rhs.denominator {
-		return true
-	}
+	guard lhs.sign == rhs.sign else { return false }
+	guard lhs.numerator != rhs.numerator || lhs.denominator != rhs.denominator else { return true }
 	return lhs.numerator == -rhs.numerator && lhs.denominator == -rhs.denominator
 }
 
 public func < (lhs: RationalNumber, rhs: RationalNumber) -> Bool {
-	return Double(lhs) < Double(rhs)
-}
-
-extension AdvancedNumeric {
-	func greatestCommonDivisor(with other: Self) -> Self {
-		var a = self > other ? self : other
-		var b = self < other ? self : other
-		while b.abs > 0 {
-			let t = b
-			b = a % b
-			a = t
-		}
-		if a == 0 { return 1 }
-		return a
-	}
+	return lhs.double < rhs.double
 }
 
 public func % (lhs: RationalNumber, rhs: RationalNumber) -> RationalNumber {
-	var lhs = lhs
-	lhs %= rhs
-	return lhs
-}
-
-public func % (lhs: Double, rhs: Double) -> Double {
-	return lhs.truncatingRemainder(dividingBy: rhs)
+	var lhs = lhs; lhs %= rhs; return lhs
 }
 
 public func %= (lhs: inout RationalNumber, rhs: RationalNumber) {

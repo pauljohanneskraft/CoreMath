@@ -47,7 +47,7 @@ extension TypeTest {
 				// avgtime += time
 				let t = cond(r,q, frq)
 				if !t { print(".", terminator: "") }
-				XCTAssert(t, "\(r) \(char) \(q) != \(frq)")
+				XCTAssert(t, "\(r) \(char) \(q) == \(frq) doesn't meet the assertion criteria.")
 			}
 		}
 		// print("avg time:", avgtime / Double(n.count * n.count), "total:", avgtime)

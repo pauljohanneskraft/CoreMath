@@ -10,10 +10,10 @@ import Foundation
 
 extension Numeric {
 	
-	static func x(_ v: Int = 1) -> Polynomial<Self> {
+	public static func x(_ v: Int = 1) -> Polynomial<Self> {
 		return Polynomial((Self(integerLiteral: 1), v))
 	}
 	
-	static var x : Polynomial<Self> { return Self.x(1) }
+	public static var x : Polynomial<Self> { return Self.x(1) }
 	
 }

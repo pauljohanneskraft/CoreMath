@@ -23,7 +23,7 @@ public struct ConstantFunction : Function, ExpressibleByIntegerLiteral, Expressi
 	public var integral		: Function	{ return value * _Polynomial(degree: 1)	} // f = a, F = a * x
 	public var reduced		: Function	{ return self							} // not reducable
 	
-	public func coefficientDescription	(first: Bool	) -> String { return value.coefficientDescription(first: first)		}
+	public func coefficientDescription	(first: Bool	) -> String { return first ? value.reducedDescription : "\(value < 0 ? "-" : "+") \(value.abs.reducedDescription)"	}
 	public func equals					(to:	Function) -> Bool	{ return Optional(value) == (to as? Constant)?.value	}
 	public func call					(x:		Double	) -> Double { return value											}
 }
