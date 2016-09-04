@@ -72,4 +72,27 @@ class ComplexTests: XCTestCase, TypeTest {
 	func testConjugate() {
 		forAll("conj",assert: { $0.real == $1.real && $0.imaginary == -($1.imaginary) }) { $0.conjugate }
 	}
+	
+	func testRandom() {
+		for _ in 0..<100 {
+			let r = Complex<Double>.random
+			XCTAssert(r.real == r.double)
+			XCTAssert(r.real.integer == r.integer)
+		}
+	}
+	
+	func testDescription() {
+		XCTAssert(Complex<Double>(0).description == "0")
+		XCTAssert(Complex<Int>(0).description == "0")
+		for _ in 0 ..< 100 {
+			let r = random() & 0xFFF
+			let c = Complex<Int>(real: 0, imaginary: r)
+			XCTAssert(c.description == "\(r)i")
+			XCTAssert(Complex<Int>(r).description == r.reducedDescription)
+			let i = random() & 0xFFF
+			let c1 = Complex<Int>(real: r, imaginary: i)
+			XCTAssert(c1.description == "(\(r) + \(i)i)", "\(c1)")
+		}
+	}
+	
 }
