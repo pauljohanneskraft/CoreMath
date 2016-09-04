@@ -23,6 +23,7 @@ public protocol Function : CustomStringConvertible, LaTeXConvertible {
 	
 	// operators
 	static func == (lhs: Function, rhs: Function) -> Bool
+	static func != (lhs: Function, rhs: Function) -> Bool
 	
 	static func +  (lhs: Function, rhs: Function) -> Function
 	static func -  (lhs: Function, rhs: Function) -> Function
@@ -95,4 +96,5 @@ public func += (lhs: inout Function, rhs: Function) { lhs = lhs + rhs }
 
 public func -  (lhs: Function, rhs: Function) -> Function	{ return lhs + (-rhs)										}
 public func == (lhs: Function, rhs: Function) -> Bool		{ return lhs.reduced.equals(to: rhs.reduced)				}
+public func != (lhs: Function, rhs: Function) -> Bool		{ return !(lhs == rhs)										}
 public func /  (lhs: Function, rhs: Function) -> Function	{ return Fraction(numerator: lhs, denominator: rhs).reduced }
