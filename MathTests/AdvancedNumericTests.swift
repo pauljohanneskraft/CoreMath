@@ -53,4 +53,14 @@ class AdvancedNumericTests: XCTestCase {
 			XCTAssert((!p.isNormal || !q.isNormal) || p == p % q)
 		}
 	}
+	
+	func testNearlyEquals() {
+		XCTAssert(!(0.0 =~ 1.0))
+		let m = 0xFFFF_FFFF_FFFF.double
+		XCTAssert(!(m =~ m + 1), "\(m)")
+		for _ in 0 ..< 100 {
+			let a = (random() & 0xFFFF_FFFF_FFFF).double
+			XCTAssert(!(a =~ a + 1), "\(a) == \(a + 1)")
+		}
+	}
 }
