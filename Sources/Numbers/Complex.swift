@@ -51,6 +51,10 @@ extension Complex where Number : Numeric {
 		return real.integer
 	}
 	
+	public var isInteger: Bool {
+		return imaginary == 0 && real.isInteger
+	}
+	
 	public var abs : Complex<Number> {
 		return Complex((real*real + imaginary*imaginary).sqrt)
 	}
@@ -173,21 +177,6 @@ public func == <N : BasicArithmetic>(lhs: Complex<N>, rhs: Complex<N>) -> Bool {
 	return lhs.real == rhs.real && lhs.imaginary == rhs.imaginary
 }
 
-func += < N : BasicArithmetic >(lhs: inout Complex<N>, rhs: N) {
-	lhs.real += rhs
-}
-
-func + < N : BasicArithmetic >(lhs: Complex<N>, rhs: N) -> Complex<N> {
-	var lhs = lhs
-	lhs += rhs
-	return lhs
-}
-
-func + < N : BasicArithmetic >(lhs: N, rhs: Complex<N>) -> Complex<N> {
-	var rhs = rhs
-	rhs += lhs
-	return rhs
-}
 
 public func /= <N : BasicArithmetic>(lhs: inout Complex<N>, rhs: Complex<N>) {
 	let d = rhs.conjugate

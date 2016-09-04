@@ -39,6 +39,7 @@ public struct RationalNumber : AdvancedNumeric, Ordered {
 	
 	public var integer	: Int		{ return numerator			/ denominator			}
 	public var double	: Double	{ return Double(numerator)	/ Double(denominator)	}
+	public var isInteger: Bool		{ return self.reduced.denominator == 1 }
 	
 	public static var min	: RationalNumber { return Q(Int.min, 1) }
 	public static var max	: RationalNumber { return Q(Int.max, 1) }

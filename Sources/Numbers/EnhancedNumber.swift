@@ -71,6 +71,8 @@ public enum Enhanced < Number : Numeric > : Numeric, Hashable {
 	}
 	
 	public var isNormal : Bool { return double.isNormal }
+	
+	public var isInteger: Bool { return isNormal && Enhanced<Number>(self.integer) == self }
 }
 
 extension Enhanced where Number : Ordered {

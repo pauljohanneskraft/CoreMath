@@ -66,3 +66,7 @@ extension Double : AdvancedNumeric, Ordered {
 public func % (lhs: Double, rhs: Double) -> Double {
 	return lhs.truncatingRemainder(dividingBy: rhs)
 }
+
+public func %= (lhs: inout Double, rhs: Double) {
+	lhs.formTruncatingRemainder(dividingBy: rhs)
+}

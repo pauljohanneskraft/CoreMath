@@ -40,4 +40,14 @@ class NumericTests: XCTestCase, TypeTest {
 		}
 	}
 	
+	func testPower() {
+		for _ in 0 ..< 100 {
+			let r = Double.random
+			let p = Double.random
+			let p1 = pow(r,p)
+			let p2 = r.power(p)
+			XCTAssert((!p1.isNormal && !p2.isNormal) || p1 == p2, "\(p1) != \(p2)")
+		}
+	}
+		
 }
