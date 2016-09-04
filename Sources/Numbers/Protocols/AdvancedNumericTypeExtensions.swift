@@ -62,7 +62,3 @@ extension Double : AdvancedNumeric, Ordered {
 	public static var min : Double	{ return DBL_MIN }
 	public static var max : Double	{ return DBL_MAX }
 }
-
-public func % (lhs: Double, rhs: Double) -> Double {
-	return lhs.truncatingRemainder(dividingBy: rhs)
-}
