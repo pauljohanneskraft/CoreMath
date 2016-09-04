@@ -1,5 +1,0 @@
- coverage:
-  range: 40..90
-
-comment:
-  layout: "header, diff, tree, changes, sunburst"
