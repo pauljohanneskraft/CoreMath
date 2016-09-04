@@ -51,6 +51,10 @@ extension Complex where Number : Numeric {
 		return real.integer
 	}
 	
+	public var isInteger: Bool {
+		return imaginary == 0 && real.isInteger
+	}
+	
 	public var abs : Complex<Number> {
 		return Complex((real*real + imaginary*imaginary).sqrt)
 	}

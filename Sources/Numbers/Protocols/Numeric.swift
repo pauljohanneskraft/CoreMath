@@ -25,10 +25,6 @@ extension Numeric {
 		return Self(floatLiteral: pow(self.double, v))
 	}
 	
-	public var isInteger : Bool {
-		return Self(integerLiteral: self.integer) == self
-	}
-	
 	public var primeFactors : [Int] {
 		guard self.isInteger else { return [] }
 		var this = self.integer
@@ -55,12 +51,9 @@ extension Numeric {
 		
 		repeat {
 			last = Int.getNextPrime(from: last)
-			if last > upTo { break }
+			if last > upTo { return res }
 			res.append(last)
 		} while true
-		
-		// print("did end", upTo)
-		return res
 	}
 	
 	public static func getNextPrime(from: Int) -> Int {
