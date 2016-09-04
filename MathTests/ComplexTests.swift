@@ -84,28 +84,31 @@ class ComplexTests: XCTestCase, TypeTest {
 	func testDescription() {
 		XCTAssert(Complex<Double>(0).description == "0")
 		XCTAssert(Complex<Int>(0).description == "0")
-		for _ in 0 ..< 100 {
-			let r = random() & 0xFFF
+		for _ in 0 ..< 1000 {
+			let r = random() & 0xFFFF_FFFF_FFFF + 2
 			let c = Complex<Int>(real: 0, imaginary: r)
-			XCTAssert(c.description == "\(r)i")
+			XCTAssert(c.description == "\(r)i", "\(c)")
 			XCTAssert(Complex<Int>(r).description == r.reducedDescription)
-			let i = random() & 0xFFF
+			let i = random() & 0xFFFF_FFFF_FFFF + 2 // 0, 1 is impossible
 			let c1 = Complex<Int>(real: r, imaginary: i)
 			XCTAssert(c1.description == "(\(r) + \(i)i)", "\(c1)")
+			let c2 = Complex<Int>(real: r, imaginary: -i)
+			XCTAssert(c2.description == "(\(r) - \(i)i)", "\(c2)")
 		}
 	}
 	
 	func testPower() {
-		for _ in 0 ..< 100 {
+		print(pow(0xFFF, 0xF))
+		for _ in 0 ..< 10000 {
 			let a = (random() & 0xFFF).double
 			let c = Complex(a)
-			let p = (random() & 0xFFF).double
+			let p = (random() & 0xF).double
 			let p0 = c.power(p)
 			let p1 = p0.real
 			let p2 = a.power(p)
+			print(p0, "?= \(a)^\(p)")
 			XCTAssert(!p0.imaginary.isNormal || p0.imaginary =~ 0, "Imaginary part != 0: \(p0)")
 			XCTAssert((!p1.isNormal && !p2.isNormal) || p1 =~ p2, "\(p1) != \(p2)")
 		}
 	}
-	
 }

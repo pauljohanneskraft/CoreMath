@@ -17,7 +17,7 @@ protocol TypeTest {
 }
 extension TypeTest {
 	
-	func forAll<T>(_ char: String = "_", assert cond: (DataType, T) -> Bool = { _,_ in return true }, _ f: (DataType) -> T) {
+	func forAll<T>(_ char: String, assert cond: (DataType, T) -> Bool = { _,_ in return true }, _ f: (DataType) -> T) {
 		let n = self.elements
 		// var avgtime = 0.0
 		for r in n {
@@ -33,7 +33,7 @@ extension TypeTest {
 		// print("avg time:", avgtime / Double(n.count), "total:", avgtime)
 	}
 	
-	func forAll<T>(_ char: String = "_", assert cond: (DataType, DataType, T) -> Bool = { _,_,_ in return true }, _ f: (DataType, DataType) -> T) {
+	func forAll<T>(_ char: String, assert cond: (DataType, DataType, T) -> Bool = { _,_,_ in return true }, _ f: (DataType, DataType) -> T) {
 		let n = self.elements
 		// var avgtime = 0.0
 		for r in n {

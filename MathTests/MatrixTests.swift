@@ -46,7 +46,7 @@ class MatrixTests: XCTestCase, TypeTest {
 	}
 	
 	func testRowEchelonForm() {
-		forAll(assert: { $1 == true }) { $0.rowEchelonForm.rank == $0.reducedRowEchelonForm.rank }
+		forAll("rowEchelonFormRanksEqual", assert: { $1 == true }) { $0.rowEchelonForm.rank == $0.reducedRowEchelonForm.rank }
 	}
 	
 	func testIsSquare() {
