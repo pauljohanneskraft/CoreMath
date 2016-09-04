@@ -25,4 +25,19 @@ class BasicArithmeticTests: XCTestCase {
 		}
 	}
 	
+	func testZ_() {
+		
+		for _ in 0..<20 {
+			let a = random() & 0xFF
+			let z = Z_(a)
+			let range = 0..<a
+			for _ in 0..<100 {
+				let r = random() & 0xFFF
+				XCTAssert(range.contains(r) ? z.contains(r) : !z.contains(r))
+			}
+		}
+		
+		
+	}
+	
 }
