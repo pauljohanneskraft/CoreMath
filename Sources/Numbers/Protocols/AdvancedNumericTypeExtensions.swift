@@ -68,5 +68,5 @@ public func % (lhs: Double, rhs: Double) -> Double {
 }
 
 public func %= (lhs: inout Double, rhs: Double) {
-	lhs.formRemainder(dividingBy: rhs)
+	lhs.formTruncatingRemainder(dividingBy: rhs)
 }

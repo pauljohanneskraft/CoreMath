@@ -43,4 +43,14 @@ class AdvancedNumericTests: XCTestCase {
 		// print(bm)
 		XCTAssert(bm == 2)
 	}
+	
+	func testDoubleRemainder() {
+		for _ in 0 ..< 100 {
+			let r = Double.random
+			let q = Double.random
+			var p = r
+			p %= q
+			XCTAssert((!p.isNormal || !q.isNormal) || p == p % q)
+		}
+	}
 }
