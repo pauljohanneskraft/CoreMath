@@ -70,3 +70,13 @@ public func % (lhs: Double, rhs: Double) -> Double {
 public func %= (lhs: inout Double, rhs: Double) {
 	lhs.formTruncatingRemainder(dividingBy: rhs)
 }
+
+extension Decimal : BasicArithmetic {}
+
+public func *= (lhs: inout Decimal, rhs: Decimal) {
+	lhs = lhs * rhs
+}
+
+public func /= (lhs: inout Decimal, rhs: Decimal) {
+	lhs = lhs / rhs
+}

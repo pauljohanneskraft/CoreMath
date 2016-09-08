@@ -63,4 +63,21 @@ class AdvancedNumericTests: XCTestCase {
 			XCTAssert(!(a =~ a + 1), "\(a) == \(a + 1)")
 		}
 	}
+	
+	func testDecimal() {
+		let d = Decimal()
+		print(d)
+		var total = Decimal()
+		for _ in 0..<100 {
+			// print(Decimal(Double.random))
+			let dec = Decimal(Double.random)
+			let one = (dec.nextUp - dec)/dec
+			total += one
+		}
+		print(total / 100)
+		print(total.nextUp - total)
+		let a = Double("\(total)")!
+		print(a)
+		print(nextafter(a, DBL_MAX) - a)
+	}
 }
