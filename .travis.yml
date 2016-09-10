@@ -23,7 +23,7 @@ install:
 - if [[ $TRAVIS_OS_NAME == osx   ]]; then gem install xcpretty-travis-formatter; fi
 before_script:
 - if [[ $TRAVIS_OS_NAME == linux ]]; then mkdir abc; fi
-- if [[ $TRAVIS_OS_NAME == linux ]]; then mv abc Sources; fi
+- if [[ $TRAVIS_OS_NAME == linux ]]; then mv Sources abc; fi
 - if [[ $TRAVIS_OS_NAME == linux ]]; then mv abc/**/*.swift Sources; fi
 - if [[ $TRAVIS_OS_NAME == linux ]]; then rmdir -rf abc; fi
 script:
