@@ -12,12 +12,11 @@ matrix:
 
 install:
 - if [[ $TRAVIS_OS_NAME == linux ]]; then wget -q -O - https://swift.org/keys/all-keys.asc | gpg --import -; fi
-- if [[ $TRAVIS_OS_NAME == linux ]]; then export SWIFT_VERSION_LOWERCASE=swift-3.0-preview-6; fi
-- if [[ $TRAVIS_OS_NAME == linux ]]; then export SWIFT_VERSION_UPPERCASE=swift-3.0-PREVIEW-6; fi
-- if [[ $TRAVIS_OS_NAME == linux ]]; then wget https://swift.org/builds/${SWIFT_VERSION_LOWERCASE}/ubuntu1404/${SWIFT_VERSION_UPPERCASE}/${SWIFT_VERSION_UPPERCASE}-ubuntu14.04.tar.gz; fi
-- if [[ $TRAVIS_OS_NAME == linux ]]; then tar xzf ${SWIFT_VERSION_UPPERCASE}-ubuntu14.04.tar.gz; fi
-- if [[ $TRAVIS_OS_NAME == linux ]]; then export PATH=${PWD}/${SWIFT_VERSION_UPPERCASE}-ubuntu14.04/usr/bin:"${PATH}"; fi
-- if [[ $TRAVIS_OS_NAME == linux ]]; then export PACKAGE_MANAGER_VERSION=swift-DEVELOPMENT-SNAPSHOT-2016-08-25-a; fi
+- if [[ $TRAVIS_OS_NAME == linux ]]; then export SWIFT_VERSION=swift-3.0-GM-CANDIDATE; fi
+- if [[ $TRAVIS_OS_NAME == linux ]]; then wget https://swift.org/builds/${SWIFT_VERSION}/ubuntu1404/${SWIFT_VERSION}/${SWIFT_VERSION}-ubuntu14.04.tar.gz; fi
+- if [[ $TRAVIS_OS_NAME == linux ]]; then tar xzf ${SWIFT_VERSION}-ubuntu14.04.tar.gz; fi
+- if [[ $TRAVIS_OS_NAME == linux ]]; then export PATH=${PWD}/${SWIFT_VERSION}-ubuntu14.04/usr/bin:"${PATH}"; fi
+- if [[ $TRAVIS_OS_NAME == linux ]]; then export PACKAGE_MANAGER_VERSION=swift-DEVELOPMENT-SNAPSHOT-2016-09-07-a; fi
 - if [[ $TRAVIS_OS_NAME == linux ]]; then wget https://github.com/apple/swift-package-manager/archive/${PACKAGE_MANAGER_VERSION}.tar.gz; fi
 - if [[ $TRAVIS_OS_NAME == linux ]]; then tar xzf ${PACKAGE_MANAGER_VERSION}.tar.gz; fi
 - if [[ $TRAVIS_OS_NAME == linux ]]; then export PATH=${PWD}/${PACKAGE_MANAGER_VERSION}/usr/bin:"${PATH}"; fi
