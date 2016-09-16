@@ -11,7 +11,7 @@ matrix:
    - os: linux
 
 notifications:
-  slack: pauljohanneskraft:wClcdhufnZn16qEhhljudtlh
+  slack: pauljohanneskraft:uXzmppJPaAEt8adnz6AbsHSf
 
 install:
 - if [[ $TRAVIS_OS_NAME == linux ]]; then wget -q -O - https://swift.org/keys/all-keys.asc | gpg --import -; fi
