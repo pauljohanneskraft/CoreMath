@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+/*
 public struct GroupLike<Element> : SemigroupProtocol, Commutative where Element : Hashable, Element: Comparable {
 	public init(set: Set<Element>, op: @escaping (Element,Element) -> Element, neutralElement: Element? = nil, inv: ((Element) -> Element)? = nil, sign: Character = "•") {
 		self.set = set
@@ -156,7 +156,7 @@ public struct AbelianGroup<Element> : AbelianGroupProtocol where Element : Hasha
 	public let inv : (Element) -> Element
 	public let sign : Character
 }
-
+*/
 
 
 
