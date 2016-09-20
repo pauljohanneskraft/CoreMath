@@ -10,7 +10,7 @@ import XCTest
 import Math
 
 class GroupTests: XCTestCase {
-	
+	/*
 	func testGroupLikeAbelianGroups() {
 		for i in [1,2,3,5,7] {
 			let g = GroupLike(set: Z_(i), op: { ($0 + $1) % i }, neutralElement: 0, inv: { i - $0 }, sign: "+")
@@ -27,5 +27,6 @@ class GroupTests: XCTestCase {
 			// print(i, "\t", st) // XCTAssert(type(of: st) == AbelianGroup<Int>.self)
 		}
 	}
+*/
 	
 }
