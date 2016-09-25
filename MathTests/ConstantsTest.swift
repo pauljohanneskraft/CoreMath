@@ -39,6 +39,9 @@ class ConstantsTest: XCTestCase {
 		print("h_:         ", Constants.Physics.h_)
 		print("-----------------------------------------------------")
 		print("y_0:        ", Constants.Physics.y_0)
+		print("-----------------------------------------------------")
+		print("g:          ", Constants.Physics.g)
+		// 
 	}
 	
 }

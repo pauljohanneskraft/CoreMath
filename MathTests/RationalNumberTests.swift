@@ -29,6 +29,12 @@ class RationalNumberTests: XCTestCase, TypeTest {
 	func testDivision()         {
 		forAll("/", assert: { a,b,c in return ((a.double / b.double) - (c.double)).abs < 1e-10 } ) { $0 / $1 }
 	}
+	func testPrefixMInus()		{
+		forAll("-", assert: { a,b in return a.double == -b.double }) { -$0 }
+	}
+	func testRemainder()		{
+		forAll("%", assert: { a,b,c in return a.double % b.double == c.double }) { $0 % $1 }
+	}
 	
 	private func doubles(values: [Double]) {
 		// var time = 0.0
@@ -64,6 +70,33 @@ class RationalNumberTests: XCTestCase, TypeTest {
 			}
 		}
 		// doubles(values: values)
+	}
+	
+	func testMinMax() {
+		XCTAssert(Q.min.integer == Int.min)
+		XCTAssert(Q.max.integer == Int.max)
+	}
+	
+	func testInteger() {
+		for _ in 0 ..< 10000 {
+			let a = random() & 0xFFFF * (random() % 2 == 0 ? -1 : 1)
+			let b = random() & 0xFFFF + 1 // no division by 0 possible
+			let q = Q(a,b).reduced
+			let r = a / b
+			XCTAssert(q.integer == r, "Q(\(a), \(b)).integer != \(r)")
+			XCTAssert(q.sign == (q.double < 0), "sign: \(q.sign) != \(r < 0), number \(q.double.reducedDescription): \(q) ?= \(r)")
+		}
+	}
+	
+	func testInits() {
+		for _ in 0 ..< 100 {
+			let r = random() & 0xFFFF
+			let q = Q(r)
+			XCTAssert(q == Q(integerLiteral: r))
+			XCTAssert(q == Q(r,1))
+			XCTAssert(q == RationalNumber(numerator: r, denominator: 1))
+			XCTAssert(q.double == Double(q))
+		}
 	}
 }
 

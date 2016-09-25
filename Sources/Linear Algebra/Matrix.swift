@@ -172,29 +172,32 @@ extension Matrix where N : BasicArithmetic {
 		assert(isSquare)
 		let count = elements.count
 		
-		switch count {
-		case 1: return elements[0][0]
-		case 2: return elements[0][0] * elements[1][1] - elements[0][1] * elements[1][0]
-		case 3:
-			let a = elements[0][0]*elements[1][1]*elements[2][2]
-			let b = elements[0][1]*elements[1][2]*elements[2][0]
-			let c = elements[0][2]*elements[1][0]*elements[2][1]
-			let d = elements[2][0]*elements[1][1]*elements[0][2]
-			let e = elements[0][0]*elements[1][2]*elements[2][1]
-			let f = elements[0][1]*elements[1][0]*elements[2][2]
-			return a + b + c - d - e - f
-		default:
-			var res : N = 0
-			for i in 0..<count {
-				var matrix = elements
-				matrix.remove(at: 0)
-				for j in 0..<(count-1) { matrix[j].remove(at: i) }
-				let det = Matrix(matrix).determinant * elements[0][i]
-				if i % 2 == 0   { res += det }
-				else            { res -= det }
+		guard count > 3 else {
+			switch count {
+			case 1: return elements[0][0]
+			case 2: return elements[0][0] * elements[1][1] - elements[0][1] * elements[1][0]
+			case 3:
+				let a = elements[0][0]*elements[1][1]*elements[2][2]
+				let b = elements[0][1]*elements[1][2]*elements[2][0]
+				let c = elements[0][2]*elements[1][0]*elements[2][1]
+				let d = elements[2][0]*elements[1][1]*elements[0][2]
+				let e = elements[0][0]*elements[1][2]*elements[2][1]
+				let f = elements[0][1]*elements[1][0]*elements[2][2]
+				return a + b + c - d - e - f
+			default: fatalError("count is not allowed. (\(count))")
 			}
-			return res
 		}
+		var res : N = 0
+		let indices = 0..<(count - 1)
+		for i in 0..<count {
+			var matrix = elements
+			matrix.remove(at: 0)
+			for j in indices { matrix[j].remove(at: i) }
+			let det = Matrix(matrix).determinant * elements[0][i]
+			if i & 1 == 0   { res += det }
+			else            { res -= det }
+		}
+		return res
 	}
 }
 

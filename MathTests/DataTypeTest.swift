@@ -17,7 +17,7 @@ protocol TypeTest {
 }
 extension TypeTest {
 	
-	func forAll<T>(_ char: String = "_", assert cond: (DataType, T) -> Bool = { _,_ in return true }, _ f: (DataType) -> T) {
+	func forAll<T>(_ char: String, assert cond: (DataType, T) -> Bool = { _,_ in return true }, _ f: (DataType) -> T) {
 		let n = self.elements
 		// var avgtime = 0.0
 		for r in n {
@@ -33,7 +33,7 @@ extension TypeTest {
 		// print("avg time:", avgtime / Double(n.count), "total:", avgtime)
 	}
 	
-	func forAll<T>(_ char: String = "_", assert cond: (DataType, DataType, T) -> Bool = { _,_,_ in return true }, _ f: (DataType, DataType) -> T) {
+	func forAll<T>(_ char: String, assert cond: (DataType, DataType, T) -> Bool = { _,_,_ in return true }, _ f: (DataType, DataType) -> T) {
 		let n = self.elements
 		// var avgtime = 0.0
 		for r in n {
@@ -47,7 +47,7 @@ extension TypeTest {
 				// avgtime += time
 				let t = cond(r,q, frq)
 				if !t { print(".", terminator: "") }
-				XCTAssert(t, "\(r) \(char) \(q) != \(frq)")
+				XCTAssert(t, "\(r) \(char) \(q) == \(frq) doesn't meet the assertion criteria.")
 			}
 		}
 		// print("avg time:", avgtime / Double(n.count * n.count), "total:", avgtime)

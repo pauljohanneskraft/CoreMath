@@ -40,4 +40,111 @@ class NumericTests: XCTestCase, TypeTest {
 		}
 	}
 	
+	func testPower() {
+		for _ in 0 ..< 100 {
+			let r = Double.random
+			let p = Double.random
+			let p1 = pow(r,p)
+			let p2 = r.power(p)
+			XCTAssert((!p1.isNormal && !p2.isNormal) || p1 == p2, "\(p1) != \(p2)")
+		}
+	}
+	
+	func testPrimeFactorVariants() {
+		func one(_ number: Int) -> [Int] {
+			var this = number
+			var factors = [Int]()
+			
+			if this < 0 {
+				factors.append(-1)
+				this = -this
+			}
+			
+			while this % 2 == 0 {
+				factors.append(2)
+				this /= 2
+			}
+			
+			var i = 3
+			
+			while i <= number.sqrt {
+				while this % i == 0 {
+					factors.append(i)
+					this /= i
+				}
+				i += 2
+			}
+			
+			if this != 1 { factors.append(this) }
+			
+			return factors
+		}
+		
+		func two (_ this: Int) -> [Int] {
+			var this = this
+			var i = 0
+			var primes = Int.getPrimes(upTo: this.sqrt)
+			var factors = [Int]()
+			while this > 1 && primes.count > i {
+				let p = primes[i]
+				if this % p == 0 {
+					this /= p
+					factors.append(p)
+				} else { i += 1 }
+			}
+			if this != 1 { factors.append(this) }
+			return factors
+		}
+		
+		func three (_ number: Int) -> [Int] {
+			var this = number
+			var factors = [Int]()
+			
+			var i = 2
+			while i <= number.sqrt {
+				while this % i == 0 {
+					factors.append(i)
+					this /= i
+				}
+				i = Int.getNextPrime(from: i)
+			}
+			
+			if this != 1 { factors.append(this) }
+			
+			return factors
+		}
+		
+		var t1 = 0.0
+		var t2 = 0.0
+		var t3 = 0.0
+		
+		for _ in 0..<10 {
+			let rdm = Int(arc4random() & 0xFFFF)
+			let start = Date().timeIntervalSinceReferenceDate
+			let r1 = one(rdm)
+			let mid1 = Date().timeIntervalSinceReferenceDate
+			let r2 = two(rdm)
+			let mid2 = Date().timeIntervalSinceReferenceDate
+			let r3 = three(rdm)
+			let end = Date().timeIntervalSinceReferenceDate
+			print(rdm)
+			let t1r = mid1 - start
+			t1 += t1r
+			print("\t", t1r, r1)
+			let t2r = mid2 - mid1
+			t2 += t2r
+			print("\t", t2r, r2)
+			let t3r = end - mid2
+			t3 += t3r
+			print("\t", t3r, r3)
+			XCTAssert(r1 == r2 && r2 == r3)
+		}
+		
+		print("total: ", t1, t2, t3)
+		
+		// (real) example results:
+		// total:  0.0500999689102173 9.89606004953384 9.95908206701279 // --> one(_:) is way faster!
+		
+	}
+		
 }
