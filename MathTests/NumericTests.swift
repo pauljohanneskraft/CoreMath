@@ -119,7 +119,7 @@ class NumericTests: XCTestCase, TypeTest {
 		var t3 = 0.0
 		
 		for _ in 0..<10 {
-			let rdm = Int(arc4random())
+			let rdm = Int(arc4random() & 0xFFFF)
 			let start = Date().timeIntervalSinceReferenceDate
 			let r1 = one(rdm)
 			let mid1 = Date().timeIntervalSinceReferenceDate

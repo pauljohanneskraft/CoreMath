@@ -28,6 +28,7 @@ extension Numeric {
 	public var primeFactors : [Int] {
 		guard self.isInteger else { return [] }
 		var this = self.integer
+		guard this != 0 else { return [0] }
 		let root = this.sqrt
 		var factors = [Int]()
 		
