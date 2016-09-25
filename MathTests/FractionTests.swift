@@ -25,13 +25,6 @@ class FractionTests: XCTestCase {
 		}
 	}
 	
-	func testDerivativeOf_Polynomial() {
-		let a = 3*(x^3) + 4*(x^2)
-		let f = a / (x)
-		// print(f)
-		// print(f.derivative)
-	}
-	
 	func testDescription() {
 		for _ in 0 ..< 100 {
 			let a = (random() & 0xFF + 2).double // excludes special cases 0, 1
