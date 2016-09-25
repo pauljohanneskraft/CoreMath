@@ -28,17 +28,32 @@ extension Numeric {
 	public var primeFactors : [Int] {
 		guard self.isInteger else { return [] }
 		var this = self.integer
-		var i = 0
-		var primes = Int.getPrimes(upTo: this.sqrt)
+		guard this != 0 else { return [0] }
+		let root = this.sqrt
 		var factors = [Int]()
-		while this > 1 && primes.count > i {
-			let p = primes[i]
-			if this % p == 0 {
-				this /= p
-				factors.append(p)
-			} else { i += 1 }
+		
+		if this < 0 {
+			factors.append(-1)
+			this = -this
 		}
+		
+		while this % 2 == 0 {
+			factors.append(2)
+			this /= 2
+		}
+		
+		var i = 3
+		
+		while i <= root {
+			while this % i == 0 {
+				factors.append(i)
+				this /= i
+			}
+			i += 2
+		}
+		
 		if this != 1 { factors.append(this) }
+		
 		return factors
 	}
 	
