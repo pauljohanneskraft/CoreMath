@@ -38,8 +38,9 @@ install:
       mkdir Sources &&
       mv .sources/*.swift Sources &&
       rm -rf .sources &&
-      mkdir Tests &&
-      mv *Tests Tests;
+      mkdir .tests &&
+      mv *Tests .tests &&
+      mv .tests Tests;
   fi
 script:
 - if [[ $TRAVIS_OS_NAME == linux ]]; then 
