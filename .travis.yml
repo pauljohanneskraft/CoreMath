@@ -14,26 +14,43 @@ notifications:
   slack: pauljohanneskraft:uXzmppJPaAEt8adnz6AbsHSf
 
 before_install:
-- if [[ $TRAVIS_OS_NAME == linux ]]; then wget -q -O - https://swift.org/keys/all-keys.asc | gpg --import -; fi
-- if [[ $TRAVIS_OS_NAME == linux ]]; then export SWIFT_VERSION=swift-3.0-GM-CANDIDATE; fi
-- if [[ $TRAVIS_OS_NAME == linux ]]; then wget https://swift.org/builds/${SWIFT_VERSION}/ubuntu1404/${SWIFT_VERSION}/${SWIFT_VERSION}-ubuntu14.04.tar.gz; fi
-- if [[ $TRAVIS_OS_NAME == linux ]]; then tar xzf ${SWIFT_VERSION}-ubuntu14.04.tar.gz; fi
-- if [[ $TRAVIS_OS_NAME == linux ]]; then export PATH=${PWD}/${SWIFT_VERSION}-ubuntu14.04/usr/bin:"${PATH}"; fi
-- if [[ $TRAVIS_OS_NAME == linux ]]; then export PACKAGE_MANAGER_VERSION=swift-DEVELOPMENT-SNAPSHOT-2016-09-07-a; fi
-- if [[ $TRAVIS_OS_NAME == linux ]]; then wget https://github.com/apple/swift-package-manager/archive/${PACKAGE_MANAGER_VERSION}.tar.gz; fi
-- if [[ $TRAVIS_OS_NAME == linux ]]; then tar xzf ${PACKAGE_MANAGER_VERSION}.tar.gz; fi
-- if [[ $TRAVIS_OS_NAME == linux ]]; then export PATH=${PWD}/${PACKAGE_MANAGER_VERSION}/usr/bin:"${PATH}"; fi
-- if [[ $TRAVIS_OS_NAME == osx   ]]; then gem install xcpretty-travis-formatter; fi
+- if [[ $TRAVIS_OS_NAME == linux ]]; then 
+      wget -q -O - https://swift.org/keys/all-keys.asc | gpg --import - && 
+      export SWIFT_VERSION=swift-3.0-GM-CANDIDATE && 
+      wget https://swift.org/builds/${SWIFT_VERSION}/ubuntu1404/${SWIFT_VERSION}/${SWIFT_VERSION}-ubuntu14.04.tar.gz && 
+      tar xzf ${SWIFT_VERSION}-ubuntu14.04.tar.gz && 
+      export PATH=${PWD}/${SWIFT_VERSION}-ubuntu14.04/usr/bin:"${PATH}" && 
+      export PACKAGE_MANAGER_VERSION=swift-DEVELOPMENT-SNAPSHOT-2016-09-07-a && 
+      wget https://github.com/apple/swift-package-manager/archive/${PACKAGE_MANAGER_VERSION}.tar.gz && 
+      tar xzf ${PACKAGE_MANAGER_VERSION}.tar.gz && 
+      export PATH=${PWD}/${PACKAGE_MANAGER_VERSION}/usr/bin:"${PATH}";
+  fi
+  
+- if [[ $TRAVIS_OS_NAME == osx   ]]; then 
+      gem install xcpretty-travis-formatter; 
+  fi
+
 install:
-- if [[ $TRAVIS_OS_NAME == linux ]]; then mkdir .sources; fi
-- if [[ $TRAVIS_OS_NAME == linux ]]; then find Sources -name '*.swift' -exec mv {} .sources \;; fi
-- if [[ $TRAVIS_OS_NAME == linux ]]; then rm -rf Sources; fi
-- if [[ $TRAVIS_OS_NAME == linux ]]; then mkdir Sources; fi
-- if [[ $TRAVIS_OS_NAME == linux ]]; then mv .sources/*.swift Sources; fi
-- if [[ $TRAVIS_OS_NAME == linux ]]; then rm -rf .sources; fi
+- if [[ $TRAVIS_OS_NAME == linux ]]; then 
+      mkdir .sources && 
+      find Sources -name '*.swift' -exec mv {} .sources \; &&
+      rm -rf Sources &&
+      mkdir Sources &&
+      mv .sources/*.swift Sources &&
+      rm -rf .sources &&
+      mkdir Tests &&
+      mv *Tests Tests;
+  fi
 script:
-- if [[ $TRAVIS_OS_NAME == linux ]]; then swift package --version; fi
-- if [[ $TRAVIS_OS_NAME == linux ]]; then swift build; fi
-- if [[ $TRAVIS_OS_NAME == osx   ]]; then xcodebuild -workspace Math.xcworkspace -scheme MathTests test | xcpretty -f `xcpretty-travis-formatter` && export status=${PIPESTATUS[0]}; fi
-- if [[ $TRAVIS_OS_NAME == osx   ]]; then bash <(curl -s https://codecov.io/bash); fi
-- if [[ $TRAVIS_OS_NAME == osx   ]]; then exit ${status}; fi
+- if [[ $TRAVIS_OS_NAME == linux ]]; then 
+      swift package --version &&
+      swift build &&
+      swift test;
+  fi
+  
+- if [[ $TRAVIS_OS_NAME == osx   ]]; then 
+      xcodebuild -workspace Math.xcworkspace -scheme MathTests test | xcpretty -f `xcpretty-travis-formatter` && 
+      export status=${PIPESTATUS[0]} &&
+      bash <(curl -s https://codecov.io/bash) && 
+      exit ${status}; 
+  fi
