@@ -46,7 +46,9 @@ script:
 - if [[ $TRAVIS_OS_NAME == linux ]]; then 
       swift package --version &&
       swift build &&
-      swift test;
+      export status=${PIPESTATUS[0]} &&
+      swift test &&
+      exit ${status};
   fi
   
 - if [[ $TRAVIS_OS_NAME == osx   ]]; then 
