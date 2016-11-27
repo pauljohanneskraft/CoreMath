@@ -107,7 +107,11 @@ class ComplexTests: XCTestCase, TypeTest {
                 let p0 = c.power(p)
                 let p1 = p0.real
                 let p2 = a.power(p)
-                print(p0, "?= \(a.reducedDescription)^\(p.reducedDescription)")
+                let dp0 = "\(p0)"
+                let dap = "\(a.reducedDescription)^\(p.reducedDescription)"
+                let dp2 = p2.reducedDescription
+                print(dp0, "?=", dap, "?=", dp2)
+                XCTAssert(dp0 == dp2, "\(dp0) != \(dp2)")
                 XCTAssert(!p0.imaginary.isNormal || p0.imaginary =~ 0, "Imaginary part != 0: \(p0)")
                 XCTAssert((!p1.isNormal && !p2.isNormal) || p1 =~ p2, "\(p1) != \(p2)")
             }
