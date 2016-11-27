@@ -99,16 +99,18 @@ class ComplexTests: XCTestCase, TypeTest {
 	
 	func testPower() {
 		print(pow(0xFFF, 0xF))
-		for _ in 0 ..< 10000 {
-			let a = (random() & 0xFFF).double
-			let c = Complex(a)
-			let p = (random() & 0xF).double
-			let p0 = c.power(p)
-			let p1 = p0.real
-			let p2 = a.power(p)
-			print(p0, "?= \(a)^\(p)")
-			XCTAssert(!p0.imaginary.isNormal || p0.imaginary =~ 0, "Imaginary part != 0: \(p0)")
-			XCTAssert((!p1.isNormal && !p2.isNormal) || p1 =~ p2, "\(p1) != \(p2)")
-		}
+        for _ in 0..<1000 {
+            for _ in 0 ..< 10000 {
+                let a = (random() & 0xFFF).double
+                let c = Complex(a)
+                let p = (random() & 0xF).double
+                let p0 = c.power(p)
+                let p1 = p0.real
+                let p2 = a.power(p)
+                print(p0, "?= \(a.reducedDescription)^\(p.reducedDescription)")
+                XCTAssert(!p0.imaginary.isNormal || p0.imaginary =~ 0, "Imaginary part != 0: \(p0)")
+                XCTAssert((!p1.isNormal && !p2.isNormal) || p1 =~ p2, "\(p1) != \(p2)")
+            }
+        }
 	}
 }

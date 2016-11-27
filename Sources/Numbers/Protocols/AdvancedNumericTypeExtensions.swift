@@ -48,13 +48,13 @@ extension Double : AdvancedNumeric, Ordered {
 	}
 	
 	public var isInteger : Bool {
-		return isNormal && Double(integerLiteral: self.integer) == self
+		return isNormal && /* self < Double(Int.max) && self > Double(Int.min) && */ Double(integerLiteral: self.integer) == self
 	}
 	
 	public var integer : Int    {
 		precondition(self != Double.nan, "Cannot return an Int-value for Double.nan.")
-		if self > Double(Int.max)	{ return Int.max }
-		if self < Double(Int.min)	{ return Int.min }
+		if self >= Double(Int.max)	{ return Int.max }
+		if self <= Double(Int.min)	{ return Int.min }
 		return Int(self)
 	}
 	public var double  : Double		{ return self }
