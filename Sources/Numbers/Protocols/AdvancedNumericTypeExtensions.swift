@@ -48,7 +48,7 @@ extension Double : AdvancedNumeric, Ordered {
 	}
 	
 	public var isInteger : Bool {
-		return isNormal && /* self < Double(Int.max) && self > Double(Int.min) && */ Double(integerLiteral: self.integer) == self
+		return !isNaN && isFinite && /* self < Double(Int.max) && self > Double(Int.min) && */ Double(integerLiteral: self.integer) == self
 	}
 	
 	public var integer : Int    {
