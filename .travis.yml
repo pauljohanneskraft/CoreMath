@@ -44,8 +44,8 @@ install:
   fi
 script:
 - if [[ $TRAVIS_OS_NAME == linux ]]; then 
-      swift package --version &&
       swift test; 
+      swift package --version && 
       swift build;
   fi
   
