@@ -16,7 +16,6 @@ XCTMain([
     testCase(PolynomialFunctionTests.allTests),
     testCase(CustomFunctionTests.allTests),
     testCase(PolynomialTests.allTests),
-    testCase(DataTypeTest.allTests),
     testCase(RationalNumberTests.allTests),
     testCase(EnhancedNumberTests.allTests),
     testCase(RingTests.allTests),
