@@ -5,7 +5,6 @@ import XCTest
 
 XCTMain([
     testCase(AdvancedNumericTests.allTests),
-    testCase(LinuxCompatibilityTests.allTests),
     testCase(BasicArithmeticTests.allTests),
     testCase(MatrixTests.allTests),
     testCase(ComplexTests.allTests),
