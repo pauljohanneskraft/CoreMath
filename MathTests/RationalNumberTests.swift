@@ -9,6 +9,10 @@
 import XCTest
 import Math
 
+#if os(Linux)
+    import Glibc
+#endif
+
 class RationalNumberTests: XCTestCase, TypeTest {
 	
 	override func setUp() {
