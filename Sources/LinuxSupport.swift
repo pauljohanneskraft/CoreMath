@@ -27,7 +27,7 @@ public protocol TimeProtocol {
             self.time = clock()
         }
         
-        func timeIntervalSince(_ time: Time) {
+        func timeIntervalSince(_ time: Time) -> Double {
             return Double(self.time - time.time)
         }
         
