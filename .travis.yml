@@ -42,7 +42,7 @@ install:
       mkdir .tests &&
       mv *Tests .tests &&
       mv .tests Tests &&
-      touch Tests/LinuxMain.swift;;
+      touch Tests/LinuxMain.swift;
   fi
 script:
 - if [[ $TRAVIS_OS_NAME == linux ]]; then 
