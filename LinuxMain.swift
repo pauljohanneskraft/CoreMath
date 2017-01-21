@@ -27,3 +27,4 @@ XCTMain([
     testCase(GrowthTests.allTests),
     testCase(_PolynomialTests.allTests)
 ])
+
