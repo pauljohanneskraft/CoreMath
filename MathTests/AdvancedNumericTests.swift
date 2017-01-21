@@ -9,6 +9,10 @@
 import XCTest
 import Math
 
+#if os(Linux)
+import Glibc
+#endif
+
 class AdvancedNumericTests: XCTestCase {
 	// MID_PRIO
 	
@@ -64,6 +68,7 @@ class AdvancedNumericTests: XCTestCase {
 		}
 	}
 	
+    /*
 	func testDecimal() {
 		let d = Decimal()
 		print(d)
@@ -80,4 +85,5 @@ class AdvancedNumericTests: XCTestCase {
 		print(a)
 		print(nextafter(a, DBL_MAX) - a)
 	}
+     */
 }
