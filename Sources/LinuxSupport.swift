@@ -32,10 +32,16 @@ public protocol TimeProtocol {
         }
         
     }
+    public func pow(_ a: Double, _ b: Double) -> Double {
+        return Glibc.pow(a, b)
+    }
     
 #else
     import Foundation
 	public func random() -> Int { return Int(arc4random()) << 32 | Int(arc4random()) }
     public typealias Time = Date
     extension Time : TimeProtocol {}
+    public func pow(_ a: Double, _ b: Double) -> Double {
+        return Foundation.pow(a, b)
+    }
 #endif
