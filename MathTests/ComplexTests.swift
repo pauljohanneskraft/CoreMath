@@ -102,7 +102,7 @@ class ComplexTests: XCTestCase, TypeTest {
 	}
 	
 	func testPower() {
-        print(pow(0xFFF, 0xF))
+        print(Math.pow(0xFFF, 0xF))
         for _ in 0 ..< 10000 {
             let a = (Math.random() & 0xFFF).double
             let c = Complex(a)
