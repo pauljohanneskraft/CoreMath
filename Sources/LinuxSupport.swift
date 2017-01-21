@@ -23,11 +23,11 @@ public protocol TimeProtocol {
         
         let time : clock_t
         
-        init() {
+        public init() {
             self.time = clock()
         }
         
-        func timeIntervalSince(_ time: Time) -> Double {
+        public func timeIntervalSince(_ time: Time) -> Double {
             return Double(self.time - time.time)
         }
         
