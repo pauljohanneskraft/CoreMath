@@ -41,7 +41,8 @@ install:
       rm -rf .sources &&
       mkdir .tests &&
       mv *Tests .tests &&
-      mv .tests Tests;
+      mv .tests Tests &&
+      touch Tests/LinuxMain.swift;;
   fi
 script:
 - if [[ $TRAVIS_OS_NAME == linux ]]; then 
