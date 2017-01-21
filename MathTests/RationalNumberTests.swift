@@ -18,22 +18,22 @@ class RationalNumberTests: XCTestCase, TypeTest {
 	
 	// basic arithmetic
 	func testAddition()         {
-		forAll("+", assert: { a,b,c in return ((a.double + b.double) - (c.double)) < 1e-10 } ) { $0 + $1 }
+        forAll("+", assert: { (a: RationalNumber, b: RationalNumber, c: RationalNumber) -> Bool in return ((a.double + b.double) - (c.double)) < 1e-10 } ) { $0 + $1 }
 	}
 	func testSubtraction()      {
-		forAll("-", assert: { a,b,c in return ((a.double - b.double) - (c.double)).abs < 1e-10 }) { $0 - $1 }
+		forAll("-", assert: { (a: RationalNumber, b: RationalNumber, c: RationalNumber) -> Bool in return ((a.double - b.double) - (c.double)).abs < 1e-10 }) { $0 - $1 }
 	}
 	func testMultiplication()   {
-		forAll("*", assert: { a,b,c in return ((a.double * b.double) - (c.double)).abs < 1e-10 } ) { $0 * $1 }
+		forAll("*", assert: { (a: RationalNumber, b: RationalNumber, c: RationalNumber) -> Bool in return ((a.double * b.double) - (c.double)).abs < 1e-10 } ) { $0 * $1 }
 	}
 	func testDivision()         {
-		forAll("/", assert: { a,b,c in return ((a.double / b.double) - (c.double)).abs < 1e-10 } ) { $0 / $1 }
+		forAll("/", assert: { (a: RationalNumber, b: RationalNumber, c: RationalNumber) -> Bool in return ((a.double / b.double) - (c.double)).abs < 1e-10 } ) { $0 / $1 }
 	}
 	func testPrefixMInus()		{
-		forAll("-", assert: { a,b in return a.double == -b.double }) { -$0 }
+		forAll("-", assert: { (a: RationalNumber, b: RationalNumber) -> Bool in return a.double == -b.double }) { -$0 }
 	}
 	func testRemainder()		{
-		forAll("%", assert: { a,b,c in return a.double % b.double == c.double }) { $0 % $1 }
+		forAll("%", assert: { (a: RationalNumber, b: RationalNumber, c: RationalNumber) -> Bool in return a.double % b.double == c.double }) { $0 % $1 }
 	}
 	
 	private func doubles(values: [Double]) {
