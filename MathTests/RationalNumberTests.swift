@@ -15,6 +15,23 @@ import Math
 
 class RationalNumberTests: XCTestCase, TypeTest {
 	
+    
+    var allTests : [(String, () throws -> () )] {
+        return [
+            ("testAddition", testAddition),
+            ("testDivision", testDivision),
+            ("testSubtraction", testSubtraction),
+            ("testMultiplication", testMultiplication),
+            ("testInits", testInits),
+            ("testMinMax", testMinMax),
+            ("testInteger", testInteger),
+            ("testRemainder", testRemainder),
+            ("testDoublesMid", testDoublesMid),
+            ("testDoublesEasy", testDoublesEasy),
+            ("testEasyFractionsUpTo45", testEasyFractionsUpTo45)
+        ]
+    }
+    
 	override func setUp() {
 		for _ in 0 ..< 30 { elements.append(Q(Int.random % Int16.max.integer)) }
 	}

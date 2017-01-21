@@ -11,6 +11,26 @@ import Math
 
 class MatrixTests: XCTestCase, TypeTest {
 	
+    var allTests : [(String, () throws -> () )] {
+        return [
+            ("testSubtraction", testSubtraction),
+            ("testAddition", testAddition),
+            ("testDet2", testDet2),
+            ("testRank", testRank),
+            ("testIdentity", testIdentity),
+            ("testIsSquare", testIsSquare),
+            ("testOperators", testOperators),
+            ("testSubscript", testSubscript),
+            ("testDeterminant", testDeterminant),
+            ("testEigenvalues", testEigenvalues),
+            ("testDescriptions", testDescriptions),
+            ("testRowEchelonForm", testRowEchelonForm),
+            ("testInitArrayLiteral", testInitArrayLiteral),
+            ("testScalarMultiplication", testScalarMultiplication),
+            ("testReducedRowEchelonForm", testReducedRowEchelonForm)
+        ]
+    }
+    
 	override func setUp() {
 		for _ in 0..<30 {
 			let size = (columns: (Math.random() & 0xF) + 1, rows: (Math.random() & 0xF) + 1)

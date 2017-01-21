@@ -16,6 +16,22 @@ import Math
 class ComplexTests: XCTestCase, TypeTest {
 	typealias N = R
 	
+    var allTests : [(String, () throws -> () )] {
+        return [
+            ("testAddition", testAddition),
+            ("testDivision", testDivision),
+            ("testHashValue", testHashValue),
+            ("testPrefixMinus", testPrefix),
+            ("testSubtraction", testSubtraction),
+            ("testReadmeExample", testReadmeExample),
+            ("testMultiplication", testMultiplication),
+            ("testConjugate", testConjugate),
+            ("testPower", testPower),
+            ("testPolarForm", testPolarForm),
+            ("testDescription", testDescription)
+        ]
+    }
+    
 	override func setUp() {
 		for _ in 0 ..< 30 {
 			var elem : N

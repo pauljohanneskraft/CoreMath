@@ -10,4 +10,9 @@ import XCTest
 
 class CustomFunctionTests: XCTestCase {
 	// MID_PRIO
+    
+    var allTests : [(String, () throws -> () )] {
+        return [
+        ]
+    }
 }

@@ -11,6 +11,12 @@ import Math
 
 class _PolynomialTests: XCTestCase {
 	// MID_PRIO
+    
+    var allTests : [(String, () throws -> () )] {
+        return [
+            ("testEqualsToPolynomial", testEqualsToPolynomial)
+        ]
+    }
 	
 	func testEqualsToPolynomial() {
 		for _ in 0..<200 {

@@ -12,6 +12,14 @@ import Math
 
 class BasicArithmeticTests: XCTestCase {
 	
+    var allTests : [(String, () throws -> () )] {
+        return [
+            ("testAbs", testAbs),
+            ("testReducedDescription", testReducedDescription),
+            ("testZ_", testZ_)
+        ]
+    }
+    
 	func testAbs() {
 		for _ in 0..<100 { XCTAssert(Math.random().abs >= 0) }
 	}

@@ -12,6 +12,19 @@ import Math
 class PolynomialTests: XCTestCase {
 	// MID_PRIO
 	
+    var allTests : [(String, () throws -> () )] {
+        return [
+            ("testSubscript", testSubscript),
+            ("testAddition", testAddition),
+            ("testDescription", testDescription),
+            ("testLaTeX", testLaTeX),
+            ("testZeros", testZeros),
+            ("testFields", testFields),
+            ("testReduced", testReduced),
+            ("testComparable", testComparable)
+        ]
+    }
+    
 	func testDescription() {
 		for i in 1 ..< 100 {
 			let a = Polynomial<Double>(integerLiteral: i)

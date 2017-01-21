@@ -12,6 +12,13 @@ import Math
 class FractionTests: XCTestCase {
 	// MID_PRIO
 	
+    var allTests : [(String, () throws -> () )] {
+        return [
+            ("testReduced", testReduced),
+            ("testDescription", testDescription)
+        ]
+    }
+    
 	func testReduced() {
 		for _ in 0 ..< 100 {
 			let num = (Math.random() & 0xFFF).double

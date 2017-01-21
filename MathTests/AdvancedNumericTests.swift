@@ -16,6 +16,15 @@ import Glibc
 class AdvancedNumericTests: XCTestCase {
 	// MID_PRIO
 	
+    var allTests : [(String, () throws -> () )] {
+        return [
+            ("testDoubleRemainder", testDoubleRemainder),
+            ("testMod", testMod),
+            ("testNearlyEquals", testNearlyEquals),
+            ("testConformanceToAdvancedNumeric", testConformanceToAdvancedNumeric)
+        ]
+    }
+    
 	func testConformanceToAdvancedNumeric() {
 		conformsToAdvancedNumeric(Int   .self)
 		conformsToAdvancedNumeric(Int8  .self)

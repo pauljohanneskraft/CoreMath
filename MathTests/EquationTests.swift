@@ -12,6 +12,12 @@ import Math
 class EquationTests: XCTestCase {
 	// MID_PRIO
 	
+    var allTests : [(String, () throws -> () )] {
+        return [
+            ("testReduced", testReduced)
+        ]
+    }
+    
 	func testReduced() {
 		let a = ((x^2) + (x^5))
 		let b = ((x^3) + (x^4))

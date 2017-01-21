@@ -10,4 +10,9 @@ import XCTest
 
 class PolynomialFunctionTests: XCTestCase {
 	// MID_PRIO
+    
+    var allTests : [(String, () throws -> () )] {
+        return [
+        ]
+    }
 }

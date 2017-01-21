@@ -12,6 +12,12 @@ import Math
 class ConstantFunctionTests: XCTestCase {
 	// MID_PRIO
 	
+    var allTests : [(String, () throws -> () )] {
+        return [
+            ("testOperators", testOperators)
+        ]
+    }
+    
 	func testOperators() {
 		
 		// +, -

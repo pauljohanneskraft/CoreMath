@@ -12,6 +12,20 @@ import Math
 class EnhancedNumberTests: XCTestCase, TypeTest {
 	typealias N = Z
 	
+    var allTests : [(String, () throws -> () )] {
+        return [
+            ("testAddition", testAddition),
+            ("testSign", testSign),
+            ("testInits", testInits),
+            ("testDivision", testDivision),
+            ("testHashValue", testHashValue),
+            ("testPrefixMinus", testPrefixMinus),
+            ("testSubtraction", testSubtraction),
+            ("testReadmeExample", testReadmeExample),
+            ("testMultiplication", testMultiplication)
+        ]
+    }
+    
 	override func setUp() {
 		elements.append(.infinity(sign: true))
 		elements.append(.infinity(sign: false))

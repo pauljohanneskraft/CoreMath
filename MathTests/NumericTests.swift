@@ -18,6 +18,15 @@ class NumericTests: XCTestCase, TypeTest {
 	typealias Number = Int
 	
 	var elements: [Number] = []
+    
+    var allTests : [(String, () throws -> () )] {
+        return [
+            ("testPrettyMuchEquals", testPrettyMuchEquals),
+            ("testPower", testPower),
+            ("testPrimeFactorVariants", testPrimeFactorVariants),
+            ("testPrimeFactors", testPrimeFactors)
+        ]
+    }
 	
 	func testPrettyMuchEquals() {
 		for _ in  0 ..< 1000 {
