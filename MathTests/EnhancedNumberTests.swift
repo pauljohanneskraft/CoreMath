@@ -59,14 +59,14 @@ class EnhancedNumberTests: XCTestCase, TypeTest {
 		XCTAssert(Double.infinity.hashValue == Enhanced<Int>.infinity(sign: false).hashValue)
 		XCTAssert((-Double.infinity).hashValue == Enhanced<Int>.infinity(sign: true).hashValue)
 		for _ in 0 ..< 10 {
-			let r = random()
+			let r = Math.random()
 			XCTAssert(Enhanced<Int>(r).hashValue == r)
 		}
 	}
 	
 	func testSign() {
 		for _ in 0..<100 {
-			let r = random()
+			let r = Math.random()
 			XCTAssert((r < 0) == Enhanced<Int>(r).sign)
 		}
 		XCTAssert(Enhanced<Int>.infinity(sign: false).sign == false)

@@ -23,7 +23,7 @@ class PolynomialTests: XCTestCase {
 		for i in 1 ..< 30 {
 			var array = [Int]()
 			for _ in 0 ..< i {
-				array.append(random())
+				array.append(Math.random())
 			}
 			let p = Polynomial(array)
 			for j in 0 ..< i {
@@ -50,10 +50,10 @@ class PolynomialTests: XCTestCase {
 		var greater = false
 		var less = false
 		while !equals || !greater || !less {
-			let a = random() & 0xFF + 0xF
-			let b = random() & 0xFF + 0xF
-			let c = random() & 0xFF + 0xF
-			let d = random() & 0xFF + 0xF
+			let a = Math.random() & 0xFF + 0xF
+			let b = Math.random() & 0xFF + 0xF
+			let c = Math.random() & 0xFF + 0xF
+			let d = Math.random() & 0xFF + 0xF
 			let latex = Polynomial<Int>((a,b), (c,d)).latex
 			if b == d {
 				equals = true
@@ -78,7 +78,7 @@ class PolynomialTests: XCTestCase {
 		
 		for _ in 0..<0x20 {
 			var p = Polynomial<Int>()
-			for j in 0..<(random() & 0xF) { p[j] = random() & 0xF }
+			for j in 0..<(Math.random() & 0xF) { p[j] = Math.random() & 0xF }
 			XCTAssert(p.zeros == (p ?= 0))
 		}
 		
@@ -87,7 +87,7 @@ class PolynomialTests: XCTestCase {
 	func testComparable() {
 		for _ in 0..<0xF {
 			var p = Polynomial<Int>()
-			for j in 0..<10 { p[j] = random() & 0xF }
+			for j in 0..<10 { p[j] = Math.random() & 0xF }
 			XCTAssert(!(p < p))
 			var q = p
 			q[0] = p[0] + 1
@@ -101,7 +101,7 @@ class PolynomialTests: XCTestCase {
 	func testAddition() {
 		for _ in 0..<0xF {
 			var p = Polynomial<Int>()
-			for j in 0..<10 { p[j] = random() & 0xF }
+			for j in 0..<10 { p[j] = Math.random() & 0xF }
 			XCTAssert((p * 2) == (p + p))
 			XCTAssert(((p + p) - p) == p)
 			XCTAssert(p - p == 0)
@@ -110,7 +110,7 @@ class PolynomialTests: XCTestCase {
 	
 	func testFields() {
 		for _ in 0..<100 {
-			let rdm = random() & 0xF
+			let rdm = Math.random() & 0xF
 			XCTAssert(Double.x(rdm) == Polynomial<Double>((1.0, rdm)))
 		}
 	}

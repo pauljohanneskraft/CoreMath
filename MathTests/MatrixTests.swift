@@ -13,12 +13,12 @@ class MatrixTests: XCTestCase, TypeTest {
 	
 	override func setUp() {
 		for _ in 0..<30 {
-			let size = (columns: (random() & 0xF) + 1, rows: (random() & 0xF) + 1)
+			let size = (columns: (Math.random() & 0xF) + 1, rows: (Math.random() & 0xF) + 1)
 			var elem = [[Int]]()
 			for _ in 0..<size.rows {
 				var e = [Int]()
 				for _ in 0..<size.columns {
-					e.append(random() % Int8.max.integer)
+					e.append(Math.random() % Int8.max.integer)
 				}
 				elem.append(e)
 			}
@@ -104,6 +104,12 @@ class MatrixTests: XCTestCase, TypeTest {
 	func testReducedRowEchelonForm() {
 		print(Matrix(abc).reducedRowEchelonForm)
 	}
+    
+    func testDet2() {
+        let a = Matrix([[0,0],[0,0]]).eigenvalues
+        print(a!)
+        
+    }
 	
 	func testDeterminant() {
 		XCTAssert(Matrix([[4]]).determinant == 4)
@@ -111,23 +117,23 @@ class MatrixTests: XCTestCase, TypeTest {
 		XCTAssert(Matrix([[1,2,3], [2,3,4], [5,6,8]]).determinant == -1)
 		XCTAssert(Matrix([[4,5,6,7,8], [3,4,5,8,3], [7,3,4,5,6], [1,2,3,8,7], [3,7,9,0,4]]).determinant == 1240)
 		
-		let a = random() % 0xFFFF
-		let b = random() % 0xFFFF
-		let c = random() & 0xFFFF
-		let d = random() & 0xFFFF
+		let a = Math.random() % 0xFFFF
+		let b = Math.random() % 0xFFFF
+		let c = Math.random() & 0xFFFF
+		let d = Math.random() & 0xFFFF
 		XCTAssert(Matrix([[a,b],[c,d]]).determinant == a*d - b*c)
 		
-		for i in 1 ..< 9 {
+		for i in 1 ... 9 {
 			var id = Matrix<Double>.identity(i)
 			var value = 1.0
 			for j in 0..<i {
-				let rdm = Double(random() % 0x4F)
+				let rdm = Double(Math.random() % 0x4F)
 				value *= rdm
 				id[j][j] = rdm
 			}
-			let start = NSDate().timeIntervalSinceReferenceDate
+			let start = Time()
 			XCTAssert(value == id.determinant)
-			let time = NSDate().timeIntervalSinceReferenceDate - start
+			let time = Time().timeIntervalSince(start)
 			print(i, "time:", time)
 		}
 	}
@@ -188,7 +194,7 @@ class MatrixTests: XCTestCase, TypeTest {
 	}
 	
 	func testScalarMultiplication() {
-		let rdm = random() % 1000
+		let rdm = Math.random() % 1000
 		print("rdm:", rdm)
 		forAll("\(rdm) *", assert: { a,b -> Bool in
 			let s = b.size

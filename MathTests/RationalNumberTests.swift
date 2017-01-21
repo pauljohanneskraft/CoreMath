@@ -40,11 +40,11 @@ class RationalNumberTests: XCTestCase, TypeTest {
 		// var time = 0.0
 		for value in values {
 			// print("value:", value)
-			// let start = NSDate().timeIntervalSinceReferenceDate
+			// let start = Time()
 			let rat = Q(floatLiteral: value)
 			let ratDouble = rat.double
-			// let end = NSDate().timeIntervalSinceReferenceDate
-			// let _time = end - start
+			// let end = Time()
+			// let _time = end.timeIntervalSince(start)
 			let inacc = (ratDouble - value).abs
 			XCTAssert(inacc < 1e-10, "\(ratDouble) != \(value)")
 			print(value, ratDouble, inacc, rat)// , "took", _time)
@@ -79,8 +79,8 @@ class RationalNumberTests: XCTestCase, TypeTest {
 	
 	func testInteger() {
 		for _ in 0 ..< 10000 {
-			let a = random() & 0xFFFF * (random() % 2 == 0 ? -1 : 1)
-			let b = random() & 0xFFFF + 1 // no division by 0 possible
+			let a = Math.random() & 0xFFFF * (Math.random() % 2 == 0 ? -1 : 1)
+			let b = Math.random() & 0xFFFF + 1 // no division by 0 possible
 			let q = Q(a,b).reduced
 			let r = a / b
 			XCTAssert(q.integer == r, "Q(\(a), \(b)).integer != \(r)")
@@ -90,7 +90,7 @@ class RationalNumberTests: XCTestCase, TypeTest {
 	
 	func testInits() {
 		for _ in 0 ..< 100 {
-			let r = random() & 0xFFFF
+			let r = Math.random() & 0xFFFF
 			let q = Q(r)
 			XCTAssert(q == Q(integerLiteral: r))
 			XCTAssert(q == Q(r,1))

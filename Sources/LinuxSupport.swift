@@ -8,11 +8,34 @@
 
 import Foundation
 
+public protocol TimeProtocol {
+    init()
+    func timeIntervalSince(_: Self) -> Double
+}
+
 #if os(Linux)
 	import Glibc
-	public let DBL_MAX : Double = unsafeBitCast(9218868437227405311, to: Double.self)
-	public let DBL_MIN : Double = unsafeBitCast(   4503599627370496, to: Double.self)
+	public let DBL_MAX : Double = unsafeBitCast( 0x7FEFFFFFFFFFFFFF, to: Double.self)
+	public let DBL_MIN : Double = unsafeBitCast(   0x10000000000000, to: Double.self)
 	public func random() -> Int { return Glibc.random() }
+    
+    public struct Time : TimeProtocol {
+        
+        let time : clock_t
+        
+        init() {
+            self.time = clock()
+        }
+        
+        func timeIntervalSince(_ time: Time) {
+            return Double(self.time - time.time)
+        }
+        
+    }
+    
 #else
+    import Foundation
 	public func random() -> Int { return Int(arc4random()) << 32 | Int(arc4random()) }
+    public typealias Time = Date
+    extension Time : TimeProtocol {}
 #endif

@@ -59,7 +59,7 @@ class AdvancedNumericTests: XCTestCase {
 		let m = 0xFFFF_FFFF_FFFF.double
 		XCTAssert(!(m =~ m + 1), "\(m)")
 		for _ in 0 ..< 100 {
-			let a = (random() & 0xFFFF_FFFF_FFFF).double
+			let a = (Math.random() & 0xFFFF_FFFF_FFFF).double
 			XCTAssert(!(a =~ a + 1), "\(a) == \(a + 1)")
 		}
 	}

@@ -22,7 +22,7 @@ class LinuxCompatibilityTests: XCTestCase {
 		print(unsafeBitCast(Double.min, to: Int.self))
 		XCTAssert(Double.min == unsafeBitCast(DBL_MIN.hashValue, to: Double.self))
 		// print("-----------------------------------------")
-		// for _ in 0..<100 { print(Math.random()) }
+		// for _ in 0..<100 { print(Math.Math.random()) }
 	}
 	
 }

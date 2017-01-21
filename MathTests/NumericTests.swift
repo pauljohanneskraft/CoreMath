@@ -119,22 +119,22 @@ class NumericTests: XCTestCase, TypeTest {
 		var t3 = 0.0
 		
 		for _ in 0..<10 {
-			let rdm = Int(arc4random() & 0xFFFF)
-			let start = Date().timeIntervalSinceReferenceDate
+			let rdm = Int(Math.random() & 0xFFFF)
+			let start = Time()
 			let r1 = one(rdm)
-			let mid1 = Date().timeIntervalSinceReferenceDate
+			let mid1 = Time()
 			let r2 = two(rdm)
-			let mid2 = Date().timeIntervalSinceReferenceDate
+			let mid2 = Time()
 			let r3 = three(rdm)
-			let end = Date().timeIntervalSinceReferenceDate
+			let end = Time()
 			print(rdm)
-			let t1r = mid1 - start
+			let t1r = mid1.timeIntervalSince(start)
 			t1 += t1r
 			print("\t", t1r, r1)
-			let t2r = mid2 - mid1
+			let t2r = mid2.timeIntervalSince(mid1)
 			t2 += t2r
 			print("\t", t2r, r2)
-			let t3r = end - mid2
+			let t3r = end.timeIntervalSince(mid2)
 			t3 += t3r
 			print("\t", t3r, r3)
 			XCTAssert(r1 == r2 && r2 == r3)

@@ -16,8 +16,8 @@ class _PolynomialTests: XCTestCase {
 		for _ in 0..<200 {
 			print(".", terminator: "")
 			var coefficients = [Int]()
-			for _ in 0 ..< (random() & 0xF) {
-				coefficients.append((random() & 0xF))
+			for _ in 0 ..< (Math.random() & 0xF) {
+				coefficients.append((Math.random() & 0xF))
 			}
 			var p = Polynomial<Double>()
 			var f : Function = ConstantFunction(0)
@@ -27,7 +27,7 @@ class _PolynomialTests: XCTestCase {
 			}
 			XCTAssert(p.description == f.description, "Polynomial: \(p), Function: \(f)")
 			for _ in 0..<100 {
-				let r = (random() & 0xF).double
+				let r = (Math.random() & 0xF).double
 				let pc = p.call(x: r)!.integer
 				let fc = f.call(x: r).integer
 				if pc < 0xFFF { XCTAssert(pc == fc, "\(pc) != \(fc)") }
