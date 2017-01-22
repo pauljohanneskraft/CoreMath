@@ -62,7 +62,7 @@ class AdvancedNumericTests: XCTestCase {
 			let r = Double(Int.random % 0xFFFFF)
 			let q = Double(Int.random % 0xFFFFF)
             if q == 0.0 { continue }
-            print(r, q)
+            // print(r, q)
 			var p = r
 			p %= q
 			XCTAssert(p == p % q)
