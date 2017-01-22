@@ -39,7 +39,11 @@ extension Double : AdvancedNumeric, Ordered {
 	public var sqrt : Double { return pow(self, 1.0/2) }
 	
 	public static var random : Double {
-		return unsafeBitCast(Math.random(), to: Double.self)
+        var c = 0.0
+        repeat {
+            c = unsafeBitCast(Math.random(), to: Double.self)
+        } while !c.isNormal
+        return c
 	}
 	
 	public var reducedDescription : String {
