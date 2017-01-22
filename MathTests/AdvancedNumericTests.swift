@@ -59,8 +59,8 @@ class AdvancedNumericTests: XCTestCase {
 	
 	func testDoubleRemainder() {
 		for _ in 0 ..< 100 {
-			let r = Double(Int.random % 0xFFFFF)
-			let q = Double(Int.random % 0xFFFFF)
+			let r = Double.random
+			let q = Double.random
             if q == 0.0 { continue }
             // print(r, q)
 			var p = r
