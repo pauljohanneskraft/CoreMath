@@ -37,7 +37,7 @@ install:
 script:
 - if [[ $TRAVIS_OS_NAME == linux ]]; then 
       swift test && 
-      echo "Tests passed."
+      echo "Tests passed.";
   fi
   
 - if [[ $TRAVIS_OS_NAME == osx   ]]; then 
