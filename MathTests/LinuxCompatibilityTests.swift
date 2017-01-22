@@ -9,22 +9,21 @@
 import XCTest
 import Math
 
-#if os(Linux)
-#else
-	
 class LinuxCompatibilityTests: XCTestCase {
-
-	func testLinux() {
-		print(DBL_MAX.hashValue)
-		print(unsafeBitCast(Double.max, to: Int.self))
-		XCTAssert(Double.max == unsafeBitCast(DBL_MAX.hashValue, to: Double.self))
-		print(DBL_MIN.hashValue)
-		print(unsafeBitCast(Double.min, to: Int.self))
-		XCTAssert(Double.min == unsafeBitCast(DBL_MIN.hashValue, to: Double.self))
-		// print("-----------------------------------------")
-		// for _ in 0..<100 { print(Math.random()) }
-	}
-	
+    
+    static var allTests : [(String, (LinuxCompatibilityTests) -> () throws -> ())] {
+        return [("testLinux", testLinux)]
+    }
+    
+    func testLinux() {
+        print(DBL_MAX.hashValue)
+        print(unsafeBitCast(Double.max, to: Int.self))
+        XCTAssert(Double.max == unsafeBitCast( 0x7FEFFFFFFFFFFFFF, to: Double.self))
+        print(DBL_MIN.hashValue)
+        print(unsafeBitCast(Double.min, to: Int.self))
+        XCTAssert(Double.min == unsafeBitCast(   0x10000000000000, to: Double.self))
+        // print("-----------------------------------------")
+        // for _ in 0..<100 { print(Math.random()) }
+    }
+    
 }
-
-#endif

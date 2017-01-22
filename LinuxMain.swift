@@ -11,6 +11,7 @@ XCTMain([
     testCase(ModuleTests.allTests),
     testCase(ConstantFunctionTests.allTests),
     testCase(NumericTests.allTests),
+    testCase(LinuxCompatibilityTests.allTests),
     testCase(ConstantsTest.allTests),
     testCase(PolynomialFunctionTests.allTests),
     testCase(CustomFunctionTests.allTests),

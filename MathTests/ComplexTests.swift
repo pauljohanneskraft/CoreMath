@@ -20,14 +20,15 @@ class ComplexTests: XCTestCase, TypeTest {
             ("testAddition", testAddition),
             ("testDivision", testDivision),
             ("testHashValue", testHashValue),
-            ("testPrefixMinus", testPrefix),
+            ("testPrefix", testPrefix),
             ("testSubtraction", testSubtraction),
             ("testReadmeExample", testReadmeExample),
             ("testMultiplication", testMultiplication),
             ("testConjugate", testConjugate),
             ("testPower", testPower),
             ("testPolarForm", testPolarForm),
-            ("testDescription", testDescription)
+            ("testDescription", testDescription),
+            ("testRandom", testRandom)
         ]
     }
     
