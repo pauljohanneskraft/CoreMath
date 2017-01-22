@@ -33,16 +33,7 @@ before_install:
 
 install:
 - if [[ $TRAVIS_OS_NAME == linux ]]; then 
-      mkdir .sources && 
-      find Sources -name '*.swift' -exec mv {} .sources \; &&
-      rm -rf Sources &&
-      mkdir Sources &&
-      mv .sources/*.swift Sources &&
-      rm -rf .sources &&
-      mkdir .tests &&
-      mv *Tests .tests &&
-      mv .tests Tests &&
-      mv LinuxMain.swift Tests;
+      sh linux.sh;
   fi
 
 script:
