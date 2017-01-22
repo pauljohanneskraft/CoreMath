@@ -10,4 +10,9 @@ import XCTest
 
 class GrowthTests: XCTestCase {
 	// LOW_PRIO
+    
+    static var allTests : [(String, (GrowthTests) -> () throws -> () )] {
+        return [
+        ]
+    }
 }

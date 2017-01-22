@@ -12,17 +12,23 @@ import Math
 class ConstantFunctionTests: XCTestCase {
 	// MID_PRIO
 	
+    static var allTests : [(String, (ConstantFunctionTests) -> () throws -> () )] {
+        return [
+            ("testOperators", testOperators)
+        ]
+    }
+    
 	func testOperators() {
 		
 		// +, -
 		let a = -5 + (x^3)
-		print(a)
+		// print(a)
 		let b = -5 - (-(x^3))
-		print(b)
+		// print(b)
 		let c = (x^3) - 5
-		print(c)
+		// print(c)
 		let d = (x^3) + -5
-		print(d)
+		// print(d)
 		
 		XCTAssert(a == b && b == a)
 		XCTAssert(b == c && c == b)
@@ -35,9 +41,9 @@ class ConstantFunctionTests: XCTestCase {
 		
 		// *
 		let e = 3 * x
-		print(e)
+		// print(e)
 		let f = x * 3
-		print(f)
+		// print(f)
 		
 		XCTAssert(e == f && f == e)
 	}

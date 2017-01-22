@@ -10,6 +10,12 @@ import XCTest
 import Math
 
 class GroupTests: XCTestCase {
+    
+    static var allTests : [(String, (GroupTests) -> () throws -> () )] {
+        return [
+        ]
+    }
+    
 	/*
 	func testGroupLikeAbelianGroups() {
 		for i in [1,2,3,5,7] {

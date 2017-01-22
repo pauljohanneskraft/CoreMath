@@ -14,7 +14,7 @@ import Math
 	
 class LinuxCompatibilityTests: XCTestCase {
 
-	func test() {
+	func testLinux() {
 		print(DBL_MAX.hashValue)
 		print(unsafeBitCast(Double.max, to: Int.self))
 		XCTAssert(Double.max == unsafeBitCast(DBL_MAX.hashValue, to: Double.self))
