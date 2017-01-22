@@ -33,12 +33,9 @@ class ComplexTests: XCTestCase, TypeTest {
     }
     
 	override func setUp() {
+        elements = []
 		for _ in 0 ..< 30 {
-			var elem : N
-			repeat {
-				elem = N.random
-			} while !elem.isNormal || elem < -1e6 || elem > 1e6 || elem.abs < 1
-			let c = Complex(elem.integer.double)
+			let c = Complex(Int.random.double)
 			// print("added \(c)")
 			XCTAssert(c != 0)
 			elements.append(c)
