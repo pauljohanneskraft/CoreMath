@@ -26,8 +26,8 @@ class BasicArithmeticTests: XCTestCase {
 	
 	func testReducedDescription() {
 		for _ in 0..<10000 {
-			let a = Double.random
-			XCTAssert(!a.isInteger || !a.reducedDescription.hasSuffix(".0"), "\(a)")
+			let a = Double(Int.random)
+			XCTAssert(!a.reducedDescription.hasSuffix(".0"), "\(a)")
 		}
 	}
 	
