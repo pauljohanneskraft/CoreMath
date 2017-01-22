@@ -16,7 +16,7 @@ import Math
 class ComplexTests: XCTestCase, TypeTest {
 	typealias N = R
 	
-    var allTests : [(String, () throws -> () )] {
+    static var allTests : [(String, (ComplexTests) -> () throws -> () )] {
         return [
             ("testAddition", testAddition),
             ("testDivision", testDivision),

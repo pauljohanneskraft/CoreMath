@@ -19,7 +19,7 @@ class NumericTests: XCTestCase, TypeTest {
 	
 	var elements: [Number] = []
     
-    var allTests : [(String, () throws -> () )] {
+    static var allTests : [(String, (NumericTests) -> () throws -> () )] {
         return [
             ("testPrettyMuchEquals", testPrettyMuchEquals),
             ("testPower", testPower),

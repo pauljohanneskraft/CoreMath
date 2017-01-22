@@ -12,7 +12,7 @@ import Math
 class PolynomialTests: XCTestCase {
 	// MID_PRIO
 	
-    var allTests : [(String, () throws -> () )] {
+    static var allTests : [(String, (PolynomialTests) -> () throws -> () )] {
         return [
             ("testSubscript", testSubscript),
             ("testAddition", testAddition),

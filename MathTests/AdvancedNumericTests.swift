@@ -16,7 +16,7 @@ import Glibc
 class AdvancedNumericTests: XCTestCase {
 	// MID_PRIO
 	
-    var allTests : [(String, () throws -> () )] {
+    static var allTests : [(String, (AdvancedNumericTests) -> () throws -> () )] {
         return [
             ("testDoubleRemainder", testDoubleRemainder),
             ("testMod", testMod),

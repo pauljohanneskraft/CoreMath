@@ -16,7 +16,7 @@ import Math
 class RationalNumberTests: XCTestCase, TypeTest {
 	
     
-    var allTests : [(String, () throws -> () )] {
+    static var allTests : [(String, (RationalNumberTests) -> () throws -> () )] {
         return [
             ("testAddition", testAddition),
             ("testDivision", testDivision),

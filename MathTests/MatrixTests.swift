@@ -11,7 +11,7 @@ import Math
 
 class MatrixTests: XCTestCase, TypeTest {
 	
-    var allTests : [(String, () throws -> () )] {
+    static var allTests : [(String, (MatrixTests) -> () throws -> () )] {
         return [
             ("testSubtraction", testSubtraction),
             ("testAddition", testAddition),

@@ -11,7 +11,7 @@ import Math
 
 class ConstantsTest: XCTestCase {
     
-    var allTests : [(String, () throws -> () )] {
+    static var allTests : [(String, (ConstantsTest) -> () throws -> () )] {
         return [
             ("testEverything", testEverything)
         ]

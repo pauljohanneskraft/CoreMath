@@ -12,7 +12,7 @@ import Math
 class EquationTests: XCTestCase {
 	// MID_PRIO
 	
-    var allTests : [(String, () throws -> () )] {
+    static var allTests : [(String, (EquationTests) -> () throws -> () )] {
         return [
             ("testReduced", testReduced)
         ]

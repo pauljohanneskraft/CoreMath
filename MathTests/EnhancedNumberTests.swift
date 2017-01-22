@@ -12,7 +12,7 @@ import Math
 class EnhancedNumberTests: XCTestCase, TypeTest {
 	typealias N = Z
 	
-    var allTests : [(String, () throws -> () )] {
+    static var allTests : [(String, (EnhancedNumberTests) -> () throws -> () )] {
         return [
             ("testAddition", testAddition),
             ("testSign", testSign),

@@ -12,7 +12,7 @@ import Math
 
 class BasicArithmeticTests: XCTestCase {
 	
-    var allTests : [(String, () throws -> () )] {
+    static var allTests : [(String, (BasicArithmeticTests) -> () throws -> () )] {
         return [
             ("testAbs", testAbs),
             ("testReducedDescription", testReducedDescription),

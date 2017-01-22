@@ -11,7 +11,7 @@ import Math
 
 class TeXTests: XCTestCase {
     
-    var allTests : [(String, () throws -> () )] {
+    static var allTests : [(String, (TeXTests) -> () throws -> () )] {
         return [
             ("testNecessaryTypes", testNecessaryTypes),
             ("testLaTeXOutputs", testLaTeXOutputs)
