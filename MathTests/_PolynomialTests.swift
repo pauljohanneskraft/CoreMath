@@ -20,7 +20,7 @@ class _PolynomialTests: XCTestCase {
 	
 	func testEqualsToPolynomial() {
 		for _ in 0..<200 {
-			print(".", terminator: "")
+			// print(".", terminator: "")
 			var coefficients = [Int]()
 			for _ in 0 ..< (Math.random() & 0xF) {
 				coefficients.append((Math.random() & 0xF))
@@ -42,6 +42,6 @@ class _PolynomialTests: XCTestCase {
 			let fd = f.derivative
 			XCTAssert(pd.description == fd.description, "\n\(pd)\n != \n\(fd)")
 		}
-		print()
+		// print()
 	}
 }

@@ -114,7 +114,7 @@ class ComplexTests: XCTestCase, TypeTest {
 	}
 	
 	func testPower() {
-        print(Math.pow(0xFFF, 0xF))
+        // print(Math.pow(0xFFF, 0xF))
         for _ in 0 ..< 10000 {
             let a = (Math.random() & 0xFFF).double
             let c = Complex(a)
@@ -123,7 +123,6 @@ class ComplexTests: XCTestCase, TypeTest {
             let p1 = p0.real
             let p2 = a.power(p)
             let dp0 = "\(p0)"
-            let dap = "\(a.reducedDescription)^\(p.reducedDescription)"
             let dp2 = p2.reducedDescription
             // print(dp0, "?=", dap, "?=", dp2)
             XCTAssert(dp0 == dp2, "\(dp0) != \(dp2)")

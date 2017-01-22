@@ -70,15 +70,15 @@ class PolynomialTests: XCTestCase {
 			let latex = Polynomial<Int>((a,b), (c,d)).latex
 			if b == d {
 				equals = true
-				print("equals")
+				// print("equals")
 				XCTAssert(latex == "\(a + c)x^{\(b)}", latex)
 			} else if b > d {
 				greater = true
-				print("greater")
+				// print("greater")
 				XCTAssert(latex == "\(a)x^{\(b)} + \(c)x^{\(d)}", latex)
 			} else {
 				less = true
-				print("less")
+				// print("less")
 				XCTAssert(latex == "\(c)x^{\(d)} + \(a)x^{\(b)}", latex)
 			}
 		}

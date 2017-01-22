@@ -68,7 +68,7 @@ class RationalNumberTests: XCTestCase, TypeTest {
 			// let _time = end.timeIntervalSince(start)
 			let inacc = (ratDouble - value).abs
 			XCTAssert(inacc < 1e-10, "\(ratDouble) != \(value)")
-			print(value, ratDouble, inacc, rat)// , "took", _time)
+			// print(value, ratDouble, inacc, rat)// , "took", _time)
 			// time += _time
 		}
 		// print("total", time, "per value:", time/Double(values.count))

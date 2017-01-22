@@ -23,7 +23,6 @@ class NumericTests: XCTestCase, TypeTest {
         return [
             ("testPrettyMuchEquals", testPrettyMuchEquals),
             ("testPower", testPower),
-            ("testPrimeFactorVariants", testPrimeFactorVariants),
             ("testPrimeFactors", testPrimeFactors)
         ]
     }
@@ -62,7 +61,7 @@ class NumericTests: XCTestCase, TypeTest {
 			XCTAssert((!p1.isNormal && !p2.isNormal) || p1 == p2, "\(p1) != \(p2)")
 		}
 	}
-	
+	/*
 	func testPrimeFactorVariants() {
 		func one(_ number: Int) -> [Int] {
 			var this = number
@@ -140,16 +139,16 @@ class NumericTests: XCTestCase, TypeTest {
 			let mid2 = Time()
 			let r3 = three(rdm)
 			let end = Time()
-			print(rdm)
+			// print(rdm)
 			let t1r = mid1.timeIntervalSince(start)
 			t1 += t1r
-			print("\t", t1r, r1)
+			// print("\t", t1r, r1)
 			let t2r = mid2.timeIntervalSince(mid1)
 			t2 += t2r
-			print("\t", t2r, r2)
+			// print("\t", t2r, r2)
 			let t3r = end.timeIntervalSince(mid2)
 			t3 += t3r
-			print("\t", t3r, r3)
+			// print("\t", t3r, r3)
 			XCTAssert(r1 == r2 && r2 == r3)
 		}
 		
@@ -159,5 +158,5 @@ class NumericTests: XCTestCase, TypeTest {
 		// total:  0.0500999689102173 9.89606004953384 9.95908206701279 // --> one(_:) is way faster!
 		
 	}
-		
+		*/
 }
