@@ -22,6 +22,7 @@ class RationalNumberTests: XCTestCase, TypeTest {
             ("testDivision", testDivision),
             ("testSubtraction", testSubtraction),
             ("testMultiplication", testMultiplication),
+            ("testPrefixMinus", testPrefixMinus),
             ("testInits", testInits),
             ("testMinMax", testMinMax),
             ("testInteger", testInteger),
@@ -50,7 +51,7 @@ class RationalNumberTests: XCTestCase, TypeTest {
 	func testDivision()         {
 		forAll("/", assert: { (a: RationalNumber, b: RationalNumber, c: RationalNumber) -> Bool in return ((a.double / b.double) - (c.double)).abs < 1e-10 } ) { $0 / $1 }
 	}
-	func testPrefixMInus()		{
+	func testPrefixMinus()		{
 		forAll("-", assert: { (a: RationalNumber, b: RationalNumber) -> Bool in return a.double == -b.double }) { -$0 }
 	}
 	func testRemainder()		{
