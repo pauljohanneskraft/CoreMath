@@ -41,7 +41,7 @@ extension Double : AdvancedNumeric, Ordered {
 	public static var random : Double {
         var c = 0.0
         repeat {
-            c = unsafeBitCast(Math.random(), to: Double.self)
+            c = Double(Int.random & 0xFFFFF)
         } while !c.isNormal
         return c
 	}
