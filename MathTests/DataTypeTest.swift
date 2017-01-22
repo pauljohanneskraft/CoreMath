@@ -8,6 +8,7 @@
 
 import Foundation
 import XCTest
+import Math
 
 protocol TypeTest {
 	associatedtype DataType
@@ -21,10 +22,10 @@ extension TypeTest {
 		let n = self.elements
 		// var avgtime = 0.0
 		for r in n {
-			let start = NSDate().timeIntervalSinceReferenceDate
+			let start = Time()
 			let fr = f(r)
-			let end = NSDate().timeIntervalSinceReferenceDate
-			let time = end-start
+			let end = Time()
+			let time = end.timeIntervalSince(start)
 			// print("\(char)(\(r))", "=", fr, "in", time)
 			assert(time >= 0.0, time.description)
 			// avgtime += time
@@ -38,10 +39,10 @@ extension TypeTest {
 		// var avgtime = 0.0
 		for r in n {
 			for q in n {
-				let start = NSDate().timeIntervalSinceReferenceDate
+				let start = Time()
 				let frq = f(r, q)
-				let end = NSDate().timeIntervalSinceReferenceDate
-				let time = end-start
+				let end = Time()
+				let time = end.timeIntervalSince(start)
 				// print(r, char, q, "=", frq, "in", time)
 				XCTAssert(time >= 0, "\(time)")
 				// avgtime += time

@@ -9,9 +9,22 @@
 import XCTest
 import Math
 
+#if os(Linux)
+import Glibc
+#endif
+
 class AdvancedNumericTests: XCTestCase {
 	// MID_PRIO
 	
+    static var allTests : [(String, (AdvancedNumericTests) -> () throws -> () )] {
+        return [
+            ("testDoubleRemainder", testDoubleRemainder),
+            ("testMod", testMod),
+            ("testNearlyEquals", testNearlyEquals),
+            ("testConformanceToAdvancedNumeric", testConformanceToAdvancedNumeric)
+        ]
+    }
+    
 	func testConformanceToAdvancedNumeric() {
 		conformsToAdvancedNumeric(Int   .self)
 		conformsToAdvancedNumeric(Int8  .self)
@@ -48,9 +61,11 @@ class AdvancedNumericTests: XCTestCase {
 		for _ in 0 ..< 100 {
 			let r = Double.random
 			let q = Double.random
+            if q == 0.0 { continue }
+            // print(r, q)
 			var p = r
 			p %= q
-			XCTAssert((!p.isNormal || !q.isNormal) || p == p % q)
+			XCTAssert(p == p % q)
 		}
 	}
 	
@@ -59,11 +74,12 @@ class AdvancedNumericTests: XCTestCase {
 		let m = 0xFFFF_FFFF_FFFF.double
 		XCTAssert(!(m =~ m + 1), "\(m)")
 		for _ in 0 ..< 100 {
-			let a = (random() & 0xFFFF_FFFF_FFFF).double
+			let a = (Math.random() & 0xFFFF_FFFF_FFFF).double
 			XCTAssert(!(a =~ a + 1), "\(a) == \(a + 1)")
 		}
 	}
 	
+    /*
 	func testDecimal() {
 		let d = Decimal()
 		print(d)
@@ -80,4 +96,5 @@ class AdvancedNumericTests: XCTestCase {
 		print(a)
 		print(nextafter(a, DBL_MAX) - a)
 	}
+     */
 }

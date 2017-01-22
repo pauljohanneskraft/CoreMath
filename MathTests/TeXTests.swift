@@ -10,6 +10,15 @@ import XCTest
 import Math
 
 class TeXTests: XCTestCase {
+    
+    static var allTests : [(String, (TeXTests) -> () throws -> () )] {
+        return [
+            ("testNecessaryTypes", testNecessaryTypes),
+            ("testLaTeXOutputs", testLaTeXOutputs)
+        ]
+    }
+    
+    
 	func testNecessaryTypes() {
 		conformsToLaTeXConvertible(
 			Int  (1),

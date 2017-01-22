@@ -11,6 +11,13 @@ import Math
 
 class TrigonometricFunctionTests: XCTestCase {
 	
+    static var allTests : [(String, (TrigonometricFunctionTests) -> () throws -> () )] {
+        return [
+            ("test1", test1),
+            ("testPropertiesSin", testPropertiesSin)
+        ]
+    }
+    
 	func testPropertiesSin() {
 		let sin = Trigonometric.sin
 		let cos = Trigonometric.cos

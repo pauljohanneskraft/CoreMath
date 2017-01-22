@@ -11,6 +11,10 @@ import Math
 
 class TermTests: XCTestCase {
 	
+    static var allTests : [(String, (TermTests) -> () throws -> () )] {
+        return [ ("testPolynomial", testPolynomial) ]
+    }
+    
 	func testPolynomial() {
 		let one = 5*(x^2)
 		let two = x^3

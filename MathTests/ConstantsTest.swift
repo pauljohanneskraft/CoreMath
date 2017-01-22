@@ -10,6 +10,12 @@ import XCTest
 import Math
 
 class ConstantsTest: XCTestCase {
+    
+    static var allTests : [(String, (ConstantsTest) -> () throws -> () )] {
+        return [
+            ("testEverything", testEverything)
+        ]
+    }
 	
 	func testEverything() {
 		print("pi:         ", Constants.pi)

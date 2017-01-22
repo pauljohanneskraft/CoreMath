@@ -9,8 +9,29 @@
 import XCTest
 import Math
 
+#if os(Linux)
+    import Glibc
+#endif
+
 class RationalNumberTests: XCTestCase, TypeTest {
 	
+    
+    static var allTests : [(String, (RationalNumberTests) -> () throws -> () )] {
+        return [
+            ("testAddition", testAddition),
+            ("testDivision", testDivision),
+            ("testSubtraction", testSubtraction),
+            ("testMultiplication", testMultiplication),
+            ("testInits", testInits),
+            ("testMinMax", testMinMax),
+            ("testInteger", testInteger),
+            ("testRemainder", testRemainder),
+            ("testDoublesMid", testDoublesMid),
+            ("testDoublesEasy", testDoublesEasy),
+            ("testEasyFractionsUpTo45", testEasyFractionsUpTo45)
+        ]
+    }
+    
 	override func setUp() {
 		for _ in 0 ..< 30 { elements.append(Q(Int.random % Int16.max.integer)) }
 	}
@@ -18,36 +39,36 @@ class RationalNumberTests: XCTestCase, TypeTest {
 	
 	// basic arithmetic
 	func testAddition()         {
-		forAll("+", assert: { a,b,c in return ((a.double + b.double) - (c.double)) < 1e-10 } ) { $0 + $1 }
+        forAll("+", assert: { (a: RationalNumber, b: RationalNumber, c: RationalNumber) -> Bool in return ((a.double + b.double) - (c.double)) < 1e-10 } ) { $0 + $1 }
 	}
 	func testSubtraction()      {
-		forAll("-", assert: { a,b,c in return ((a.double - b.double) - (c.double)).abs < 1e-10 }) { $0 - $1 }
+		forAll("-", assert: { (a: RationalNumber, b: RationalNumber, c: RationalNumber) -> Bool in return ((a.double - b.double) - (c.double)).abs < 1e-10 }) { $0 - $1 }
 	}
 	func testMultiplication()   {
-		forAll("*", assert: { a,b,c in return ((a.double * b.double) - (c.double)).abs < 1e-10 } ) { $0 * $1 }
+		forAll("*", assert: { (a: RationalNumber, b: RationalNumber, c: RationalNumber) -> Bool in return ((a.double * b.double) - (c.double)).abs < 1e-10 } ) { $0 * $1 }
 	}
 	func testDivision()         {
-		forAll("/", assert: { a,b,c in return ((a.double / b.double) - (c.double)).abs < 1e-10 } ) { $0 / $1 }
+		forAll("/", assert: { (a: RationalNumber, b: RationalNumber, c: RationalNumber) -> Bool in return ((a.double / b.double) - (c.double)).abs < 1e-10 } ) { $0 / $1 }
 	}
 	func testPrefixMInus()		{
-		forAll("-", assert: { a,b in return a.double == -b.double }) { -$0 }
+		forAll("-", assert: { (a: RationalNumber, b: RationalNumber) -> Bool in return a.double == -b.double }) { -$0 }
 	}
 	func testRemainder()		{
-		forAll("%", assert: { a,b,c in return a.double % b.double == c.double }) { $0 % $1 }
+		forAll("%", assert: { (a: RationalNumber, b: RationalNumber, c: RationalNumber) -> Bool in return a.double % b.double == c.double }) { $0 % $1 }
 	}
 	
 	private func doubles(values: [Double]) {
 		// var time = 0.0
 		for value in values {
 			// print("value:", value)
-			// let start = NSDate().timeIntervalSinceReferenceDate
+			// let start = Time()
 			let rat = Q(floatLiteral: value)
 			let ratDouble = rat.double
-			// let end = NSDate().timeIntervalSinceReferenceDate
-			// let _time = end - start
+			// let end = Time()
+			// let _time = end.timeIntervalSince(start)
 			let inacc = (ratDouble - value).abs
 			XCTAssert(inacc < 1e-10, "\(ratDouble) != \(value)")
-			print(value, ratDouble, inacc, rat)// , "took", _time)
+			// print(value, ratDouble, inacc, rat)// , "took", _time)
 			// time += _time
 		}
 		// print("total", time, "per value:", time/Double(values.count))
@@ -79,8 +100,8 @@ class RationalNumberTests: XCTestCase, TypeTest {
 	
 	func testInteger() {
 		for _ in 0 ..< 10000 {
-			let a = random() & 0xFFFF * (random() % 2 == 0 ? -1 : 1)
-			let b = random() & 0xFFFF + 1 // no division by 0 possible
+			let a = Math.random() & 0xFFFF * (Math.random() % 2 == 0 ? -1 : 1)
+			let b = Math.random() & 0xFFFF + 1 // no division by 0 possible
 			let q = Q(a,b).reduced
 			let r = a / b
 			XCTAssert(q.integer == r, "Q(\(a), \(b)).integer != \(r)")
@@ -90,7 +111,7 @@ class RationalNumberTests: XCTestCase, TypeTest {
 	
 	func testInits() {
 		for _ in 0 ..< 100 {
-			let r = random() & 0xFFFF
+			let r = Math.random() & 0xFFFF
 			let q = Q(r)
 			XCTAssert(q == Q(integerLiteral: r))
 			XCTAssert(q == Q(r,1))
