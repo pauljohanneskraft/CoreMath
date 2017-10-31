@@ -59,8 +59,8 @@ extension Double : AdvancedNumeric, Ordered {
 	}
 	public var double  : Double		{ return self }
 	
-	public static var min : Double	{ return DBL_MIN }
-	public static var max : Double	{ return DBL_MAX }
+	public static var min : Double	{ return Double.leastNormalMagnitude }
+	public static var max : Double	{ return Double.greatestFiniteMagnitude }
 }
 
 public func % (lhs: Double, rhs: Double) -> Double {

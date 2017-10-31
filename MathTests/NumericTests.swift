@@ -31,7 +31,7 @@ class NumericTests: XCTestCase, TypeTest {
 		for _ in  0 ..< 1000 {
 			let one = Double.random
 			if one.isNormal {
-				let two = nextafter(one, DBL_MAX)
+				let two = nextafter(one, Double.greatestFiniteMagnitude)
 				let eq  = one == two
 				let eqn = one =~ two
 				XCTAssert(eqn)

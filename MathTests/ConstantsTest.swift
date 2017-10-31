@@ -50,4 +50,45 @@ class ConstantsTest: XCTestCase {
 		// 
 	}
 	
+    
+    func testPiUsingCoprimes() {
+        
+        func gcd(_ a: Int, _ b: Int) -> Int {
+            var a = a
+            var b = b
+            while a != b {
+                if a > b    { a -= b }
+                else        { b -= a }
+            }
+            return a
+        }
+        
+        var coprimes = 0
+        var cofactor = 0
+        
+        var count    = 0
+        
+        var pi       = 3.14
+        
+        let inner = 0..<1000
+        let outer = 0..<20
+        
+        let sqrt6 = sqrt(6.0)
+        
+        for _ in outer {
+            
+            for _ in inner {
+                let a = Int(arc4random())
+                let b = Int(arc4random())
+                
+                if gcd(a, b) > 1    { cofactor += 1 }
+                else                { coprimes += 1 }
+            }
+            count += inner.endIndex
+            pi = sqrt6/sqrt(Double(coprimes)/Double(count))
+            print("After", count, "iterations, pi is", pi)
+            guard pi != Constants.pi else { print("FOUND IT! \(pi)"); return }
+        }
+        
+    }
 }

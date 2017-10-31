@@ -113,7 +113,7 @@ extension Polynomial {
 		var h = 0
 		for i in coefficients.indices {
 			let hci = Double(coefficients[i].hashValue)
-			let d = unsafeBitCast(hci, to: Int.self)
+			let d = Int(bitPattern: UInt(hci.bitPattern))
 			let r = (h == 0 ? 1 : h) &* (d &+ i)
 			h = h &+ r
 		}

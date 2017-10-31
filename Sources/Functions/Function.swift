@@ -45,6 +45,7 @@ public extension Function {
 	func integral(from: Double, to: Double	) -> Double		{ let int = self.integral; return int.call(x: from) - int.call(x: to)	}
 }
 
+
 public func * (lhs: Function, rhs: Function) -> Function {
 	if let l = lhs as? Equation {
 		if !(rhs is CustomFunction) {

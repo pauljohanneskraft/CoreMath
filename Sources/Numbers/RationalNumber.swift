@@ -101,7 +101,7 @@ extension RationalNumber : ExpressibleByFloatLiteral {
 
 extension Double {
 	public var inaccuracy : Double {
-		return nextafter(self, DBL_MAX) - self
+		return nextafter(self, Double.greatestFiniteMagnitude) - self
 	}
 }
 

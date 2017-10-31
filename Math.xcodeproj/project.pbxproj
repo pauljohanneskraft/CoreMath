@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		9B825EAB1EBF19EE003A9B9C /* Documentation */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 9B825EAE1EBF19EE003A9B9C /* Build configuration list for PBXAggregateTarget "Documentation" */;
+			buildPhases = (
+				9B825EAF1EBF19F3003A9B9C /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Documentation;
+			productName = Documentation;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		9B09603D1D4EB14900ED8517 /* DataTypeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B09603C1D4EB14900ED8517 /* DataTypeTest.swift */; };
 		9B46A07A1D78FEC900C1059E /* GroupLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0531D78FEC900C1059E /* GroupLike.swift */; };
@@ -47,6 +61,15 @@
 		9B47341C1D4AD5130055A7E8 /* RationalNumberTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B47341B1D4AD5130055A7E8 /* RationalNumberTests.swift */; };
 		9B47341E1D4AD51D0055A7E8 /* ComplexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B47341D1D4AD51D0055A7E8 /* ComplexTests.swift */; };
 		9B4734201D4AD5360055A7E8 /* EnhancedNumberTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B47341F1D4AD5360055A7E8 /* EnhancedNumberTests.swift */; };
+		9B4977C81EBD3D3E00B65019 /* NFA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4977C71EBD3D3E00B65019 /* NFA.swift */; };
+		9B4977CA1EBD3D5800B65019 /* DFA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4977C91EBD3D5800B65019 /* DFA.swift */; };
+		9B4977CC1EBD3D6900B65019 /* Automaton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4977CB1EBD3D6900B65019 /* Automaton.swift */; };
+		9B4977D21EBE0D1000B65019 /* AutomatonState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4977D11EBE0D1000B65019 /* AutomatonState.swift */; };
+		9B4977D51EBE0D3200B65019 /* DFA-State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4977D31EBE0D3200B65019 /* DFA-State.swift */; };
+		9B4977D61EBE0D3200B65019 /* NFA-State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4977D41EBE0D3200B65019 /* NFA-State.swift */; };
+		9B4977DC1EBE267500B65019 /* DFA-Iterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4977DB1EBE267500B65019 /* DFA-Iterator.swift */; };
+		9B4977DE1EBE269C00B65019 /* NFA-Iterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4977DD1EBE269C00B65019 /* NFA-Iterator.swift */; };
+		9B4977E01EBE296900B65019 /* AutomatonIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4977DF1EBE296900B65019 /* AutomatonIterator.swift */; };
 		9B5BE2501D72E386006C5B96 /* TeXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5BE24F1D72E386006C5B96 /* TeXTests.swift */; };
 		9B5BE2531D72E3F0006C5B96 /* RingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5BE2521D72E3F0006C5B96 /* RingTests.swift */; };
 		9B5BE2551D72E3F9006C5B96 /* ModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5BE2541D72E3F9006C5B96 /* ModuleTests.swift */; };
@@ -62,6 +85,8 @@
 		9B5BE26A1D72E4FA006C5B96 /* AdvancedNumericTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5BE2691D72E4FA006C5B96 /* AdvancedNumericTests.swift */; };
 		9B5BE26D1D72F9FD006C5B96 /* LinuxCompatibilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5BE26C1D72F9FD006C5B96 /* LinuxCompatibilityTests.swift */; };
 		9B71D3ED1D4BF1C6001C5BE9 /* TermTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B71D3EC1D4BF1C6001C5BE9 /* TermTests.swift */; };
+		9B825EB61EBF2C94003A9B9C /* DFATest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B825EB51EBF2C94003A9B9C /* DFATest.swift */; };
+		9B825EB81EBF2CA3003A9B9C /* NFATest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B825EB71EBF2CA3003A9B9C /* NFATest.swift */; };
 		9BC8BBDB1D6F0E1D0010AC02 /* BasicArithmeticTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC8BBDA1D6F0E1D0010AC02 /* BasicArithmeticTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -118,6 +143,15 @@
 		9B47341B1D4AD5130055A7E8 /* RationalNumberTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RationalNumberTests.swift; sourceTree = "<group>"; };
 		9B47341D1D4AD51D0055A7E8 /* ComplexTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplexTests.swift; sourceTree = "<group>"; };
 		9B47341F1D4AD5360055A7E8 /* EnhancedNumberTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnhancedNumberTests.swift; sourceTree = "<group>"; };
+		9B4977C71EBD3D3E00B65019 /* NFA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NFA.swift; path = Sources/Automata/NFA.swift; sourceTree = "<group>"; };
+		9B4977C91EBD3D5800B65019 /* DFA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DFA.swift; path = Sources/Automata/DFA.swift; sourceTree = "<group>"; };
+		9B4977CB1EBD3D6900B65019 /* Automaton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Automaton.swift; path = Sources/Automata/Automaton.swift; sourceTree = "<group>"; };
+		9B4977D11EBE0D1000B65019 /* AutomatonState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AutomatonState.swift; path = Sources/Automata/AutomatonState.swift; sourceTree = "<group>"; };
+		9B4977D31EBE0D3200B65019 /* DFA-State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DFA-State.swift"; path = "Sources/Automata/DFA-State.swift"; sourceTree = "<group>"; };
+		9B4977D41EBE0D3200B65019 /* NFA-State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NFA-State.swift"; path = "Sources/Automata/NFA-State.swift"; sourceTree = "<group>"; };
+		9B4977DB1EBE267500B65019 /* DFA-Iterator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DFA-Iterator.swift"; path = "Sources/Automata/DFA-Iterator.swift"; sourceTree = "<group>"; };
+		9B4977DD1EBE269C00B65019 /* NFA-Iterator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NFA-Iterator.swift"; path = "Sources/Automata/NFA-Iterator.swift"; sourceTree = "<group>"; };
+		9B4977DF1EBE296900B65019 /* AutomatonIterator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AutomatonIterator.swift; path = Sources/Automata/AutomatonIterator.swift; sourceTree = "<group>"; };
 		9B5BE24F1D72E386006C5B96 /* TeXTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeXTests.swift; sourceTree = "<group>"; };
 		9B5BE2521D72E3F0006C5B96 /* RingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RingTests.swift; sourceTree = "<group>"; };
 		9B5BE2541D72E3F9006C5B96 /* ModuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleTests.swift; sourceTree = "<group>"; };
@@ -133,6 +167,8 @@
 		9B5BE2691D72E4FA006C5B96 /* AdvancedNumericTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedNumericTests.swift; sourceTree = "<group>"; };
 		9B5BE26C1D72F9FD006C5B96 /* LinuxCompatibilityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinuxCompatibilityTests.swift; sourceTree = "<group>"; };
 		9B71D3EC1D4BF1C6001C5BE9 /* TermTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermTests.swift; sourceTree = "<group>"; };
+		9B825EB51EBF2C94003A9B9C /* DFATest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DFATest.swift; sourceTree = "<group>"; };
+		9B825EB71EBF2CA3003A9B9C /* NFATest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NFATest.swift; sourceTree = "<group>"; };
 		9BC8BBDA1D6F0E1D0010AC02 /* BasicArithmeticTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicArithmeticTests.swift; sourceTree = "<group>"; };
 		9BD8A6731D705C2F00C2618E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Sources/Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -312,6 +348,7 @@
 			children = (
 				9B09603C1D4EB14900ED8517 /* DataTypeTest.swift */,
 				9B5BE26C1D72F9FD006C5B96 /* LinuxCompatibilityTests.swift */,
+				9B825EB91EBF2CB9003A9B9C /* Automata */,
 				9B5BE24E1D72E36C006C5B96 /* General */,
 				9B0960341D4E6AE400ED8517 /* Algebra */,
 				9B0960331D4E6AD800ED8517 /* Functions */,
@@ -322,6 +359,22 @@
 			);
 			name = Tests;
 			path = MathTests;
+			sourceTree = "<group>";
+		};
+		9B4977C41EBD3CE800B65019 /* Automata */ = {
+			isa = PBXGroup;
+			children = (
+				9B4977CB1EBD3D6900B65019 /* Automaton.swift */,
+				9B4977D11EBE0D1000B65019 /* AutomatonState.swift */,
+				9B4977DF1EBE296900B65019 /* AutomatonIterator.swift */,
+				9B4977C91EBD3D5800B65019 /* DFA.swift */,
+				9B4977D31EBE0D3200B65019 /* DFA-State.swift */,
+				9B4977DB1EBE267500B65019 /* DFA-Iterator.swift */,
+				9B4977C71EBD3D3E00B65019 /* NFA.swift */,
+				9B4977D41EBE0D3200B65019 /* NFA-State.swift */,
+				9B4977DD1EBE269C00B65019 /* NFA-Iterator.swift */,
+			);
+			name = Automata;
 			sourceTree = "<group>";
 		};
 		9B5BE24E1D72E36C006C5B96 /* General */ = {
@@ -350,10 +403,20 @@
 			name = Protocols;
 			sourceTree = "<group>";
 		};
+		9B825EB91EBF2CB9003A9B9C /* Automata */ = {
+			isa = PBXGroup;
+			children = (
+				9B825EB71EBF2CA3003A9B9C /* NFATest.swift */,
+				9B825EB51EBF2C94003A9B9C /* DFATest.swift */,
+			);
+			name = Automata;
+			sourceTree = "<group>";
+		};
 		9BD8A6A11D705C3F00C2618E /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				9B46A0591D78FEC900C1059E /* Algebra */,
+				9B4977C41EBD3CE800B65019 /* Automata */,
 				9B46A0681D78FEC900C1059E /* Functions */,
 				9B46A06A1D78FEC900C1059E /* General */,
 				9B46A06C1D78FEC900C1059E /* Linear Algebra */,
@@ -423,6 +486,11 @@
 						DevelopmentTeamName = "Paul Kraft (Personal Team)";
 						ProvisioningStyle = Automatic;
 					};
+					9B825EAB1EBF19EE003A9B9C = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = WCM2L8RG39;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 9B4733AB1D4ACBB80055A7E8 /* Build configuration list for PBXProject "Math" */;
@@ -439,9 +507,26 @@
 			targets = (
 				9B4733B01D4ACBB80055A7E8 /* Math */,
 				9B4733BF1D4ACBE00055A7E8 /* MathTests */,
+				9B825EAB1EBF19EE003A9B9C /* Documentation */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9B825EAF1EBF19F3003A9B9C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = jazzy;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9B4733AC1D4ACBB80055A7E8 /* Sources */ = {
@@ -455,30 +540,39 @@
 				9B46A08A1D78FEC900C1059E /* PolynomialFunction.swift in Sources */,
 				9B46A07D1D78FEC900C1059E /* ModuleLikeProtocols.swift in Sources */,
 				9B46A0851D78FEC900C1059E /* Function.swift in Sources */,
+				9B4977D61EBE0D3200B65019 /* NFA-State.swift in Sources */,
 				9B46A0821D78FEC900C1059E /* Equation.swift in Sources */,
+				9B4977DC1EBE267500B65019 /* DFA-Iterator.swift in Sources */,
 				9B46A0871D78FEC900C1059E /* _Polynomial.swift in Sources */,
 				9B46A07E1D78FEC900C1059E /* RingLike.swift in Sources */,
 				9B46A0961D78FEC900C1059E /* Numeric.swift in Sources */,
 				9B46A07B1D78FEC900C1059E /* GroupLikeProtocols.swift in Sources */,
 				9B46A08F1D78FEC900C1059E /* LinuxSupport.swift in Sources */,
 				9B46A0951D78FEC900C1059E /* BasicArithmetic.swift in Sources */,
+				9B4977C81EBD3D3E00B65019 /* NFA.swift in Sources */,
 				9B46A0801D78FEC900C1059E /* ConstantFunction.swift in Sources */,
+				9B4977CA1EBD3D5800B65019 /* DFA.swift in Sources */,
 				9B46A08B1D78FEC900C1059E /* Term.swift in Sources */,
+				9B4977E01EBE296900B65019 /* AutomatonIterator.swift in Sources */,
 				9B46A0911D78FEC900C1059E /* EnhancedNumber.swift in Sources */,
 				9B46A08C1D78FEC900C1059E /* TrigonometricFunctions.swift in Sources */,
 				9B46A07A1D78FEC900C1059E /* GroupLike.swift in Sources */,
 				9B46A08E1D78FEC900C1059E /* Matrix.swift in Sources */,
 				9B46A07F1D78FEC900C1059E /* RingLikeProtocols.swift in Sources */,
+				9B4977D21EBE0D1000B65019 /* AutomatonState.swift in Sources */,
 				9B46A08D1D78FEC900C1059E /* Constants.swift in Sources */,
 				9B46A0891D78FEC900C1059E /* PolynomialFields.swift in Sources */,
 				9B46A0931D78FEC900C1059E /* AdvancedNumeric.swift in Sources */,
+				9B4977CC1EBD3D6900B65019 /* Automaton.swift in Sources */,
 				9B46A0861D78FEC900C1059E /* Growth.swift in Sources */,
 				9B46A0921D78FEC900C1059E /* Numbers.swift in Sources */,
 				9B46A0971D78FEC900C1059E /* RationalNumber.swift in Sources */,
 				9B46A07C1D78FEC900C1059E /* ModuleLike.swift in Sources */,
+				9B4977DE1EBE269C00B65019 /* NFA-Iterator.swift in Sources */,
 				9B46A0841D78FEC900C1059E /* Fraction.swift in Sources */,
 				9B46A0941D78FEC900C1059E /* AdvancedNumericTypeExtensions.swift in Sources */,
 				9B46A0981D78FEC900C1059E /* LaTeXConvertible.swift in Sources */,
+				9B4977D51EBE0D3200B65019 /* DFA-State.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,11 +587,13 @@
 				9B5BE25D1D72E43F006C5B96 /* PolynomialFunctionTests.swift in Sources */,
 				9B5BE26D1D72F9FD006C5B96 /* LinuxCompatibilityTests.swift in Sources */,
 				9B71D3ED1D4BF1C6001C5BE9 /* TermTests.swift in Sources */,
+				9B825EB81EBF2CA3003A9B9C /* NFATest.swift in Sources */,
 				9B5BE25F1D72E450006C5B96 /* ConstantFunctionTests.swift in Sources */,
 				9B47341A1D4AD50A0055A7E8 /* NumericTests.swift in Sources */,
 				9BC8BBDB1D6F0E1D0010AC02 /* BasicArithmeticTests.swift in Sources */,
 				9B5BE2631D72E47B006C5B96 /* TrigonometricFunctionTests.swift in Sources */,
 				9B5BE2531D72E3F0006C5B96 /* RingTests.swift in Sources */,
+				9B825EB61EBF2C94003A9B9C /* DFATest.swift in Sources */,
 				9B5BE25B1D72E433006C5B96 /* PolynomialTests.swift in Sources */,
 				9B09603D1D4EB14900ED8517 /* DataTypeTest.swift in Sources */,
 				9B5BE2551D72E3F9006C5B96 /* ModuleTests.swift in Sources */,
@@ -708,6 +804,22 @@
 			};
 			name = Release;
 		};
+		9B825EAC1EBF19EE003A9B9C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = WCM2L8RG39;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		9B825EAD1EBF19EE003A9B9C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = WCM2L8RG39;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -737,6 +849,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		9B825EAE1EBF19EE003A9B9C /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9B825EAC1EBF19EE003A9B9C /* Debug */,
+				9B825EAD1EBF19EE003A9B9C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
