@@ -12,7 +12,7 @@ import Math
 
 class BasicArithmeticTests: XCTestCase {
 	
-    static var allTests : [(String, (BasicArithmeticTests) -> () throws -> () )] {
+    static var allTests: [(String, (BasicArithmeticTests) -> () throws -> Void )] {
         return [
             ("testAbs", testAbs),
             ("testReducedDescription", testReducedDescription),
@@ -45,7 +45,6 @@ class BasicArithmeticTests: XCTestCase {
 				XCTAssert(range.contains(sr) ? uz.contains(ur) : !uz.contains(ur))
 			}
 		}
-		
 		
 	}
 	

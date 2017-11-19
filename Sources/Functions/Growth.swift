@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum GrowthClass < N : BasicArithmetic > {
+enum GrowthClass < N: BasicArithmetic > {
 	case polynomial(exponent: N)
 	case exponential(base: N)
 	case logistic(mid: N, max: N, steepness: N)

@@ -11,7 +11,7 @@ import Math
 
 class GroupTests: XCTestCase {
     
-    static var allTests : [(String, (GroupTests) -> () throws -> () )] {
+    static var allTests: [(String, (GroupTests) -> () throws -> Void )] {
         return [
         ]
     }

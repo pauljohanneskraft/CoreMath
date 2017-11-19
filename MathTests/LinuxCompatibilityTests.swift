@@ -11,7 +11,7 @@ import Math
 
 class LinuxCompatibilityTests: XCTestCase {
     
-    static var allTests : [(String, (LinuxCompatibilityTests) -> () throws -> ())] {
+    static var allTests: [(String, (LinuxCompatibilityTests) -> () throws -> Void)] {
         return [("testLinux", testLinux)]
     }
     

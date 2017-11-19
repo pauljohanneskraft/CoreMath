@@ -22,6 +22,9 @@
 
 /* Begin PBXBuildFile section */
 		9B09603D1D4EB14900ED8517 /* DataTypeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B09603C1D4EB14900ED8517 /* DataTypeTest.swift */; };
+		9B2539AC1FBE015F00824CFC /* FloatingPointNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2539AB1FBE015F00824CFC /* FloatingPointNumber.swift */; };
+		9B2539AE1FBE016A00824CFC /* DoubleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2539AD1FBE016A00824CFC /* DoubleExtensions.swift */; };
+		9B2539B01FBE018100824CFC /* Interpolation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2539AF1FBE018100824CFC /* Interpolation.swift */; };
 		9B46A07A1D78FEC900C1059E /* GroupLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0531D78FEC900C1059E /* GroupLike.swift */; };
 		9B46A07B1D78FEC900C1059E /* GroupLikeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0541D78FEC900C1059E /* GroupLikeProtocols.swift */; };
 		9B46A07C1D78FEC900C1059E /* ModuleLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0551D78FEC900C1059E /* ModuleLike.swift */; };
@@ -43,9 +46,8 @@
 		9B46A08C1D78FEC900C1059E /* TrigonometricFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0671D78FEC900C1059E /* TrigonometricFunctions.swift */; };
 		9B46A08D1D78FEC900C1059E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0691D78FEC900C1059E /* Constants.swift */; };
 		9B46A08E1D78FEC900C1059E /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A06B1D78FEC900C1059E /* Matrix.swift */; };
-		9B46A08F1D78FEC900C1059E /* LinuxSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A06D1D78FEC900C1059E /* LinuxSupport.swift */; };
 		9B46A0901D78FEC900C1059E /* Complex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A06E1D78FEC900C1059E /* Complex.swift */; };
-		9B46A0911D78FEC900C1059E /* EnhancedNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A06F1D78FEC900C1059E /* EnhancedNumber.swift */; };
+		9B46A0911D78FEC900C1059E /* Enhanced.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A06F1D78FEC900C1059E /* Enhanced.swift */; };
 		9B46A0921D78FEC900C1059E /* Numbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0701D78FEC900C1059E /* Numbers.swift */; };
 		9B46A0931D78FEC900C1059E /* AdvancedNumeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0711D78FEC900C1059E /* AdvancedNumeric.swift */; };
 		9B46A0941D78FEC900C1059E /* AdvancedNumericTypeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0721D78FEC900C1059E /* AdvancedNumericTypeExtensions.swift */; };
@@ -70,6 +72,8 @@
 		9B4977DC1EBE267500B65019 /* DFA-Iterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4977DB1EBE267500B65019 /* DFA-Iterator.swift */; };
 		9B4977DE1EBE269C00B65019 /* NFA-Iterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4977DD1EBE269C00B65019 /* NFA-Iterator.swift */; };
 		9B4977E01EBE296900B65019 /* AutomatonIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4977DF1EBE296900B65019 /* AutomatonIterator.swift */; };
+		9B4C42991FBF97DB00786391 /* LinuxSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4C42981FBF97DB00786391 /* LinuxSupport.swift */; };
+		9B4C429B1FBFB0BB00786391 /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4C429A1FBFB0BB00786391 /* General.swift */; };
 		9B5BE2501D72E386006C5B96 /* TeXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5BE24F1D72E386006C5B96 /* TeXTests.swift */; };
 		9B5BE2531D72E3F0006C5B96 /* RingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5BE2521D72E3F0006C5B96 /* RingTests.swift */; };
 		9B5BE2551D72E3F9006C5B96 /* ModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5BE2541D72E3F9006C5B96 /* ModuleTests.swift */; };
@@ -102,6 +106,9 @@
 
 /* Begin PBXFileReference section */
 		9B09603C1D4EB14900ED8517 /* DataTypeTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTypeTest.swift; sourceTree = "<group>"; };
+		9B2539AB1FBE015F00824CFC /* FloatingPointNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPointNumber.swift; sourceTree = "<group>"; };
+		9B2539AD1FBE016A00824CFC /* DoubleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtensions.swift; sourceTree = "<group>"; };
+		9B2539AF1FBE018100824CFC /* Interpolation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interpolation.swift; sourceTree = "<group>"; };
 		9B46A0531D78FEC900C1059E /* GroupLike.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupLike.swift; sourceTree = "<group>"; };
 		9B46A0541D78FEC900C1059E /* GroupLikeProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupLikeProtocols.swift; sourceTree = "<group>"; };
 		9B46A0551D78FEC900C1059E /* ModuleLike.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleLike.swift; sourceTree = "<group>"; };
@@ -123,9 +130,8 @@
 		9B46A0671D78FEC900C1059E /* TrigonometricFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrigonometricFunctions.swift; sourceTree = "<group>"; };
 		9B46A0691D78FEC900C1059E /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9B46A06B1D78FEC900C1059E /* Matrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
-		9B46A06D1D78FEC900C1059E /* LinuxSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinuxSupport.swift; path = Sources/LinuxSupport.swift; sourceTree = "<group>"; };
 		9B46A06E1D78FEC900C1059E /* Complex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Complex.swift; sourceTree = "<group>"; };
-		9B46A06F1D78FEC900C1059E /* EnhancedNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnhancedNumber.swift; sourceTree = "<group>"; };
+		9B46A06F1D78FEC900C1059E /* Enhanced.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enhanced.swift; sourceTree = "<group>"; };
 		9B46A0701D78FEC900C1059E /* Numbers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Numbers.swift; sourceTree = "<group>"; };
 		9B46A0711D78FEC900C1059E /* AdvancedNumeric.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedNumeric.swift; sourceTree = "<group>"; };
 		9B46A0721D78FEC900C1059E /* AdvancedNumericTypeExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedNumericTypeExtensions.swift; sourceTree = "<group>"; };
@@ -143,15 +149,17 @@
 		9B47341B1D4AD5130055A7E8 /* RationalNumberTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RationalNumberTests.swift; sourceTree = "<group>"; };
 		9B47341D1D4AD51D0055A7E8 /* ComplexTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplexTests.swift; sourceTree = "<group>"; };
 		9B47341F1D4AD5360055A7E8 /* EnhancedNumberTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnhancedNumberTests.swift; sourceTree = "<group>"; };
-		9B4977C71EBD3D3E00B65019 /* NFA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NFA.swift; path = Sources/Automata/NFA.swift; sourceTree = "<group>"; };
-		9B4977C91EBD3D5800B65019 /* DFA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DFA.swift; path = Sources/Automata/DFA.swift; sourceTree = "<group>"; };
-		9B4977CB1EBD3D6900B65019 /* Automaton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Automaton.swift; path = Sources/Automata/Automaton.swift; sourceTree = "<group>"; };
-		9B4977D11EBE0D1000B65019 /* AutomatonState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AutomatonState.swift; path = Sources/Automata/AutomatonState.swift; sourceTree = "<group>"; };
-		9B4977D31EBE0D3200B65019 /* DFA-State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DFA-State.swift"; path = "Sources/Automata/DFA-State.swift"; sourceTree = "<group>"; };
-		9B4977D41EBE0D3200B65019 /* NFA-State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NFA-State.swift"; path = "Sources/Automata/NFA-State.swift"; sourceTree = "<group>"; };
-		9B4977DB1EBE267500B65019 /* DFA-Iterator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DFA-Iterator.swift"; path = "Sources/Automata/DFA-Iterator.swift"; sourceTree = "<group>"; };
-		9B4977DD1EBE269C00B65019 /* NFA-Iterator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NFA-Iterator.swift"; path = "Sources/Automata/NFA-Iterator.swift"; sourceTree = "<group>"; };
-		9B4977DF1EBE296900B65019 /* AutomatonIterator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AutomatonIterator.swift; path = Sources/Automata/AutomatonIterator.swift; sourceTree = "<group>"; };
+		9B4977C71EBD3D3E00B65019 /* NFA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NFA.swift; sourceTree = "<group>"; };
+		9B4977C91EBD3D5800B65019 /* DFA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DFA.swift; sourceTree = "<group>"; };
+		9B4977CB1EBD3D6900B65019 /* Automaton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Automaton.swift; sourceTree = "<group>"; };
+		9B4977D11EBE0D1000B65019 /* AutomatonState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutomatonState.swift; sourceTree = "<group>"; };
+		9B4977D31EBE0D3200B65019 /* DFA-State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DFA-State.swift"; sourceTree = "<group>"; };
+		9B4977D41EBE0D3200B65019 /* NFA-State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NFA-State.swift"; sourceTree = "<group>"; };
+		9B4977DB1EBE267500B65019 /* DFA-Iterator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DFA-Iterator.swift"; sourceTree = "<group>"; };
+		9B4977DD1EBE269C00B65019 /* NFA-Iterator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NFA-Iterator.swift"; sourceTree = "<group>"; };
+		9B4977DF1EBE296900B65019 /* AutomatonIterator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutomatonIterator.swift; sourceTree = "<group>"; };
+		9B4C42981FBF97DB00786391 /* LinuxSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinuxSupport.swift; sourceTree = "<group>"; };
+		9B4C429A1FBFB0BB00786391 /* General.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
 		9B5BE24F1D72E386006C5B96 /* TeXTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeXTests.swift; sourceTree = "<group>"; };
 		9B5BE2521D72E3F0006C5B96 /* RingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RingTests.swift; sourceTree = "<group>"; };
 		9B5BE2541D72E3F9006C5B96 /* ModuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleTests.swift; sourceTree = "<group>"; };
@@ -170,7 +178,7 @@
 		9B825EB51EBF2C94003A9B9C /* DFATest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DFATest.swift; sourceTree = "<group>"; };
 		9B825EB71EBF2CA3003A9B9C /* NFATest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NFATest.swift; sourceTree = "<group>"; };
 		9BC8BBDA1D6F0E1D0010AC02 /* BasicArithmeticTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicArithmeticTests.swift; sourceTree = "<group>"; };
-		9BD8A6731D705C2F00C2618E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Sources/Info.plist; sourceTree = "<group>"; };
+		9BD8A6731D705C2F00C2618E /* Info.plist */ = {isa = PBXFileReference; explicitFileType = wrapper.xcdatamodel; fileEncoding = 4; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +239,16 @@
 			name = LinearAlgebra;
 			sourceTree = "<group>";
 		};
+		9B2539AA1FBE014600824CFC /* Numerics */ = {
+			isa = PBXGroup;
+			children = (
+				9B2539AB1FBE015F00824CFC /* FloatingPointNumber.swift */,
+				9B2539AD1FBE016A00824CFC /* DoubleExtensions.swift */,
+				9B2539AF1FBE018100824CFC /* Interpolation.swift */,
+			);
+			path = Numerics;
+			sourceTree = "<group>";
+		};
 		9B46A0591D78FEC900C1059E /* Algebra */ = {
 			isa = PBXGroup;
 			children = (
@@ -241,8 +259,7 @@
 				9B46A0571D78FEC900C1059E /* RingLike.swift */,
 				9B46A0581D78FEC900C1059E /* RingLikeProtocols.swift */,
 			);
-			name = Algebra;
-			path = Sources/Algebra;
+			path = Algebra;
 			sourceTree = "<group>";
 		};
 		9B46A0651D78FEC900C1059E /* Polynomials */ = {
@@ -270,8 +287,7 @@
 				9B46A0661D78FEC900C1059E /* Term.swift */,
 				9B46A0671D78FEC900C1059E /* TrigonometricFunctions.swift */,
 			);
-			name = Functions;
-			path = Sources/Functions;
+			path = Functions;
 			sourceTree = "<group>";
 		};
 		9B46A06A1D78FEC900C1059E /* General */ = {
@@ -279,8 +295,7 @@
 			children = (
 				9B46A0691D78FEC900C1059E /* Constants.swift */,
 			);
-			name = General;
-			path = Sources/General;
+			path = General;
 			sourceTree = "<group>";
 		};
 		9B46A06C1D78FEC900C1059E /* Linear Algebra */ = {
@@ -288,8 +303,7 @@
 			children = (
 				9B46A06B1D78FEC900C1059E /* Matrix.swift */,
 			);
-			name = "Linear Algebra";
-			path = "Sources/Linear Algebra";
+			path = "Linear Algebra";
 			sourceTree = "<group>";
 		};
 		9B46A0751D78FEC900C1059E /* Protocols */ = {
@@ -307,13 +321,12 @@
 			isa = PBXGroup;
 			children = (
 				9B46A06E1D78FEC900C1059E /* Complex.swift */,
-				9B46A06F1D78FEC900C1059E /* EnhancedNumber.swift */,
+				9B46A06F1D78FEC900C1059E /* Enhanced.swift */,
 				9B46A0701D78FEC900C1059E /* Numbers.swift */,
 				9B46A0751D78FEC900C1059E /* Protocols */,
 				9B46A0761D78FEC900C1059E /* RationalNumber.swift */,
 			);
-			name = Numbers;
-			path = Sources/Numbers;
+			path = Numbers;
 			sourceTree = "<group>";
 		};
 		9B46A0791D78FEC900C1059E /* TeX */ = {
@@ -321,8 +334,7 @@
 			children = (
 				9B46A0781D78FEC900C1059E /* LaTeXConvertible.swift */,
 			);
-			name = TeX;
-			path = Sources/TeX;
+			path = TeX;
 			sourceTree = "<group>";
 		};
 		9B4733A71D4ACBB80055A7E8 = {
@@ -374,7 +386,7 @@
 				9B4977D41EBE0D3200B65019 /* NFA-State.swift */,
 				9B4977DD1EBE269C00B65019 /* NFA-Iterator.swift */,
 			);
-			name = Automata;
+			path = Automata;
 			sourceTree = "<group>";
 		};
 		9B5BE24E1D72E36C006C5B96 /* General */ = {
@@ -415,17 +427,19 @@
 		9BD8A6A11D705C3F00C2618E /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				9B4C42981FBF97DB00786391 /* LinuxSupport.swift */,
+				9B4C429A1FBFB0BB00786391 /* General.swift */,
 				9B46A0591D78FEC900C1059E /* Algebra */,
 				9B4977C41EBD3CE800B65019 /* Automata */,
 				9B46A0681D78FEC900C1059E /* Functions */,
 				9B46A06A1D78FEC900C1059E /* General */,
 				9B46A06C1D78FEC900C1059E /* Linear Algebra */,
-				9B46A06D1D78FEC900C1059E /* LinuxSupport.swift */,
+				9B2539AA1FBE014600824CFC /* Numerics */,
 				9B46A0771D78FEC900C1059E /* Numbers */,
 				9B46A0791D78FEC900C1059E /* TeX */,
 				9BD8A6731D705C2F00C2618E /* Info.plist */,
 			);
-			name = Sources;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -436,6 +450,7 @@
 			buildConfigurationList = 9B4733B91D4ACBB80055A7E8 /* Build configuration list for PBXNativeTarget "Math" */;
 			buildPhases = (
 				9B4733AC1D4ACBB80055A7E8 /* Sources */,
+				9B2539B11FBE02D000824CFC /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -470,20 +485,21 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0910;
 				ORGANIZATIONNAME = pauljohanneskraft;
 				TargetAttributes = {
 					9B4733B01D4ACBB80055A7E8 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = TJSHMGE2VX;
 						DevelopmentTeamName = "Paul Kraft (Personal Team)";
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 					};
 					9B4733BF1D4ACBE00055A7E8 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = TJSHMGE2VX;
 						DevelopmentTeamName = "Paul Kraft (Personal Team)";
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 					};
 					9B825EAB1EBF19EE003A9B9C = {
@@ -513,6 +529,19 @@
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		9B2539B11FBE02D000824CFC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint; then\n    swiftlint\nelse\n    echo 'warning: Install Swiftlint'\nfi";
+		};
 		9B825EAF1EBF19F3003A9B9C /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -537,6 +566,7 @@
 				9B46A0881D78FEC900C1059E /* Polynomial.swift in Sources */,
 				9B46A0831D78FEC900C1059E /* ExponentialFunction.swift in Sources */,
 				9B46A0901D78FEC900C1059E /* Complex.swift in Sources */,
+				9B2539AE1FBE016A00824CFC /* DoubleExtensions.swift in Sources */,
 				9B46A08A1D78FEC900C1059E /* PolynomialFunction.swift in Sources */,
 				9B46A07D1D78FEC900C1059E /* ModuleLikeProtocols.swift in Sources */,
 				9B46A0851D78FEC900C1059E /* Function.swift in Sources */,
@@ -547,24 +577,27 @@
 				9B46A07E1D78FEC900C1059E /* RingLike.swift in Sources */,
 				9B46A0961D78FEC900C1059E /* Numeric.swift in Sources */,
 				9B46A07B1D78FEC900C1059E /* GroupLikeProtocols.swift in Sources */,
-				9B46A08F1D78FEC900C1059E /* LinuxSupport.swift in Sources */,
 				9B46A0951D78FEC900C1059E /* BasicArithmetic.swift in Sources */,
 				9B4977C81EBD3D3E00B65019 /* NFA.swift in Sources */,
 				9B46A0801D78FEC900C1059E /* ConstantFunction.swift in Sources */,
 				9B4977CA1EBD3D5800B65019 /* DFA.swift in Sources */,
 				9B46A08B1D78FEC900C1059E /* Term.swift in Sources */,
 				9B4977E01EBE296900B65019 /* AutomatonIterator.swift in Sources */,
-				9B46A0911D78FEC900C1059E /* EnhancedNumber.swift in Sources */,
+				9B46A0911D78FEC900C1059E /* Enhanced.swift in Sources */,
 				9B46A08C1D78FEC900C1059E /* TrigonometricFunctions.swift in Sources */,
 				9B46A07A1D78FEC900C1059E /* GroupLike.swift in Sources */,
 				9B46A08E1D78FEC900C1059E /* Matrix.swift in Sources */,
 				9B46A07F1D78FEC900C1059E /* RingLikeProtocols.swift in Sources */,
+				9B2539B01FBE018100824CFC /* Interpolation.swift in Sources */,
 				9B4977D21EBE0D1000B65019 /* AutomatonState.swift in Sources */,
 				9B46A08D1D78FEC900C1059E /* Constants.swift in Sources */,
 				9B46A0891D78FEC900C1059E /* PolynomialFields.swift in Sources */,
 				9B46A0931D78FEC900C1059E /* AdvancedNumeric.swift in Sources */,
 				9B4977CC1EBD3D6900B65019 /* Automaton.swift in Sources */,
 				9B46A0861D78FEC900C1059E /* Growth.swift in Sources */,
+				9B4C42991FBF97DB00786391 /* LinuxSupport.swift in Sources */,
+				9B4C429B1FBFB0BB00786391 /* General.swift in Sources */,
+				9B2539AC1FBE015F00824CFC /* FloatingPointNumber.swift in Sources */,
 				9B46A0921D78FEC900C1059E /* Numbers.swift in Sources */,
 				9B46A0971D78FEC900C1059E /* RationalNumber.swift in Sources */,
 				9B46A07C1D78FEC900C1059E /* ModuleLike.swift in Sources */,
@@ -629,7 +662,9 @@
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_ENABLE_MODULES = NO;
 				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = NO;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = NO;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
@@ -637,7 +672,11 @@
 				CLANG_WARN_ENUM_CONVERSION = NO;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = NO;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = NO;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
@@ -670,6 +709,7 @@
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -686,7 +726,9 @@
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_ENABLE_MODULES = NO;
 				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = NO;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = NO;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
@@ -694,7 +736,11 @@
 				CLANG_WARN_ENUM_CONVERSION = NO;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = NO;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = NO;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
@@ -720,6 +766,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -747,7 +794,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
@@ -772,7 +820,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Kraft.Math;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
@@ -787,7 +836,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Kraft.MathTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -800,7 +850,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Kraft.MathTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -857,6 +908,7 @@
 				9B825EAD1EBF19EE003A9B9C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

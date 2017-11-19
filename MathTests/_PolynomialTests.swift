@@ -12,7 +12,7 @@ import Math
 class _PolynomialTests: XCTestCase {
 	// MID_PRIO
     
-    static var allTests : [(String, (_PolynomialTests) -> () throws -> () )] {
+    static var allTests: [(String, (_PolynomialTests) -> () throws -> Void )] {
         return [
             ("testEqualsToPolynomial", testEqualsToPolynomial)
         ]
@@ -26,7 +26,7 @@ class _PolynomialTests: XCTestCase {
 				coefficients.append((Math.random() & 0xF))
 			}
 			var p = Polynomial<Double>()
-			var f : Function = ConstantFunction(0)
+			var f: Function = ConstantFunction(0)
 			for i in coefficients.indices.reversed() {
 				p[i] = coefficients[i].double
 				f += coefficients[i].double * (x^i.double)

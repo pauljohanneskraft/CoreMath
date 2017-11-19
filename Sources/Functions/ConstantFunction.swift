@@ -10,35 +10,42 @@ import Foundation
 
 internal typealias Constant = ConstantFunction
 
-public struct ConstantFunction : Function, ExpressibleByIntegerLiteral, ExpressibleByFloatLiteral {
+public struct ConstantFunction: Function, ExpressibleByIntegerLiteral, ExpressibleByFloatLiteral {
 	
-	public var value : Double
+	public var value: Double
 	
-    public init(_ value:		Double	) { self.value = value					}
+    public init(_ value: Double	) { self.value = value					}
     public init(integerLiteral:	Int		) { self.init( Double(integerLiteral) )	}
     public init(floatLiteral:	Double	) { self.init( floatLiteral			  )	}
 	
-	public var description	: String	{ return self.value.reducedDescription	} // e.g. "1" instead of "1.0"
-	public var derivative	: Function	{ return ConstantFunction(0.0)			} // f = a, f' = 0
-	public var integral		: Function	{ return value * _Polynomial(degree: 1)	} // f = a, F = a * x
-	public var reduced		: Function	{ return self							} // not reducable
+	public var description: String { return self.value.reducedDescription	} // e.g. "1" instead of "1.0"
+	public var derivative: Function { return ConstantFunction(0.0)			} // f = a, f' = 0
+	public var integral: Function { return value * _Polynomial(degree: 1)	} // f = a, F = a * x
+	public var reduced: Function { return self							} // not reducable
 	
-	public func coefficientDescription	(first: Bool	) -> String { return first ? value.reducedDescription : "\(value < 0 ? "-" : "+") \(value.abs.reducedDescription)"	}
-	public func equals					(to:	Function) -> Bool	{ return Optional(value) == (to as? Constant)?.value	}
-	public func call					(x:		Double	) -> Double { return value											}
+	public func coefficientDescription(first: Bool) -> String {
+        if first {
+            return value.reducedDescription
+        } else {
+            let sign = value < 0 ? "-" : "+"
+            return sign + " " + value.abs.reducedDescription
+        }
+    }
+	public func equals					(to:	Function) -> Bool { return Optional(value) == (to as? Constant)?.value	}
+	public func call					(x: Double	) -> Double { return value											}
 }
 
 public func + (lhs: Function, rhs: Double	) -> Function { return lhs + Constant(rhs)	}
-public func + (lhs: Double	, rhs: Function	) -> Function { return Constant(lhs) + rhs	}
+public func + (lhs: Double, rhs: Function	) -> Function { return Constant(lhs) + rhs	}
 
 public func - (lhs: Function, rhs: Double	) -> Function { return lhs + Constant(-rhs)	}
-public func - (lhs: Double	, rhs: Function	) -> Function { return Constant(lhs)+(-rhs)	}
+public func - (lhs: Double, rhs: Function	) -> Function { return Constant(lhs)+(-rhs)	}
 
 public func * (lhs: Function, rhs: Double	) -> Function { return lhs * Constant(rhs)	}
-public func * (lhs: Double	, rhs: Function	) -> Function { return Constant(lhs) * rhs	}
+public func * (lhs: Double, rhs: Function	) -> Function { return Constant(lhs) * rhs	}
 
 public func / (lhs: Function, rhs: Double	) -> Function { return lhs / Constant(rhs)	}
-public func / (lhs: Double	, rhs: Function	) -> Function { return Constant(lhs) / rhs	}
+public func / (lhs: Double, rhs: Function	) -> Function { return Constant(lhs) / rhs	}
 
 public func += (lhs: inout Function, rhs: Double) { lhs = lhs + rhs }
 public func -= (lhs: inout Function, rhs: Double) { lhs = lhs - rhs }

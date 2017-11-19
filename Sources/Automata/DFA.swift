@@ -23,16 +23,16 @@ struct DeterministicFiniteAutomaton<Character: Hashable> {
         guard stateLookup[initialState] != nil else { return nil }
     }
     
-    var alphabet:       Set<Character>
-    let initialState:   Int
+    var alphabet: Set<Character>
+    let initialState: Int
     
-    var states:         Set<DeterministicFiniteAutomatonState<Character>> {
+    var states: Set<DeterministicFiniteAutomatonState<Character>> {
         return Set(stateLookup.values)
     }
     
-    var finalStates:    Set<Int>
+    var finalStates: Set<Int>
     
-    var stateLookup:    [Int:DeterministicFiniteAutomatonState<Character>]
+    var stateLookup: [Int: DeterministicFiniteAutomatonState<Character>]
     
     private var iterator: DeterministicFiniteAutomatonIterator<Character> {
         return DeterministicFiniteAutomatonIterator(automaton: self)

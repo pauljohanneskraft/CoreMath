@@ -13,12 +13,12 @@ public enum Trigonometric {
 	public static let cos = cosine
 }
 
-private let sine    : CustomFunction = CustomFunction("sin(x)",
-                                                      function:		{ return sin($0)	},
-                                                      integral:		{ return -cosine	},
-                                                      derivative:	{ return cosine		})
+private let sine: CustomFunction = CustomFunction("sin(x)",
+                                                      function: { return sin($0)	},
+                                                      integral: { return -cosine	},
+                                                      derivative: { return cosine		})
 
-private let cosine  : CustomFunction = CustomFunction("cos(x)",
-                                                      function:		{ return cos($0)	},
-                                                      integral:		{ return sine		},
-                                                      derivative:	{ return -sine		})
+private let cosine: CustomFunction = CustomFunction("cos(x)",
+                                                      function: { return cos($0)	},
+                                                      integral: { return sine		},
+                                                      derivative: { return -sine		})

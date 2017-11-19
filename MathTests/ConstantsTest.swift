@@ -11,7 +11,7 @@ import Math
 
 class ConstantsTest: XCTestCase {
     
-    static var allTests : [(String, (ConstantsTest) -> () throws -> () )] {
+    static var allTests: [(String, (ConstantsTest) -> () throws -> Void )] {
         return [
             ("testEverything", testEverything)
         ]
@@ -49,7 +49,6 @@ class ConstantsTest: XCTestCase {
 		print("g:          ", Constants.Physics.g)
 		// 
 	}
-	
     
     func testPiUsingCoprimes() {
         
@@ -57,8 +56,7 @@ class ConstantsTest: XCTestCase {
             var a = a
             var b = b
             while a != b {
-                if a > b    { a -= b }
-                else        { b -= a }
+                if a > b { a -= b } else { b -= a }
             }
             return a
         }
@@ -81,8 +79,7 @@ class ConstantsTest: XCTestCase {
                 let a = Int(arc4random())
                 let b = Int(arc4random())
                 
-                if gcd(a, b) > 1    { cofactor += 1 }
-                else                { coprimes += 1 }
+                if gcd(a, b) > 1 { cofactor += 1 } else { coprimes += 1 }
             }
             count += inner.endIndex
             pi = sqrt6/sqrt(Double(coprimes)/Double(count))

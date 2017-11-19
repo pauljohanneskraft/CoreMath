@@ -15,7 +15,7 @@ import Math
 
 class ComplexTests: XCTestCase, TypeTest {
 	
-    static var allTests : [(String, (ComplexTests) -> () throws -> () )] {
+    static var allTests: [(String, (ComplexTests) -> () throws -> Void )] {
         return [
             ("testAddition", testAddition),
             ("testDivision", testDivision),
@@ -35,40 +35,40 @@ class ComplexTests: XCTestCase, TypeTest {
 	override func setUp() {
         elements = []
 		for _ in 0 ..< 30 {
-			let c = Complex((Int.random & 0xFFFFFF).double)
+            let c = Complex(real: (Int.random & 0xFFFFFF).double)
 			// print("added \(c)")
 			XCTAssert(c != 0)
 			elements.append(c)
 		}
 	}
 	
-	var elements : [Complex<Double>] = []
+	var elements: [Complex<Double>] = []
 	
 	// basic arithmetic
 	func testAddition() {
-		forAll("+", assert: { $0.real + $1.real == $2.real }) { $0 + $1 }
+		forAll("+", assert: { $0.real + $1.real == $2.real }, +)
 	}
 	
 	func testSubtraction() {
-		forAll("-", assert: { $0.real - $1.real == $2.real }) { $0 - $1 }
+		forAll("-", assert: { $0.real - $1.real == $2.real }, -)
 	}
 	
 	func testMultiplication() {
-		forAll("*", assert: { $0.real * $1.real == $2.real }) { $0 * $1 }
+		forAll("*", assert: { $0.real * $1.real == $2.real }, *)
 	}
 	
 	func testDivision() {
-		forAll("/", assert: { ($0.real / $1.real) == $2.real }) { $0 / $1 }
+		forAll("/", assert: { ($0.real / $1.real) == $2.real }, /)
 	}
 	
 	func testPrefix() {
-		forAll("-", assert: { $0.real == -$1.real && $0.imaginary == -$1.imaginary }) { -$0 }
+        forAll("-", assert: { $0.real == -$1.real && $0.imaginary == -$1.imaginary }, { -$0 })
 	}
 	
 	func testPolarForm() {
-		forAll("p", assert: { $0.real == $1.real && $0.imaginary == $1.imaginary }) { a -> Complex<Double> in
+		forAll("p", assert: { $0.real == $1.real && $0.imaginary == $1.imaginary }, { a -> Complex<Double> in
 			return Complex<Double>(polarForm: a.polarForm)
-		}
+		})
 	}
 	
 	func testHashValue() {
@@ -76,18 +76,20 @@ class ComplexTests: XCTestCase, TypeTest {
 		hashValueTest(for: Int8	.self)
 	}
 	
-	func hashValueTest < T : Numeric > (for: T.Type) {
-		print(Complex<T>(T(integerLiteral: 3)).hashValue)
+    func hashValueTest < T > (for type: T.Type) where T: ExpressibleByIntegerLiteral {
+        // let three: T = 3
+        // let complThree = Complex<T>(three)
+		// print(three.hashValue)
 	}
 	
 	func testReadmeExample() {
-		let a : Complex<Int> = -4
-		XCTAssert(a.sqrt == Complex<Int>(real: 0, imaginary: 2))
+		let a: Complex<Int> = -4
+		XCTAssert(a.sqrt == Complex(real: 0, imaginary: 2))
 	}
 	
 	// specials
 	func testConjugate() {
-		forAll("conj",assert: { $0.real == $1.real && $0.imaginary == -($1.imaginary) }) { $0.conjugate }
+		forAll("conj", assert: { $0.real == $1.real && $0.imaginary == -($1.imaginary) }, { $0.conjugate })
 	}
 	
 	func testRandom() {
@@ -118,7 +120,7 @@ class ComplexTests: XCTestCase, TypeTest {
         // print(Math.pow(0xFFF, 0xF))
         for _ in 0 ..< 10000 {
             let a = (Math.random() & 0xFFF).double
-            let c = Complex(a)
+            let c = Complex(real: a)
             let p = (Math.random() & 0xF).double
             let p0 = c.power(p)
             let p1 = p0.real

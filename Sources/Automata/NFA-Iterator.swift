@@ -6,7 +6,6 @@
 //  Copyright © 2017 pauljohanneskraft. All rights reserved.
 //
 
-
 struct NondeterministicFiniteAutomatonIterator<Character: Hashable> {
     var currentStates: Set<NondeterministicFiniteAutomatonState<Character>>
     var automaton: NondeterministicFiniteAutomaton<Character>

@@ -13,9 +13,6 @@ class DFATest: XCTestCase {
     
     func testDFASimple() {
         
-        
-        
-        
     }
     
     func testDFAVerySimple() {
@@ -36,13 +33,15 @@ class DFATest: XCTestCase {
             }
         }
         
-        let automaton = DeterministicFiniteAutomaton(alphabet: ["a", "b"], initialState: 0, finalStates: [1], states: [state0, state1])!
+        let automaton = DeterministicFiniteAutomaton(alphabet: ["a", "b"],
+                                                     initialState: 0, finalStates: [1],
+                                                     states: [state0, state1])!
         
-        XCTAssert( automaton.accepts(word: "aaaabb".characters))
-        XCTAssert(!automaton.accepts(word: "abbbba".characters))
-        XCTAssert( automaton.accepts(word: "b".characters))
-        XCTAssert(!automaton.accepts(word: "aa".characters))
-        XCTAssert( automaton.accepts(word: "abab".characters))
-        XCTAssert(!automaton.accepts(word: "ac".characters))
+        XCTAssert( automaton.accepts(word: "aaaabb"))
+        XCTAssert(!automaton.accepts(word: "abbbba"))
+        XCTAssert( automaton.accepts(word: "b"))
+        XCTAssert(!automaton.accepts(word: "aa"))
+        XCTAssert( automaton.accepts(word: "abab"))
+        XCTAssert(!automaton.accepts(word: "ac"))
     }
 }

@@ -7,13 +7,13 @@
 //
 
 struct NondeterministicFiniteAutomaton<Character: Hashable> {
-    var stateLookup: [Int:NondeterministicFiniteAutomatonState<Character>]
+    var stateLookup: [Int: NondeterministicFiniteAutomatonState<Character>]
     var states: Set<NondeterministicFiniteAutomatonState<Character>> {
         return Set(stateLookup.values)
     }
-    var alphabet:       Set<Character>
-    var initialStates:  Set<Int>
-    var finalStates:    Set<Int>
+    var alphabet: Set<Character>
+    var initialStates: Set<Int>
+    var finalStates: Set<Int>
 
     init?(alphabet: Set<Character>,
           initialStates: Set<Int>,
@@ -37,6 +37,7 @@ struct NondeterministicFiniteAutomaton<Character: Hashable> {
         return iterator.accepts(word: word)
     }
     
+    /*
     func generateDFA() -> DeterministicFiniteAutomaton<Character> {
         var newStates = [Int:DeterministicFiniteAutomatonState<Character>]()
         
@@ -58,5 +59,5 @@ struct NondeterministicFiniteAutomaton<Character: Hashable> {
         for state in self.states {
             
         }
-    }
+    } */
 }

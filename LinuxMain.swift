@@ -1,4 +1,3 @@
-
 import XCTest
 
 @testable import MathTests
@@ -28,4 +27,3 @@ XCTMain([
     testCase(GrowthTests.allTests),
     testCase(_PolynomialTests.allTests)
 ])
-

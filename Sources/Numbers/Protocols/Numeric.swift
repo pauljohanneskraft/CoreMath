@@ -8,16 +8,16 @@
 
 import Foundation
 
-public protocol Numeric : BasicArithmetic, Randomizable {
-	var integer		: Int		{ get }
-	var isInteger	: Bool		{ get }
-	var double		: Double	{ get }
-	var sqrt		: Self		{ get }
+public protocol Numeric: BasicArithmetic, Randomizable {
+	var integer: Int { get }
+	var isInteger: Bool { get }
+	var double: Double { get }
+	var sqrt: Self { get }
 	func power(_ v: Double) -> Self
 }
 
 extension Numeric {
-	public var sqrt : Self {
+	public var sqrt: Self {
 		return Self(floatLiteral: pow(self.double, 1.0/2))
 	}
 	
@@ -25,7 +25,7 @@ extension Numeric {
 		return Self(floatLiteral: pow(self.double, v))
 	}
 	
-	public var primeFactors : [Int] {
+	public var primeFactors: [Int] {
 		guard self.isInteger else { return [] }
 		var this = self.integer
 		guard this != 0 else { return [0] }

@@ -11,7 +11,7 @@ import Math
 
 class TermTests: XCTestCase {
 	
-    static var allTests : [(String, (TermTests) -> () throws -> () )] {
+    static var allTests: [(String, (TermTests) -> () throws -> Void )] {
         return [ ("testPolynomial", testPolynomial) ]
     }
     
@@ -106,4 +106,3 @@ class TermTests: XCTestCase {
     }
 	*/
 }
-

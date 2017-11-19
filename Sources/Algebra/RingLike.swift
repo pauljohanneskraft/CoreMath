@@ -12,7 +12,9 @@ import Foundation
 public struct Ring<Element : Hashable, Comparable> : RingType {
     typealias Element0 = Element
     typealias Element1 = Element
-    init(_ set: Set<Element>, op0: (Element, Element) -> Element, neutralElement0: Element, inverse0: Element -> Element, op1: (Element, Element) -> Element, neutralElement1: Element) {
+    init(_ set: Set<Element>, op0: (Element, Element) -> Element,
+ neutralElement0: Element, inverse0: Element -> Element, op1:
+ (Element, Element) -> Element, neutralElement1: Element) {
         self.set = set
         self.op0 = op0
         self.neutralElement0 = neutralElement0
@@ -31,8 +33,3 @@ public struct Ring<Element : Hashable, Comparable> : RingType {
     var inverse0 : Element -> Element
 }
 */
-
-
-
-
-

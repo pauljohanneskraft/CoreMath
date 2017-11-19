@@ -12,7 +12,7 @@ import Math
 class PolynomialTests: XCTestCase {
 	// MID_PRIO
 	
-    static var allTests : [(String, (PolynomialTests) -> () throws -> () )] {
+    static var allTests: [(String, (PolynomialTests) -> () throws -> Void )] {
         return [
             ("testSubscript", testSubscript),
             ("testAddition", testAddition),
@@ -67,7 +67,7 @@ class PolynomialTests: XCTestCase {
 			let b = Math.random() & 0xFF + 0xF
 			let c = Math.random() & 0xFF + 0xF
 			let d = Math.random() & 0xFF + 0xF
-			let latex = Polynomial<Int>((a,b), (c,d)).latex
+			let latex = Polynomial<Int>((a, b), (c, d)).latex
 			if b == d {
 				equals = true
 				// print("equals")

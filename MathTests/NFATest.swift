@@ -16,7 +16,6 @@ class NFATest: XCTestCase {
     
     func testNFA_Medium() {
         
-        
         let state0 = NFAState_Bool(id: 0) {
             switch $0 {
             case false: return [0, 1]
@@ -45,7 +44,8 @@ class NFATest: XCTestCase {
             }
         }
         
-        let automaton = NFA_Bool(alphabet: [true, false], initialStates: [0], finalStates: [3], states: [state0, state1, state2, state3])!
+        let automaton = NFA_Bool(alphabet: [true, false], initialStates: [0],
+                                 finalStates: [3], states: [state0, state1, state2, state3])!
         
         print(automaton.accepts(word: [true, false, false, true, false]))
     }
@@ -68,13 +68,14 @@ class NFATest: XCTestCase {
             }
         }
         
-        let automaton = NondeterministicFiniteAutomaton(alphabet: ["a", "b"], initialStates: [0], finalStates: [1], states: [state0, state1])!
+        let automaton = NondeterministicFiniteAutomaton(alphabet: ["a", "b"], initialStates: [0],
+                                                        finalStates: [1], states: [state0, state1])!
         
-        XCTAssert( automaton.accepts(word: "aaaabb".characters))
-        XCTAssert(!automaton.accepts(word: "abbbba".characters))
-        XCTAssert( automaton.accepts(word: "b".characters))
-        XCTAssert(!automaton.accepts(word: "aa".characters))
-        XCTAssert( automaton.accepts(word: "abab".characters))
+        XCTAssert( automaton.accepts(word: "aaaabb"))
+        XCTAssert(!automaton.accepts(word: "abbbba"))
+        XCTAssert( automaton.accepts(word: "b"))
+        XCTAssert(!automaton.accepts(word: "aa"))
+        XCTAssert( automaton.accepts(word: "abab"))
     }
 
 }

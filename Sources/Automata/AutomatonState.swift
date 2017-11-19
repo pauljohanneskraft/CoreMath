@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 protocol AutomatonState: Hashable {
     associatedtype Character
     associatedtype TransitionResult
@@ -21,7 +20,7 @@ protocol AutomatonState: Hashable {
 extension AutomatonState {
     var hashValue: Int { return id }
     
-    static func ==(a: Self, b: Self) -> Bool {
+    static func == (a: Self, b: Self) -> Bool {
         return a.id == b.id
     }
 }

@@ -6,87 +6,100 @@
 //  Copyright © 2016 pauljohanneskraft. All rights reserved.
 //
 
-public struct Matrix < N > : ExpressibleByArrayLiteral, CustomStringConvertible {
-	public typealias Element = [N]
-	
-	public fileprivate(set) var elements : [[N]]
-	
-	public init(_			 elements: [[N]]	 ) { self.elements = elements; precondition(elements.count > 0 && isRect) }
-	public init(arrayLiteral elements: Element...) { self.init(elements)						}
-	
-	public var isSquare : Bool						{ return elements.count == elements[0].count }
-	public var size		: (rows: Int, columns: Int) { return (elements.count, elements[0].count) }
-	
-	private var isRect : Bool {
-		/* debugging, in O(rows) */
-		let columnCount = elements[0].count
-		for e in elements { guard e.count == columnCount else { return false } }
-		return true
-	}
-	
-	public var oneLineDescription : String {
-		let (c,d) = size
-		var desc = "| "
-		for i in 0..<c {
-			for j in 0..<d { desc += "\(elements[i][j]) " }
-			desc += "| "
-		}
-		desc.characters = desc.characters.dropLast()
-		return desc
-	}
-	
-	public var description : String {
-		let c = elements.count
-		let d = elements[0].count
-		var desc = ""
-		for i in 0..<c {
-			desc += "| "
-			for j in 0..<d { desc += "\(elements[i][j]) " }
-			desc += "|\n"
-		}
-		return desc
-	}
-	
-	public subscript(index: Int) -> [N] {
-		get { return elements[index] }
-		set { elements[index] = newValue }
-	}
+public struct Matrix <Number> {
+    public typealias Row = [Number]
+    public typealias TwoDimensionalArray = [[Number]]
+    public typealias Size = (rows: Int, columns: Int)
+    
+    public private(set) var elements: TwoDimensionalArray
+    
+    public init(elements: TwoDimensionalArray) {
+        self.elements = elements
+        assert(isRect)
+    }
 }
 
-extension Matrix where N : BasicArithmetic {
-	
-	public static func identity(_ count: Int) -> Matrix<N> {
-		var mat = [[N]](repeating: [N](repeating: 0, count: count), count: count)
+extension Matrix: ExpressibleByArrayLiteral {
+    public init(arrayLiteral elements: Row...) {
+        self.init(elements: elements)
+    }
+    
+    public init(_ elements: TwoDimensionalArray) {
+        self.init(elements: elements)
+    }
+}
+
+extension Matrix {
+    public var isRect: Bool {
+        guard let columnCount = elements.first?.count else {
+            return false
+        }
+        return !elements.contains { $0.count != columnCount }
+    }
+    
+    public var size: Size {
+        return (elements.count, elements.first?.count ?? 0)
+    }
+    
+    public var isSquare: Bool {
+        return elements.count == elements.first?.count ?? 0
+    }
+    
+    public var oneLineDescription: String {
+        let (c, d) = size
+        var desc = "| "
+        for i in 0..<c {
+            for j in 0..<d { desc += "\(elements[i][j]) " }
+            desc += "| "
+        }
+        desc = String(desc.dropLast())
+        return desc
+    }
+    
+    public subscript(index: Int) -> [Number] {
+        get { return elements[index] }
+        set { elements[index] = newValue }
+    }
+}
+
+extension Matrix: CustomStringConvertible {
+    public var description: String {
+        let c = elements.count
+        let d = elements.first?.count ?? 0
+        var desc = ""
+        for i in 0..<c {
+            desc += "| "
+            for j in 0..<d { desc += "\(elements[i][j]) " }
+            desc += "|\n"
+        }
+        return desc
+    }
+}
+
+extension Matrix where Number: BasicArithmetic {
+	public static func identity(_ count: Int) -> Matrix {
+		var mat = [[Number]](repeating: [Number](repeating: 0, count: count), count: count)
 		for i in 0..<count { mat[i][i] = 1 }
-		return Matrix<N> (mat)
+		return Matrix(mat)
 	}
 	
-	public var rank : Int {
-		func onlyZeros(_ row: Element) -> Bool {
-			for e in row { guard e == 0 else { return false } }
-			return true
-		}
-		
-		let rowEchelonForm = self.rowEchelonForm
-		var i = rowEchelonForm.size.rows - 1
-		// print(rowEchelonForm)
-		while i >= 0 {
-			// print("checking line", i, ":", rowEchelonForm[i])
-			guard onlyZeros(rowEchelonForm[i]) else { return i + 1 }
-			i -= 1
-		}
-		return 0
+	public var rank: Int {
+        let rowEchelonForm = self.rowEchelonForm
+        for row in rowEchelonForm.elements.indices.reversed() {
+            guard rowEchelonForm.emptyRow(at: row) else { return row + 1 }
+        }
+        return 0
 	}
 	
-	public var rowEchelonForm : Matrix<N> {
+	public var rowEchelonForm: Matrix {
 		
-		func removeLeadingNumber(row: inout Element, withLine: Element, startAt: Int) {
-			let coeff = row[startAt] / withLine[startAt]
+		func removeLeadingNumber(row: inout Row, withRow: Row, startAt: Int) {
+			let coeff = row[startAt] / withRow[startAt]
 			
-			if coeff != 0 { for i in startAt ..< row.count { row[i] -= coeff*withLine[i] } }
+			if coeff != 0 { for i in startAt ..< row.count { row[i] -= coeff*withRow[i] } }
 		}
 		
-		func divide(row: inout Element, by: N, startAt: Int) {
+		func divide(row: inout Row, by: Number, startAt: Int) {
 			assert(by != 0)
 			for i in startAt ..< row.count { row[i] /= by }
 		}
@@ -99,12 +112,9 @@ extension Matrix where N : BasicArithmetic {
 		while column < min(size.rows, size.columns) {
 			// looking for element which is not 0 at index "row"
 			if elements[row][column] == 0 {
-				for i in (row+1) ..< size.rows {
-					if elements[i][column] != 0 {
-						swap(&elements[row], &elements[i])
-						// print("swapped")
-						break
-					}
+				for i in (row+1) ..< size.rows where elements[i][column] != 0 {
+                    elements.swapAt(row, i)
+                    break
 				}
 			}
 			// print("did choose changing row")
@@ -112,24 +122,22 @@ extension Matrix where N : BasicArithmetic {
 			if elements[row][column] == 0 { column += 1; continue }
 			divide(row: &elements[row], by: elements[row][column], startAt: row)
 			for i in (row+1) ..< size.rows {
-				removeLeadingNumber(row: &elements[i], withLine: elements[row], startAt: column)
+				removeLeadingNumber(row: &elements[i], withRow: elements[row], startAt: column)
 			}
 			column += 1
 			row += 1
 		}
 		return Matrix(elements) // TODO!!
 	}
+    
+    private func emptyRow(at index: Int) -> Bool {
+        return !elements[index].contains { $0 != 0 }
+    }
 	
-	public var reducedRowEchelonForm : Matrix<N> {
-		
-		func subtract(line: [N], from: inout [N], multipliedBy: N = 1) {
-			assert(line.count == from.count)
-			for i in line.indices { from[i] -= line[i]*multipliedBy }
-		}
-		
-		func onlyZeros(_ row: Element) -> Bool {
-			for e in row { guard e == 0 else { return false } }
-			return true
+	public var reducedRowEchelonForm: Matrix {
+		func subtract(row: Row, from otherRow: inout Row, multipliedBy multiplier: Number = 1) {
+			assert(row.count == otherRow.count)
+			for i in row.indices { otherRow[i] -= row[i]*multiplier }
 		}
 		
 		var rowEchelonForm = self.rowEchelonForm
@@ -137,18 +145,13 @@ extension Matrix where N : BasicArithmetic {
 		var i = rows - 1
 		
 		while i >= 0 {
-			if !onlyZeros(rowEchelonForm[i]) {
-				for j in 0 ..< i {
-					// print("\nbefore:\n", rowEchelonForm, "\n")
-					if rowEchelonForm[i][i] != 0 {
-						let factor = rowEchelonForm.elements[j][i] / rowEchelonForm.elements[i][i]
-						// print(i, j, factor)
-						subtract(line: rowEchelonForm.elements[i],
-						         from: &rowEchelonForm.elements[j],
-						         multipliedBy: factor)
-					}
-					// print("\nafter:\n", rowEchelonForm, "\n")
-				}
+			if !rowEchelonForm.emptyRow(at: i) {
+                for j in 0 ..< i where rowEchelonForm[i][i] != 0 {
+                    let factor = rowEchelonForm.elements[j][i] / rowEchelonForm.elements[i][i]
+                    subtract(row: rowEchelonForm.elements[i],
+                             from: &rowEchelonForm.elements[j],
+                             multipliedBy: factor)
+                }
 			}
 			i -= 1
 		}
@@ -156,11 +159,11 @@ extension Matrix where N : BasicArithmetic {
 		return rowEchelonForm // TODO!!
 	}
 	
-	public var inverse : Matrix<N> {
+	public var inverse: Matrix {
 		assert(isSquare)
 		let rows = size.rows
 		var two = self
-		var id = Matrix<N>.identity(rows)
+		var id = Matrix.identity(rows)
 		for i in two.elements.indices { two.elements[i].append(contentsOf: id.elements[i]) }
 		two = two.reducedRowEchelonForm
 		let drows = rows << 1
@@ -168,12 +171,13 @@ extension Matrix where N : BasicArithmetic {
 		return id
 	}
 	
-	public var determinant : N {
+	public var determinant: Number {
 		assert(isSquare)
 		let count = elements.count
 		
 		guard count > 3 else {
 			switch count {
+            case 0: return 0
 			case 1: return elements[0][0]
 			case 2: return elements[0][0] * elements[1][1] - elements[0][1] * elements[1][0]
 			case 3:
@@ -187,124 +191,108 @@ extension Matrix where N : BasicArithmetic {
 			default: fatalError("count is not allowed. (\(count))")
 			}
 		}
-		var res : N = 0
+		var res: Number = 0
 		let indices = 0..<(count - 1)
 		for i in 0..<count {
 			var matrix = elements
 			matrix.remove(at: 0)
 			for j in indices { matrix[j].remove(at: i) }
 			let det = Matrix(matrix).determinant * elements[0][i]
-			if i & 1 == 0   { res += det }
-			else            { res -= det }
+			if i & 1 == 0 { res += det } else { res -= det }
 		}
 		return res
 	}
 }
 
-extension Matrix where N : Numeric {
-	public var eigenvalues : [N]? {
-		assert(isSquare)
-		let c = size.rows
-		var mat = [[Polynomial<N>]]()
-		for i in 0 ..< c {
-			var arr = [Polynomial<N>]()
-			for j in 0 ..< c {
-				let elem : Polynomial<N>
-				if i == j { elem = Polynomial<N>([self.elements[i][j], -1]) }
-				else      { elem = Polynomial<N>([self.elements[i][j]    ]) }
-				arr.append(elem)
-			}
-			mat.append(arr)
-		}
-		let pm = Matrix< Polynomial<N> >(mat)
-		print(pm)
-		let pmd = pm.determinant
-		print(pmd)
-		return pmd.zeros
-	}
+extension Matrix where Number: Numeric {
+    public var eigenvalues: [Number]? {
+        assert(isSquare)
+        let rowCount = size.rows
+        let range = (0..<rowCount)
+        let mat = range.map { i -> [Polynomial<Number>] in
+            let row = range.map { j -> Polynomial<Number> in
+                Polynomial<Number>(i == j ? [self.elements[i][j], -1] : [self.elements[i][j]])
+            }
+            return row
+        }
+        return Matrix<Polynomial<Number>>(mat).determinant.zeros
+    }
 }
 
-public func -= < N : BasicArithmetic > (lhs: inout Matrix<N>, rhs: Matrix<N>) {
-	assert(lhs.size == rhs.size)
-	let size = lhs.size
-	for i in 0 ..< size.rows {
-		for j in 0 ..< size.columns { lhs.elements[i][j] -= rhs.elements[i][j] }
-	}
+extension Matrix: All {}
+
+extension Matrix where Number: BasicArithmetic {
+    public static func += (left: inout Matrix, right: Matrix) {
+        assert(left.size == right.size)
+        for i in 0..<left.elements.count {
+            for j in 0..<left.elements[0].count { left.elements[i][j] += right.elements[i][j] }
+        }
+    }
+    
+    public static func -= (lhs: inout Matrix, rhs: Matrix) {
+        assert(lhs.size == rhs.size)
+        let size = lhs.size
+        for i in 0 ..< size.rows {
+            for j in 0 ..< size.columns { lhs.elements[i][j] -= rhs.elements[i][j] }
+        }
+    }
+    
+    public static func *= (lhs: inout Matrix, rhs: Number) {
+        let size = lhs.size
+        for i in 0 ..< size.rows {
+            for j in 0 ..< size.columns { lhs.elements[i][j] *= rhs }
+        }
+    }
+    
+    public static func *= (left: inout Matrix, right: Matrix) {
+        assert(left.size.columns == right.size.rows)
+        var matrix = TwoDimensionalArray()
+        let ls = left.size
+        let lrows = ls.rows
+        let lcols = ls.columns
+        let rcols = right.size.columns
+        
+        for i in 0 ..< lrows {
+            var array = Row()
+            for j in 0 ..< rcols {
+                var value: Number = 0
+                for k in 0 ..< lcols { value += (left.elements[i][k]*right.elements[k][j]) }
+                array.append(value)
+            }
+            matrix.append(array)
+        }
+        left = Matrix(matrix)
+    }
+    
+    public static func * (lhs: Matrix, rhs: Number) -> Matrix {
+        return lhs.copy { $0 *= rhs }
+    }
+    
+    public static func * (lhs: Number, rhs: Matrix) -> Matrix {
+        return rhs.copy { $0 *= lhs }
+    }
+    
+    public static func * (lhs: Matrix, rhs: Matrix) -> Matrix {
+        return lhs.copy { $0 *= rhs }
+    }
+    
+    public static func + (lhs: Matrix, rhs: Matrix) -> Matrix {
+        return lhs.copy { $0 += rhs }
+    }
+    
+    public static func - (lhs: Matrix, rhs: Matrix) -> Matrix {
+        return lhs.copy { $0 -= rhs }
+    }
 }
 
-public func - < N : BasicArithmetic > (lhs: Matrix<N>, rhs: Matrix<N>) -> Matrix<N> {
-	var lhs = lhs
-	lhs -= rhs
-	return lhs
+extension Matrix where Number: Equatable {
+    public static func == (lhs: Matrix, rhs: Matrix) -> Bool {
+        guard lhs.size == rhs.size else { return false }
+        return lhs.elements == rhs.elements
+    }
 }
 
-public func *= < N : BasicArithmetic > (lhs: inout Matrix<N>, rhs: N) {
-	let size = lhs.size
-	for i in 0 ..< size.rows {
-		for j in 0 ..< size.columns { lhs.elements[i][j] *= rhs }
-	}
+private func == <T: Equatable>(lhs: [[T]], rhs: [[T]]) -> Bool {
+    guard lhs.count == rhs.count else { return false }
+    return !lhs.indices.contains(where: { lhs[$0] != rhs[$0] })
 }
-
-public func * < N : BasicArithmetic > (lhs: Matrix<N>, rhs: N) -> Matrix<N> {
-	var lhs = lhs
-	lhs *= rhs
-	return lhs
-}
-
-public func * < N : BasicArithmetic > (lhs: N, rhs: Matrix<N>) -> Matrix<N> {
-	var rhs = rhs
-	rhs *= lhs
-	return rhs
-}
-
-
-public func * < T : BasicArithmetic >(left: Matrix<T>, right: Matrix<T>) -> Matrix<T> {
-	var left = left
-	left *= right
-	return left
-}
-
-public func *= < T: BasicArithmetic >( left: inout Matrix<T>, right: Matrix<T>) {
-	assert(left.size.columns == right.size.rows)
-	var matrix = [[T]]()
-	let ls = left.size
-	let lrows = ls.rows
-	let lcols = ls.columns
-	let rcols = right.size.columns
-	
-	for i in 0 ..< lrows {
-		var array : [T] = []
-		for j in 0 ..< rcols {
-			var value : T = 0
-			for k in 0 ..< lcols { value += (left.elements[i][k]*right.elements[k][j]) }
-			array.append(value)
-		}
-		matrix.append(array)
-	}
-	left = Matrix(matrix)
-}
-
-public func += <T : BasicArithmetic>( left: inout Matrix<T>, right: Matrix<T>) {
-	assert(left.size == right.size)
-	for i in 0..<left.elements.count {
-		for j in 0..<left.elements[0].count { left.elements[i][j] += right.elements[i][j] }
-	}
-}
-
-public func + <T : BasicArithmetic>(left: Matrix<T>, right: Matrix<T>) -> Matrix<T> {
-	var matrix = left
-	matrix += right
-	return matrix
-}
-
-public func == < T : Equatable >(lhs: Matrix<T>, rhs: Matrix<T>) -> Bool {
-	guard lhs.size == rhs.size else { return false }
-	return lhs.elements == rhs.elements
-}
-
-private func == <T: Equatable>(left: [[T]], right: [[T]]) -> Bool {
-	guard left.count == right.count else { return false }
-	for row in 0..<left.count { guard left[row] == right[row] else { return false } }
-	return true
-}
-

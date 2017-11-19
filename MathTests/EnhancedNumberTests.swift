@@ -12,7 +12,7 @@ import Math
 class EnhancedNumberTests: XCTestCase, TypeTest {
 	typealias N = Z
 	
-    static var allTests : [(String, (EnhancedNumberTests) -> () throws -> () )] {
+    static var allTests: [(String, (EnhancedNumberTests) -> () throws -> Void )] {
         return [
             ("testAddition", testAddition),
             ("testSign", testSign),
@@ -33,26 +33,26 @@ class EnhancedNumberTests: XCTestCase, TypeTest {
 		for _ in 0 ..< 10 { elements.append(Enhanced<N>(integerLiteral: N.random % Int16.max.integer)) }
 	}
 	
-	var elements : [Enhanced<N>] = []
+	var elements: [Enhanced<N>] = []
 	
 	// basic arithmetic
-	func testAddition()         {
-		forAll("+", assert: { !$0.isNormal || !$1.isNormal || $0.integer + $1.integer == $2.integer })	{ $0 + $1 }
+	func testAddition() {
+		forAll("+", assert: { !$0.isNormal || !$1.isNormal || $0.integer + $1.integer == $2.integer }, +)
 	}
-	func testSubtraction()      {
-		forAll("-", assert: { !$0.isNormal || !$1.isNormal || $0.integer - $1.integer == $2.integer })	{ $0 - $1 }
+	func testSubtraction() {
+		forAll("-", assert: { !$0.isNormal || !$1.isNormal || $0.integer - $1.integer == $2.integer }, -)
 	}
-	func testMultiplication()   {
-		forAll("*", assert: { !$0.isNormal || !$1.isNormal || $0.integer * $1.integer == $2.integer })	{ $0 * $1 }
+	func testMultiplication() {
+		forAll("*", assert: { !$0.isNormal || !$1.isNormal || $0.integer * $1.integer == $2.integer }, *)
 	}
-	func testDivision()         {
-		forAll("/", assert: { !$0.isNormal || !$1.isNormal || $0.integer / $1.integer == $2.integer })	{ $0 / $1 }
+	func testDivision() {
+		forAll("/", assert: { !$0.isNormal || !$1.isNormal || $0.integer / $1.integer == $2.integer }, /)
 	}
 	
-	func testPrefixMinus()		{ forAll("-", assert: { $0 == -$1 })	{ -$0 } }
+	func testPrefixMinus() { forAll("-", assert: { $0 == -$1 }, { -$0 }) }
 	
-	func testReadmeExample()	{
-		let a : Enhanced<Int> = 5
+	func testReadmeExample() {
+		let a: Enhanced<Int> = 5
 		print( a / 0 )
 		XCTAssert( a / 0 == Enhanced<Int>.infinity(sign: false))
 	}
@@ -74,14 +74,14 @@ class EnhancedNumberTests: XCTestCase, TypeTest {
 		XCTAssert((-Double.infinity).hashValue == Enhanced<Int>.infinity(sign: true).hashValue)
 		for _ in 0 ..< 10 {
 			let r = Math.random()
-			XCTAssert(Enhanced<Int>(r).hashValue == r)
+            XCTAssertEqual(Enhanced<Int>(integerLiteral: r).hashValue, r)
 		}
 	}
 	
 	func testSign() {
 		for _ in 0..<100 {
 			let r = Math.random()
-			XCTAssert((r < 0) == Enhanced<Int>(r).sign)
+            XCTAssert((r < 0) == Enhanced<Int>(integerLiteral: r).sign)
 		}
 		XCTAssert(Enhanced<Int>.infinity(sign: false).sign == false)
 		XCTAssert(Enhanced<Int>.infinity(sign: true).sign == true)

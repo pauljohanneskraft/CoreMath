@@ -16,7 +16,7 @@ import Glibc
 class AdvancedNumericTests: XCTestCase {
 	// MID_PRIO
 	
-    static var allTests : [(String, (AdvancedNumericTests) -> () throws -> () )] {
+    static var allTests: [(String, (AdvancedNumericTests) -> () throws -> Void )] {
         return [
             ("testDoubleRemainder", testDoubleRemainder),
             ("testMod", testMod),
@@ -33,7 +33,7 @@ class AdvancedNumericTests: XCTestCase {
 		conformsToAdvancedNumeric(Int64 .self)
 	}
 	
-	func conformsToAdvancedNumeric<N : AdvancedNumeric>(_ type: N.Type) {
+	func conformsToAdvancedNumeric<N: AdvancedNumeric>(_ type: N.Type) {
 		print(type, "\tconforms to AdvancedNumeric.")
 	}
 		
@@ -46,7 +46,7 @@ class AdvancedNumericTests: XCTestCase {
 		mod(on: Double	.self)
 	}
 	
-	func mod< N : AdvancedNumeric >(on type: N.Type) {
+	func mod< N: AdvancedNumeric >(on type: N.Type) {
 		let a = N.init(integerLiteral: 20)
 		let am = a.mod(5)
 		// print(am)

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Term : Function {
+struct Term: Function {
 	
 	// stored properties
 	var factors : [ Function ]
@@ -18,7 +18,7 @@ struct Term : Function {
 	init(_ factors: [Function]	) { self.factors = factors }
 	
 	// computed properties
-	var integral : Function {
+	var integral: Function {
 		var factors = self.factors
 		// print("integral of", self)
 		guard factors.count > 2 else {
@@ -158,16 +158,18 @@ struct Term : Function {
 		}
 		// print(this.factors, poly, rest)
 		if poly1.degree != 0 { this.factors.append(poly1) }
-		let r = poly.polynomial * Polynomial<Double>(rest)
+        let r = poly.polynomial * Polynomial<Double>(floatLiteral: rest)
 		if r != 1.0 {
-			if r.degree == 0 { this.factors = [Constant(r[0])] + this.factors }
-			else { this.factors.append(PolynomialFunction(r).reduced) }
+			if r.degree == 0 {
+                this.factors = [Constant(r[0])] + this.factors
+            } else {
+                this.factors.append(PolynomialFunction(r).reduced)
+            }
 		}
 		if this.factors.count >  1 { return this }
 		if this.factors.count == 1 { return this.factors[0] }
 		return Constant(1.0)
 	}
-
 	
 	// functions
 	func call(x: Double) -> Double {
@@ -176,11 +178,14 @@ struct Term : Function {
 		return res
 	}
 	
+    // swiftlint:disable:next cyclomatic_complexity
 	public func coefficientDescription(first: Bool) -> String {
-		guard factors.count > 1 else { return factors.count == 0 ? "0" : factors[0].coefficientDescription(first: false) }
-		if let coeff = factors[0] as? Constant {
+		guard factors.count > 1 else {
+            return factors.first?.coefficientDescription(first: false) ?? "0"
+        }
+		if let coeff = factors.first as? Constant {
 			let hasMinusOne = coeff.value.abs == 1
-			var result = "\(coeff.value.coefficientDescription(first: first))"
+			var result = coeff.value.coefficientDescription(first: first)
 			guard factors.count > 2 else {
 				let f = factors[1]
 				switch f {
@@ -190,25 +195,16 @@ struct Term : Function {
 				}
 			}
 			if !hasMinusOne { result += "·( " }
-			let f = factors[1]
-			if f is Equation	{ result += "(\(f))"	}
-			else				{ result +=  "\(f)"		}
-			for f in factors.dropFirst(2) {
-				if f is Equation	{ result += "·(\(f))"	}
-				else				{ result +=  "·\(f)"	}
+			for f in factors.dropFirst() {
+				if f is Equation { result += "·(\(f))"	} else { result +=  "·\(f)"	}
 			}
-			guard !hasMinusOne else { return result }
-			return result + " )"
+            return result.dropFirst() + (hasMinusOne ? "" : " )")
 		} else {
 			var result = first ? "" : "+ "
-			let f = factors[0]
-			if f is Equation	{ result += "(\(f))"	}
-			else				{ result +=  "\(f)"		}
-			for f in factors.dropFirst() {
-				if f is Equation	{ result += "·(\(f))"	}
-				else				{ result +=  "·\(f)"	}
+			for f in factors {
+				if f is Equation { result += "·(\(f))"	} else { result +=  "·\(f)"	}
 			}
-			return result
+			return String(result.dropFirst())
 		}
 	}
 	

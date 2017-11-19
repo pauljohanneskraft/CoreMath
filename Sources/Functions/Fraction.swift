@@ -8,11 +8,11 @@
 
 import Foundation
 
-struct Fraction : Function {
+struct Fraction: Function {
 
 	// stored properties
-	var numerator	: Function
-	var denominator : Function
+	var numerator: Function
+	var denominator: Function
 	
 	// initializers
 	init(numerator: Function, denominator: Function) {
@@ -27,7 +27,7 @@ struct Fraction : Function {
 			denominator: denominator * denominator )
 	}
 	
-	var integral : Function {
+	var integral: Function {
 		assert(false)
 		fatalError("integral not yet supported for fractions.")
 	}
@@ -40,13 +40,16 @@ struct Fraction : Function {
 			let frac = n.polynomial /% d.polynomial
 			return Equation(
 				PolynomialFunction(frac.result),
-				Fraction(numerator: PolynomialFunction(frac.remainder.numerator), denominator: PolynomialFunction(frac.remainder.denominator)))
+				Fraction(numerator: PolynomialFunction(frac.remainder.numerator),
+                         denominator: PolynomialFunction(frac.remainder.denominator)
+                )
+            )
 		}
 		return self
 	}
 	
-	var description	: String { return "(\(numerator)) / (\(denominator))"					} // e.g. x^1 / 2
-	var latex		: String { return "\\frac{\(numerator.latex)}{\(denominator.latex)}"	} // \frac{n}{d}
+	var description: String { return "(\(numerator)) / (\(denominator))"					} // e.g. x^1 / 2
+	var latex: String { return "\\frac{\(numerator.latex)}{\(denominator.latex)}"	} // \frac{n}{d}
 	
 	// functions
 	func equals(to: Function) -> Bool {

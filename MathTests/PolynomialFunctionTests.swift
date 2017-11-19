@@ -11,7 +11,7 @@ import XCTest
 class PolynomialFunctionTests: XCTestCase {
 	// MID_PRIO
     
-    static var allTests : [(String, (PolynomialFunctionTests) -> () throws -> () )] {
+    static var allTests: [(String, (PolynomialFunctionTests) -> () throws -> Void )] {
         return [
         ]
     }

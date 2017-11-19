@@ -12,7 +12,7 @@ import Math
 class ConstantFunctionTests: XCTestCase {
 	// MID_PRIO
 	
-    static var allTests : [(String, (ConstantFunctionTests) -> () throws -> () )] {
+    static var allTests: [(String, (ConstantFunctionTests) -> () throws -> Void )] {
         return [
             ("testOperators", testOperators)
         ]

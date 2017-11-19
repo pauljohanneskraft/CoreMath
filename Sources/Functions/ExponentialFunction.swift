@@ -11,18 +11,18 @@ import Foundation
 public struct Exponential: Function {
 	
 	// stored properties
-	public var base : Double
+	public var base: Double
 	
 	// initializers
 	public init(base: Double) { self.base = base }
 	
 	// computed properties
-	public var integral		: Function	{ return Constant(1.0/log(base)) * self			} // 1/log(b) * b^x
-	public var derivative	: Function	{ return log(base) * self						} //   log(b) * b^x
-	public var description	: String	{ return "\(self.base.reducedDescription)^x"	}
-	public var latex		: String	{ return description							}
+	public var integral: Function { return Constant(1.0/log(base)) * self			} // 1/log(b) * b^x
+	public var derivative: Function { return log(base) * self						} //   log(b) * b^x
+	public var description: String { return "\(self.base.reducedDescription)^x"	}
+	public var latex: String { return description							}
 
-    public var reduced		: Function	{
+    public var reduced: Function {
         if base == 0.0 { return Constant(0.0) }
         if base == 1.0 { return Constant(1.0) }
         return self

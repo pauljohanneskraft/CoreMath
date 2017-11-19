@@ -15,13 +15,13 @@ public protocol TimeProtocol {
 
 #if os(Linux)
 	import Glibc
-	public let DBL_MAX : Double = unsafeBitCast( 0x7FEFFFFFFFFFFFFF, to: Double.self)
-	public let DBL_MIN : Double = unsafeBitCast(   0x10000000000000, to: Double.self)
+	public let DBL_MAX: Double = unsafeBitCast( 0x7FEFFFFFFFFFFFFF, to: Double.self)
+	public let DBL_MIN: Double = unsafeBitCast(   0x10000000000000, to: Double.self)
 	public func random() -> Int { return Glibc.random() }
     
-    public struct Time : TimeProtocol {
+    public struct Time: TimeProtocol {
         
-        let time : clock_t
+        let time: clock_t
         
         public init() {
             self.time = clock()
@@ -32,8 +32,8 @@ public protocol TimeProtocol {
         }
         
     }
-    public func pow(_ a: Double, _ b: Double) -> Double {
-        return Glibc.pow(a, b)
+    public func pow(_ base: Double, _ exponent: Double) -> Double {
+        return Glibc.pow(base, exponent)
     }
     
 #else
@@ -41,9 +41,9 @@ public protocol TimeProtocol {
     import Foundation
 	public func random() -> Int { return Int(arc4random()) << 32 | Int(arc4random()) }
     public typealias Time = Date
-    extension Time : TimeProtocol {}
-    public func pow(_ a: Double, _ b: Double) -> Double {
-        return Foundation.pow(a, b)
+    extension Time: TimeProtocol {}
+    public func pow(_ base: Double, _ exponent: Double) -> Double {
+        return Foundation.pow(base, exponent)
     }
     
 #endif

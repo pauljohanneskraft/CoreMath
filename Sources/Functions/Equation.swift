@@ -8,18 +8,18 @@
 
 import Foundation
 
-struct Equation : Function, CustomStringConvertible {
+struct Equation: Function, CustomStringConvertible {
 	
 	// stored properties
 	var terms : [ Function ]
 	
 	// initializers
-	init(_ terms: Function...)	{ self.init(terms)		}
-	init(_ terms: [Function])	{ self.terms = terms	}
+	init(_ terms: Function...) { self.init(terms)		}
+	init(_ terms: [Function]) { self.terms = terms	}
 	
 	// computed properties
-	var derivative	: Function	{ return Equation(terms.map { $0.derivative.reduced }).reduced }
-	var integral	: Function	{ return Equation(terms.map { $0.integral.reduced	}).reduced }
+	var derivative: Function { return Equation(terms.map { $0.derivative.reduced }).reduced }
+	var integral: Function { return Equation(terms.map { $0.integral.reduced	}).reduced }
 	
 	var debugDescription: String {
 		guard terms.count > 0 else { return "Term()" }
@@ -28,14 +28,14 @@ struct Equation : Function, CustomStringConvertible {
 		return "Equation(\(arr)\(terms.last!.debugDescription))"
 	}
 	
-	var description : String {
+	var description: String {
 		if terms.isEmpty { return "0" }
 		var result = "\(terms.first!.coefficientDescription(first: true))"
 		for t in terms.dropFirst() { result += " \(t.coefficientDescription(first: false))" }
 		return result
 	}
 	
-	var latex : String {
+	var latex: String {
 		if terms.isEmpty { return "0" }
 		var result = "\(terms.first!.latex)"
 		for t in terms.dropFirst() { result += " + \(t.latex)" }

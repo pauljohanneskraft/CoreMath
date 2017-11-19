@@ -11,7 +11,7 @@ import XCTest
 class ModuleTests: XCTestCase {
 	// LOW_PRIO, as soon as ModuleLike has been implemented / is in implementation phase
     
-    static var allTests : [(String, (ModuleTests) -> () throws -> () )] {
+    static var allTests: [(String, (ModuleTests) -> () throws -> Void )] {
         return [
         ]
     }

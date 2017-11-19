@@ -6,7 +6,6 @@
 //  Copyright © 2017 pauljohanneskraft. All rights reserved.
 //
 
-
 struct DeterministicFiniteAutomatonIterator<Character: Hashable> {
     var currentState: DeterministicFiniteAutomatonState<Character>
     var automaton: DeterministicFiniteAutomaton<Character>
@@ -24,7 +23,7 @@ struct DeterministicFiniteAutomatonIterator<Character: Hashable> {
         currentState = nextState
     }
     
-    mutating func accepts<S : Sequence>(word: S) -> Bool where S.Iterator.Element == Character {
+    mutating func accepts<S: Sequence>(word: S) -> Bool where S.Iterator.Element == Character {
         self.currentState = automaton.stateLookup[automaton.initialState]!
         do {
             for character in word {

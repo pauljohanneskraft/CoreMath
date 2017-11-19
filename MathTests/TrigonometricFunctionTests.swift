@@ -11,7 +11,7 @@ import Math
 
 class TrigonometricFunctionTests: XCTestCase {
 	
-    static var allTests : [(String, (TrigonometricFunctionTests) -> () throws -> () )] {
+    static var allTests: [(String, (TrigonometricFunctionTests) -> () throws -> Void )] {
         return [
             ("test1", test1),
             ("testPropertiesSin", testPropertiesSin)

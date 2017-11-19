@@ -8,15 +8,15 @@
 
 import Foundation
 
-public struct Polynomial < Number : Numeric > : BasicArithmetic, CustomStringConvertible {
+public struct Polynomial < Number: Numeric > : BasicArithmetic, CustomStringConvertible {
 	
 	public var coefficients: [Number]
 	
-	public init(integerLiteral	: Int			) { self.init([Number(integerLiteral:	integerLiteral	)])	}
-	public init(floatLiteral	: Double		) { self.init([Number(floatLiteral:		floatLiteral	)])	}
-	public init(arrayLiteral	: Number...		) { self.init(arrayLiteral)									}
-	public init()								  { self.init([0]) }
-	public init(_ coefficients	: [Number] = []	) { self.coefficients = coefficients.count == 0 ? [0] : coefficients }
+	public init(_ integerLiteral: Int			) { self.init([Number(integerLiteral: integerLiteral	)])	}
+	public init(_ floatLiteral: Double		) { self.init([Number(floatLiteral: floatLiteral	)])	}
+	public init(arrayLiteral: Number...		) { self.init(arrayLiteral)									}
+	public init() { self.init([0]) }
+	public init(_ coefficients: [Number] = []	) { self.coefficients = coefficients.count == 0 ? [0] : coefficients }
 	
 	public init(_ tuples: (coefficient: Number, exponent: Int)...) {
 		self.coefficients = [0]
@@ -26,7 +26,7 @@ public struct Polynomial < Number : Numeric > : BasicArithmetic, CustomStringCon
 
 extension Polynomial { // calculus, derivative, integral
 	
-	public var derivative : Polynomial<Number> {
+	public var derivative: Polynomial<Number> {
 		if self.coefficients.count == 1 { return Polynomial([0]) }
 		let c = self.coefficients.count - 1
 		var coefficients = [Number](repeating: 0, count: c)
@@ -36,7 +36,7 @@ extension Polynomial { // calculus, derivative, integral
 		return Polynomial(coefficients)
 	}
 	
-	public var integral		: Polynomial<Number>	{ return integral(c: 0)							}
+	public var integral: Polynomial<Number> { return integral(c: 0)							}
 	
 	public func integral(c index0: Number) -> Polynomial<Number> {
 		let c = self.coefficients.count + 1
@@ -53,7 +53,7 @@ extension Polynomial { // calculus, derivative, integral
 
 extension Polynomial { // reducing
 	
-	public var reduced		: Polynomial<Number>	{ var this = self; this.reduce(); return this	}
+	public var reduced: Polynomial<Number> { var this = self; this.reduce(); return this	}
 	
 	public mutating func reduce() {
 		let d = degree
@@ -64,10 +64,10 @@ extension Polynomial { // reducing
 
 extension Polynomial { // descriptions
 	
-	public var latex		: String				{ return descString(latex: true)				}
-	public var description	: String				{ return descString(latex: false)				}
+	public var latex: String { return descString(latex: true)				}
+	public var description: String { return descString(latex: false)				}
 	
-	public var reverseDescription : String {
+	public var reverseDescription: String {
 		let d = degree
 		if d < 0 { return "0" }
 		if d == 0 { return "\(coefficients[0].reducedDescription)" }
@@ -107,9 +107,9 @@ extension Polynomial { // descriptions
 
 extension Polynomial {
 
-	public var isZero		: Bool					{ return degree == 0 && coefficients[0] == 0	}
+	public var isZero: Bool { return degree == 0 && coefficients[0] == 0	}
 
-	public var hashValue	: Int {
+	public var hashValue: Int {
 		var h = 0
 		for i in coefficients.indices {
 			let hci = Double(coefficients[i].hashValue)
@@ -120,7 +120,7 @@ extension Polynomial {
 		return h
 	}
 	
-	public var degree : Int {
+	public var degree: Int {
 		var i = self.coefficients.count - 1
 		while i > 0 { guard self.coefficients[i] == 0 else { return i }; i -= 1 }
 		return 0
@@ -140,7 +140,7 @@ extension Polynomial {
 	}
 	
 	public func call(x: Number) -> Number? {
-		var times : Number = 1, res : Number = 0
+		var times: Number = 1, res: Number = 0
 		for i in coefficients.indices {
 			res += times * coefficients[i]
 			times *= x
@@ -149,15 +149,15 @@ extension Polynomial {
 	}
 }
 
-extension Polynomial where Number : Numeric {
+extension Polynomial {
 	
-	public var zeros : [Number] {
+	public var zeros: [Number] {
 		// http://massmatics.de/merkzettel/index.php#!6:Nullstellenberechnung
 		// TODO: still needs implementation, mostly done
 		
 		// print(self)
 		
-		var cs : [Number] = coefficients[0...degree] + []
+		var cs: [Number] = coefficients[0...degree] + []
 		var zeros = [Number]()
 		
 		while cs.count > 0 && cs[0] == 0 {
@@ -171,7 +171,7 @@ extension Polynomial where Number : Numeric {
 		case 1:     return zeros + [-(cs[0] / cs[1])]
 		// dividing by zero prohibited by degree calculation
 		case 2:
-			let det : Number = cs[1]*cs[1] - 4 * cs[0] * cs[2]
+			let det: Number = cs[1]*cs[1] - 4 * cs[0] * cs[2]
 			if !(det is C) {
 				// det = b^2 - 4ac
 				if det < 0 { return zeros }
@@ -185,15 +185,12 @@ extension Polynomial where Number : Numeric {
 			let factors = Polynomial(cs).factors
 			
 			for f in factors {
-				if f.degree < 3	{ zeros += f.zeros }
+				if f.degree < 3 { zeros += f.zeros }
 				guard f.degree >= 1 else { return zeros }
 				var k = false
-				for i in 1 ... f.degree {
-					if f[i] != 0 {
-						if !k { k = true }
-						else { return zeros }
-					}
-					
+				for i in 1...f.degree where f[i] != 0 {
+                    guard !k else { return zeros }
+                    k = true
 				}
 				let z = (-f[0]/f[f.degree]).power(1 / Double(f.degree))
 				zeros.append(z)
@@ -203,8 +200,8 @@ extension Polynomial where Number : Numeric {
 		}
 	}
 	
-	public var factors : [Polynomial<Number>] {
-		var cs : [Number] = coefficients[0...degree] + []
+	public var factors: [Polynomial<Number>] {
+		var cs: [Number] = coefficients[0...degree] + []
 		var factors = [Polynomial<Number>]()
 		var i = 0
 		
@@ -220,21 +217,21 @@ extension Polynomial where Number : Numeric {
 		
 		if cs.count < 3 { return factors + [this] }
 		if cs.count == 3 {
-			let det : Number = cs[1]*cs[1] - 4 * cs[0] * cs[2]
+			let det: Number = cs[1]*cs[1] - 4 * cs[0] * cs[2]
 			if !(det is C) {
 				// det = b^2 - 4ac
 				if det < 0 { return factors + [this] }
 				if det == 0 {
 					let n = -cs[1] / ( 2 * cs[2] )
-					return factors + [Polynomial<Number>((n, 0), (1,1)),
-					                  Polynomial<Number>((n, 0), (1,1))]
+					return factors + [Polynomial<Number>((n, 0), (1, 1)),
+					                  Polynomial<Number>((n, 0), (1, 1))]
 				} // -b / 2a
 			}
 			let ds = det.sqrt
 			let a = (-cs[1] + ds ) / ( 2 * cs[2] )
 			let b = (-cs[1] - ds ) / ( 2 * cs[2] )
-			return factors + [Polynomial<Number>((a, 0), (1,1)),
-			                  Polynomial<Number>((b, 0), (1,1))]
+			return factors + [Polynomial<Number>((a, 0), (1, 1)),
+			                  Polynomial<Number>((b, 0), (1, 1))]
 		}
 		// source: http://www.math.utah.edu/~wortman/1050-text-fp.pdf
 		
@@ -272,15 +269,14 @@ extension Polynomial where Number : Numeric {
 	}
 }
 
-public func == < N : Numeric > (lhs: Polynomial<N>, rhs: Polynomial<N>) -> Bool {
+public func == <N> (lhs: Polynomial<N>, rhs: Polynomial<N>) -> Bool {
 	return lhs.reduced.coefficients == rhs.reduced.coefficients
 }
 
 infix operator	?=
-public func		?= < N : Numeric > (lhs: Polynomial<N>, rhs: Polynomial<N>) -> [N] { return (lhs - rhs).zeros }
+public func		?= < N > (lhs: Polynomial<N>, rhs: Polynomial<N>) -> [N] { return (lhs - rhs).zeros }
 
-
-public func < < N : Numeric > (lhs: Polynomial<N>, rhs: Polynomial<N>) -> Bool {
+public func < < N > (lhs: Polynomial<N>, rhs: Polynomial<N>) -> Bool {
 	let r = rhs.coefficients.count
 	let l = lhs.coefficients.count
 	if l != r { return l < r }
@@ -294,31 +290,31 @@ public func < < N : Numeric > (lhs: Polynomial<N>, rhs: Polynomial<N>) -> Bool {
 	return false
 }
 
-public func += < N : Numeric > (lhs: inout Polynomial<N>, rhs: Polynomial<N>) {
+public func += <N> (lhs: inout Polynomial<N>, rhs: Polynomial<N>) {
 	for i in 0 ... max(lhs.degree, rhs.degree) { lhs[i] += rhs[i] }
 	lhs.reduce()
 }
 
-public func + < N : Numeric > (lhs: Polynomial<N>, rhs: Polynomial<N>) -> Polynomial<N> {
+public func + <N> (lhs: Polynomial<N>, rhs: Polynomial<N>) -> Polynomial<N> {
 	var lhs = lhs; lhs += rhs; return lhs
 }
 
-public func - < N : Numeric > (lhs: Polynomial<N>, rhs: Polynomial<N>) -> Polynomial<N> {
+public func - <N> (lhs: Polynomial<N>, rhs: Polynomial<N>) -> Polynomial<N> {
 	var lhs = lhs; lhs -= rhs; return lhs
 }
 
-public func -= < N : Numeric > (lhs: inout Polynomial<N>, rhs: Polynomial<N>) {
+public func -= < N > (lhs: inout Polynomial<N>, rhs: Polynomial<N>) {
 	for i in 0 ... max(lhs.degree, rhs.degree) { lhs[i] -= rhs[i] }
 	lhs.reduce()
 }
 
-prefix public func - <N : Numeric> (lhs: Polynomial<N>) -> Polynomial<N> {
+prefix public func - <N> (lhs: Polynomial<N>) -> Polynomial<N> {
 	var lhs = lhs
 	for i in 0 ... lhs.degree { lhs[i] = -lhs[i] }
 	return lhs
 }
 
-public func *= < N : Numeric > (lhs: inout Polynomial<N>, rhs: Polynomial<N>) {
+public func *= < N > (lhs: inout Polynomial<N>, rhs: Polynomial<N>) {
 	var res = Polynomial<N>([])
 	for i in 0 ... lhs.degree {
 		let l = lhs[i]
@@ -333,13 +329,13 @@ public func *= < N : Numeric > (lhs: inout Polynomial<N>, rhs: Polynomial<N>) {
 	lhs = res
 }
 
-public func * < N : Numeric > (lhs: Polynomial<N>, rhs: Polynomial<N>) -> Polynomial<N> {
+public func * <N> (lhs: Polynomial<N>, rhs: Polynomial<N>) -> Polynomial<N> {
 	var res = lhs; res *= rhs; return res
 }
 
 infix operator /%
 
-func % < N : Numeric > (lhs: Polynomial<N>, rhs: Polynomial<N>) -> (numerator: Polynomial<N>, denominator: Polynomial<N>) {
+func % <N> (lhs: Polynomial<N>, rhs: Polynomial<N>) -> (numerator: Polynomial<N>, denominator: Polynomial<N>) {
 	// loses accuracy because ignoring rest, maybe adding another stored property to fit in rest?
 	
 	let ld = lhs.degree
@@ -359,7 +355,8 @@ func % < N : Numeric > (lhs: Polynomial<N>, rhs: Polynomial<N>) -> (numerator: P
 	return r
 }
 
-func /% < N : Numeric > (lhs: Polynomial<N>, rhs: Polynomial<N>) -> (result: Polynomial<N>, remainder: (numerator: Polynomial<N>, denominator: Polynomial<N>)) {
+func /% <N> (lhs: Polynomial<N>, rhs: Polynomial<N>)
+    -> (result: Polynomial<N>, remainder: (numerator: Polynomial<N>, denominator: Polynomial<N>)) {
 	// loses accuracy because ignoring rest, maybe adding another stored property to fit in rest?
 	
 	let ld = lhs.degree
@@ -380,14 +377,10 @@ func /% < N : Numeric > (lhs: Polynomial<N>, rhs: Polynomial<N>) -> (result: Pol
 	// print("end:", lhs, "/", rhs, "%:", lhs.remainder)
 }
 
-public func /= < N : Numeric > (lhs: inout Polynomial<N>, rhs: Polynomial<N>) {
-	// loses accuracy because ignoring rest, maybe adding another stored property to fit in rest?
-	
+public func /= <N> (lhs: inout Polynomial<N>, rhs: Polynomial<N>) {	
 	let ld = lhs.degree
 	let rd = rhs.degree
-	
-	// print("start:", lhs, "/", rhs)
-	
+    
 	assert(rd != 0 || rhs[0] != 0)
 	
 	guard ld >= rd else { return }
@@ -396,16 +389,12 @@ public func /= < N : Numeric > (lhs: inout Polynomial<N>, rhs: Polynomial<N>) {
 	let exponent = ld - rd
 	var c = Polynomial<N>([0])
 	c[exponent] = coefficient
-	lhs = c + ( (lhs - (rhs * c)) / rhs);
+	lhs = c + ( (lhs - (rhs * c)) / rhs)
 	lhs.reduce()
-	// print("end:", lhs, "/", rhs, "%:", lhs.remainder)
 }
 
-public func / < N : Numeric > (lhs: Polynomial<N>, rhs: Polynomial<N>) -> Polynomial<N> {
+public func / <N> (lhs: Polynomial<N>, rhs: Polynomial<N>) -> Polynomial<N> {
 	var res = lhs
 	res /= rhs
 	return res
 }
-
-
-

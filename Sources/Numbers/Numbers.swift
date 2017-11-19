@@ -20,19 +20,20 @@ public func Z_(_ v: Int) -> Set<Int> {
 	return Set<Int>(0..<v)
 }
 
-
-public protocol Ordered : Comparable {
-	static var min : Self { get }
-	static var max : Self { get }
+public protocol Ordered: Comparable {
+	static var min: Self { get }
+	static var max: Self { get }
 }
 
 public protocol Randomizable {
-	static var random : Self { get }
+	static var random: Self { get }
 }
 
 infix operator =~ : ComparisonPrecedence
 
-public func =~ (lhs: Double, rhs: Double) -> Bool {
-	let inacc = max(lhs.inaccuracy, rhs.inaccuracy)
-	return (lhs - rhs).abs <= inacc
+extension Double {
+    public static func =~ (lhs: Double, rhs: Double) -> Bool {
+        let inacc = Swift.max(lhs.inaccuracy, rhs.inaccuracy)
+        return (lhs - rhs).abs <= inacc
+    }
 }

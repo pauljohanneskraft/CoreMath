@@ -8,59 +8,65 @@
 
 import Foundation
 
-public protocol IntegerAdvancedNumeric : AdvancedNumeric, Integer, Ordered {
-	init(_: Int)
+public protocol IntegerAdvancedNumeric: AdvancedNumeric, BinaryInteger {
+    static var random: Self { get }
+    init(integerLiteral: Int)
+    init(floatLiteral: Double)
+    var double: Double { get }
+    var integer: Int { get }
+    var isInteger: Bool { get }
 }
 
 public extension IntegerAdvancedNumeric {
-	init(integerLiteral: Int) { self.init(integerLiteral) }
-	init(floatLiteral: Double) {
-		self.init(integerLiteral: Int(floatLiteral))
-	}
-	public var double : Double { return Double(self.integer) }
-	public var integer : Int { return hashValue }
-	public var isInteger : Bool { return true }
-	public static var random : Self {
+	public var double: Double { return Double(self.integer) }
+	public var integer: Int { return hashValue }
+	public var isInteger: Bool { return true }
+	public static var random: Self {
 		return Self(integerLiteral: Math.random() % Self.max.integer)
 	}
 }
 
-extension Int   : IntegerAdvancedNumeric {}
-extension Int8	: IntegerAdvancedNumeric {}
-extension Int16	: IntegerAdvancedNumeric {}
-extension Int32 : IntegerAdvancedNumeric {}
-extension Int64 : IntegerAdvancedNumeric {}
+extension Int: IntegerAdvancedNumeric {}
+extension Int8: IntegerAdvancedNumeric {}
+extension Int16: IntegerAdvancedNumeric {}
+extension Int32: IntegerAdvancedNumeric {}
+extension Int64: IntegerAdvancedNumeric {}
 
-extension Double : AdvancedNumeric, Ordered {
-	public init(integerLiteral: Int) {
-		self.init(integerLiteral)
+extension Double: AdvancedNumeric, Ordered {
+    public init(integerLiteral: Int) {
+        self.init(integerLiteral)
+    }
+    
+	public var sqrt: Double { return pow(self, 1.0/2) }
+	
+	public static var random: Double {
+        let sign = Math.random() % 2 == 0 ? 1.0 : -1.0
+        let r0 = Double(Int.random & 0xFFFFF)
+        let r1 = Double(Int.random & 0xFFFFF)
+        let r2 = Double(Int.random & 0xFFFFF)
+        return sign * (r0 + (r1 / (r2 + 0.001)))
 	}
 	
-	public var sqrt : Double { return pow(self, 1.0/2) }
-	
-	public static var random : Double {
-        return (Math.random() % 2 == 0 ? 1.0 : -1.0) * (Double(Int.random & 0xFFFFF) + (Double(Int.random & 0xFFFFF) / (Double(Int.random & 0xFFFFF) + 0.001)))
-	}
-	
-	public var reducedDescription : String {
+	public var reducedDescription: String {
 		guard !isInteger	else { return integer.description }
 		return description
 	}
 	
-	public var isInteger : Bool {
-		return !isNaN && isFinite && /* self < Double(Int.max) && self > Double(Int.min) && */ Double(integerLiteral: self.integer) == self
+	public var isInteger: Bool {
+        /* self < Double(Int.max) && self > Double(Int.min) && */
+		return !isNaN && isFinite && Double(self.integer) == self
 	}
 	
-	public var integer : Int    {
+	public var integer: Int {
 		precondition(self != Double.nan, "Cannot return an Int-value for Double.nan.")
-		if self >= Double(Int.max)	{ return Int.max }
-		if self <= Double(Int.min)	{ return Int.min }
+		if self >= Double(Int.max) { return Int.max }
+		if self <= Double(Int.min) { return Int.min }
 		return Int(self)
 	}
-	public var double  : Double		{ return self }
+	public var double: Double { return self }
 	
-	public static var min : Double	{ return Double.leastNormalMagnitude }
-	public static var max : Double	{ return Double.greatestFiniteMagnitude }
+	public static var min: Double { return Double.leastNormalMagnitude }
+	public static var max: Double { return Double.greatestFiniteMagnitude }
 }
 
 public func % (lhs: Double, rhs: Double) -> Double {
@@ -71,12 +77,4 @@ public func %= (lhs: inout Double, rhs: Double) {
 	lhs.formTruncatingRemainder(dividingBy: rhs)
 }
 
-extension Decimal : BasicArithmetic {}
-
-public func *= (lhs: inout Decimal, rhs: Decimal) {
-	lhs = lhs * rhs
-}
-
-public func /= (lhs: inout Decimal, rhs: Decimal) {
-	lhs = lhs / rhs
-}
+extension Decimal: BasicArithmetic {}

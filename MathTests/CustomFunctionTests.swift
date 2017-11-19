@@ -11,7 +11,7 @@ import XCTest
 class CustomFunctionTests: XCTestCase {
 	// MID_PRIO
     
-    static var allTests : [(String, (CustomFunctionTests) -> () throws -> () )] {
+    static var allTests: [(String, (CustomFunctionTests) -> () throws -> Void )] {
         return [
         ]
     }
