@@ -30,7 +30,6 @@ public protocol Randomizable {
 }
 
 infix operator =~ : ComparisonPrecedence
-
 extension Double {
     public static func =~ (lhs: Double, rhs: Double) -> Bool {
         let inacc = Swift.max(lhs.inaccuracy, rhs.inaccuracy)
