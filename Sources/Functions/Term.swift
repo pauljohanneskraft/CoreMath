@@ -103,62 +103,40 @@ struct Term: Function {
 	}
 	
 	var reduced: Function {
-		guard factors.count > 0 else { return Constant(0) }
-		guard factors.count > 1 else { return factors[0] }
-		if factors.count == 2 {
-			let lhs = factors[0]
-			let rhs = factors[1]
-			if let l = lhs as? Equation {
-				if !(rhs is CustomFunction) {
-					var res = [Function]()
-					for f1 in l.terms { res.append(f1 * rhs) }
-					return Equation(res).reduced
-				}
-			}
-			if let r = rhs as? Equation {
-				if !(lhs is CustomFunction) {
-					var res = [Function]()
-					for f1 in r.terms { res.append(f1 * lhs) }
-					return Equation(res).reduced
-				}
-			}
-			if var l = lhs as? Term {
-				l.factors.append(rhs)
-				return l.reduced
-			}
-			if var r = rhs as? Term {
-				r.factors.append(lhs)
-				return r.reduced
-			}
-		}
+        guard factors.count > 1 else {
+            return factors.first ?? Constant(0)
+        }
+        
 		var this = self
 		var i = 0
 		var rest = 1.0
-		var poly = PolynomialFunction(1)
-		var poly1 = _Polynomial(degree: 0)
+		var polynomialFunction = PolynomialFunction(1)
+		var _polynomial = _Polynomial(degree: 0)
 		while i < this.factors.count {
-			// print("testing at", i, ":", this.factors[i], "in", this.factors, "with length", this.factors.count)
-			switch this.factors[i] {
-			case let r as Term:
-				this.factors.append(contentsOf: r.factors)
-				this.factors.remove(at: i)
-			case let r as Constant:
-				if r.value == 0.0 { return r }
-				rest *= r.value
-				this.factors.remove(at: i)
-			case let r as PolynomialFunction:
-				if r.polynomial == 0.0 { return Constant(0.0) }
-				poly.polynomial *= r.polynomial
-				this.factors.remove(at: i)
-			case let r as _Polynomial:
-				poly1 = _Polynomial(degree: r.degree + poly1.degree)
-				this.factors.remove(at: i)
-			default: i += 1
-			}
+            switch this.factors[i] {
+            case let r as Term:
+                this.factors.append(contentsOf: r.factors)
+                this.factors.remove(at: i)
+            case let r as Constant:
+                guard r.value != 0 else { return r }
+                rest *= r.value
+                this.factors.remove(at: i)
+            case let r as PolynomialFunction:
+                guard r.polynomial != 0 else { return Constant(0) }
+                polynomialFunction.polynomial *= r.polynomial
+                this.factors.remove(at: i)
+            case let r as _Polynomial:
+                _polynomial.degree += r.degree
+                this.factors.remove(at: i)
+            default: i += 1
+            }
 		}
-		// print(this.factors, poly, rest)
-		if poly1.degree != 0 { this.factors.append(poly1) }
-        let r = poly.polynomial * Polynomial<Double>(floatLiteral: rest)
+
+        if _polynomial.degree != 0 {
+            this.factors.append(_polynomial)
+        }
+        
+        let r = polynomialFunction.polynomial * Polynomial<Double>(floatLiteral: rest)
 		if r != 1.0 {
 			if r.degree == 0 {
                 this.factors = [Constant(r[0])] + this.factors
@@ -166,46 +144,38 @@ struct Term: Function {
                 this.factors.append(PolynomialFunction(r).reduced)
             }
 		}
-		if this.factors.count >  1 { return this }
-		if this.factors.count == 1 { return this.factors[0] }
-		return Constant(1.0)
+        return this.factors.count > 1 ? this : this.factors.first ?? Constant(1)
 	}
 	
 	// functions
 	func call(x: Double) -> Double {
-		var res = 1.0
-		for f in factors { res *= f.call(x: x) }
-		return res
+        return factors.reduce(1) { $0 * $1.call(x: x) }
 	}
 	
-    // swiftlint:disable:next cyclomatic_complexity
 	public func coefficientDescription(first: Bool) -> String {
 		guard factors.count > 1 else {
-            return factors.first?.coefficientDescription(first: false) ?? "0"
+            return factors.first?.coefficientDescription(first: false) ?? 0.description
         }
-		if let coeff = factors.first as? Constant {
-			let hasMinusOne = coeff.value.abs == 1
-			var result = coeff.value.coefficientDescription(first: first)
-			guard factors.count > 2 else {
-				let f = factors[1]
-				switch f {
-				case is Equation: return result + "·(\(f))"
-				case is _Polynomial, is CustomFunction: return result + "\(f)"
-				default: return result + "·\(f)"
-				}
-			}
-			if !hasMinusOne { result += "·( " }
-			for f in factors.dropFirst() {
-				if f is Equation { result += "·(\(f))"	} else { result +=  "·\(f)"	}
-			}
-            return result.dropFirst() + (hasMinusOne ? "" : " )")
-		} else {
-			var result = first ? "" : "+ "
-			for f in factors {
-				if f is Equation { result += "·(\(f))"	} else { result +=  "·\(f)"	}
-			}
-			return String(result.dropFirst())
-		}
+        
+		guard let coeff = factors.first as? Constant else {
+            let sign = first ? "" : "+ "
+            let rest = factors.reduce("") { $0 + ($1 is Equation ? "·(\($1))" : "·\($1)") }.dropFirst()
+            return sign + rest
+        }
+        
+        let hasMinusOne = coeff.value.abs == 1
+        var result = coeff.value.coefficientDescription(first: first)
+        guard factors.count > 2 else {
+            let f = factors[1]
+            switch f {
+            case is Equation: return result + "·(\(f))"
+            case is _Polynomial, is CustomFunction: return result + "\(f)"
+            default: return result + "·\(f)"
+            }
+        }
+        if !hasMinusOne { result += "·( " }
+        let facs = factors.dropFirst().reduce("") { $0 + ($1 is Equation ? "·(\($1))" : "·\($1)") }.dropFirst()
+        return result + facs + (hasMinusOne ? "" : " )")
 	}
 	
 	func equals(to: Function) -> Bool {

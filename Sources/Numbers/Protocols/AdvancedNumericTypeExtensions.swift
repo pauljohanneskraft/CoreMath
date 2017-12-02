@@ -53,8 +53,7 @@ extension Double: AdvancedNumeric, Ordered {
 	}
 	
 	public var isInteger: Bool {
-        /* self < Double(Int.max) && self > Double(Int.min) && */
-		return !isNaN && isFinite && Double(self.integer) == self
+		return !isNaN && !isInfinite && truncatingRemainder(dividingBy: 1) == 0
 	}
 	
 	public var integer: Int {
@@ -75,6 +74,40 @@ public func % (lhs: Double, rhs: Double) -> Double {
 
 public func %= (lhs: inout Double, rhs: Double) {
 	lhs.formTruncatingRemainder(dividingBy: rhs)
+}
+
+public func % (lhs: Float, rhs: Float) -> Float {
+    return lhs.truncatingRemainder(dividingBy: rhs)
+}
+
+public func %= (lhs: inout Float, rhs: Float) {
+    lhs.formTruncatingRemainder(dividingBy: rhs)
+}
+
+extension Float: AdvancedNumeric {
+    public static var min: Float {
+        return Float.leastNormalMagnitude
+    }
+    
+    public static var max: Float {
+        return Float.greatestFiniteMagnitude
+    }
+    
+    public var integer: Int {
+        return Int(self)
+    }
+    
+    public var isInteger: Bool {
+        return !isNaN && !isInfinite && truncatingRemainder(dividingBy: 1) == 0
+    }
+    
+    public var double: Double {
+        return Double(self)
+    }
+    
+    public static var random: Float {
+        return Float(Double.random)
+    }
 }
 
 extension Decimal: BasicArithmetic {}

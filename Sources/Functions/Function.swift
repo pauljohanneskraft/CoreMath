@@ -17,7 +17,7 @@ public protocol Function: CustomStringConvertible, LaTeXConvertible {
 	var debugDescription: String { get }
 	
 	// functions
-	func call(x: Double) -> Double
+    func call(x: Double) -> Double
 	func coefficientDescription(first: Bool) -> String
 	func equals(to: Function) -> Bool
 	

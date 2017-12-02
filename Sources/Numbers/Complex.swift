@@ -39,21 +39,20 @@ extension Complex {
 }
 
 extension Complex {
+    public init(coefficient: Double, exponent: Double) {
+        real = Number(coefficient * cos(exponent))
+        imaginary = exponent == Double.pi ? 0 : Number(coefficient * sin(exponent))
+    }
+    
     public init(polarForm: PolarForm) {
-        self.real = Number(floatLiteral: polarForm.coefficient * cos(polarForm.exponent))
-        if polarForm.exponent == Constants.pi { // sin is too inaccurate
-            self.imaginary = 0
-        } else {
-            self.imaginary = Number(floatLiteral: polarForm.coefficient * sin(polarForm.exponent))
-        }
+        self.init(coefficient: polarForm.coefficient, exponent: polarForm.exponent)
     }
 }
 
 // MARK: - Computed properties
 extension Complex {
-    
-    public static var i: C {
-        return C(real: 0, imaginary: 1)
+    public static var i: Complex {
+        return Complex(real: 0, imaginary: 1)
     }
     
     public var conjugate: Complex {
@@ -175,9 +174,7 @@ extension Complex: Numeric {
     }
     
     public func power(_ v: Double) -> Complex<Number> {
-        var polarForm = self.polarForm
-        polarForm.coefficient = polarForm.coefficient.power(v)
-        polarForm.exponent *= v
-        return Complex(polarForm: polarForm)
+        let (coefficient, exponent) = polarForm
+        return Complex(coefficient: coefficient.power(v), exponent: exponent * v)
     }
 }

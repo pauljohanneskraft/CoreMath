@@ -19,8 +19,8 @@ class TrigonometricFunctionTests: XCTestCase {
     }
     
 	func testPropertiesSin() {
-		let sin = Trigonometric.sin
-		let cos = Trigonometric.cos
+		let sin = Functions.sin
+		let cos = Functions.cos
 		XCTAssert(sin.derivative	==  cos		)
 		XCTAssert(sin.integral		== -cos		)
 		XCTAssert(cos.derivative	== -sin		)
@@ -30,7 +30,7 @@ class TrigonometricFunctionTests: XCTestCase {
 	}
 
 	func test1() {
-		let f1 = Trigonometric.sin.integral + Trigonometric.cos.derivative
+		let f1 = Functions.sin.integral + Functions.cos.derivative
 		print(f1)
 		print(f1.call(x: Constants.pi/2))
 		XCTAssert(f1.call(x: Constants.pi/2) == -1)

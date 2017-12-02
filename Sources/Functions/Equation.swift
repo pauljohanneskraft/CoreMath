@@ -6,20 +6,26 @@
 //  Copyright © 2016 pauljohanneskraft. All rights reserved.
 //
 
-import Foundation
+struct Equation {
+    var terms: [Function]
+	
+	init(_ terms: Function...) {
+        self.init(terms)
+    }
+    
+	init(_ terms: [Function]) {
+        self.terms = terms
+    }
+}
 
-struct Equation: Function, CustomStringConvertible {
-	
-	// stored properties
-	var terms : [ Function ]
-	
-	// initializers
-	init(_ terms: Function...) { self.init(terms)		}
-	init(_ terms: [Function]) { self.terms = terms	}
-	
-	// computed properties
-	var derivative: Function { return Equation(terms.map { $0.derivative.reduced }).reduced }
-	var integral: Function { return Equation(terms.map { $0.integral.reduced	}).reduced }
+extension Equation: Function {
+	var derivative: Function {
+        return Equation(terms.map { $0.derivative.reduced }).reduced
+    }
+    
+	var integral: Function {
+        return Equation(terms.map { $0.integral.reduced	}).reduced
+    }
 	
 	var debugDescription: String {
 		guard terms.count > 0 else { return "Term()" }
@@ -66,16 +72,12 @@ struct Equation: Function, CustomStringConvertible {
 		if this.terms.count == 1 { return this.terms[0] }
 		return Constant(0.0)
 	}
-	
-	// functions
+    
 	func call(x: Double) -> Double {
-		var value = 0.0
-		for t in terms { value += t.call(x: x) }
-		return value
+        return terms.reduce(0) { $0 + $1.call(x: x) }
 	}
 	
 	func equals(to: Function) -> Bool {
-		if let e = to as? Equation { return e.terms == self.terms }
-		return false
+        return terms == (to.reduced as? Equation)?.terms ?? []
 	}
 }

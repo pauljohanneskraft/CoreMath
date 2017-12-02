@@ -6,7 +6,7 @@
 //  Copyright © 2016 pauljohanneskraft. All rights reserved.
 //
 
-public struct Matrix <Number> {
+public struct Matrix<Number> {
     public typealias Row = [Number]
     public typealias TwoDimensionalArray = [[Number]]
     public typealias Size = (rows: Int, columns: Int)
@@ -93,15 +93,15 @@ extension Matrix where Number: BasicArithmetic {
 	
 	public var rowEchelonForm: Matrix {
 		
-		func removeLeadingNumber(row: inout Row, withRow: Row, startAt: Int) {
-			let coeff = row[startAt] / withRow[startAt]
-			
-			if coeff != 0 { for i in startAt ..< row.count { row[i] -= coeff*withRow[i] } }
+		func removeLeadingNumber(row: inout Row, withRow: Row, startAt start: Int) {
+			let coeff = row[start] / withRow[start]
+            guard coeff != 0 else { return }
+			for i in start ..< row.count { row[i] -= coeff*withRow[i] }
 		}
 		
-		func divide(row: inout Row, by: Number, startAt: Int) {
+		func divide(row: inout Row, by: Number, startAt start: Int) {
 			assert(by != 0)
-			for i in startAt ..< row.count { row[i] /= by }
+			for i in start ..< row.count { row[i] /= by }
 		}
 		
 		let size = self.size
@@ -176,20 +176,20 @@ extension Matrix where Number: BasicArithmetic {
 		let count = elements.count
 		
 		guard count > 3 else {
-			switch count {
+            switch count {
             case 0: return 0
-			case 1: return elements[0][0]
-			case 2: return elements[0][0] * elements[1][1] - elements[0][1] * elements[1][0]
-			case 3:
-				let a = elements[0][0]*elements[1][1]*elements[2][2]
-				let b = elements[0][1]*elements[1][2]*elements[2][0]
-				let c = elements[0][2]*elements[1][0]*elements[2][1]
-				let d = elements[2][0]*elements[1][1]*elements[0][2]
-				let e = elements[0][0]*elements[1][2]*elements[2][1]
-				let f = elements[0][1]*elements[1][0]*elements[2][2]
-				return a + b + c - d - e - f
-			default: fatalError("count is not allowed. (\(count))")
-			}
+            case 1: return elements[0][0]
+            case 2: return elements[0][0] * elements[1][1] - elements[0][1] * elements[1][0]
+            case 3:
+                let a = elements[0][0]*elements[1][1]*elements[2][2]
+                let b = elements[0][1]*elements[1][2]*elements[2][0]
+                let c = elements[0][2]*elements[1][0]*elements[2][1]
+                let d = elements[2][0]*elements[1][1]*elements[0][2]
+                let e = elements[0][0]*elements[1][2]*elements[2][1]
+                let f = elements[0][1]*elements[1][0]*elements[2][2]
+                return a + b + c - d - e - f
+            default: fatalError("count is not allowed. (\(count))")
+            }
 		}
 		var res: Number = 0
 		let indices = 0..<(count - 1)
