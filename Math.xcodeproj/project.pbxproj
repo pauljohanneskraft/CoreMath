@@ -94,6 +94,9 @@
 		9B71D3ED1D4BF1C6001C5BE9 /* TermTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B71D3EC1D4BF1C6001C5BE9 /* TermTests.swift */; };
 		9B825EB61EBF2C94003A9B9C /* DFATest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B825EB51EBF2C94003A9B9C /* DFATest.swift */; };
 		9B825EB81EBF2CA3003A9B9C /* NFATest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B825EB71EBF2CA3003A9B9C /* NFATest.swift */; };
+		9BA084581FD59D9A00424E5D /* Logarithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA084561FD59D9900424E5D /* Logarithm.swift */; };
+		9BA084591FD59D9A00424E5D /* Power.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA084571FD59D9900424E5D /* Power.swift */; };
+		9BA0845B1FD59DBE00424E5D /* Plotter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA0845A1FD59DBE00424E5D /* Plotter.swift */; };
 		9BC8BBDB1D6F0E1D0010AC02 /* BasicArithmeticTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC8BBDA1D6F0E1D0010AC02 /* BasicArithmeticTests.swift */; };
 		9BE2CB2E1FCF732900BD4942 /* DiscreteFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE2CB2D1FCF732900BD4942 /* DiscreteFunction.swift */; };
 		9BE2CB7F1FD0ACC500BD4942 /* Sampling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE2CB7E1FD0ACC500BD4942 /* Sampling.swift */; };
@@ -190,6 +193,9 @@
 		9B71D3EC1D4BF1C6001C5BE9 /* TermTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermTests.swift; sourceTree = "<group>"; };
 		9B825EB51EBF2C94003A9B9C /* DFATest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DFATest.swift; sourceTree = "<group>"; };
 		9B825EB71EBF2CA3003A9B9C /* NFATest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NFATest.swift; sourceTree = "<group>"; };
+		9BA084561FD59D9900424E5D /* Logarithm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logarithm.swift; sourceTree = "<group>"; };
+		9BA084571FD59D9900424E5D /* Power.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Power.swift; sourceTree = "<group>"; };
+		9BA0845A1FD59DBE00424E5D /* Plotter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Plotter.swift; path = Sources/Plotter.swift; sourceTree = SOURCE_ROOT; };
 		9BC8BBDA1D6F0E1D0010AC02 /* BasicArithmeticTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicArithmeticTests.swift; sourceTree = "<group>"; };
 		9BD8A6731D705C2F00C2618E /* Info.plist */ = {isa = PBXFileReference; explicitFileType = wrapper.xcdatamodel; fileEncoding = 4; path = Info.plist; sourceTree = "<group>"; };
 		9BE2CB2D1FCF732900BD4942 /* DiscreteFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscreteFunction.swift; sourceTree = "<group>"; };
@@ -298,6 +304,8 @@
 			children = (
 				9BE2CB831FD0CE5100BD4942 /* Functions.swift */,
 				9B46A05A1D78FEC900C1059E /* ConstantFunction.swift */,
+				9BA084561FD59D9900424E5D /* Logarithm.swift */,
+				9BA084571FD59D9900424E5D /* Power.swift */,
 				9BE2CB7D1FD0ACAE00BD4942 /* Discrete Functions */,
 				9B46A05B1D78FEC900C1059E /* CustomFunction.swift */,
 				9B46A05C1D78FEC900C1059E /* Equation.swift */,
@@ -469,6 +477,7 @@
 			children = (
 				9B4C42981FBF97DB00786391 /* LinuxSupport.swift */,
 				9B4C429A1FBFB0BB00786391 /* General.swift */,
+				9BA0845A1FD59DBE00424E5D /* Plotter.swift */,
 				9B46A0591D78FEC900C1059E /* Algebra */,
 				9B4977C41EBD3CE800B65019 /* Automata */,
 				9B46A0681D78FEC900C1059E /* Functions */,
@@ -650,6 +659,7 @@
 				9B4977E01EBE296900B65019 /* AutomatonIterator.swift in Sources */,
 				9B1503ED1FC7D7FA000BC543 /* ComplexConvertible.swift in Sources */,
 				9B46A0911D78FEC900C1059E /* Enhanced.swift in Sources */,
+				9BA0845B1FD59DBE00424E5D /* Plotter.swift in Sources */,
 				9B46A07A1D78FEC900C1059E /* GroupLike.swift in Sources */,
 				9B46A08E1D78FEC900C1059E /* Matrix.swift in Sources */,
 				9B46A07F1D78FEC900C1059E /* RingLikeProtocols.swift in Sources */,
@@ -661,10 +671,12 @@
 				9BE2CB8A1FD1652700BD4942 /* CubicSplineInterpolation.swift in Sources */,
 				9B46A0891D78FEC900C1059E /* PolynomialFields.swift in Sources */,
 				9B46A0931D78FEC900C1059E /* AdvancedNumeric.swift in Sources */,
+				9BA084591FD59D9A00424E5D /* Power.swift in Sources */,
 				9B4977CC1EBD3D6900B65019 /* Automaton.swift in Sources */,
 				9B6925E51FC6DFED00A2BD21 /* NearestNeighborInterpolation.swift in Sources */,
 				9B4C42991FBF97DB00786391 /* LinuxSupport.swift in Sources */,
 				9B4C429B1FBFB0BB00786391 /* General.swift in Sources */,
+				9BA084581FD59D9A00424E5D /* Logarithm.swift in Sources */,
 				9B2539AC1FBE015F00824CFC /* FloatingPointNumber.swift in Sources */,
 				9BE2CB861FD0FD7800BD4942 /* Vector.swift in Sources */,
 				9B46A0921D78FEC900C1059E /* Numbers.swift in Sources */,
