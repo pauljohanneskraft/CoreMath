@@ -128,6 +128,13 @@ struct Term: Function {
             case let r as _Polynomial:
                 _polynomial.degree += r.degree
                 this.factors.remove(at: i)
+            case let r as Fraction:
+                this.factors.remove(at: i)
+                return Fraction(
+                    numerator: Term(
+                        [r.numerator, polynomialFunction, _polynomial, ConstantFunction(rest)] + this.factors
+                        ).reduced,
+                    denominator: r.denominator).reduced
             default: i += 1
             }
 		}

@@ -48,6 +48,12 @@ public extension Function {
     }
 }
 
+extension Function {
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        return lhs.equals(to: rhs)
+    }
+}
+
 public func * (lhs: Function, rhs: Function) -> Function {
 	if let l = lhs as? Equation {
 		if !(rhs is CustomFunction) {

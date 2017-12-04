@@ -9,8 +9,8 @@
 struct NewtonPolynomialInterpolation: Interpolation {
     typealias Point = (x: Number, y: Number)
     var points: [Point]
-    var coefficients: [Number] // a
-    var schemeDiagonal: [Number] // f
+    var coefficients: [Number]
+    var schemeDiagonal: [Number]
     
     var function: DiscreteFunction {
         get {
@@ -71,6 +71,7 @@ struct NewtonPolynomialInterpolation: Interpolation {
         
         for i in points.indices.dropLast().reversed() {
             output = coefficients[i] + output * (x - points[i].x)
+            // Horner's scheme (((ax + b)x + c)x + d) = ax^3 + bx^2 + cx + d
         }
         
         return output

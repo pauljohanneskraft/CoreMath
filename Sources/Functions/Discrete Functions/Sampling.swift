@@ -6,9 +6,15 @@
 //  Copyright © 2017 pauljohanneskraft. All rights reserved.
 //
 
+import Foundation
+
 extension Function {
     func sampled(start: Double, interval: Double = 1, end: Double) -> DiscreteFunction {
-        return sampled(start: start, interval: interval, count: Int((end - start) / interval))
+        return sampled(start: start, interval: interval, count: lround((end - start) / interval) + 1)
+    }
+    
+    func sampled(start: Double, end: Double, count: Int) -> DiscreteFunction {
+        return sampled(start: start, interval: (end - start) / Double(count - 1), count: count)
     }
     
     func sampled(start: Double, interval: Double = 1, count: Int) -> DiscreteFunction {

@@ -54,17 +54,21 @@ extension Equation: Function {
 		var rest = 0.0
 		var poly = PolynomialFunction(0)
 		while i < this.terms.count {
-			let t = this.terms[i].reduced
-			if let r = t as? ConstantFunction {
-				rest += r.value
-				this.terms.remove(at: i)
-			} else if let r = t as? PolynomialFunction {
-				poly.polynomial += r.polynomial
-				this.terms.remove(at: i)
-			} else {
-				this.terms[i] = t
-				i += 1
-			}
+			let term = this.terms[i].reduced
+            switch term {
+            case let term as ConstantFunction:
+                rest += term.value
+                this.terms.remove(at: i)
+            case let term as PolynomialFunction:
+                poly.polynomial += term.polynomial
+                this.terms.remove(at: i)
+            case let term as Equation:
+                this.terms.remove(at: i)
+                this.terms.append(contentsOf: term.terms)
+            default:
+                this.terms[i] = term
+                i += 1
+            }
 		}
 		if poly.polynomial != 0 { this.terms.append(poly.reduced) }
 		if rest != 0.0 { this.terms.append(Constant(rest)) }

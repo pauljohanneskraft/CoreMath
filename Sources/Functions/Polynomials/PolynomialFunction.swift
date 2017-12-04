@@ -26,7 +26,7 @@ public struct PolynomialFunction: Function {
 	public var degree: Int { return polynomial.degree }
 	
 	// functions
-	public func equals	(to:	Function) -> Bool { return (to as? PolynomialFunction)?.polynomial == Optional(polynomial)	}
+	public func equals	(to:	Function) -> Bool { return (to as? PolynomialFunction)?.polynomial == polynomial	}
 	public func call	(x: Double	) -> Double { return polynomial.call(x: x)!												}
 	
 }

@@ -21,7 +21,7 @@ extension Exponential: Function {
         return Constant(1 / log(base)) * self // 1 / log(b) * b^x
     }
     
-	public var derivative: Function {
+    public var derivative: Function {
         return log(base) * self // log(b) * b^x
     }
     

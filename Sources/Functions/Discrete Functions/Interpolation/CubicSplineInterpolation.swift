@@ -30,12 +30,10 @@ extension CubicSplineInterpolation: Interpolation {
         let h = next.x - this.x
         let t = (x - this.x) / (next.x - this.x)
         
-        let t2 = t * t
-        let t3 = t2 * t
+        let t2 = t * t, t3 = t2 * t
+        let f1 = (2*t3 - 3*t2 + 1), f2 = (-2*t3 + 3*t2)
+        let f3 = (t3 - 2*t2 + t) * h, f4 = (t3 - t2) * h
         
-        return this.y * (2*t3 - 3*t2 + 1)
-            + next.y * (-2*t3 + 3*t2)
-            + thisDy * h * (t3 - 2*t2 + t)
-            + nextDy * h * (t3 - t2)
+        return this.y * f1 + next.y * f2 + thisDy * f3 + nextDy * f4
     }
 }

@@ -45,6 +45,10 @@ class InterpolationTests: XCTestCase {
         XCTAssertEqual(interpolation[Double.pi / 7], 10)
     }
     
+    func testNewtonPolynomialInterpolation3() {
+        
+    }
+    
     func testNewtonPolynomialInterpolation2() {
         // let array = [(x: 0, y: 10), (x: 1.0, y: 15.0)]
         // let interpolation = NewtonPolynomialInterpolation(points: array)
@@ -128,12 +132,36 @@ class InterpolationTests: XCTestCase {
         XCTAssert(dfi.equals(to: dfiReal))
     }
     
-    func testDiscreteFunction3() {
+    func testDiscreteFunction3() { // TODO: Check, if integrals & derivatives are correct
         let discreteFunction = DiscreteFunction(points: [(0, 0), (0.75, 1), (1, 2), (1.5, 3), (2, 4), (2.5, 5), (3, 6)])
         let df = discreteFunction.derivative
+        XCTAssertEqual(
+            (df as? DiscreteFunction)?.points.map { $0.x } ?? [],
+            Array(discreteFunction.points.map { $0.x }.dropFirst()))
+        XCTAssertEqual(
+            (df as? DiscreteFunction)?.points.map { Float($0.y) } ?? [],
+            [1.3333333333333333, 4.0, 2.0, 2.0, 2.0, 2.0])
         let dfi = df.integral
+        XCTAssertEqual(
+            (dfi as? DiscreteFunction)?.points.map { $0.x } ?? [],
+            Array(discreteFunction.points.map { $0.x }.dropFirst()))
+        XCTAssertEqual(
+            (dfi as? DiscreteFunction)?.points.map { Float($0.y) } ?? [],
+            [0.0, 0.33333333333333331, 2.3333333333333335, 3.3333333333333335, 4.3333333333333339, 5.3333333333333339])
         let fi = discreteFunction.integral
+        XCTAssertEqual(
+            (fi as? DiscreteFunction)?.points.dropFirst().map { $0.x } ?? [],
+            Array(discreteFunction.points.map { $0.x }.dropFirst()))
+        XCTAssertEqual(
+            (fi as? DiscreteFunction)?.points.map { $0.y } ?? [],
+            [0.0, 0.0, 0.25, 1.25, 2.75, 4.75, 7.25])
         let dfi2 = fi.derivative
+        XCTAssertEqual(
+            (dfi2 as? DiscreteFunction)?.points.map { $0.x } ?? [],
+            Array(discreteFunction.points.map { $0.x }.dropFirst()))
+        XCTAssertEqual(
+            (dfi2 as? DiscreteFunction)?.points.map { Float($0.y) } ?? [],
+            [0.0, 1.0, 2.0, 3.0, 4.0, 5.0])
         print("derivative is", df)
         print("derivative's integral is", dfi)
         print("integral is", fi)
@@ -157,18 +185,37 @@ class InterpolationTests: XCTestCase {
         testInterpolation(using: NewtonPolynomialInterpolation.self)
     }
     
+    let functions = [
+        Functions.sin, Functions.cos,
+        Constant(0),
+        x^5.0, x^10 + 3*(x^5),
+        (2^x) / 3, 10^x, 3 * (3^x),
+        (x^4) * Functions.sin / (6^x)
+    ]
+    
     func testInterpolation<I: Interpolation>(using: I.Type) {
-        testInterpolation(for: Functions.sin, using: I.self)
-        testInterpolation(for: Functions.cos, using: I.self)
-        testInterpolation(for: Constant(0), using: I.self)
-        testInterpolation(for: x^5.0, using: I.self)
-        testInterpolation(for: 10^x, using: I.self)
-        testInterpolation(for: 3 * (3^x), using: I.self)
-        testInterpolation(for: (2^x) / 3, using: I.self)
-        testInterpolation(for: (x^4) * Functions.sin / (6^x), using: I.self)
+        for function in functions {
+            testInterpolation(for: function, using: I.self)
+        }
     }
     
     func testInterpolation<I: Interpolation>(for function: Function, using: I.Type) {
+        equidistantInterpolation(for: function, using: using)
+        nonEquidistantInterpolation(for: function, using: using)
+    }
+    
+    func nonEquidistantInterpolation<I: Interpolation>(for function: Function, using: I.Type) {
+        let samples = [0.125, 0.23, 0.246, 0.431, 0.5, 0.628, 0.7, 3, 7]
+        let original = function.sampled(at: samples)
+        let interpolated = original.interpolate(using: using.self).sampled(at: samples)
+        XCTAssertEqual(interpolated.points.map { $0.x },
+                       original.points.map { $0.x })
+        XCTAssertEqual(interpolated.points.map { Float($0.y) },
+                       original.points.map { Float($0.y) },
+                       "\(function) \(using)")
+    }
+    
+    func equidistantInterpolation<I: Interpolation>(for function: Function, using: I.Type) {
         let start = 0.0, interval = 0.125, count = 10
         let original = function.sampled(start: start, interval: interval, count: count)
         let interpolated = original
@@ -176,5 +223,42 @@ class InterpolationTests: XCTestCase {
             .sampled(start: start, interval: interval, count: count)
         XCTAssertEqual(interpolated.points.map { $0.x }, original.points.map { $0.x })
         XCTAssertEqual(interpolated.points.map { Float($0.y) }, original.points.map { Float($0.y) })
+    }
+    
+    func testSampling() {
+        for function in functions {
+            let start = Double.random.remainder(dividingBy: 100).abs
+            let end = start + (Double.random.remainder(dividingBy: 100).abs + 10)
+            let count = (Int.random % 200).abs + 50
+            print("Sampling", function, "from", start, "to", end, "using", count, "points")
+            testSampling(for: function, start: start, end: end, count: count)
+        }
+    }
+    
+    func testSampling(for function: Function, start: Double, end: Double, count: Int) {
+        let interval = (end - start) / Double(count - 1)
+        
+        let sampled = function.sampled(start: start, end: end, count: count)
+        testSamples(samples: sampled.points, start: start, end: end, count: count)
+        
+        let sampled2 = function.sampled(start: start, interval: interval, count: count)
+        testSamples(samples: sampled2.points, start: start, end: end, count: count)
+        
+        let sampled3 = function.sampled(start: start, interval: interval, end: end)
+        testSamples(samples: sampled3.points, start: start, end: end, count: count)
+    }
+    
+    func testSamples(samples: [DiscreteFunction.Point], start: Double, end: Double, count: Int) {
+        XCTAssertEqual(samples.count, count)
+        XCTAssertEqual(samples.first?.x, start)
+        XCTAssertEqual(Float(samples.last?.x ?? Double.greatestFiniteMagnitude), Float(end))
+        
+        let interval = (end - start) / Double(count - 1)
+        
+        for i in samples.indices.dropLast() {
+            let this = samples[i]
+            let next = samples[i + 1]
+            XCTAssertEqual(Float(next.x - this.x), Float(interval))
+        }
     }
 }

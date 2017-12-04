@@ -160,7 +160,7 @@ extension Polynomial {
 		var cs: [Number] = coefficients[0...degree] + []
 		var zeros = [Number]()
 		
-		while cs.count > 0 && cs[0] == 0 {
+		while cs.first == 0 {
 			zeros.append(0)
 			_ = cs.remove(at: 0)
 		}
@@ -280,12 +280,9 @@ public func < < N > (lhs: Polynomial<N>, rhs: Polynomial<N>) -> Bool {
 	let r = rhs.coefficients.count
 	let l = lhs.coefficients.count
 	if l != r { return l < r }
-	var i = l - 1
-	while i >= 0 {
+	for i in (0..<l).reversed() {
 		let cmp = lhs.coefficients[i] - rhs.coefficients[i]
-		if cmp < 0 { return true  }
-		if cmp > 0 { return false }
-		i -= 1
+        guard cmp == 0 else { return cmp < 0 }
 	}
 	return false
 }

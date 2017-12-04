@@ -20,16 +20,39 @@ extension Fraction: Function {
 	var derivative: Function {
 		return Fraction(
 			numerator: (numerator.derivative * denominator) - (denominator.derivative * numerator),
-			denominator: denominator * denominator)
+			denominator: denominator * denominator).reduced
 	}
 	
 	var integral: Function {
-		assert(false)
-		fatalError("integral not yet supported for fractions.")
+        let this = self.reduced
+        guard this is Fraction else { return this.integral }
+        switch denominator.reduced {
+        case let denominator as Constant:
+            return ((1/denominator.value) * numerator).integral
+        case let denominator as _Polynomial:
+            return (numerator * _Polynomial(degree: -denominator.degree)).integral
+        case let denominator as PolynomialFunction where numerator is PolynomialFunction:
+            guard let numerator = self.numerator as? PolynomialFunction else {
+                assert(false)
+                return self
+            }
+            let (result, remainder) = numerator.polynomial /% denominator.polynomial
+            guard remainder.numerator.isZero else {
+                assert(false)
+                return self
+            }
+            return PolynomialFunction(result).integral
+        default:
+            assert(false)
+            fatalError("integral not yet supported for fractions.")
+        }
 	}
 	
 	var reduced: Function {
-        switch (numerator.reduced, denominator.reduced) {
+        let numerator = self.numerator.reduced, denominator = self.denominator.reduced
+        guard !numerator.equals(to: denominator) else { return Constant(1) }
+        guard !numerator.equals(to: -denominator) else { return Constant(-1) }
+        switch (numerator, denominator) {
         case let (numerator, denominator as ConstantFunction):
             return numerator * (1 / denominator.value)
         case let (numerator as PolynomialFunction, denominator as PolynomialFunction):
