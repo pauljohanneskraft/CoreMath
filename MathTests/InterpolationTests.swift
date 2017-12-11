@@ -219,7 +219,9 @@ class InterpolationTests: XCTestCase {
             .interpolate(using: using.self)
             .sampled(start: start, interval: interval, count: count)
         XCTAssertEqual(interpolated.points.map { $0.x }, original.points.map { $0.x })
-        XCTAssertEqual(interpolated.points.map { Float($0.y) }, original.points.map { Float($0.y) }, "\(function) \(using)")
+        XCTAssertEqual(interpolated.points.map { Float($0.y) },
+                       original.points.map { Float($0.y) },
+                       "\(function) \(using)")
     }
     
     func testSampling() {
