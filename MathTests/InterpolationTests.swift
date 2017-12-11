@@ -196,13 +196,9 @@ class InterpolationTests: XCTestCase {
     
     func testInterpolation<I: Interpolation>(using: I.Type) {
         for function in InterpolationTests.functions {
-            testInterpolation(for: function, using: I.self)
+            equidistantInterpolation(for: function, using: using)
+            nonEquidistantInterpolation(for: function, using: using)
         }
-    }
-    
-    func testInterpolation<I: Interpolation>(for function: Function, using: I.Type) {
-        equidistantInterpolation(for: function, using: using)
-        nonEquidistantInterpolation(for: function, using: using)
     }
     
     func nonEquidistantInterpolation<I: Interpolation>(for function: Function, using: I.Type) {
@@ -217,13 +213,13 @@ class InterpolationTests: XCTestCase {
     }
     
     func equidistantInterpolation<I: Interpolation>(for function: Function, using: I.Type) {
-        let start = 0.0, interval = 0.125, count = 10
+        let start = 0.5, interval = 0.125, count = 10
         let original = function.sampled(start: start, interval: interval, count: count)
         let interpolated = original
             .interpolate(using: using.self)
             .sampled(start: start, interval: interval, count: count)
         XCTAssertEqual(interpolated.points.map { $0.x }, original.points.map { $0.x })
-        XCTAssertEqual(interpolated.points.map { Float($0.y) }, original.points.map { Float($0.y) })
+        XCTAssertEqual(interpolated.points.map { Float($0.y) }, original.points.map { Float($0.y) }, "\(function) \(using)")
     }
     
     func testSampling() {
