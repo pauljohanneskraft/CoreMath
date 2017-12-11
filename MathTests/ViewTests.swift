@@ -17,7 +17,7 @@ class ViewTests: XCTestCase {
     }
     
     override func tearDown() {
-        NSApp?.run()
+        // NSApp?.run()
     }
     
     func testCustomInterpolationPlotWindow() {
