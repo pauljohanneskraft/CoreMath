@@ -25,18 +25,18 @@ extension Logarithm: Function {
     var reduced: Function {
         switch content.reduced {
         case let content as ConstantFunction:
-            return ConstantFunction(log(content.value) / log(base))
+            return ConstantFunction(log(base: base, of: content.value))
         case let content as Term:
             return Equation(content.factors.map { Logarithm(base: base, content: $0) }).reduced
         case let content as Exponential:
-            return content.base == base ? x : Logarithm(base: base, content: content)
+            return log(base: base, of: content.base)*x
         case let content:
             return Logarithm(base: base, content: content)
         }
     }
     
     func call(x: Double) -> Double {
-        return log(content.call(x: x)) / log(base)
+        return log(base: base, of: content.call(x: x))
     }
     
     func equals(to: Function) -> Bool {
@@ -47,8 +47,8 @@ extension Logarithm: Function {
 
 extension Logarithm: CustomStringConvertible {
     var description: String {
-        guard base != Constants.Math.e else { return "ln(\(content))" }
-        guard base != 2 else { return "ld(\(content))" }
-        return "log_\(base.reducedDescription)(\(content))"
+        let logDescs = [Constants.Math.e: "ln", 2: "ld", 10: "lg"]
+        let logDesc = logDescs[base] ?? "log_\(base.reducedDescription)"
+        return logDesc + "(\(content))"
     }
 }

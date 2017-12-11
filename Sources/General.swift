@@ -81,3 +81,7 @@ extension Double: All {}
 extension Int: All {}
 extension Int64: All {}
 extension Float: All {}
+
+func log(base: Double, of: Double) -> Double {
+    return log(of) / log(base)
+}

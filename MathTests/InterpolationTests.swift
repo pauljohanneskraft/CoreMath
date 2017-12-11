@@ -104,7 +104,7 @@ class InterpolationTests: XCTestCase {
     func testDiscreteFunction() {
         let discreteFunction = DiscreteFunction(points: [(0, 0), (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6)])
         let df = discreteFunction.derivative
-        XCTAssert(df.equals(to: DiscreteFunction(points: (1...6).map { (x: Double($0), y: 1) })))
+        XCTAssert(df.equals(to: DiscreteFunction(points: (0...5).map { (x: Double($0), y: 1) })))
         let dfi = df.integral
         let fi = discreteFunction.integral
         let dfi2 = fi.derivative
@@ -113,7 +113,7 @@ class InterpolationTests: XCTestCase {
         print(discreteFunction, "'s integral is", fi)
         print(fi, "'s derivative is", dfi2)
         XCTAssert(dfi.equals(to: dfi2))
-        let dfiReal = DiscreteFunction(points: [(1, 0), (2, 1), (3, 2), (4, 3), (5, 4), (6, 5)])
+        let dfiReal = DiscreteFunction(points: [(0, 0), (1, 1), (2, 2), (3, 3), (4, 4), (5, 5)])
         XCTAssert(dfi.equals(to: dfiReal))
     }
     
@@ -128,48 +128,45 @@ class InterpolationTests: XCTestCase {
         print(discreteFunction, "'s integral is", fi)
         print(fi, "'s derivative is", dfi2)
         XCTAssert(dfi.equals(to: dfi2))
-        let dfiReal = DiscreteFunction(points: [(0.5, 0), (1, 1), (1.5, 2), (2, 3), (2.5, 4), (3, 5)])
+        let dfiReal = DiscreteFunction(points: [(0, 0), (0.5, 1), (1, 2), (1.5, 3), (2, 4), (2.5, 5)])
         XCTAssert(dfi.equals(to: dfiReal))
     }
     
-    func testDiscreteFunction3() { // TODO: Check, if integrals & derivatives are correct
+    func testDiscreteFunction3() {
         let discreteFunction = DiscreteFunction(points: [(0, 0), (0.75, 1), (1, 2), (1.5, 3), (2, 4), (2.5, 5), (3, 6)])
         let df = discreteFunction.derivative
         XCTAssertEqual(
             (df as? DiscreteFunction)?.points.map { $0.x } ?? [],
-            Array(discreteFunction.points.map { $0.x }.dropFirst()))
+            Array(discreteFunction.points.map { $0.x }.dropLast()))
         XCTAssertEqual(
             (df as? DiscreteFunction)?.points.map { Float($0.y) } ?? [],
             [1.3333333333333333, 4.0, 2.0, 2.0, 2.0, 2.0])
         let dfi = df.integral
         XCTAssertEqual(
             (dfi as? DiscreteFunction)?.points.map { $0.x } ?? [],
-            Array(discreteFunction.points.map { $0.x }.dropFirst()))
+            Array(discreteFunction.points.map { $0.x }.dropLast()))
         XCTAssertEqual(
             (dfi as? DiscreteFunction)?.points.map { Float($0.y) } ?? [],
-            [0.0, 0.33333333333333331, 2.3333333333333335, 3.3333333333333335, 4.3333333333333339, 5.3333333333333339])
+            [0.0, 1.0, 2.0, 3.0, 4.0, 5.0])
         let fi = discreteFunction.integral
         XCTAssertEqual(
-            (fi as? DiscreteFunction)?.points.dropFirst().map { $0.x } ?? [],
-            Array(discreteFunction.points.map { $0.x }.dropFirst()))
+            (fi as? DiscreteFunction)?.points.dropLast().map { $0.x } ?? [],
+            Array(discreteFunction.points.map { $0.x }.dropLast()))
         XCTAssertEqual(
             (fi as? DiscreteFunction)?.points.map { $0.y } ?? [],
             [0.0, 0.0, 0.25, 1.25, 2.75, 4.75, 7.25])
         let dfi2 = fi.derivative
         XCTAssertEqual(
             (dfi2 as? DiscreteFunction)?.points.map { $0.x } ?? [],
-            Array(discreteFunction.points.map { $0.x }.dropFirst()))
+            Array(discreteFunction.points.map { $0.x }.dropLast()))
         XCTAssertEqual(
             (dfi2 as? DiscreteFunction)?.points.map { Float($0.y) } ?? [],
             [0.0, 1.0, 2.0, 3.0, 4.0, 5.0])
+        XCTAssert(dfi.equals(to: dfi2))
         print("derivative is", df)
         print("derivative's integral is", dfi)
         print("integral is", fi)
         print("integral's derivative is", dfi2)
-        // XCTAssert(dfi.equals(to: dfi2), "\(dfi) != \(dfi2)")
-        let dfiReal = DiscreteFunction(points: [(0.75, 0), (1, 1), (1.5, 2), (2, 3), (2.5, 4), (3, 5)])
-        // XCTAssert(dfi.equals(to: dfiReal), "\(dfi) != \(dfiReal)")
-        print(dfiReal)
     }
     
     func testNewtonPolynomialInterpolation() {
@@ -185,16 +182,20 @@ class InterpolationTests: XCTestCase {
         testInterpolation(using: NewtonPolynomialInterpolation.self)
     }
     
-    let functions = [
+    static let functions: [Function] = [
         Functions.sin, Functions.cos,
         Constant(0),
-        x^5.0, x^10 + 3*(x^5),
-        (2^x) / 3, 10^x, 3 * (3^x),
+        x^5.0, x^10 - 3*(5^x),
+        x^0.5, Functions.sin * (x^0.5),
+        Logarithm(base: Constants.Math.e, content: x^10),
+        Logarithm(base: Constants.Math.e, content: 10^x),
+        (x^4).sampled(start: 1, count: 3),
+        Fraction(numerator: (2^x), denominator: Constant(3)), 10^x, 3 * (3^x),
         (x^4) * Functions.sin / (6^x)
     ]
     
     func testInterpolation<I: Interpolation>(using: I.Type) {
-        for function in functions {
+        for function in InterpolationTests.functions {
             testInterpolation(for: function, using: I.self)
         }
     }
@@ -226,7 +227,7 @@ class InterpolationTests: XCTestCase {
     }
     
     func testSampling() {
-        for function in functions {
+        for function in InterpolationTests.functions {
             let start = Double.random.remainder(dividingBy: 100).abs
             let end = start + (Double.random.remainder(dividingBy: 100).abs + 10)
             let count = (Int.random % 200).abs + 50
