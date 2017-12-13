@@ -12,7 +12,7 @@ public struct DenseMatrix<Number>: LinearAlgebraic {
     public typealias Size = (rows: Int, columns: Int)
     
     public private(set) var elements: TwoDimensionalArray
-    var matrix: TwoDimensionalArray { return elements }
+    public var matrix: TwoDimensionalArray { return elements }
     
     public init(elements: TwoDimensionalArray) {
         self.elements = elements
@@ -57,21 +57,19 @@ extension DenseMatrix {
         return desc
     }
     
-    public subscript(index: Int) -> [Number]? {
+    public subscript(index: Int) -> Row {
         get { return elements[index] }
         set {
-            guard let value = newValue else { return }
-            elements[index] = value
+            elements[index] = newValue
         }
     }
     
-    subscript(row: Int, column: Int) -> Number? {
+    public subscript(row: Int, column: Int) -> Number {
         get {
             return elements[row][column]
         }
         set {
-            guard let value = newValue else { return }
-            elements[row][column] = value
+            elements[row][column] = newValue
         }
     }
 }
@@ -107,41 +105,42 @@ extension DenseMatrix where Number: BasicArithmetic {
 	
 	public var rowEchelonForm: DenseMatrix {
 		
+        let (rows, columns) = self.size
+        var elements = self.elements
+        
 		func removeLeadingNumber(row: inout Row, withRow: Row, startAt start: Int) {
 			let coeff = row[start] / withRow[start]
             guard coeff != 0 else { return }
-			for i in start ..< row.count { row[i] -= coeff*withRow[i] }
+			for i in start ..< columns { row[i] -= coeff*withRow[i] }
 		}
 		
 		func divide(row: inout Row, by: Number, startAt start: Int) {
-			assert(by != 0)
-			for i in start ..< row.count { row[i] /= by }
+			// assert(by != 0)
+			for i in start ..< columns { row[i] /= by }
 		}
 		
-		let size = self.size
-		var elements = self.elements
 		var column	= 0
 		var row		= 0
+        let minimum = min(rows, columns)
 		
-		while column < min(size.rows, size.columns) {
-			// looking for element which is not 0 at index "row"
-			if elements[row][column] == 0 {
-				for i in (row+1) ..< size.rows where elements[i][column] != 0 {
+		while column < minimum {
+
+            if elements[row][column] == 0 {
+				for i in (row+1) ..< rows where elements[i][column] != 0 {
                     elements.swapAt(row, i)
                     break
 				}
 			}
-			// print("did choose changing row")
 			
-			if elements[row][column] == 0 { column += 1; continue }
+            if elements[row][column] == 0 { column += 1; continue }
 			divide(row: &elements[row], by: elements[row][column], startAt: row)
-			for i in (row+1) ..< size.rows {
+			for i in (row+1) ..< rows {
 				removeLeadingNumber(row: &elements[i], withRow: elements[row], startAt: column)
 			}
 			column += 1
 			row += 1
 		}
-		return DenseMatrix(elements) // TODO!!
+		return DenseMatrix(elements)
 	}
     
     private func emptyRow(at index: Int) -> Bool {
@@ -149,40 +148,26 @@ extension DenseMatrix where Number: BasicArithmetic {
     }
 	
 	public var reducedRowEchelonForm: DenseMatrix {
-		func subtract(row: Row, from otherRow: inout Row, multipliedBy multiplier: Number = 1) {
-			assert(row.count == otherRow.count)
-			for i in row.indices { otherRow[i] -= row[i]*multiplier }
+		var rowEchelonForm = self.rowEchelonForm.elements
+        let indices = rowEchelonForm[0].indices
+		
+		for i in rowEchelonForm.indices.reversed() {
+            guard rowEchelonForm[i].contains(where: { $0 != 0 }), rowEchelonForm[i][i] != 0 else { continue }
+            for j in 0 ..< i {
+                let factor = rowEchelonForm[j][i] / rowEchelonForm[i][i]
+                for k in indices { rowEchelonForm[j][k] -= rowEchelonForm[i][k]*factor }
+            }
 		}
 		
-		var rowEchelonForm = self.rowEchelonForm
-		let rows = rowEchelonForm.size.rows
-		var i = rows - 1
-		
-		while i >= 0 {
-			if !rowEchelonForm.emptyRow(at: i) {
-                for j in 0 ..< i where rowEchelonForm[i, i] != 0 {
-                    let factor = rowEchelonForm.elements[j][i] / rowEchelonForm.elements[i][i]
-                    subtract(row: rowEchelonForm.elements[i],
-                             from: &rowEchelonForm.elements[j],
-                             multipliedBy: factor)
-                }
-			}
-			i -= 1
-		}
-		
-		return rowEchelonForm // TODO!!
+		return DenseMatrix(rowEchelonForm)
 	}
 	
 	public var inverse: DenseMatrix {
 		assert(isSquare)
 		let rows = size.rows
-		var two = self
-		var id = DenseMatrix.identity(rows)
-		for i in two.elements.indices { two.elements[i].append(contentsOf: id.elements[i]) }
-		two = two.reducedRowEchelonForm
-		let drows = rows << 1
-		for i in two.elements.indices { id.elements[i] = two.elements[i][rows..<drows] + [] }
-		return id
+		let id = DenseMatrix.identity(rows)
+		let two = DenseMatrix((0..<rows).map { self.elements[$0] + id.elements[$0] }).reducedRowEchelonForm
+		return DenseMatrix(two.elements.map { Array($0[rows...]) })
 	}
 	
 	public var determinant: Number {
@@ -243,11 +228,12 @@ extension DenseMatrix where Number: BasicArithmetic {
         }
     }
     
-    public static func -= (lhs: inout DenseMatrix, rhs: DenseMatrix) {
+    public static func -= <LA: LinearAlgebraic>(lhs: inout DenseMatrix, rhs: LA) where LA.Number == Number {
         assert(lhs.size == rhs.size)
-        let size = lhs.size
-        for i in 0 ..< size.rows {
-            for j in 0 ..< size.columns { lhs.elements[i][j] -= rhs.elements[i][j] }
+        let (rows, columnCount) = lhs.size
+        let columns = 0..<columnCount
+        for i in 0 ..< rows {
+            for j in columns { lhs.elements[i][j] -= rhs[i, j] }
         }
     }
     
@@ -258,19 +244,19 @@ extension DenseMatrix where Number: BasicArithmetic {
         }
     }
     
-    public static func *= (left: inout DenseMatrix, right: DenseMatrix) {
+    public static func *= <LA: LinearAlgebraic>(left: inout DenseMatrix, right: LA) where LA.Number == Number {
         assert(left.size.columns == right.size.rows)
-        var matrix = TwoDimensionalArray()
+        var matrix = [[Number]]()
         let ls = left.size
         let lrows = ls.rows
         let lcols = ls.columns
         let rcols = right.size.columns
         
         for i in 0 ..< lrows {
-            var array = Row()
+            var array = [Number]()
             for j in 0 ..< rcols {
                 var value: Number = 0
-                for k in 0 ..< lcols { value += (left.elements[i][k]*right.elements[k][j]) }
+                for k in 0 ..< lcols { value += (left[i, k] * right[k, j]) }
                 array.append(value)
             }
             matrix.append(array)
@@ -286,7 +272,7 @@ extension DenseMatrix where Number: BasicArithmetic {
         return rhs.copy { $0 *= lhs }
     }
     
-    public static func * (lhs: DenseMatrix, rhs: DenseMatrix) -> DenseMatrix {
+    public static func * <LA: LinearAlgebraic>(lhs: DenseMatrix, rhs: LA) -> DenseMatrix where LA.Number == Number {
         return lhs.copy { $0 *= rhs }
     }
     
@@ -294,7 +280,7 @@ extension DenseMatrix where Number: BasicArithmetic {
         return lhs.copy { $0 += rhs }
     }
     
-    public static func - (lhs: DenseMatrix, rhs: DenseMatrix) -> DenseMatrix {
+    public static func - <LA: LinearAlgebraic>(lhs: DenseMatrix, rhs: LA) -> DenseMatrix where LA.Number == Number {
         return lhs.copy { $0 -= rhs }
     }
 }
@@ -312,11 +298,7 @@ private func == <T: Equatable>(lhs: [[T]], rhs: [[T]]) -> Bool {
 }
 
 extension DenseMatrix {
-    var transposed: DenseMatrix {
-        let (rows, columns) = self.size
-        let matrix = (0..<columns).map { column in
-            (0..<rows).map { row in self[row, column]! }
-        }
-        return DenseMatrix(matrix)
+    var transposed: TransposedDenseMatrix<Number> {
+        return TransposedDenseMatrix(original: self)
     }
 }

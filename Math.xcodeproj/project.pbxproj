@@ -77,12 +77,6 @@
 		9B4977C81EBD3D3E00B65019 /* NFA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4977C71EBD3D3E00B65019 /* NFA.swift */; };
 		9B4977CA1EBD3D5800B65019 /* DFA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4977C91EBD3D5800B65019 /* DFA.swift */; };
 		9B4977CC1EBD3D6900B65019 /* Automaton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4977CB1EBD3D6900B65019 /* Automaton.swift */; };
-		9B4977D21EBE0D1000B65019 /* AutomatonState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4977D11EBE0D1000B65019 /* AutomatonState.swift */; };
-		9B4977D51EBE0D3200B65019 /* DFA-State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4977D31EBE0D3200B65019 /* DFA-State.swift */; };
-		9B4977D61EBE0D3200B65019 /* NFA-State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4977D41EBE0D3200B65019 /* NFA-State.swift */; };
-		9B4977DC1EBE267500B65019 /* DFA-Iterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4977DB1EBE267500B65019 /* DFA-Iterator.swift */; };
-		9B4977DE1EBE269C00B65019 /* NFA-Iterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4977DD1EBE269C00B65019 /* NFA-Iterator.swift */; };
-		9B4977E01EBE296900B65019 /* AutomatonIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4977DF1EBE296900B65019 /* AutomatonIterator.swift */; };
 		9B4C42991FBF97DB00786391 /* LinuxSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4C42981FBF97DB00786391 /* LinuxSupport.swift */; };
 		9B4C429B1FBFB0BB00786391 /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4C429A1FBFB0BB00786391 /* General.swift */; };
 		9B5BE2501D72E386006C5B96 /* TeXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5BE24F1D72E386006C5B96 /* TeXTests.swift */; };
@@ -122,9 +116,11 @@
 		9B959AFB1FD8FE69000B4404 /* CustomFourierPlotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B959AFA1FD8FE69000B4404 /* CustomFourierPlotViewController.swift */; };
 		9BA084581FD59D9A00424E5D /* Logarithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA084561FD59D9900424E5D /* Logarithm.swift */; };
 		9BA084591FD59D9A00424E5D /* Power.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA084571FD59D9900424E5D /* Power.swift */; };
+		9BA13BDC1FE1AE740072E5D0 /* TransposedDenseMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA13BDB1FE1AE740072E5D0 /* TransposedDenseMatrix.swift */; };
+		9BA13BDE1FE1B66E0072E5D0 /* VerticalDenseVector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA13BDD1FE1B66E0072E5D0 /* VerticalDenseVector.swift */; };
 		9BC7689F1FE030650069050A /* CurveFitting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC7689E1FE030650069050A /* CurveFitting.swift */; };
 		9BC768A31FE03E310069050A /* SparseMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC768A21FE03E310069050A /* SparseMatrix.swift */; };
-		9BC768A51FE03E3E0069050A /* DenseVector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC768A41FE03E3E0069050A /* DenseVector.swift */; };
+		9BC768A51FE03E3E0069050A /* HorizontalDenseVector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC768A41FE03E3E0069050A /* HorizontalDenseVector.swift */; };
 		9BC768A71FE03E490069050A /* SparseVector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC768A61FE03E490069050A /* SparseVector.swift */; };
 		9BC8BBDB1D6F0E1D0010AC02 /* BasicArithmeticTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC8BBDA1D6F0E1D0010AC02 /* BasicArithmeticTests.swift */; };
 		9BE2CB2E1FCF732900BD4942 /* DiscreteFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE2CB2D1FCF732900BD4942 /* DiscreteFunction.swift */; };
@@ -209,12 +205,6 @@
 		9B4977C71EBD3D3E00B65019 /* NFA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NFA.swift; sourceTree = "<group>"; };
 		9B4977C91EBD3D5800B65019 /* DFA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DFA.swift; sourceTree = "<group>"; };
 		9B4977CB1EBD3D6900B65019 /* Automaton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Automaton.swift; sourceTree = "<group>"; };
-		9B4977D11EBE0D1000B65019 /* AutomatonState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutomatonState.swift; sourceTree = "<group>"; };
-		9B4977D31EBE0D3200B65019 /* DFA-State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DFA-State.swift"; sourceTree = "<group>"; };
-		9B4977D41EBE0D3200B65019 /* NFA-State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NFA-State.swift"; sourceTree = "<group>"; };
-		9B4977DB1EBE267500B65019 /* DFA-Iterator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DFA-Iterator.swift"; sourceTree = "<group>"; };
-		9B4977DD1EBE269C00B65019 /* NFA-Iterator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NFA-Iterator.swift"; sourceTree = "<group>"; };
-		9B4977DF1EBE296900B65019 /* AutomatonIterator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutomatonIterator.swift; sourceTree = "<group>"; };
 		9B4C42981FBF97DB00786391 /* LinuxSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinuxSupport.swift; sourceTree = "<group>"; };
 		9B4C429A1FBFB0BB00786391 /* General.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
 		9B5BE24F1D72E386006C5B96 /* TeXTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeXTests.swift; sourceTree = "<group>"; };
@@ -254,9 +244,11 @@
 		9B959AFA1FD8FE69000B4404 /* CustomFourierPlotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFourierPlotViewController.swift; sourceTree = "<group>"; };
 		9BA084561FD59D9900424E5D /* Logarithm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logarithm.swift; sourceTree = "<group>"; };
 		9BA084571FD59D9900424E5D /* Power.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Power.swift; sourceTree = "<group>"; };
+		9BA13BDB1FE1AE740072E5D0 /* TransposedDenseMatrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransposedDenseMatrix.swift; sourceTree = "<group>"; };
+		9BA13BDD1FE1B66E0072E5D0 /* VerticalDenseVector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalDenseVector.swift; sourceTree = "<group>"; };
 		9BC7689E1FE030650069050A /* CurveFitting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurveFitting.swift; sourceTree = "<group>"; };
 		9BC768A21FE03E310069050A /* SparseMatrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparseMatrix.swift; sourceTree = "<group>"; };
-		9BC768A41FE03E3E0069050A /* DenseVector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DenseVector.swift; sourceTree = "<group>"; };
+		9BC768A41FE03E3E0069050A /* HorizontalDenseVector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalDenseVector.swift; sourceTree = "<group>"; };
 		9BC768A61FE03E490069050A /* SparseVector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparseVector.swift; sourceTree = "<group>"; };
 		9BC8BBDA1D6F0E1D0010AC02 /* BasicArithmeticTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicArithmeticTests.swift; sourceTree = "<group>"; };
 		9BD8A6731D705C2F00C2618E /* Info.plist */ = {isa = PBXFileReference; explicitFileType = wrapper.xcdatamodel; fileEncoding = 4; path = Info.plist; sourceTree = "<group>"; };
@@ -444,9 +436,11 @@
 				9BE2CB871FD0FDEF00BD4942 /* LinearAlgebraic.swift */,
 				9BC768A21FE03E310069050A /* SparseMatrix.swift */,
 				9BE2CB851FD0FD7800BD4942 /* Vector.swift */,
-				9BC768A41FE03E3E0069050A /* DenseVector.swift */,
+				9BC768A41FE03E3E0069050A /* HorizontalDenseVector.swift */,
+				9BA13BDD1FE1B66E0072E5D0 /* VerticalDenseVector.swift */,
 				9BC768A61FE03E490069050A /* SparseVector.swift */,
 				9B46A06B1D78FEC900C1059E /* DenseMatrix.swift */,
+				9BA13BDB1FE1AE740072E5D0 /* TransposedDenseMatrix.swift */,
 			);
 			path = "Linear Algebra";
 			sourceTree = "<group>";
@@ -537,14 +531,8 @@
 			isa = PBXGroup;
 			children = (
 				9B4977CB1EBD3D6900B65019 /* Automaton.swift */,
-				9B4977D11EBE0D1000B65019 /* AutomatonState.swift */,
-				9B4977DF1EBE296900B65019 /* AutomatonIterator.swift */,
 				9B4977C91EBD3D5800B65019 /* DFA.swift */,
-				9B4977D31EBE0D3200B65019 /* DFA-State.swift */,
-				9B4977DB1EBE267500B65019 /* DFA-Iterator.swift */,
 				9B4977C71EBD3D3E00B65019 /* NFA.swift */,
-				9B4977D41EBE0D3200B65019 /* NFA-State.swift */,
-				9B4977DD1EBE269C00B65019 /* NFA-Iterator.swift */,
 			);
 			path = Automata;
 			sourceTree = "<group>";
@@ -938,7 +926,7 @@
 				9B46A0881D78FEC900C1059E /* Polynomial.swift in Sources */,
 				9BE2CB811FD0B12600BD4942 /* Interpolation.swift in Sources */,
 				9B46A0831D78FEC900C1059E /* ExponentialFunction.swift in Sources */,
-				9BC768A51FE03E3E0069050A /* DenseVector.swift in Sources */,
+				9BC768A51FE03E3E0069050A /* HorizontalDenseVector.swift in Sources */,
 				9B6CEAFE1FDC6AB5004FBCB3 /* String.swift in Sources */,
 				9B46A0901D78FEC900C1059E /* Complex.swift in Sources */,
 				9BE2CB881FD0FDEF00BD4942 /* LinearAlgebraic.swift in Sources */,
@@ -949,9 +937,7 @@
 				9B46A07D1D78FEC900C1059E /* ModuleLikeProtocols.swift in Sources */,
 				9B6CEB051FDC6D13004FBCB3 /* ApplicationDelegate.swift in Sources */,
 				9B46A0851D78FEC900C1059E /* Function.swift in Sources */,
-				9B4977D61EBE0D3200B65019 /* NFA-State.swift in Sources */,
 				9B46A0821D78FEC900C1059E /* Equation.swift in Sources */,
-				9B4977DC1EBE267500B65019 /* DFA-Iterator.swift in Sources */,
 				9B47AAF21FE14AAC004B5B45 /* TrigonometricFunction.swift in Sources */,
 				9B46A0871D78FEC900C1059E /* _Polynomial.swift in Sources */,
 				9B6CEAF41FDC695B004FBCB3 /* CGRect.swift in Sources */,
@@ -966,9 +952,9 @@
 				9B46A0801D78FEC900C1059E /* ConstantFunction.swift in Sources */,
 				9BC768A31FE03E310069050A /* SparseMatrix.swift in Sources */,
 				9BC768A71FE03E490069050A /* SparseVector.swift in Sources */,
+				9BA13BDE1FE1B66E0072E5D0 /* VerticalDenseVector.swift in Sources */,
 				9B4977CA1EBD3D5800B65019 /* DFA.swift in Sources */,
 				9B46A08B1D78FEC900C1059E /* Term.swift in Sources */,
-				9B4977E01EBE296900B65019 /* AutomatonIterator.swift in Sources */,
 				9B1503ED1FC7D7FA000BC543 /* ComplexConvertible.swift in Sources */,
 				9B46A0911D78FEC900C1059E /* Enhanced.swift in Sources */,
 				9B46A07A1D78FEC900C1059E /* GroupLike.swift in Sources */,
@@ -978,7 +964,6 @@
 				9BE2CB2E1FCF732900BD4942 /* DiscreteFunction.swift in Sources */,
 				9B6CEAEE1FDC68C1004FBCB3 /* CGColor.swift in Sources */,
 				9B04DC7A1FD60BB30097F0A7 /* PlotView.swift in Sources */,
-				9B4977D21EBE0D1000B65019 /* AutomatonState.swift in Sources */,
 				9BE2CB841FD0CE5100BD4942 /* Functions.swift in Sources */,
 				9B46A08D1D78FEC900C1059E /* Constants.swift in Sources */,
 				9BE2CB7F1FD0ACC500BD4942 /* Sampling.swift in Sources */,
@@ -991,6 +976,7 @@
 				9B4977CC1EBD3D6900B65019 /* Automaton.swift in Sources */,
 				9B6925E51FC6DFED00A2BD21 /* NearestNeighborInterpolation.swift in Sources */,
 				9BC7689F1FE030650069050A /* CurveFitting.swift in Sources */,
+				9BA13BDC1FE1AE740072E5D0 /* TransposedDenseMatrix.swift in Sources */,
 				9B4C42991FBF97DB00786391 /* LinuxSupport.swift in Sources */,
 				9B4C429B1FBFB0BB00786391 /* General.swift in Sources */,
 				9B04DC791FD60BB30097F0A7 /* PlotWindow.swift in Sources */,
@@ -1007,13 +993,11 @@
 				9B47AAF41FE1534F004B5B45 /* TrigonometricCurveFitting.swift in Sources */,
 				9B46A07C1D78FEC900C1059E /* ModuleLike.swift in Sources */,
 				9B6CEAFC1FDC6A7D004FBCB3 /* Character.swift in Sources */,
-				9B4977DE1EBE269C00B65019 /* NFA-Iterator.swift in Sources */,
 				9B67D1BA1FC7B6950054C4A9 /* FastFourierTransform.swift in Sources */,
 				9B04DC8D1FD7A40D0097F0A7 /* CustomPlotViewController.swift in Sources */,
 				9B46A0841D78FEC900C1059E /* Fraction.swift in Sources */,
 				9B46A0941D78FEC900C1059E /* AdvancedNumericTypeExtensions.swift in Sources */,
 				9B46A0981D78FEC900C1059E /* LaTeXConvertible.swift in Sources */,
-				9B4977D51EBE0D3200B65019 /* DFA-State.swift in Sources */,
 				9B6CEAF21FDC6946004FBCB3 /* NSTextField.swift in Sources */,
 				9B6CEB031FDC6BF0004FBCB3 /* NSMenu.swift in Sources */,
 			);

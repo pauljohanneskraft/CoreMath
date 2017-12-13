@@ -9,7 +9,7 @@
 import Cocoa
 import CorePlot
 
-class CustomInterpolationPlotView: NSView {
+public class CustomInterpolationPlotView: NSView {
     
     let functionPopUpButton = NSPopUpButton()
     let interpolationPopUpButton = NSPopUpButton()
@@ -113,14 +113,14 @@ extension CustomInterpolationPlotView: SamplingRangeViewDelegate {
 }
 
 extension CustomInterpolationPlotView: NSTextFieldDelegate {
-    override func controlTextDidEndEditing(_ obj: Notification) {
+    public override func controlTextDidEndEditing(_ obj: Notification) {
         update()
     }
 }
 
 extension CustomInterpolationPlotView {
-    static func createInterpolatingWindow(frame: CGRect, functions: [Function],
-                                          interpolations: [Interpolation.Type], range: SamplingRange) -> NSWindow {
+    public static func createInterpolatingWindow(frame: CGRect, functions: [Function],
+                                                 interpolations: [Interpolation.Type], range: SamplingRange) -> NSWindow {
         let window = NSWindow()
         window.setFrame(frame, display: true)
         let viewController = CustomPlotViewController(title: "Plots", functions: functions,

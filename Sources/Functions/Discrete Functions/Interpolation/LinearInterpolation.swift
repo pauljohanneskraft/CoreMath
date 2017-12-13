@@ -6,12 +6,16 @@
 //  Copyright © 2017 pauljohanneskraft. All rights reserved.
 //
 
-struct LinearInterpolation {
-    var function: DiscreteFunction
+public struct LinearInterpolation {
+    public var function: DiscreteFunction
+    
+    public init(function: DiscreteFunction) {
+        self.function = function
+    }
 }
 
 extension LinearInterpolation: Interpolation {
-    func call(x: Number) -> Number {
+    public func call(x: Number) -> Number {
         guard let index = function.points.index(where: { $0.x >= x }) else {
             return function.points.last?.y ?? 0
         }

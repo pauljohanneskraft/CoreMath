@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import Math
+import Math
 
 class ViewTests: XCTestCase {
     override func setUp() {

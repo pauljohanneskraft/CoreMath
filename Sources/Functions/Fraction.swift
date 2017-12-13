@@ -6,24 +6,24 @@
 //  Copyright © 2016 pauljohanneskraft. All rights reserved.
 //
 
-struct Fraction {
-	var numerator: Function
-	var denominator: Function
+public struct Fraction {
+	public var numerator: Function
+	public var denominator: Function
 	
-	init(numerator: Function, denominator: Function) {
+	public init(numerator: Function, denominator: Function) {
 		self.numerator = numerator
 		self.denominator = denominator
 	}
 }
 
 extension Fraction: Function {
-	var derivative: Function {
+	public var derivative: Function {
 		return Fraction(
 			numerator: (numerator.derivative * denominator) - (denominator.derivative * numerator),
 			denominator: denominator * denominator).reduced
 	}
 	
-	var integral: Function {
+	public var integral: Function {
         let this = self.reduced
         guard this is Fraction else { return this.integral }
         switch denominator.reduced {
@@ -48,7 +48,7 @@ extension Fraction: Function {
         }
 	}
 	
-	var reduced: Function {
+	public var reduced: Function {
         let numerator = self.numerator.reduced, denominator = self.denominator.reduced
         guard !numerator.equals(to: denominator) else { return Constant(1) }
         guard !numerator.equals(to: -denominator) else { return Constant(-1) }
@@ -72,20 +72,20 @@ extension Fraction: Function {
         }
 	}
 	
-	var description: String {
+	public var description: String {
         return "(\(numerator)) / (\(denominator))" // e.g. x^1 / 2
     }
     
-	var latex: String {
+	public var latex: String {
         return "\\frac{\(numerator.latex)}{\(denominator.latex)}" // \frac{n}{d}
     }
 	
-	func equals(to: Function) -> Bool {
+	public func equals(to: Function) -> Bool {
         guard let fraction = to as? Fraction else { return false }
         return fraction.denominator == denominator && fraction.numerator == numerator
 	}
 	
-	func call(x: Double) -> Double {
+	public func call(x: Double) -> Double {
         return numerator.call(x: x) / denominator.call(x: x)
     }
 }

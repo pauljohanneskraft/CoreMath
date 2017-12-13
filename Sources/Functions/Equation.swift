@@ -6,49 +6,49 @@
 //  Copyright © 2016 pauljohanneskraft. All rights reserved.
 //
 
-struct Equation {
-    var terms: [Function]
+public struct Equation {
+    public var terms: [Function]
 	
-	init(_ terms: Function...) {
+	public init(_ terms: Function...) {
         self.init(terms)
     }
     
-	init(_ terms: [Function]) {
+	public init(_ terms: [Function]) {
         self.terms = terms
     }
 }
 
 extension Equation: Function {
-	var derivative: Function {
+	public var derivative: Function {
         return Equation(terms.map { $0.derivative.reduced }).reduced
     }
     
-	var integral: Function {
+	public var integral: Function {
         return Equation(terms.map { $0.integral.reduced	}).reduced
     }
 	
-	var debugDescription: String {
+	public var debugDescription: String {
 		guard terms.count > 0 else { return "Term()" }
 		var arr = ""
 		for i in terms.dropLast() { arr += "\(i.debugDescription), " }
 		return "Equation(\(arr)\(terms.last!.debugDescription))"
 	}
 	
-	var description: String {
+	public var description: String {
 		if terms.isEmpty { return "0" }
 		var result = "\(terms.first!.coefficientDescription(first: true))"
 		for t in terms.dropFirst() { result += " \(t.coefficientDescription(first: false))" }
 		return result
 	}
 	
-	var latex: String {
+	public var latex: String {
 		if terms.isEmpty { return "0" }
 		var result = "\(terms.first!.latex)"
 		for t in terms.dropFirst() { result += " + \(t.latex)" }
 		return result
 	}
 	
-	var reduced: Function {
+	public var reduced: Function {
 		var this = self
 		var i	 = 0
 		var rest = 0.0
@@ -77,11 +77,11 @@ extension Equation: Function {
 		return Constant(0.0)
 	}
     
-	func call(x: Double) -> Double {
-        return terms.reduce(0) { $0 + $1.call(x: x) }
+	public func call(x: Double) -> Double {
+        return terms.reduce(into: 0) { $0 += $1.call(x: x) }
 	}
 	
-	func equals(to: Function) -> Bool {
+	public func equals(to: Function) -> Bool {
         return terms == (to.reduced as? Equation)?.terms ?? []
 	}
 }

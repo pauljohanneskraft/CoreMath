@@ -8,12 +8,12 @@
 
 import Foundation
 
-struct SamplingRange {
-    static var zero = SamplingRange(start: 0, interval: 0, end: 0, count: 0)
-    let start: Double
-    let end: Double
-    let interval: Double
-    let count: Int
+public struct SamplingRange {
+    public static var zero = SamplingRange(start: 0, interval: 0, end: 0, count: 0)
+    public let start: Double
+    public let end: Double
+    public let interval: Double
+    public let count: Int
     
     private init(start: Double, interval: Double, end: Double, count: Int) {
         self.start = start
@@ -22,25 +22,36 @@ struct SamplingRange {
         self.count = count
     }
     
-    init(start: Double, interval: Double, end: Double) {
+    public init(start: Double, interval: Double, end: Double) {
         self.init(start: start, interval: interval, end: end, count: lround((end - start) / interval) + 1)
     }
     
-    init(start: Double, interval: Double, count: Int) {
+    public init(start: Double, interval: Double, count: Int) {
         self.init(start: start, interval: interval, end: start + (interval * Double(count)), count: count)
     }
     
-    init(start: Double, end: Double, count: Int) {
+    public init(start: Double, end: Double, count: Int) {
         self.init(start: start, interval: (end - start) / Double(count - 1), end: end, count: count)
     }
     
-    subscript(index: Int) -> Double {
+    public subscript(index: Int) -> Double {
         return start + Double(index) * interval
     }
 }
 
 extension SamplingRange: Sequence {
-    func makeIterator() -> Array<Double>.Iterator {
-        return (0..<count).map { self[$0] }.makeIterator()
+    public func makeIterator() -> Iterator {
+        return Iterator(range: self, index: 0)
+    }
+    
+    public struct Iterator: IteratorProtocol {
+        var range: SamplingRange
+        var index = 0
+        public mutating func next() -> Double? {
+            let n = range.start + Double(index) * range.interval
+            guard n <= range.end else { return nil }
+            index += 1
+            return n
+        }
     }
 }

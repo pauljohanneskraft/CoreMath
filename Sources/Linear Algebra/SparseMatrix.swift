@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol EmptyInitializable {
+public protocol EmptyInitializable {
     init()
 }
 
@@ -27,38 +27,33 @@ struct SparseMatrix<Number: Equatable>: LinearAlgebraic {
     }
     
     var matrix: TwoDimensionalArray {
-        return (0..<size.rows).map { self[$0] ?? [] }
+        return (0..<size.rows).map { self[$0] }
     }
     
-    subscript(row: Int) -> Row? {
+    subscript(row: Int) -> Row {
         get {
-            return (0..<size.columns).map { self[row, $0] ?? defaultValue }
+            return (0..<size.columns).map { self[row, $0] }
         }
         set {
-            guard let array = newValue else {
-                elements[row] = nil
-                return
-            }
-            
-            for i in array.indices {
-                guard array[i] != defaultValue else { continue }
+            for i in newValue.indices {
+                guard newValue[i] != defaultValue else { continue }
                 if elements[row] == nil { elements[row] = [:] }
-                elements[row]?[i] = array[i]
+                elements[row]?[i] = newValue[i]
             }
         }
     }
     
-    subscript(row: Int, column: Int) -> Number? {
+    subscript(row: Int, column: Int) -> Number {
         get {
-            return elements[row]?[column]
+            return elements[row]?[column] ?? defaultValue
         }
         set {
-            guard let value = newValue else {
+            guard newValue != defaultValue else {
                 elements[row]?.removeValue(forKey: column)
                 return
             }
             if elements[row] == nil { elements[row] = [:] }
-            elements[row]?[column] = value
+            elements[row]?[column] = newValue
         }
     }
             

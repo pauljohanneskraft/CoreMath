@@ -6,11 +6,11 @@
 //  Copyright © 2017 pauljohanneskraft. All rights reserved.
 //
 
-struct CubicSplineInterpolation {
-    var function: DiscreteFunction
+public struct CubicSplineInterpolation {
+    public var function: DiscreteFunction
     var derivative: DiscreteFunction
     
-    init(function: DiscreteFunction) {
+    public init(function: DiscreteFunction) {
         self.function = function
         // swiftlint:disable:next force_cast
         self.derivative = function.derivative as! DiscreteFunction
@@ -18,7 +18,7 @@ struct CubicSplineInterpolation {
 }
 
 extension CubicSplineInterpolation: Interpolation {
-    func call(x: Double) -> Double {
+    public func call(x: Double) -> Double {
         guard let index = function.points.index(where: { $0.x >= x }) else {
             return function.points.last?.y ?? 0
         }

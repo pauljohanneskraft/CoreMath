@@ -9,7 +9,7 @@
 import Cocoa
 import CorePlot
 
-class DiscreteFourierPlotView: NSView {
+public class DiscreteFourierPlotView: NSView {
     let functionPlotView = PlotView()
     let transformPlotView = PlotView()
     

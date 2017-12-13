@@ -6,11 +6,15 @@
 //  Copyright © 2017 pauljohanneskraft. All rights reserved.
 //
 
-struct NearestNeighborInterpolation {
-    var function: DiscreteFunction
+public struct NearestNeighborInterpolation {
+    public var function: DiscreteFunction
+    
+    public init(function: DiscreteFunction) {
+        self.function = function
+    }
 }
 extension NearestNeighborInterpolation: Interpolation {
-    func call(x: Number) -> Number {
+    public func call(x: Number) -> Number {
         guard let index = points.index(where: { $0.x >= x }) else {
             return points.last?.y ?? 0
         }

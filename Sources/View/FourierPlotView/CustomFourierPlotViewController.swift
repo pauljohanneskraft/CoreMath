@@ -22,7 +22,7 @@ class DiscreteFourierPlotViewController: NSViewController {
 }
 
 extension DiscreteFourierPlotView {
-    static func createWindow(frame: CGRect, functions: [Function], range: SamplingRange) -> NSWindow {
+    public static func createWindow(frame: CGRect, functions: [Function], range: SamplingRange) -> NSWindow {
         let window = NSWindow()
         window.setFrame(frame, display: true)
         let viewController = DiscreteFourierPlotViewController(title: "Fourier", functions: functions,

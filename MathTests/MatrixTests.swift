@@ -57,7 +57,7 @@ class MatrixTests: XCTestCase, TypeTest {
 			for j in 0..<i {
 				let aj = a[j]
 				for k in 0..<i {
-					if k == j { XCTAssertEqual(aj![k], 1) } else { XCTAssertEqual(aj![k], 0) }
+					if k == j { XCTAssertEqual(aj[k], 1) } else { XCTAssertEqual(aj[k], 0) }
 				}
 			}
 			XCTAssert(a.inverse == a)
@@ -93,13 +93,13 @@ class MatrixTests: XCTestCase, TypeTest {
 	func testSubscript() {
 		var mabc = DenseMatrix(abc)
 		for i in abc.indices {
-			XCTAssertEqual(abc[i], mabc[i]!)
+			XCTAssertEqual(abc[i], mabc[i])
 		}
 		for i in abc.indices {
 			mabc[i] = abc[(abc.count - i) - 1]
 		}
 		for i in abc.indices {
-			XCTAssertEqual(mabc[i]!, abc[(abc.count - i) - 1])
+			XCTAssertEqual(mabc[i], abc[(abc.count - i) - 1])
 		}
 	}
 	
@@ -151,7 +151,7 @@ class MatrixTests: XCTestCase, TypeTest {
 			for j in 0..<i {
 				let rdm = Double(Math.random() % 0x4F)
 				value *= rdm
-				id[j]![j] = rdm
+				id[j][j] = rdm
 			}
 			let start = Time()
 			XCTAssert(value == id.determinant)
@@ -176,7 +176,7 @@ class MatrixTests: XCTestCase, TypeTest {
 	func operatorTest(_ op0: (Int, Int) -> Int, _ op1: (DenseMatrix<Int>, DenseMatrix<Int>) -> DenseMatrix<Int>) {
 		for i in 0..<10 {
 			for j in 10..<20 {
-				XCTAssert(op0(i, j) == op1(DenseMatrix([[i]]), DenseMatrix([[j]]))[0]![0])
+				XCTAssert(op0(i, j) == op1(DenseMatrix([[i]]), DenseMatrix([[j]]))[0, 0])
 			}
 		}
 	}
@@ -191,7 +191,7 @@ class MatrixTests: XCTestCase, TypeTest {
 				let bi = b[i]
 				let ci = c[i]
 				for j in 0..<s.columns {
-					guard ci![j] == ai![j] + bi![j] else { return false }
+					guard ci[j] == ai[j] + bi[j] else { return false }
 				}
 			}
 			return true
@@ -208,7 +208,7 @@ class MatrixTests: XCTestCase, TypeTest {
 				let bi = b[i]
 				let ci = c[i]
 				for j in 0..<s.columns {
-					guard ci![j] == ai![j] - bi![j] else { return false }
+					guard ci[j] == ai[j] - bi[j] else { return false }
 				}
 			}
 			return true
@@ -224,7 +224,7 @@ class MatrixTests: XCTestCase, TypeTest {
 				let ai = a[i]
 				let bi = b[i]
 				for j in 0..<s.columns {
-					guard ai![j] * rdm == bi![j] else { print(i, j); return false }
+					guard ai[j] * rdm == bi[j] else { print(i, j); return false }
 				}
 			}
 			return true
@@ -236,7 +236,7 @@ class MatrixTests: XCTestCase, TypeTest {
 				let ai = a[i]
 				let bi = b[i]
 				for j in 0..<s.columns {
-					guard ai![j] * rdm == bi![j] else { print(i, j); return false }
+					guard ai[j] * rdm == bi[j] else { print(i, j); return false }
 				}
 			}
 			return true

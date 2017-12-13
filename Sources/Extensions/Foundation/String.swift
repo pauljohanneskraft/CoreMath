@@ -9,11 +9,11 @@
 import Foundation
 
 extension String {
-    var isUppercase: Bool {
+    public var isUppercase: Bool {
         return uppercased() == self
     }
     
-    func splitCamelCase() -> String {
+    public func splitCamelCase() -> String {
         let indexRanges = indices.split(whereSeparator: { self[$0].isUppercase })
         let strings = indexRanges.map { range -> Substring in
             guard range.startIndex > self.startIndex else {

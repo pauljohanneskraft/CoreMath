@@ -8,65 +8,74 @@
 
 import Foundation
 
-struct LevenbergMarquardt {
-    var curveFittingFunction: CurveFittingFunction
-    var discreteFunction: DiscreteFunction
+public struct LevenbergMarquardt {
+    public var curveFittingFunction: CurveFittingFunction
+    public let discreteFunction: DiscreteFunction
     
-    var error: Double {
-        return discreteFunction.points.reduce(into: 0) { $0 += abs($1.y - curveFittingFunction.call(x: $1.x)) }
+    let gradientDifference: Double
+    let parameterCount: Int
+    let pointCount: Int
+    let idMatrix: DenseMatrix<Double>
+    
+    var matrixMatrix: VerticalDenseVector<Double>
+    var gradientMatrix: DenseMatrix<Double>
+    var evaluatedData: [Double]
+    
+    public init(curveFittingFunction: CurveFittingFunction, discreteFunction: DiscreteFunction,
+                gradientDifference: Double, damping: Double) {
+        self.curveFittingFunction = curveFittingFunction
+        self.discreteFunction = discreteFunction
+        self.gradientDifference = gradientDifference
+        self.parameterCount = curveFittingFunction.parameters.count
+        self.pointCount = discreteFunction.points.count
+        self.idMatrix = DenseMatrix.identity(parameterCount) * (damping * gradientDifference * gradientDifference)
+        self.matrixMatrix = VerticalDenseVector<Double>(elements: [Double](repeating: 0, count: pointCount))
+        self.gradientMatrix = DenseMatrix(
+            [[Double]](repeating: [Double](repeating: 0, count: pointCount), count: parameterCount)
+        )
+        self.evaluatedData = discreteFunction.points.map { $0.y }
+        self.error = Double.max
     }
     
-    mutating func gradientFunction(evaluatedData: [Double], gradientDifference: Double) -> DenseMatrix<Double> {
-        let n = curveFittingFunction.parameters.count
-        let m = discreteFunction.points.count
+    public var error: Double
+    
+    mutating func gradientFunction(function: CurveFittingFunction) {
+        var function = function
         
-        var ans = [[Double]](repeating: [Double](repeating: 0, count: m), count: n)
-        
-        for param in 0..<n {
-            var auxParams = curveFittingFunction.parameters
-            auxParams[param] += gradientDifference
-            curveFittingFunction.parameters = auxParams
-            for point in 0..<m {
+        for param in 0..<parameterCount {
+            function.parameters[param] += gradientDifference
+            for point in 0..<pointCount {
                 let discretePoint = discreteFunction.points[point]
-                ans[param][point] = evaluatedData[point] - curveFittingFunction.call(x: discretePoint.x)
+                gradientMatrix[param, point] = evaluatedData[point] - function.call(x: discretePoint.x)
             }
         }
-        return DenseMatrix(ans)
     }
     
-    func matrixFunction(evaluatedData: [Double]) -> DenseMatrix<Double> {
-        let array = discreteFunction.points.indices.map {
-            discreteFunction.points[$0].y - evaluatedData[$0]
+    mutating func matrixFunction() {
+        error = 0.0
+        for i in 0..<pointCount {
+            let diff = discreteFunction.points[i].y - evaluatedData[i]
+            matrixMatrix.elements[i] = diff
+            error += abs(diff)
         }
-        return DenseMatrix([array])
     }
     
-    mutating func step(damping: Double, gradientDifference: Double) -> [Double] {
-        let coefficient = damping * gradientDifference * gradientDifference
-        var id = DenseMatrix<Double>.identity(curveFittingFunction.parameters.count)
-        id *= coefficient
-        
-        let function = curveFittingFunction
-        let evaluatedData = discreteFunction.points.map { function.call(x: $0.x) }
-        
-        let gradientFunc = gradientFunction(evaluatedData: evaluatedData, gradientDifference: gradientDifference)
-        let matrixF = matrixFunction(evaluatedData: evaluatedData)
-        let matrixFunc = matrixF.transposed
-        // (id + (gradientFunc * gradientFunc.transposed))
-        let inverse = (id + (gradientFunc * gradientFunc.transposed)).inverse
-        var paramsMatrix = DenseMatrix([function.parameters])
-        paramsMatrix -= (inverse * gradientFunc * matrixFunc * gradientDifference).transposed
-        return paramsMatrix[0] ?? []
+    mutating func step() {
+        for i in evaluatedData.indices {
+            evaluatedData[i] = curveFittingFunction.call(x: discreteFunction.points[i].x)
+        }
+        gradientFunction(function: curveFittingFunction)
+        matrixFunction()
+        let inverse = (idMatrix + (gradientMatrix * gradientMatrix.transposed)).inverse
+        let pMatrix = DenseMatrix([curveFittingFunction.parameters])
+            - (inverse * gradientMatrix * matrixMatrix * gradientDifference).transposed
+        curveFittingFunction.parameters = pMatrix[0]
     }
     
-    mutating func execute(maxIterations: Int = 100,
-                          gradientDifference: Double = 10e-2,
-                          damping: Double = 0,
-                          errorTolerance: Double = 10e-3) {
+    public mutating func execute(maxIterations: Int = 100, errorTolerance: Double = 10e-3) {
         var iteration = 0
         while iteration < maxIterations && error >= errorTolerance {
-            let parameters = step(damping: damping, gradientDifference: gradientDifference)
-            curveFittingFunction.parameters = parameters
+            step()
             iteration += 1
         }
     }

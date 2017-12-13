@@ -8,7 +8,7 @@
 
 import Cocoa
 
-protocol ApplicationDelegate: NSApplicationDelegate {
+public protocol ApplicationDelegate: NSApplicationDelegate {
     static var shared: Self? { get set }
     init()
     var windows: [NSWindow] { get set }
@@ -18,13 +18,13 @@ protocol ApplicationDelegate: NSApplicationDelegate {
 }
 
 extension ApplicationDelegate {
-    func open(window: NSWindow) {
+    public func open(window: NSWindow) {
         windows.append(window)
         print("opening window", window)
         window.makeKeyAndOrderFront(self)
     }
     
-    func start(name: String) {
+    public func start(name: String) {
         let app = NSApplication.shared
         app.setActivationPolicy(.regular)
         let mainMenu = NSMenu()
@@ -34,7 +34,7 @@ extension ApplicationDelegate {
     }
     
     @discardableResult
-    static func start(name: String) -> Self {
+    public static func start(name: String) -> Self {
         let this = Self.init()
         shared = this
         this.start(name: name)

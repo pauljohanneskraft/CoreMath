@@ -9,7 +9,7 @@
 import Foundation
 
 extension Character {
-    var isUppercase: Bool {
+    public var isUppercase: Bool {
         return String(self).isUppercase
     }
 }

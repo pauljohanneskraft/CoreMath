@@ -21,11 +21,11 @@ private enum PlotWindow {
 }
 
 extension Function {
-    func plotWindow(in range: SamplingRange) -> NSWindow {
+    public func plotWindow(in range: SamplingRange) -> NSWindow {
         return plotWindow(frame: PlotWindow.defaultFrame, in: range)
     }
     
-    func plotWindow(frame: CGRect, in range: SamplingRange) -> NSWindow {
+    public func plotWindow(frame: CGRect, in range: SamplingRange) -> NSWindow {
         let window = NSWindow()
         window.setFrame(frame, display: true)
         let viewController = PlotViewController(title: description, function: sampled(in: range),
@@ -35,11 +35,11 @@ extension Function {
         return window
     }
     
-    func interpolatingWindow<I: Interpolation>(in range: SamplingRange, using: I.Type) -> NSWindow {
+    public func interpolatingWindow<I: Interpolation>(in range: SamplingRange, using: I.Type) -> NSWindow {
         return interpolatingWindow(frame: PlotWindow.defaultFrame, in: range, using: using)
     }
     
-    func interpolatingWindow<I: Interpolation>(frame: CGRect, in range: SamplingRange,
+    public func interpolatingWindow<I: Interpolation>(frame: CGRect, in range: SamplingRange,
                                                using interpolation: I.Type) -> NSWindow {
         let sampled = self.sampled(in: range).interpolate(using: interpolation)
         let windowRange = SamplingRange(start: range.start, end: range.end, count: range.count * 200)

@@ -8,13 +8,13 @@
 
 import Foundation
 
-protocol ComplexConvertible: Numeric {
+public protocol ComplexConvertible: Numeric {
     associatedtype Number: Numeric
     var complex: Complex<Number> { get }
 }
 
 extension IntegerAdvancedNumeric {
-    var complex: Complex<Self> { return Complex(self.integer) }
+    public var complex: Complex<Self> { return Complex(self.integer) }
 }
 
 extension Int: ComplexConvertible {}
@@ -23,17 +23,17 @@ extension Int16: ComplexConvertible {}
 extension Int32: ComplexConvertible {}
 extension Int64: ComplexConvertible {}
 extension Double: ComplexConvertible {
-    var complex: C { return C(real: self) }
+    public var complex: C { return C(real: self) }
 }
 
 extension Float: ComplexConvertible {
-    var complex: Complex<Float> {
+    public var complex: Complex<Float> {
         return Complex(real: self)
     }
 }
 
 extension Complex: ComplexConvertible {
-    var complex: Complex<Number> {
+    public var complex: Complex<Number> {
         return self
     }
 }

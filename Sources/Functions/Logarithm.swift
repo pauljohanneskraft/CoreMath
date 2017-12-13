@@ -8,45 +8,50 @@
 
 import Foundation
 
-func Log(_ base: Double = 10, _ of: Function) -> Function {
+public func Log(_ base: Double = 10, _ of: Function) -> Function {
     return Logarithm(base: base, content: of).reduced
 }
 
-func Log(_ base: Double = 10, _ double: Double) -> Function {
+public func Log(_ base: Double = 10, _ double: Double) -> Function {
     return Constant(log(base: base, of: double))
 }
 
-func Ln(_ double: Double) -> Function {
+public func Ln(_ double: Double) -> Function {
     return Constant(log(base: Constants.Math.e, of: double))
 }
 
-func Ln(_ fun: Function) -> Function {
+public func Ln(_ fun: Function) -> Function {
     return Logarithm(base: Constants.Math.e, content: fun).reduced
 }
 
-func Ld(_ double: Double) -> Function {
+public func Ld(_ double: Double) -> Function {
     return Constant(log(base: 2, of: double))
 }
 
-func Ld(_ of: Function) -> Function {
+public func Ld(_ of: Function) -> Function {
     return Logarithm(base: 2, content: of).reduced
 }
 
-struct Logarithm {
-    var base: Double
-    var content: Function
+public struct Logarithm {
+    public var base: Double
+    public var content: Function
+    
+    public init(base: Double, content: Function) {
+        self.base = base
+        self.content = content
+    }
 }
 
 extension Logarithm: Function {
-    var integral: Function {
+    public var integral: Function {
         return content * Logarithm(base: base, content: content) - content
     }
     
-    var derivative: Function {
+    public var derivative: Function {
         return Fraction(numerator: content.derivative, denominator: content * log(base)).reduced
     }
     
-    var reduced: Function {
+    public var reduced: Function {
         switch content.reduced {
         case let content as ConstantFunction:
             return ConstantFunction(log(base: base, of: content.value))
@@ -59,20 +64,20 @@ extension Logarithm: Function {
         }
     }
     
-    func call(x: Double) -> Double {
+    public func call(x: Double) -> Double {
         return log(base: base, of: content.call(x: x))
     }
     
-    func equals(to: Function) -> Bool {
+    public func equals(to: Function) -> Bool {
         guard let other = to as? Logarithm else { return false }
         return other.base == base && other.content.equals(to: content)
     }
 }
 
 extension Logarithm: CustomStringConvertible {
-    var description: String {
-        let logDescs = [Constants.Math.e: "ln", 2: "ld", 10: "lg"]
-        let logDesc = logDescs[base] ?? "log_\(base.reducedDescription)"
+    public var description: String {
+        let logDescs = [Float(Constants.Math.e): "ln", 2: "ld", 10: "lg"]
+        let logDesc = logDescs[Float(base)] ?? "log_\(base.reducedDescription)"
         return logDesc + "(\(content))"
     }
 }

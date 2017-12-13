@@ -6,40 +6,44 @@
 //  Copyright © 2017 pauljohanneskraft. All rights reserved.
 //
 
-struct DeterministicFiniteAutomaton<Character: Hashable> {
-    
-    init?(alphabet: Set<Character>,
-          initialState: Int,
-          finalStates: Set<Int>,
-          states: Set<DeterministicFiniteAutomatonState<Character>>) {
-        
-        self.alphabet = alphabet
-        self.finalStates = finalStates
-        self.initialState = initialState
-        self.stateLookup = [:]
-        for state in states {
-            stateLookup[state.id] = state
+extension DFA {
+    public struct State {
+        public init(transition: @escaping (Character) -> Int) {
+            self.transition = transition
         }
-        guard stateLookup[initialState] != nil else { return nil }
+        
+        var transition: (Character) -> Int
     }
-    
-    var alphabet: Set<Character>
+}
+
+public struct DFA<Character> {
     let initialState: Int
+    let states: [Int: State]
+    let finalStates: Set<Int>
     
-    var states: Set<DeterministicFiniteAutomatonState<Character>> {
-        return Set(stateLookup.values)
+    public init(states: [Int: State], initialState: Int, finalStates: Set<Int>) {
+        self.states = states
+        self.initialState = initialState
+        self.finalStates = finalStates
     }
     
-    var finalStates: Set<Int>
-    
-    var stateLookup: [Int: DeterministicFiniteAutomatonState<Character>]
-    
-    private var iterator: DeterministicFiniteAutomatonIterator<Character> {
-        return DeterministicFiniteAutomatonIterator(automaton: self)
+    public func accepts<S: Sequence>(word: S) throws -> Bool where S.Iterator.Element == Character {
+        let end = try finalState(ofWord: word)
+        return finalStates.contains(end)
     }
     
-    func accepts<S: Sequence>(word: S) -> Bool where S.Iterator.Element == Character {
-        var iterator = DeterministicFiniteAutomatonIterator(automaton: self)
-        return iterator.accepts(word: word)
+    public func finalState<S: Sequence>(ofWord word: S) throws -> Int where S.Iterator.Element == Character {
+        var index = initialState
+        guard var currentState = states[index] else { throw DFAError.statesIncomplete }
+        for character in word {
+            index = currentState.transition(character)
+            guard let nextState = states[index] else { throw DFAError.statesIncomplete }
+            currentState = nextState
+        }
+        return index
+    }
+    
+    enum DFAError: Error {
+        case statesIncomplete
     }
 }

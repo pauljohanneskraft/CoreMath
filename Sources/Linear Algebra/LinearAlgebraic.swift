@@ -6,7 +6,7 @@
 //  Copyright © 2017 pauljohanneskraft. All rights reserved.
 //
 
-protocol LinearAlgebraic: CustomStringConvertible {
+public protocol LinearAlgebraic: CustomStringConvertible {
     associatedtype Number
     typealias Row = [Number]
     typealias TwoDimensionalArray = [[Number]]
@@ -16,6 +16,6 @@ protocol LinearAlgebraic: CustomStringConvertible {
     // Do not access unless really necessary, because large sparse matrices generate this in O(n^2)
     var size: Size { get }
     
-    subscript(row: Int) -> Row? { get set }
-    subscript(row: Int, column: Int) -> Number? { get set }
+    subscript(row: Int) -> Row { get set }
+    subscript(row: Int, column: Int) -> Number { get set }
 }

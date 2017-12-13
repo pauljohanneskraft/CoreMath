@@ -9,7 +9,7 @@
 import Foundation
 
 extension Function {
-    func sampled(in range: SamplingRange) -> DiscreteFunction {
+    public func sampled(in range: SamplingRange) -> DiscreteFunction {
         var currentX = range.start
         
         let newPoints = (0..<range.count).map { _ -> DiscreteFunction.Point in
@@ -20,22 +20,22 @@ extension Function {
         return DiscreteFunction(points: newPoints)
     }
     
-    func sampled(start: Double, interval: Double = 1, end: Double) -> DiscreteFunction {
+    public func sampled(start: Double, interval: Double = 1, end: Double) -> DiscreteFunction {
         let range = SamplingRange(start: start, interval: interval, end: end)
         return sampled(in: range)
     }
     
-    func sampled(start: Double, end: Double, count: Int) -> DiscreteFunction {
+    public func sampled(start: Double, end: Double, count: Int) -> DiscreteFunction {
         let range = SamplingRange(start: start, end: end, count: count)
         return sampled(in: range)
     }
     
-    func sampled(start: Double, interval: Double = 1, count: Int) -> DiscreteFunction {
+    public func sampled(start: Double, interval: Double = 1, count: Int) -> DiscreteFunction {
         let range = SamplingRange(start: start, interval: interval, count: count)
         return sampled(in: range)
     }
     
-    func sampled(at xValues: [Double]) -> DiscreteFunction {
+    public func sampled(at xValues: [Double]) -> DiscreteFunction {
         return DiscreteFunction(points: xValues.map { (x: $0, y: call(x: $0)) })
     }
 }

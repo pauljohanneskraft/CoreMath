@@ -6,58 +6,42 @@
 //  Copyright © 2017 pauljohanneskraft. All rights reserved.
 //
 
-struct NondeterministicFiniteAutomaton<Character: Hashable> {
-    var stateLookup: [Int: NondeterministicFiniteAutomatonState<Character>]
-    var states: Set<NondeterministicFiniteAutomatonState<Character>> {
-        return Set(stateLookup.values)
+extension NFA {
+    public struct State {
+        public init(transition: @escaping (Character) -> Set<Int>) {
+            self.transition = transition
+        }
+        
+        var transition: (Character) -> Set<Int>
     }
-    var alphabet: Set<Character>
-    var initialStates: Set<Int>
-    var finalStates: Set<Int>
+}
 
-    init?(alphabet: Set<Character>,
-          initialStates: Set<Int>,
-          finalStates: Set<Int>,
-          states: Set<NondeterministicFiniteAutomatonState<Character>>) {
-        
-        self.alphabet = alphabet
-        self.finalStates = finalStates
-        self.initialStates = initialStates
-        self.stateLookup = [:]
-        for state in states {
-            stateLookup[state.id] = state
-        }
-        for state in initialStates {
-            guard stateLookup[state] != nil else { return nil }
-        }
+public struct NFA<Character> {
+    let initialState: Set<Int>
+    let states: [Int: State]
+    let finalStates: Set<Int>
+    
+    public init(states: [Int: State], initialStates: Set<Int>, finalStates: Set<Int>) {
+        self.states = states
+        self.initialState = initialStates
+        self.finalStates = Set(finalStates)
     }
     
-    func accepts<S: Sequence>(word: S) -> Bool where S.Iterator.Element == Character {
-        var iterator = NondeterministicFiniteAutomatonIterator(automaton: self)
-        return iterator.accepts(word: word)
-    }
-    
-    /*
-    func generateDFA() -> DeterministicFiniteAutomaton<Character> {
-        var newStates = [Int:DeterministicFiniteAutomatonState<Character>]()
-        
-        let currentStates = self.initialStates.map { self.stateLookup[$0]! }
-        var nextStates = Set<NondeterministicFiniteAutomatonState<Character>>()
-        var id = 0
-        
-        while currentStates.contains(where: { !self.finalStates.contains($0.id) }) {
-            for character in self.alphabet {
-                for state in currentStates {
-                    let n = state.transition(character).map({ self.stateLookup[$0] }).flatMap({ $0 })
-                    nextStates.formUnion(n)
-                }
+    public func accepts<S: Sequence>(word: S) throws -> Bool where S.Iterator.Element == Character {
+        var indices = initialState
+        var nextIndices = Set<Int>()
+        for character in word {
+            nextIndices.removeAll()
+            for index in indices {
+                guard let next = states[index]?.transition(character) else { throw DFAError.statesIncomplete }
+                nextIndices.formUnion(next)
             }
-            id += 1
+            indices = nextIndices
         }
-        
-        
-        for state in self.states {
-            
-        }
-    } */
+        return !finalStates.isDisjoint(with: indices)
+    }
+    
+    enum DFAError: Error {
+        case statesIncomplete
+    }
 }

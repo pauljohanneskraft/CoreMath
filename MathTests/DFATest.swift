@@ -7,7 +7,9 @@
 //
 
 import XCTest
-@testable import Math
+import Math
+
+// swiftlint:disable force_try
 
 class DFATest: XCTestCase {
     
@@ -17,31 +19,31 @@ class DFATest: XCTestCase {
     
     func testDFAVerySimple() {
         
-        let state0 = DeterministicFiniteAutomatonState<Character>(id: 0) {
+        let state0 = DFA<Character>.State {
             switch $0 {
             case "a":   return 0
             case "b":   return 1
-            default:    return nil
+            default:    return 2
             }
         }
         
-        let state1 = DeterministicFiniteAutomatonState<Character>(id: 1) {
+        let state1 = DFA<Character>.State {
             switch $0 {
             case "a":   return 0
             case "b":   return 1
-            default:    return nil
+            default:    return 2
             }
         }
         
-        let automaton = DeterministicFiniteAutomaton(alphabet: ["a", "b"],
-                                                     initialState: 0, finalStates: [1],
-                                                     states: [state0, state1])!
+        let state2 = DFA<Character>.State { _ in 2 }
         
-        XCTAssert( automaton.accepts(word: "aaaabb"))
-        XCTAssert(!automaton.accepts(word: "abbbba"))
-        XCTAssert( automaton.accepts(word: "b"))
-        XCTAssert(!automaton.accepts(word: "aa"))
-        XCTAssert( automaton.accepts(word: "abab"))
-        XCTAssert(!automaton.accepts(word: "ac"))
+        let automaton = DFA(states: [0: state0, 1: state1, 2: state2], initialState: 0, finalStates: [1])
+        
+        XCTAssert( try! automaton.accepts(word: "aaaabb"))
+        XCTAssert(!(try! automaton.accepts(word: "abbbba")))
+        XCTAssert( try! automaton.accepts(word: "b"))
+        XCTAssert(!(try! automaton.accepts(word: "aa")))
+        XCTAssert( try! automaton.accepts(word: "abab"))
+        XCTAssert(!(try! automaton.accepts(word: "ac")))
     }
 }

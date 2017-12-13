@@ -6,13 +6,13 @@
 //  Copyright © 2017 pauljohanneskraft. All rights reserved.
 //
 
-struct NewtonPolynomialInterpolation: Interpolation {
-    typealias Point = (x: Number, y: Number)
-    var points: [Point]
+public struct NewtonPolynomialInterpolation: Interpolation {
+    public typealias Point = (x: Number, y: Number)
+    public private(set) var points: [Point]
     var coefficients: [Number]
     var schemeDiagonal: [Number]
     
-    var function: DiscreteFunction {
+    public var function: DiscreteFunction {
         get {
             return DiscreteFunction(points: points)
         }
@@ -22,7 +22,7 @@ struct NewtonPolynomialInterpolation: Interpolation {
         }
     }
     
-    init(function: DiscreteFunction) {
+    public init(function: DiscreteFunction) {
         self.points = function.points
         self.coefficients = []
         self.schemeDiagonal = []
@@ -30,7 +30,7 @@ struct NewtonPolynomialInterpolation: Interpolation {
         assert(isValid)
     }
     
-    mutating func add(point: (x: Number, y: Number)) throws {
+    public mutating func add(point: (x: Number, y: Number)) throws {
         points.append(point)
         schemeDiagonal.append(point.y)
         
@@ -43,7 +43,7 @@ struct NewtonPolynomialInterpolation: Interpolation {
         coefficients.insert(schemeDiagonal[0], at: 0)
     }
     
-    mutating func updateCoefficients() {
+    public mutating func updateCoefficients() {
         let indices = points.indices
         guard !indices.isEmpty else { return }
         coefficients = [Double](repeating: .nan, count: indices.count)
@@ -58,11 +58,11 @@ struct NewtonPolynomialInterpolation: Interpolation {
         }
     }
     
-    var isValid: Bool {
+    public var isValid: Bool {
         return points.count == coefficients.count && points.count == schemeDiagonal.count
     }
     
-    func call(x: Number) -> Number {
+    public func call(x: Number) -> Number {
         assert(isValid)
         let count = points.count
         guard count > 1, var output = coefficients.last else {

@@ -9,9 +9,9 @@
 import Foundation
 
 extension Array where Element: Numeric & ComplexConvertible {
-    typealias Number = Element.Number
+    public typealias Number = Element.Number
     
-    var discreteFourierTransform: [Complex<Number>] {
+    public var discreteFourierTransform: [Complex<Number>] {
         let count = self.count, indices = self.indices
         let omega = Complex<Number>(coefficient: 1.0, exponent: -2 * Double.pi / count.double)
         
@@ -46,12 +46,12 @@ extension Array where Element: Numeric & ComplexConvertible {
         return v
     }
     
-    var fastFourierTransform: [Complex<Number>] {
+    public var fastFourierTransform: [Complex<Number>] {
         let omega = Complex<Number>(coefficient: 1, exponent: -2 * Double.pi / count.double)
         return fastFourierTransform(omega: omega)
     }
     
-    var fastInverseFourierTransform: [Complex<Number>] {
+    public var fastInverseFourierTransform: [Complex<Number>] {
         let count = self.count
         let omega = Complex<Number>(coefficient: 1, exponent: 2 * Double.pi / count.double)
         return fastFourierTransform(omega: omega).map { $0 / Complex(count) }

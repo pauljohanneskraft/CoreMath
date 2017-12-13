@@ -7,52 +7,51 @@
 //
 
 import XCTest
-@testable import Math
+import Math
+
+// swiftlint:disable force_try
 
 class NFATest: XCTestCase {
     
-    typealias NFA_Bool      = NondeterministicFiniteAutomaton<Bool>
-    typealias NFAState_Bool = NondeterministicFiniteAutomatonState<Bool>
-    
     func testNFA_Medium() {
         
-        let state0 = NFAState_Bool(id: 0) {
+        let state0 = NFA<Bool>.State {
             switch $0 {
             case false: return [0, 1]
             case true:  return [0, 2]
             }
         }
         
-        let state1 = NFAState_Bool(id: 1) {
+        let state1 = NFA<Bool>.State {
             switch $0 {
             case false: return [3]
             case true:  return []
             }
         }
         
-        let state2 = NFAState_Bool(id: 2) {
+        let state2 = NFA<Bool>.State {
             switch $0 {
             case false: return []
             case true:  return [3]
             }
         }
         
-        let state3 = NFAState_Bool(id: 3) {
+        let state3 = NFA<Bool>.State {
             switch $0 {
             case false: return [3]
             case true:  return [3]
             }
         }
         
-        let automaton = NFA_Bool(alphabet: [true, false], initialStates: [0],
-                                 finalStates: [3], states: [state0, state1, state2, state3])!
+        let automaton = NFA(states: [0: state0, 1: state1, 2: state2, 3: state3], initialStates: [0],
+                                 finalStates: [3])
         
-        print(automaton.accepts(word: [true, false, false, true, false]))
+        print(try! automaton.accepts(word: [true, false, false, true, false]))
     }
 
     func testNFAVerySimple() {
         
-        let state0 = NondeterministicFiniteAutomatonState<Character>(id: 0) {
+        let state0 = NFA<Character>.State {
             switch $0 {
             case "a":   return [0]
             case "b":   return [1]
@@ -60,7 +59,7 @@ class NFATest: XCTestCase {
             }
         }
         
-        let state1 = NondeterministicFiniteAutomatonState<Character>(id: 1) {
+        let state1 = NFA<Character>.State {
             switch $0 {
             case "a":   return [0]
             case "b":   return [1]
@@ -68,14 +67,13 @@ class NFATest: XCTestCase {
             }
         }
         
-        let automaton = NondeterministicFiniteAutomaton(alphabet: ["a", "b"], initialStates: [0],
-                                                        finalStates: [1], states: [state0, state1])!
+        let automaton = NFA(states: [0: state0, 1: state1], initialStates: [0], finalStates: [1])
         
-        XCTAssert( automaton.accepts(word: "aaaabb"))
-        XCTAssert(!automaton.accepts(word: "abbbba"))
-        XCTAssert( automaton.accepts(word: "b"))
-        XCTAssert(!automaton.accepts(word: "aa"))
-        XCTAssert( automaton.accepts(word: "abab"))
+        XCTAssert( try! automaton.accepts(word: "aaaabb"))
+        XCTAssert(!(try! automaton.accepts(word: "abbbba")))
+        XCTAssert( try! automaton.accepts(word: "b"))
+        XCTAssert(!(try! automaton.accepts(word: "aa")))
+        XCTAssert( try! automaton.accepts(word: "abab"))
     }
 
 }

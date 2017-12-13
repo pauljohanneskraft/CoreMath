@@ -8,15 +8,15 @@
 
 import Foundation
 
-func Sin (_ function: Function) -> Function { return trig(f: function, kind: .sin ) }
-func Cos (_ function: Function) -> Function { return trig(f: function, kind: .cos ) }
-func Sinh(_ function: Function) -> Function { return trig(f: function, kind: .sinh) }
-func Cosh(_ function: Function) -> Function { return trig(f: function, kind: .cosh) }
+public func Sin (_ function: Function) -> Function { return trig(f: function, kind: .sin ) }
+public func Cos (_ function: Function) -> Function { return trig(f: function, kind: .cos ) }
+public func Sinh(_ function: Function) -> Function { return trig(f: function, kind: .sinh) }
+public func Cosh(_ function: Function) -> Function { return trig(f: function, kind: .cosh) }
 
-func Cos (_ double: Double) -> Function { return Constant(cos (double)) }
-func Sin (_ double: Double) -> Function { return Constant(sin (double)) }
-func Sinh(_ double: Double) -> Function { return Constant(sinh(double)) }
-func Cosh(_ double: Double) -> Function { return Constant(cosh(double)) }
+public func Cos (_ double: Double) -> Function { return Constant(cos (double)) }
+public func Sin (_ double: Double) -> Function { return Constant(sin (double)) }
+public func Sinh(_ double: Double) -> Function { return Constant(sinh(double)) }
+public func Cosh(_ double: Double) -> Function { return Constant(cosh(double)) }
 
 private func trig(f: Function, kind: TrigonometricFunction.Kind) -> TrigonometricFunction {
     return TrigonometricFunction(content: f, kind: kind)

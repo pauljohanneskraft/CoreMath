@@ -9,7 +9,7 @@
 public struct _Polynomial {
 	public internal(set) var degree: Double
     
-	init(degree: Double) {
+	public init(degree: Double) {
         self.degree = degree
     }
 }

@@ -95,12 +95,12 @@ func log(base: Double, of: Double) -> Double {
 
 extension Float {
     static var inaccuracy: Float {
-        return nextafterf(0, .max)
+        return nextafterf(1, .max) - 1
     }
 }
 
 extension Double {
     static var inaccuracy: Double {
-        return nextafter(0, .max)
+        return nextafter(1, .max) - 1
     }
 }

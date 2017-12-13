@@ -6,7 +6,7 @@
 //  Copyright © 2017 pauljohanneskraft. All rights reserved.
 //
 
-@testable import Math
+import Math
 import XCTest
 
 class InterpolationTests: XCTestCase {

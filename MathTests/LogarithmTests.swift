@@ -7,12 +7,12 @@
 //
 
 import XCTest
-@testable import Math
+import Math
 
 class LogarithmTests: XCTestCase {
     let functions = [
-        Logarithm(base: 2, content: ConstantFunction(2)),
-        Logarithm(base: Constants.Math.e, content: x)
+        Log(2, ConstantFunction(2)),
+        Ln(x)
     ]
     
     func testCalculus() {

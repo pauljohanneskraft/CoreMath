@@ -8,7 +8,7 @@
 
 import Foundation
 
-internal typealias Constant = ConstantFunction
+public typealias Constant = ConstantFunction
 
 public struct ConstantFunction {
 	public var value: Double

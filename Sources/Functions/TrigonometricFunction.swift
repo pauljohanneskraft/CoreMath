@@ -9,12 +9,12 @@
 import Foundation
 
 extension TrigonometricFunction {
-    enum Kind {
+    public enum Kind {
         case sin, sinh //, arcsin, arcsinh
         case cos, cosh //, arccos, arccosh
         // case tan, arctan, tanh, arctanh
         
-        var function: (Double) -> Double {
+        public var function: (Double) -> Double {
             switch self {
             case .sin: return Darwin.sin
             case .cos: return Darwin.cos
@@ -31,7 +31,7 @@ extension TrigonometricFunction {
             }
         }
         
-        var integral: (sign: Bool, kind: Kind) {
+        fileprivate var integral: (sign: Bool, kind: Kind) {
             switch self {
             case .sin: return (true, .cos)
             case .cos: return (false, .sin)
@@ -48,7 +48,7 @@ extension TrigonometricFunction {
             }
         }
         
-        var derivative: (sign: Bool, kind: Kind) {
+        fileprivate var derivative: (sign: Bool, kind: Kind) {
             switch self {
             case .sin: return (false, .cos)
             case .cos: return (true, .sin)
@@ -65,15 +65,20 @@ extension TrigonometricFunction {
             }
         }
         
-        func call(content: Double) -> Double {
+        fileprivate func call(content: Double) -> Double {
             return self.function(content)
         }
     }
 }
 
 public struct TrigonometricFunction {
-    var content: Function
-    var kind: Kind
+    public var content: Function
+    public var kind: Kind
+    
+    public init(content: Function, kind: Kind) {
+        self.content = content
+        self.kind = kind
+    }
 }
 
 extension TrigonometricFunction: Function {

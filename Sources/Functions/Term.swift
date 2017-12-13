@@ -8,17 +8,17 @@
 
 import Foundation
 
-struct Term: Function {
+public struct Term: Function {
 	
 	// stored properties
-	var factors : [ Function ]
+	public var factors : [ Function ]
 	
 	// initializers
-	init(_ factors: Function...	) { self.factors = factors }
-	init(_ factors: [Function]	) { self.factors = factors }
+	public init(_ factors: Function...	) { self.factors = factors }
+	public init(_ factors: [Function]	) { self.factors = factors }
 	
 	// computed properties
-	var integral: Function {
+	public var integral: Function {
 		var factors = self.factors
 		// print("integral of", self)
 		guard factors.count > 2 else {
@@ -70,7 +70,7 @@ struct Term: Function {
 		return result
 	}
 	
-	var derivative: Function {
+	public var derivative: Function {
 		var terms = [Function]()
 		for fi in factors.indices {
 			var facs = self.factors
@@ -84,7 +84,7 @@ struct Term: Function {
 		return Equation(terms)
 	}
 
-	var description: String { return coefficientDescription(first: true) }
+	public var description: String { return coefficientDescription(first: true) }
 	
 	public var debugDescription: String {
 		guard factors.count > 0 else { return "Term()" }
@@ -102,7 +102,7 @@ struct Term: Function {
 		return result
 	}
 	
-	var reduced: Function {
+	public var reduced: Function {
         guard factors.count > 1 else {
             return factors.first ?? Constant(0)
         }
@@ -155,8 +155,8 @@ struct Term: Function {
 	}
 	
 	// functions
-	func call(x: Double) -> Double {
-        return factors.reduce(1) { $0 * $1.call(x: x) }
+	public func call(x: Double) -> Double {
+        return factors.reduce(into: 1) { $0 *= $1.call(x: x) }
 	}
 	
 	public func coefficientDescription(first: Bool) -> String {
@@ -185,7 +185,7 @@ struct Term: Function {
         return result + facs + (hasMinusOne ? "" : " )")
 	}
 	
-	func equals(to: Function) -> Bool {
+	public func equals(to: Function) -> Bool {
 		if let t = to as? Term { return t.factors == self.factors }
 		return false
 	}
