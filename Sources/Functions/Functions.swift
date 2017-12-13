@@ -8,13 +8,24 @@
 
 import Foundation
 
+func Sin (_ function: Function) -> Function { return trig(f: function, kind: .sin ) }
+func Cos (_ function: Function) -> Function { return trig(f: function, kind: .cos ) }
+func Sinh(_ function: Function) -> Function { return trig(f: function, kind: .sinh) }
+func Cosh(_ function: Function) -> Function { return trig(f: function, kind: .cosh) }
+
+func Cos (_ double: Double) -> Function { return Constant(cos (double)) }
+func Sin (_ double: Double) -> Function { return Constant(sin (double)) }
+func Sinh(_ double: Double) -> Function { return Constant(sinh(double)) }
+func Cosh(_ double: Double) -> Function { return Constant(cosh(double)) }
+
+private func trig(f: Function, kind: TrigonometricFunction.Kind) -> TrigonometricFunction {
+    return TrigonometricFunction(content: f, kind: kind)
+}
+
 public enum Functions {
-    public static let sin = sine
-    public static let cos = cosine
+    public static let sin = Sin(x)
+    public static let cos = Cos(x)
     public static let zero = ConstantFunction(0)
     public static let one = ConstantFunction(1)
     public static let x = _Polynomial(degree: 1)
 }
-
-private let sine: CustomFunction = .init("sin(x)", function: { sin($0) }, integral: { -cosine }, derivative: { cosine })
-private let cosine: CustomFunction = .init("cos(x)", function: { cos($0) }, integral: { sine }, derivative: { -sine })

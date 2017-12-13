@@ -35,7 +35,7 @@ extension DiscreteFunction: Function {
     var derivative: Function {
         let newPoints = points.indices.dropLast().map { index -> Point in
             let this = points[index], next = points[index + 1]
-            return (x: next.x, y: (next.y - this.y) / (next.x - this.x))
+            return (x: this.x, y: (next.y - this.y) / (next.x - this.x))
         }
         return DiscreteFunction(points: newPoints)
     }

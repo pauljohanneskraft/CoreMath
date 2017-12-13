@@ -6,13 +6,6 @@
 //  Copyright © 2017 pauljohanneskraft. All rights reserved.
 //
 
-struct Vector<Number> {
-    var mode: Mode
-    var elements: [Number]
-}
+enum VectorMode { case horizontal, vertical }
 
-extension Vector {
-    enum Mode {
-        case horizontal, vertical
-    }
-}
+protocol Vector: LinearAlgebraic {}

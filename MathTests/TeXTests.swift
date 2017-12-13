@@ -42,6 +42,6 @@ class TeXTests: XCTestCase {
 		XCTAssert(Enhanced<Int>(integerLiteral: 1).latex == "1")
 		XCTAssert(Complex <Int>(integerLiteral: 1).latex == "1")
 		XCTAssert("Hallo".latex == "\"Hallo\"")
-		XCTAssert(Matrix([[0, 1], [2, 3]]).latex == "\\begin{pmatrix}\n0 & 1 \\\\\n2 & 3\n\\end{pmatrix}")
+		XCTAssert(DenseMatrix([[0, 1], [2, 3]]).latex == "\\begin{pmatrix}\n0 & 1 \\\\\n2 & 3\n\\end{pmatrix}")
 	}
 }

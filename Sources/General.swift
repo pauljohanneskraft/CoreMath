@@ -77,7 +77,30 @@ extension Array where Element: Comparable {
     }
 }
 
+extension Collection {
+    func get(at index: Index) -> Element? {
+        guard indices.contains(index) else { return nil }
+        return self[index]
+    }
+}
+
 extension Double: All {}
 extension Int: All {}
 extension Int64: All {}
 extension Float: All {}
+
+func log(base: Double, of: Double) -> Double {
+    return log(of) / log(base)
+}
+
+extension Float {
+    static var inaccuracy: Float {
+        return nextafterf(0, .max)
+    }
+}
+
+extension Double {
+    static var inaccuracy: Double {
+        return nextafter(0, .max)
+    }
+}

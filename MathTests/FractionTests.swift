@@ -37,7 +37,7 @@ class FractionTests: XCTestCase {
 			let a = (Math.random() & 0xFF + 2).double // excludes special cases 0, 1
 			let b = x^(Math.random() & 0xF + 1).double
 			let f = b / a
-			XCTAssert(f.description == "\(1/a)\(b)", f.description)
+			XCTAssert(f.description == "\((1/a).reducedDescription)\(b)", f.description)
 		}
 	}
 }

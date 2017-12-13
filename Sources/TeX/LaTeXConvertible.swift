@@ -36,7 +36,7 @@ extension String: LaTeXConvertible {
 	public var latex: String { return "\"\(self)\"" }
 }
 
-extension Matrix: LaTeXConvertible {
+extension DenseMatrix: LaTeXConvertible {
 	public var latex: String {
 		assert(size.rows > 0 && size.columns > 0)
 		var out = "\\begin{pmatrix}\n"

@@ -65,7 +65,7 @@ extension Interpolation {
 }
 
 extension DiscreteFunction {
-    func interpolate<I: Interpolation>(using type: I.Type) -> I {
-        return I.init(points: points)
+    func interpolate(using type: Interpolation.Type) -> Interpolation {
+        return type.init(points: points)
     }
 }

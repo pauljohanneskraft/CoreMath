@@ -48,8 +48,9 @@ extension Double: AdvancedNumeric, Ordered {
 	}
 	
 	public var reducedDescription: String {
-		guard !isInteger	else { return integer.description }
-		return description
+        let float = Float(self)
+		guard !float.isInteger	else { return integer.description }
+		return float.description
 	}
 	
 	public var isInteger: Bool {

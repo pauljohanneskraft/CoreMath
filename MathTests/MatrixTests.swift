@@ -42,22 +42,22 @@ class MatrixTests: XCTestCase, TypeTest {
 				}
 				elem.append(e)
 			}
-			elements.append(Matrix(elem))
+			elements.append(DenseMatrix(elem))
 		}
 	}
 	
-	var elements: [Matrix<Int>] = []
+	var elements: [DenseMatrix<Int>] = []
 	
 	let abc = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
 	
 	func testIdentity() {
 		for i in 1..<20 {
 			print(i, "started")
-			let a = Matrix<Int>.identity(i)
+			let a = DenseMatrix<Int>.identity(i)
 			for j in 0..<i {
 				let aj = a[j]
 				for k in 0..<i {
-					if k == j { XCTAssert(aj[k] == 1) } else { XCTAssert(aj[k] == 0) }
+					if k == j { XCTAssertEqual(aj![k], 1) } else { XCTAssertEqual(aj![k], 0) }
 				}
 			}
 			XCTAssert(a.inverse == a)
@@ -71,35 +71,35 @@ class MatrixTests: XCTestCase, TypeTest {
 	}
 	
 	func testIsSquare() {
-		XCTAssert( Matrix([[1]]).isSquare)
-		XCTAssert( Matrix([[0, 1], [2, 3]]).isSquare)
-		XCTAssert(!Matrix([[0, 1, 2], [3, 4, 5]]).isSquare)
+		XCTAssert( DenseMatrix([[1]]).isSquare)
+		XCTAssert( DenseMatrix([[0, 1], [2, 3]]).isSquare)
+		XCTAssert(!DenseMatrix([[0, 1, 2], [3, 4, 5]]).isSquare)
 	}
 	
 	func testInitArrayLiteral() {
 		let a = [0, 1, 2]
-		let m1 = Matrix(arrayLiteral: a)
-		let m2 = Matrix([a])
+		let m1 = DenseMatrix(arrayLiteral: a)
+		let m2 = DenseMatrix([a])
 		XCTAssert(m1 == m2)
 	}
 	
 	func testDescriptions() {
-		let a: Matrix<Int> = [[0]]
+		let a: DenseMatrix<Int> = [[0]]
 		let ao = a.oneLineDescription
 		let ad = a.description
 		XCTAssert(ao == ad.dropLast())
 	}
 	
 	func testSubscript() {
-		var mabc = Matrix(abc)
+		var mabc = DenseMatrix(abc)
 		for i in abc.indices {
-			XCTAssert(abc[i] == mabc[i])
+			XCTAssertEqual(abc[i], mabc[i]!)
 		}
 		for i in abc.indices {
 			mabc[i] = abc[(abc.count - i) - 1]
 		}
 		for i in abc.indices {
-			XCTAssert(mabc[i] == abc[(abc.count - i) - 1])
+			XCTAssertEqual(mabc[i]!, abc[(abc.count - i) - 1])
 		}
 	}
 	
@@ -109,49 +109,49 @@ class MatrixTests: XCTestCase, TypeTest {
 			[0, 1, 2],
 			[0, 2, 3]
 		]
-		XCTAssert(Matrix(a).rank == 2, "\(Matrix(a).rank) != 2")
+		XCTAssert(DenseMatrix(a).rank == 2, "\(DenseMatrix(a).rank) != 2")
 		let b = [
 			[0, 1, 2],
 			[0, 1, 2],
 			[0, 1, 2]
 		]
-		XCTAssert(Matrix(b).rank == 1, "\(Matrix(b).rank) != 1")
+		XCTAssert(DenseMatrix(b).rank == 1, "\(DenseMatrix(b).rank) != 1")
 		let c = [
 			[0, 0, 0], [0, 0, 0], [0, 0, 0]
 		]
-		XCTAssert(Matrix(c).rank == 0)
+		XCTAssert(DenseMatrix(c).rank == 0)
 	}
 	
 	func testReducedRowEchelonForm() {
-		print(Matrix(abc).reducedRowEchelonForm)
+		print(DenseMatrix(abc).reducedRowEchelonForm)
 	}
     
     func testDet2() {
-        let a = Matrix([[0, 0], [0, 0]]).eigenvalues
+        let a = DenseMatrix([[0, 0], [0, 0]]).eigenvalues
         print(a!)
         
     }
 	
 	func testDeterminant() {
-		XCTAssert(Matrix([[4]]).determinant == 4)
-		XCTAssert(Matrix([[0, 1], [1, 0]]).determinant == -1)
-		XCTAssert(Matrix([[1, 2, 3], [2, 3, 4], [5, 6, 8]]).determinant == -1)
+		XCTAssert(DenseMatrix([[4]]).determinant == 4)
+		XCTAssert(DenseMatrix([[0, 1], [1, 0]]).determinant == -1)
+		XCTAssert(DenseMatrix([[1, 2, 3], [2, 3, 4], [5, 6, 8]]).determinant == -1)
         let matr = [[4, 5, 6, 7, 8], [3, 4, 5, 8, 3], [7, 3, 4, 5, 6], [1, 2, 3, 8, 7], [3, 7, 9, 0, 4]]
-		XCTAssert(Matrix(matr).determinant == 1240)
+		XCTAssert(DenseMatrix(matr).determinant == 1240)
 		
 		let a = Math.random() % 0xFFFF
 		let b = Math.random() % 0xFFFF
 		let c = Math.random() & 0xFFFF
 		let d = Math.random() & 0xFFFF
-		XCTAssert(Matrix([[a, b], [c, d]]).determinant == a*d - b*c)
+		XCTAssert(DenseMatrix([[a, b], [c, d]]).determinant == a*d - b*c)
 		
 		for i in 1 ... 9 {
-			var id = Matrix<Double>.identity(i)
+			var id = DenseMatrix<Double>.identity(i)
 			var value = 1.0
 			for j in 0..<i {
 				let rdm = Double(Math.random() % 0x4F)
 				value *= rdm
-				id[j][j] = rdm
+				id[j]![j] = rdm
 			}
 			let start = Time()
 			XCTAssert(value == id.determinant)
@@ -161,7 +161,7 @@ class MatrixTests: XCTestCase, TypeTest {
 	}
 	
 	func testEigenvalues() {
-		let b = Matrix<C>([[4, 5], [3, 4]]).eigenvalues!
+		let b = DenseMatrix<C>([[4, 5], [3, 4]]).eigenvalues!
 		print(b)
 		XCTAssert((b[0] - 7.87298334620742	).abs <= 1e-14	)
 		XCTAssert((b[1] - 0.127016653792583	).abs <= 1e-14	)
@@ -173,10 +173,10 @@ class MatrixTests: XCTestCase, TypeTest {
 		operatorTest(*, *)
 	}
 	
-	func operatorTest(_ op0: (Int, Int) -> Int, _ op1: (Matrix<Int>, Matrix<Int>) -> Matrix<Int>) {
+	func operatorTest(_ op0: (Int, Int) -> Int, _ op1: (DenseMatrix<Int>, DenseMatrix<Int>) -> DenseMatrix<Int>) {
 		for i in 0..<10 {
 			for j in 10..<20 {
-				XCTAssert(op0(i, j) == op1(Matrix([[i]]), Matrix([[j]]))[0][0])
+				XCTAssert(op0(i, j) == op1(DenseMatrix([[i]]), DenseMatrix([[j]]))[0]![0])
 			}
 		}
 	}
@@ -191,11 +191,11 @@ class MatrixTests: XCTestCase, TypeTest {
 				let bi = b[i]
 				let ci = c[i]
 				for j in 0..<s.columns {
-					guard ci[j] == ai[j] + bi[j] else { return false }
+					guard ci![j] == ai![j] + bi![j] else { return false }
 				}
 			}
 			return true
-		}, { a, b -> Matrix<Int>? in if a.size == b.size { return a + b } else { return nil } })
+		}, { a, b -> DenseMatrix<Int>? in if a.size == b.size { return a + b } else { return nil } })
 	}
 	
 	func testSubtraction() {
@@ -208,11 +208,11 @@ class MatrixTests: XCTestCase, TypeTest {
 				let bi = b[i]
 				let ci = c[i]
 				for j in 0..<s.columns {
-					guard ci[j] == ai[j] - bi[j] else { return false }
+					guard ci![j] == ai![j] - bi![j] else { return false }
 				}
 			}
 			return true
-		}, { a, b -> Matrix<Int>? in if a.size == b.size { return a - b } else { return nil } })
+		}, { a, b -> DenseMatrix<Int>? in if a.size == b.size { return a - b } else { return nil } })
 	}
 	
 	func testScalarMultiplication() {
@@ -224,11 +224,11 @@ class MatrixTests: XCTestCase, TypeTest {
 				let ai = a[i]
 				let bi = b[i]
 				for j in 0..<s.columns {
-					guard ai[j] * rdm == bi[j] else { print(i, j); return false }
+					guard ai![j] * rdm == bi![j] else { print(i, j); return false }
 				}
 			}
 			return true
-        }, { a -> Matrix<Int> in a * rdm })
+        }, { a -> DenseMatrix<Int> in a * rdm })
 		
         forAll("\(rdm) *", assert: { a, b in
 			let s = b.size
@@ -236,10 +236,10 @@ class MatrixTests: XCTestCase, TypeTest {
 				let ai = a[i]
 				let bi = b[i]
 				for j in 0..<s.columns {
-					guard ai[j] * rdm == bi[j] else { print(i, j); return false }
+					guard ai![j] * rdm == bi![j] else { print(i, j); return false }
 				}
 			}
 			return true
-        }, { a -> Matrix<Int> in rdm * a })
+        }, { a -> DenseMatrix<Int> in rdm * a })
 	}
 }
