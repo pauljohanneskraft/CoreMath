@@ -18,8 +18,7 @@ class InterpolationTests: XCTestCase {
         (x^0.4) * Cosh(Sinh(0.5^x)),
         x^5.0, x^10 - 3*(5^x),
         x^0.5, Functions.sin * (x^0.5),
-        Logarithm(base: Constants.Math.e, content: x^10),
-        Logarithm(base: Constants.Math.e, content: 10^x),
+        Ln(x^10), Ln(10^x),
         (x^4).sampled(start: 1, count: 3),
         Fraction(numerator: (2^x), denominator: Constant(3)), 10^x, 3 * (3^x),
         (x^4) * Functions.sin / (6^x)
@@ -199,13 +198,9 @@ class InterpolationTests: XCTestCase {
     
     func testInterpolation<I: Interpolation>(using: I.Type) {
         for function in InterpolationTests.functions {
-            testInterpolation(for: function, using: I.self)
+            equidistantInterpolation(for: function, using: using)
+            nonEquidistantInterpolation(for: function, using: using)
         }
-    }
-    
-    func testInterpolation<I: Interpolation>(for function: Function, using: I.Type) {
-        equidistantInterpolation(for: function, using: using)
-        nonEquidistantInterpolation(for: function, using: using)
     }
     
     func nonEquidistantInterpolation<I: Interpolation>(for function: Function, using: I.Type) {

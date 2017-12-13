@@ -76,7 +76,7 @@ class CustomInterpolationPlotView: NSView {
         innerStackView.backgroundColor = .clear
         
         let outerStackView = NSStackView(orientation: .vertical, alignment: .height, distribution: .gravityAreas,
-                                         subviews: [innerStackView, plotView])
+                                         subviews: [ innerStackView, plotView ])
         innerStackView.leftAnchor.constraint(equalTo: outerStackView.leftAnchor, constant: 10).isActive = true
         innerStackView.rightAnchor.constraint(equalTo: outerStackView.rightAnchor, constant: -10).isActive = true
         

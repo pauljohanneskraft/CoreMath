@@ -152,7 +152,7 @@
 		21BAD2771947EFB33EE11DC3 /* Pods_Math.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Math.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		62B0F6C794B593C3699EB3F5 /* Pods-MathTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MathTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MathTests/Pods-MathTests.debug.xcconfig"; sourceTree = "<group>"; };
 		801540AD109E27455C2CC178 /* Pods_MathTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MathTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9B04DC751FD60BB20097F0A7 /* PlotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotViewController.swift; sourceTree = "<group>"; };
+		9B04DC751FD60BB20097F0A7 /* PlotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlotViewController.swift; path = Sources/View/PlotViewController.swift; sourceTree = SOURCE_ROOT; };
 		9B04DC761FD60BB20097F0A7 /* PlotWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotWindow.swift; sourceTree = "<group>"; };
 		9B04DC771FD60BB30097F0A7 /* PlotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotView.swift; sourceTree = "<group>"; };
 		9B04DC7B1FD60C690097F0A7 /* LogarithmTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogarithmTests.swift; sourceTree = "<group>"; };
@@ -876,7 +876,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint; then\n    swiftlint\nelse\n    echo 'warning: Install Swiftlint'\nfi";
+			shellScript = "export PATH=/usr/local/bin:$PATH\nif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    if which brew; then\n        brew install swiftlint\n        if which swiftlint >/dev/null; then\n            swiftlint\n        else\n            echo \"warning: SwiftLint could not be installed using Homebrew...\"\n        fi\n    else\n        /usr/bin/ruby -e \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)\"\n        if which brew; then\n            brew install swiftlint\n            if which swiftlint >/dev/null; then\n                swiftlint\n            else\n                echo \"warning: SwiftLint could not be installed using Homebrew...\"\n            fi\n        else\n            echo \"warning: Homebrew could not be installed...\"\n        fi\n    fi\nfi";
 		};
 		9B825EAF1EBF19F3003A9B9C /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1196,6 +1196,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = TJSHMGE2VX;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1225,6 +1226,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = TJSHMGE2VX;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
