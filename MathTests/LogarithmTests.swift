@@ -6,8 +6,8 @@
 //  Copyright © 2017 pauljohanneskraft. All rights reserved.
 //
 
-import XCTest
 import Math
+import XCTest
 
 class LogarithmTests: XCTestCase {
     let functions = [

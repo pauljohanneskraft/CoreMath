@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import XCTest
 import Math
+import XCTest
 
 protocol TypeTest {
 	associatedtype DataType

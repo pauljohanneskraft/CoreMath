@@ -154,7 +154,7 @@ class InterpolationTests: XCTestCase {
             Array(discreteFunction.points.map { $0.x }.dropLast()))
         XCTAssertEqual(
             (df as? DiscreteFunction)?.points.map { Float($0.y) } ?? [],
-            [1.3333333333333333, 4.0, 2.0, 2.0, 2.0, 2.0])
+            [1.333_333_333_333_333_3, 4.0, 2.0, 2.0, 2.0, 2.0])
         let dfi = df.integral
         XCTAssertEqual(
             (dfi as? DiscreteFunction)?.points.map { $0.x } ?? [],

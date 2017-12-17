@@ -6,6 +6,7 @@
 //  Copyright © 2016 pauljohanneskraft. All rights reserved.
 //
 
+// swiftlint:disable:next type_name
 public struct _Polynomial {
 	public internal(set) var degree: Double
     

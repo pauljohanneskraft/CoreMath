@@ -14,7 +14,7 @@ extension String {
     }
     
     public func splitCamelCase() -> String {
-        let indexRanges = indices.split(whereSeparator: { self[$0].isUppercase })
+        let indexRanges = indices.split { self[$0].isUppercase }
         let strings = indexRanges.map { range -> Substring in
             guard range.startIndex > self.startIndex else {
                 return self[..<range.endIndex]

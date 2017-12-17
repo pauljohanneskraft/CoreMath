@@ -14,7 +14,8 @@ extension NSMenu {
                                     action: #selector(app.hideOtherApplications(_:)), keyEquivalent: "h")
         hideOthers.keyEquivalentModifierMask = [.command, .option]
         
-        let appMenu = NSMenu(with: [
+        let appMenu = NSMenu(with:
+            [
                 .new(title: "About \(name)", action: nil, keyEquivalent: ""),
                 .separator,
                 .new(title: "Preferences...", action: nil, keyEquivalent: ","),

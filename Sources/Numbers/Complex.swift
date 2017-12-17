@@ -8,7 +8,7 @@
 
 import Foundation
 
-public typealias C = Complex<Double>
+public typealias C = Complex<Double> // swiftlint:disable:this type_name
 
 // makes it possible to write something like the following:
 //
@@ -85,10 +85,12 @@ extension Complex: Hashable {
 extension Complex: CustomStringConvertible {
     public var description: String {
         switch (real == 0, imaginary == 0) {
-        case (true, true):  return "0"
+        case (true, true):
+            return "0"
         case (true, false):
             return imaginary.coefficientDescription(first: true) + "i"
-        case (false, true): return real.reducedDescription
+        case (false, true):
+            return real.reducedDescription
         case (false, false):
             return "(\(real.reducedDescription) \(imaginary.coefficientDescription(first: false))i)"
         }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public typealias Q = RationalNumber
+public typealias Q = RationalNumber // swiftlint:disable:this type_name
 
 // to create a rational number simply initialize using:
 //

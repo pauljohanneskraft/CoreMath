@@ -6,9 +6,9 @@
 //  Copyright © 2016 pauljohanneskraft. All rights reserved.
 //
 
-import XCTest
 import Foundation
 import Math
+import XCTest
 
 class BasicArithmeticTests: XCTestCase {
 	
@@ -25,7 +25,7 @@ class BasicArithmeticTests: XCTestCase {
 	}
 	
 	func testReducedDescription() {
-		for _ in 0..<10000 {
+		for _ in 0..<10_000 {
 			let a = Double(Int.random)
 			XCTAssert(!a.reducedDescription.hasSuffix(".0"), "\(a)")
 		}

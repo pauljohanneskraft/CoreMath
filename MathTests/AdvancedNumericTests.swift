@@ -6,8 +6,8 @@
 //  Copyright © 2016 pauljohanneskraft. All rights reserved.
 //
 
-import XCTest
 import Math
+import XCTest
 
 #if os(Linux)
 import Glibc
@@ -47,11 +47,11 @@ class AdvancedNumericTests: XCTestCase {
 	}
 	
 	func mod< N: AdvancedNumeric >(on type: N.Type) {
-		let a = N.init(integerLiteral: 20)
+		let a = N(integerLiteral: 20)
 		let am = a.mod(5)
 		// print(am)
 		XCTAssert(am == 0)
-		let b = N.init(integerLiteral: -10)
+		let b = N(integerLiteral: -10)
 		let bm = b.mod(3)
 		// print(bm)
 		XCTAssert(bm == 2)

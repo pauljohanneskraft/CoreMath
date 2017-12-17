@@ -10,8 +10,9 @@ import Foundation
 
 public protocol CurveFittingFunction {
     var parameters: [Double] { get set }
-    func call(x: Double) -> Double
     var function: Function { get }
+    
+    func call(x: Double) -> Double
     func call(withoutCoefficients: Double) -> Double
 }
 

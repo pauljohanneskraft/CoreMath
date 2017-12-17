@@ -45,13 +45,13 @@ extension DiscreteFunction: Function {
     }
     
     public func call(x: Double) -> Double {
-        return (points.first(where: { $0.x >= x }) ?? points.last ?? (0, 0)).y
+        return (points.first { $0.x >= x } ?? points.last ?? (0, 0)).y
     }
     
     public func equals(to other: Function) -> Bool {
-        guard let otherDiscrete = other as? DiscreteFunction, points.count == otherDiscrete.points.count else {
-            return false
-        }
+        guard let otherDiscrete = other as? DiscreteFunction,
+            points.count == otherDiscrete.points.count
+            else { return false }
         return !points.indices.contains { points[$0] != otherDiscrete.points[$0] }
     }
 }

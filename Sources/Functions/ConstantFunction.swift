@@ -50,9 +50,7 @@ extension ConstantFunction: Function {
     }
 	
 	public func coefficientDescription(first: Bool) -> String {
-        guard !first else {
-            return value.reducedDescription
-        }
+        guard !first else { return value.reducedDescription }
         return (value < 0 ? "- " : "+ ") + value.abs.reducedDescription
     }
     
@@ -66,17 +64,17 @@ extension ConstantFunction: Function {
 }
 
 public func += (lhs: inout Function, rhs: Double) { lhs = lhs + rhs }
-public func + (lhs: Function, rhs: Double) -> Function { return lhs + Constant(rhs)	}
-public func + (lhs: Double, rhs: Function) -> Function { return Constant(lhs) + rhs	}
+public func + (lhs: Function, rhs: Double) -> Function { return lhs + Constant(rhs) }
+public func + (lhs: Double, rhs: Function) -> Function { return Constant(lhs) + rhs }
 
 public func -= (lhs: inout Function, rhs: Double) { lhs = lhs - rhs }
-public func - (lhs: Function, rhs: Double) -> Function { return lhs + Constant(-rhs)}
+public func - (lhs: Function, rhs: Double) -> Function { return lhs + Constant(-rhs) }
 public func - (lhs: Double, rhs: Function) -> Function { return Constant(lhs) - rhs }
 
 public func *= (lhs: inout Function, rhs: Double) { lhs = lhs * rhs }
-public func * (lhs: Function, rhs: Double) -> Function { return lhs * Constant(rhs)	}
-public func * (lhs: Double, rhs: Function) -> Function { return Constant(lhs) * rhs	}
+public func * (lhs: Function, rhs: Double) -> Function { return lhs * Constant(rhs) }
+public func * (lhs: Double, rhs: Function) -> Function { return Constant(lhs) * rhs }
 
 public func /= (lhs: inout Function, rhs: Double) { lhs = lhs / rhs }
-public func / (lhs: Function, rhs: Double) -> Function { return lhs / Constant(rhs)	}
-public func / (lhs: Double, rhs: Function) -> Function { return Constant(lhs) / rhs	}
+public func / (lhs: Function, rhs: Double) -> Function { return lhs / Constant(rhs) }
+public func / (lhs: Double, rhs: Function) -> Function { return Constant(lhs) / rhs }

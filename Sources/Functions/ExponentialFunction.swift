@@ -18,14 +18,15 @@ public struct Exponential {
 
 extension Exponential: Function {
 	public var integral: Function {
-        return Constant(1 / log(base)) * self // 1 / log(b) * b^x
+        return Term(Constant(1 / log(base)), self) // 1 / log(b) * b^x
     }
     
     public var derivative: Function {
-        return log(base) * self // log(b) * b^x
+        return Term(Constant(log(base)), self) // log(b) * b^x
     }
     
 	public var description: String {
+        guard Float(base) != Float(Constants.Math.e) else { return "e^x" }
         return "\(self.base.reducedDescription)^x"
     }
     
@@ -34,9 +35,7 @@ extension Exponential: Function {
     }
 
     public var reduced: Function {
-        guard base != 0 && base != 1 else {
-            return Constant(base)
-        }
+        guard base != 0 && base != 1 else { return Constant(base) }
         return self
     }
 	
@@ -50,6 +49,6 @@ extension Exponential: Function {
 }
 
 public func ^ (lhs: Double, rhs: _Polynomial) -> Function {
-	precondition(rhs.degree == 1, "only exponential functions with exponent x are currently supported.")
+	assert(rhs.degree == 1)
 	return Exponential(base: lhs).reduced
 }

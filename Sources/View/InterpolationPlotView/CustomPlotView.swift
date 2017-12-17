@@ -94,14 +94,14 @@ public class CustomInterpolationPlotView: NSView {
     func update() {
         plotView.removeAllPlots()
         guard let range = samplingRangeView.range,
-            range.end > range.start, range.count > 0, range.count < 1_000
+            range.end > range.start, !range.isEmpty, range.count < 1_000
             else { return }
         let interpolationRange = self.interpolationRange(of: range)
         let function = selectedFunction
         plotView.setup(function: function, range: interpolationRange)
         let interpolated = function.sampled(in: range).interpolate(using: selectedInterpolation)
         plotView.add(dataSource: FunctionPlotDataSource(function: interpolated, range: interpolationRange),
-            lineWidth: 3, color: .blue)
+                     lineWidth: 3, color: .blue)
         plotView.addDots(dataSource: FunctionPlotDataSource(function: function, range: range), size: 8, color: .white)
     }
 }
@@ -119,8 +119,9 @@ extension CustomInterpolationPlotView: NSTextFieldDelegate {
 }
 
 extension CustomInterpolationPlotView {
-    public static func createInterpolatingWindow(frame: CGRect, functions: [Function],
-                                                 interpolations: [Interpolation.Type], range: SamplingRange) -> NSWindow {
+    public static func createInterpolatingWindow(
+        frame: CGRect, functions: [Function], interpolations: [Interpolation.Type],
+        range: SamplingRange) -> NSWindow {
         let window = NSWindow()
         window.setFrame(frame, display: true)
         let viewController = CustomPlotViewController(title: "Plots", functions: functions,

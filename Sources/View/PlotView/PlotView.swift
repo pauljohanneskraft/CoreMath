@@ -64,7 +64,7 @@ class PlotView: CPTGraphHostingView {
     
     func setupGraphSpaces(function: Function, range: SamplingRange) -> (min: Double, max: Double) {
         guard let plotSpace = graph.defaultPlotSpace as? CPTXYPlotSpace else {
-            fatalError()
+            fatalError("\(graph) doesn't have a defaultPlotSpace.")
         }
         plotSpace.allowsUserInteraction = true
 
@@ -84,7 +84,7 @@ class PlotView: CPTGraphHostingView {
     
     func setupGraphAxisSet(range: SamplingRange, min: Double, max: Double) {
         guard let axisSet = graph.axisSet as? CPTXYAxisSet else {
-            fatalError()
+            fatalError("\(graph) doesn't have an axisSet.")
         }
         
         if let x = axisSet.xAxis {

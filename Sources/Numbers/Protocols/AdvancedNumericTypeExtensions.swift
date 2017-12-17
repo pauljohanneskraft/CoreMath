@@ -10,17 +10,28 @@ import Foundation
 
 public protocol IntegerAdvancedNumeric: AdvancedNumeric, BinaryInteger {
     static var random: Self { get }
+    
     init(integerLiteral: Int)
     init(floatLiteral: Double)
+    
     var double: Double { get }
     var integer: Int { get }
     var isInteger: Bool { get }
 }
 
-public extension IntegerAdvancedNumeric {
-	public var double: Double { return Double(self.integer) }
-	public var integer: Int { return hashValue }
-	public var isInteger: Bool { return true }
+extension IntegerAdvancedNumeric {
+    public var double: Double {
+        return Double(self.integer)
+    }
+    
+    public var integer: Int {
+        return hashValue
+    }
+    
+	public var isInteger: Bool {
+        return true
+    }
+    
 	public static var random: Self {
 		return Self(integerLiteral: Math.random() % Self.max.integer)
 	}
@@ -37,7 +48,9 @@ extension Double: AdvancedNumeric, Ordered {
         self.init(integerLiteral)
     }
     
-	public var sqrt: Double { return pow(self, 1.0/2) }
+	public var sqrt: Double {
+        return pow(self, 0.5)
+    }
 	
 	public static var random: Double {
         let sign = Math.random() % 2 == 0 ? 1.0 : -1.0

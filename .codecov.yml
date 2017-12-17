@@ -1,9 +1,0 @@
-comment:
-  layout: "header, diff, tree, changes, sunburst"
-  behavior: default
-  require_changes: false  # if true: only post the comment if coverage changes
-
- coverage:
-  range: 40..90
-  round: down
-  precision: 2

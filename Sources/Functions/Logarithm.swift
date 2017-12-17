@@ -8,29 +8,11 @@
 
 import Foundation
 
-public func Log(_ base: Double = 10, _ of: Function) -> Function {
-    return Logarithm(base: base, content: of).reduced
-}
+public func Log(_ base: Double, _ of: Function) -> Function { return Logarithm(base: base, content: of).reduced }
 
-public func Log(_ base: Double = 10, _ double: Double) -> Function {
-    return Constant(log(base: base, of: double))
-}
-
-public func Ln(_ double: Double) -> Function {
-    return Constant(log(base: Constants.Math.e, of: double))
-}
-
-public func Ln(_ fun: Function) -> Function {
-    return Logarithm(base: Constants.Math.e, content: fun).reduced
-}
-
-public func Ld(_ double: Double) -> Function {
-    return Constant(log(base: 2, of: double))
-}
-
-public func Ld(_ of: Function) -> Function {
-    return Logarithm(base: 2, content: of).reduced
-}
+public func Lg(_ of: Function) -> Function { return Logarithm(base: 10, content: of).reduced }
+public func Ln(_ of: Function) -> Function { return Logarithm(base: .eulersNumber, content: of).reduced }
+public func Ld(_ of: Function) -> Function { return Logarithm(base: 2, content: of).reduced }
 
 public struct Logarithm {
     public var base: Double
@@ -44,7 +26,7 @@ public struct Logarithm {
 
 extension Logarithm: Function {
     public var integral: Function {
-        return content * Logarithm(base: base, content: content) - content
+        return (content * Logarithm(base: base, content: content) - content) * content.derivative
     }
     
     public var derivative: Function {

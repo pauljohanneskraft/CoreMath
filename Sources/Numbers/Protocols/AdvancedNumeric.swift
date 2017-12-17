@@ -15,8 +15,8 @@ public protocol AdvancedNumeric: Numeric, Ordered {
     func greatestCommonDivisor(with other: Self) -> Self
 }
 
-public extension AdvancedNumeric {
-	func mod(_ v: Int) -> Self {
+extension AdvancedNumeric {
+    public func mod(_ v: Int) -> Self {
 		let m = self % Self(v)
 		if m < 0 { return m + Self(v) }
 		return m
@@ -29,8 +29,8 @@ extension AdvancedNumeric where Self: All {
     }
 }
 
-public extension AdvancedNumeric {
-	public func greatestCommonDivisor(with other: Self) -> Self {
+extension AdvancedNumeric {
+    public func greatestCommonDivisor(with other: Self) -> Self {
 		var a = self > other ? self : other
 		var b = self < other ? self : other
 		while b.abs > 0 {

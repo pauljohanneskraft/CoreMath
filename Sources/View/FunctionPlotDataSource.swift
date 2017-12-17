@@ -6,8 +6,8 @@
 //  Copyright © 2017 pauljohanneskraft. All rights reserved.
 //
 
-import Foundation
 import CorePlot
+import Foundation
 
 class FunctionPlotDataSource: NSObject, CPTPlotDataSource {
     var function: Function
@@ -25,7 +25,11 @@ class FunctionPlotDataSource: NSObject, CPTPlotDataSource {
     func numbers(for plot: CPTPlot, field fieldEnum: UInt, recordIndexRange indexRange: NSRange) -> [Any]? {
         let indexRange = indexRange.lowerBound..<indexRange.upperBound
         
-        switch CPTScatterPlotField(rawValue: Int(fieldEnum))! {
+        guard let field = CPTScatterPlotField(rawValue: Int(fieldEnum)) else {
+            return nil
+        }
+        
+        switch field {
         case .X:
             return indexRange.map { range[$0] as NSNumber }
             
@@ -36,7 +40,11 @@ class FunctionPlotDataSource: NSObject, CPTPlotDataSource {
     
     func number(for plot: CPTPlot, field fieldEnum: UInt, record idx: UInt) -> Any? {
         
-        switch CPTScatterPlotField(rawValue: Int(fieldEnum))! {
+        guard let field = CPTScatterPlotField(rawValue: Int(fieldEnum)) else {
+            return nil
+        }
+        
+        switch field {
         case .X:
             return range[Int(idx)] as NSNumber
             

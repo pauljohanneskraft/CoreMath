@@ -10,62 +10,49 @@ import Foundation
 
 extension TrigonometricFunction {
     public enum Kind {
-        case sin, sinh //, arcsin, arcsinh
-        case cos, cosh //, arccos, arccosh
-        // case tan, arctan, tanh, arctanh
+        case sin, sinh
+        case cos, cosh
         
         public var function: (Double) -> Double {
             switch self {
-            case .sin: return Darwin.sin
-            case .cos: return Darwin.cos
-            // case .tan: return Darwin.tan
-            case .sinh: return Darwin.sinh
-            case .cosh: return Darwin.cosh
-            // case .tanh: return Darwin.tanh
-            // case .arcsin: return Darwin.asin
-            // case .arccos: return Darwin.acos
-            // case .arctan: return Darwin.atan
-            // case .arcsinh: return Darwin.asinh
-            // case .arccosh: return Darwin.acosh
-            // case .arctanh: return Darwin.atanh
+            case .sin:
+                return Darwin.sin
+            case .cos:
+                return Darwin.cos
+            case .sinh:
+                return Darwin.sinh
+            case .cosh:
+                return Darwin.cosh
             }
         }
         
-        fileprivate var integral: (sign: Bool, kind: Kind) {
+        var integral: (sign: Bool, kind: Kind) {
             switch self {
-            case .sin: return (true, .cos)
-            case .cos: return (false, .sin)
-            // case .tan: return Darwin.tan
-            case .sinh: return (false, .cosh)
-            case .cosh: return (false, .sinh)
-            // case .tanh: return Darwin.tanh
-            // case .arcsin: return Darwin.asin
-            // case .arccos: return Darwin.acos
-            // case .arctan: return Darwin.atan
-            // case .arcsinh: return Darwin.asinh
-            // case .arccosh: return Darwin.acosh
-            // case .arctanh: return Darwin.atanh
+            case .sin:
+                return (true, .cos)
+            case .cos:
+                return (false, .sin)
+            case .sinh:
+                return (false, .cosh)
+            case .cosh:
+                return (false, .sinh)
             }
         }
         
-        fileprivate var derivative: (sign: Bool, kind: Kind) {
+        var derivative: (sign: Bool, kind: Kind) {
             switch self {
-            case .sin: return (false, .cos)
-            case .cos: return (true, .sin)
-            // case .tan: return Darwin.tan
-            case .sinh: return (false, .cosh)
-            case .cosh: return (false, .sinh)
-            // case .tanh: return Darwin.tanh
-            // case .arcsin: return Darwin.asin
-            // case .arccos: return Darwin.acos
-            // case .arctan: return Darwin.atan
-            // case .arcsinh: return Darwin.asinh
-            // case .arccosh: return Darwin.acosh
-            // case .arctanh: return Darwin.atanh
+            case .sin:
+                return (false, .cos)
+            case .cos:
+                return (true, .sin)
+            case .sinh:
+                return (false, .cosh)
+            case .cosh:
+                return (false, .sinh)
             }
         }
         
-        fileprivate func call(content: Double) -> Double {
+        func call(content: Double) -> Double {
             return self.function(content)
         }
     }

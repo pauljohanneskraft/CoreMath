@@ -6,8 +6,8 @@
 //  Copyright © 2016 pauljohanneskraft. All rights reserved.
 //
 
-import XCTest
 import Math
+import XCTest
 
 class MatrixTests: XCTestCase, TypeTest {
 	
@@ -32,6 +32,7 @@ class MatrixTests: XCTestCase, TypeTest {
     }
     
 	override func setUp() {
+        super.setUp()
 		for _ in 0..<30 {
 			let size = (columns: (Math.random() & 0xF) + 1, rows: (Math.random() & 0xF) + 1)
 			var elem = [[Int]]()
@@ -128,8 +129,7 @@ class MatrixTests: XCTestCase, TypeTest {
     
     func testDet2() {
         let a = DenseMatrix([[0, 0], [0, 0]]).eigenvalues
-        print(a!)
-        
+        XCTAssertNotNil(a)        
     }
 	
 	func testDeterminant() {
@@ -137,7 +137,7 @@ class MatrixTests: XCTestCase, TypeTest {
 		XCTAssert(DenseMatrix([[0, 1], [1, 0]]).determinant == -1)
 		XCTAssert(DenseMatrix([[1, 2, 3], [2, 3, 4], [5, 6, 8]]).determinant == -1)
         let matr = [[4, 5, 6, 7, 8], [3, 4, 5, 8, 3], [7, 3, 4, 5, 6], [1, 2, 3, 8, 7], [3, 7, 9, 0, 4]]
-		XCTAssert(DenseMatrix(matr).determinant == 1240)
+		XCTAssert(DenseMatrix(matr).determinant == 1_240)
 		
 		let a = Math.random() % 0xFFFF
 		let b = Math.random() % 0xFFFF
@@ -161,10 +161,11 @@ class MatrixTests: XCTestCase, TypeTest {
 	}
 	
 	func testEigenvalues() {
-		let b = DenseMatrix<C>([[4, 5], [3, 4]]).eigenvalues!
+		let b = DenseMatrix<C>([[4, 5], [3, 4]]).eigenvalues ?? []
+        XCTAssert(!b.isEmpty)
 		print(b)
-		XCTAssert((b[0] - 7.87298334620742	).abs <= 1e-14	)
-		XCTAssert((b[1] - 0.127016653792583	).abs <= 1e-14	)
+		XCTAssertLessThanOrEqual((b[0] - 7.872_983_346_207_42 ).abs, 1e-14)
+		XCTAssertLessThanOrEqual((b[1] - 0.127_016_653_792_583).abs, 1e-14)
 	}
 
 	func testOperators() {
@@ -183,8 +184,7 @@ class MatrixTests: XCTestCase, TypeTest {
 	
 	func testAddition() {
 		forAll("+", assert: { a, b, c -> Bool in
-			if c == nil { return true }
-			let c = c!
+            guard let c = c else { return true }
 			let s = c.size
 			for i in 0..<s.rows {
 				let ai = a[i]
@@ -200,8 +200,7 @@ class MatrixTests: XCTestCase, TypeTest {
 	
 	func testSubtraction() {
 		forAll("-", assert: { a, b, c -> Bool in
-			if c == nil { return true }
-			let c = c!
+            guard let c = c else { return true }
 			let s = c.size
 			for i in 0..<s.rows {
 				let ai = a[i]
@@ -216,7 +215,7 @@ class MatrixTests: XCTestCase, TypeTest {
 	}
 	
 	func testScalarMultiplication() {
-		let rdm = Math.random() % 1000
+		let rdm = Math.random() % 1_000
 		print("rdm:", rdm)
         forAll("\(rdm) *", assert: { a, b in
 			let s = b.size

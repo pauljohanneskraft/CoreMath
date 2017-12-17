@@ -176,9 +176,12 @@ extension DenseMatrix where Number: BasicArithmetic {
 		
 		guard count > 3 else {
             switch count {
-            case 0: return 0
-            case 1: return elements[0][0]
-            case 2: return elements[0][0] * elements[1][1] - elements[0][1] * elements[1][0]
+            case 0:
+                return 0
+            case 1:
+                return elements[0][0]
+            case 2:
+                return elements[0][0] * elements[1][1] - elements[0][1] * elements[1][0]
             case 3:
                 let a = elements[0][0]*elements[1][1]*elements[2][2]
                 let b = elements[0][1]*elements[1][2]*elements[2][0]
@@ -187,7 +190,8 @@ extension DenseMatrix where Number: BasicArithmetic {
                 let e = elements[0][0]*elements[1][2]*elements[2][1]
                 let f = elements[0][1]*elements[1][0]*elements[2][2]
                 return a + b + c - d - e - f
-            default: fatalError("count is not allowed. (\(count))")
+            default:
+                fatalError("count is not allowed. (\(count))")
             }
 		}
 		var res: Number = 0
@@ -294,7 +298,7 @@ extension DenseMatrix where Number: Equatable {
 
 private func == <T: Equatable>(lhs: [[T]], rhs: [[T]]) -> Bool {
     guard lhs.count == rhs.count else { return false }
-    return !lhs.indices.contains(where: { lhs[$0] != rhs[$0] })
+    return !lhs.indices.contains { lhs[$0] != rhs[$0] }
 }
 
 extension DenseMatrix {

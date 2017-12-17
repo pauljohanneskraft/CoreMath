@@ -6,10 +6,11 @@
 //  Copyright © 2016 pauljohanneskraft. All rights reserved.
 //
 
-import XCTest
 import Math
+import XCTest
 
 class EnhancedNumberTests: XCTestCase, TypeTest {
+    // swiftlint:disable:next type_name
 	typealias N = Z
 	
     static var allTests: [(String, (EnhancedNumberTests) -> () throws -> Void )] {
@@ -27,6 +28,7 @@ class EnhancedNumberTests: XCTestCase, TypeTest {
     }
     
 	override func setUp() {
+        super.setUp()
 		elements.append(.infinity(sign: true))
 		elements.append(.infinity(sign: false))
 		elements.append(.nan)

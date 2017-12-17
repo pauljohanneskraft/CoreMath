@@ -6,10 +6,8 @@
 //  Copyright © 2017 pauljohanneskraft. All rights reserved.
 //
 
-import XCTest
 import Math
-
-// swiftlint:disable force_try
+import XCTest
 
 class DFATest: XCTestCase {
     
@@ -21,17 +19,23 @@ class DFATest: XCTestCase {
         
         let state0 = DFA<Character>.State {
             switch $0 {
-            case "a":   return 0
-            case "b":   return 1
-            default:    return 2
+            case "a":
+                return 0
+            case "b":
+                return 1
+            default:
+                return 2
             }
         }
         
         let state1 = DFA<Character>.State {
             switch $0 {
-            case "a":   return 0
-            case "b":   return 1
-            default:    return 2
+            case "a":
+                return 0
+            case "b":
+                return 1
+            default:
+                return 2
             }
         }
         
@@ -39,11 +43,11 @@ class DFATest: XCTestCase {
         
         let automaton = DFA(states: [0: state0, 1: state1, 2: state2], initialState: 0, finalStates: [1])
         
-        XCTAssert( try! automaton.accepts(word: "aaaabb"))
-        XCTAssert(!(try! automaton.accepts(word: "abbbba")))
-        XCTAssert( try! automaton.accepts(word: "b"))
-        XCTAssert(!(try! automaton.accepts(word: "aa")))
-        XCTAssert( try! automaton.accepts(word: "abab"))
-        XCTAssert(!(try! automaton.accepts(word: "ac")))
+        XCTAssertEqual(try? automaton.accepts(word: "aaaabb"), true)
+        XCTAssertEqual(try? automaton.accepts(word: "abbbba"), false)
+        XCTAssertEqual(try? automaton.accepts(word: "b"), true)
+        XCTAssertEqual(try? automaton.accepts(word: "aa"), false)
+        XCTAssertEqual(try? automaton.accepts(word: "abab"), true)
+        XCTAssertEqual(try? automaton.accepts(word: "ac"), false)
     }
 }

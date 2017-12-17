@@ -10,11 +10,14 @@ import Foundation
 
 public protocol ComplexConvertible: Numeric {
     associatedtype Number: Numeric
+    
     var complex: Complex<Number> { get }
 }
 
 extension IntegerAdvancedNumeric {
-    public var complex: Complex<Self> { return Complex(self.integer) }
+    public var complex: Complex<Self> {
+        return Complex(self.integer)
+    }
 }
 
 extension Int: ComplexConvertible {}

@@ -15,8 +15,10 @@ public protocol TimeProtocol {
 
 #if os(Linux)
 	import Glibc
+    
 	public let DBL_MAX: Double = unsafeBitCast( 0x7FEFFFFFFFFFFFFF, to: Double.self)
 	public let DBL_MIN: Double = unsafeBitCast(   0x10000000000000, to: Double.self)
+    
 	public func random() -> Int { return Glibc.random() }
     
     public struct Time: TimeProtocol {

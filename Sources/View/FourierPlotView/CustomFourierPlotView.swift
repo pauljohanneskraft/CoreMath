@@ -63,7 +63,7 @@ public class DiscreteFourierPlotView: NSView {
         functionPlotView.setup(function: function, range: range)
         let functionPoints = function.sampled(in: range).points
         functionPlotView.addDots(dataSource: FunctionPlotDataSource(function: function, range: range))
-        let transform = functionPoints.map({ C($0.y) }).fastFourierTransform
+        let transform = functionPoints.map { C($0.y) }.fastFourierTransform
         
         let transformedPoints: [DiscreteFunction.Point]
         if transformAbsoluteValues {

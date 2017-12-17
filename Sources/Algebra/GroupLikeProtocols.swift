@@ -6,10 +6,9 @@
 //  Copyright © 2016 pauljohanneskraft. All rights reserved.
 //
 
-// swiftlint:disable large_tuple
-
 public protocol MagmaProtocol: CustomStringConvertible {
 	associatedtype Element: Hashable, Comparable
+    
 	var set: Set<Element> { get }
 	var op: (Element, Element) -> Element { get }
 	var sign: Character { get }
@@ -21,6 +20,7 @@ extension MagmaProtocol {
 	public var description: String {
 		return "\(Self.self) ⟨ \(set.sorted()), \(sign) ⟩"
 	}
+    
 	func test() -> Bool {
 		return testClosure()
 	}
@@ -113,35 +113,41 @@ extension Associative {
 
 public protocol SemigroupProtocol: Associative {}
 extension SemigroupProtocol {
-	func test() -> (closed: Bool, associative: Bool) {
+    typealias SemigroupTestResult = (closed: Bool, associative: Bool)
+	func test() -> SemigroupTestResult {
 		return (testClosure(), testAssociative())
 	}
 }
 
 public protocol MonoidProtocol: SemigroupProtocol, hasNeutralElement {}
 extension MonoidProtocol {
-	func test() -> (closed: Bool, associative: Bool, neutralElement: Bool) {
+    typealias MonoidTestResult = (closed: Bool, associative: Bool, neutralElement: Bool)
+	func test() -> MonoidTestResult {
 		return (testClosure(), testAssociative(), testNeutralElement())
 	}
 }
 
 public protocol GroupProtocol: MonoidProtocol, Invertible {}
 extension GroupProtocol {
-	func test() -> (closed: Bool, associative: Bool, neutralElement: Bool, invertible: Bool) {
+    typealias GroupTestResult = (closed: Bool, associative: Bool, neutralElement: Bool, invertible: Bool)
+	func test() -> GroupTestResult {
 		return (testClosure(), testAssociative(), testNeutralElement(), testInverse())
 	}
 }
 
 public protocol AbelianGroupProtocol: GroupProtocol, Commutative {}
 extension AbelianGroupProtocol {
-	func test() -> (closed: Bool, associative: Bool, neutralElement: Bool, invertible: Bool, commutative: Bool) {
+    typealias AbelianGroupTestResult =
+        (closed: Bool, associative: Bool, neutralElement: Bool, invertible: Bool, commutative: Bool)
+	func test() -> AbelianGroupTestResult {
 		return (testClosure(), testAssociative(), testNeutralElement(), testInverse(), testCommutative())
 	}
 }
 
 public protocol SemilatticeProtocol: SemigroupProtocol, Commutative, Idempotent {}
 extension SemilatticeProtocol {
-	func test() -> (closed: Bool, associative: Bool, commutative: Bool, idempotent: Bool) {
+    typealias SemilatticeTestResult = (closed: Bool, associative: Bool, commutative: Bool, idempotent: Bool)
+	func test() -> SemilatticeTestResult {
 		return (testClosure(), testAssociative(), testCommutative(), testIdempotent())
 	}
 }

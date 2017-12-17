@@ -94,13 +94,30 @@ func log(base: Double, of: Double) -> Double {
 }
 
 extension Float {
-    static var inaccuracy: Float {
+    public static var inaccuracy: Float {
         return nextafterf(1, .max) - 1
     }
 }
 
 extension Double {
-    static var inaccuracy: Double {
+    public static var inaccuracy: Double {
         return nextafter(1, .max) - 1
+    }
+}
+
+extension Double {
+    public static var eulersNumber: Double {
+        return Constants.Math.e
+    }
+}
+
+extension Int {
+    var divisors: [Int] {
+        let range = 1..<((self + 1).sqrt + 1) / 2
+        return range.reduce(into: [Int]()) { result, divisor in
+            guard self % divisor == 0 else { return }
+            result.append(divisor)
+            result.append(self - divisor)
+        }
     }
 }

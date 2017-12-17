@@ -22,7 +22,7 @@ public struct Term: Function {
 		var factors = self.factors
 		// print("integral of", self)
 		guard factors.count > 2 else {
-			guard factors.count > 1 else { return factors.count == 0 ? Constant(0) : factors[0].integral }
+			guard factors.count > 1 else { return factors.isEmpty ? Constant(0) : factors[0].integral }
 			// print("2", self)
 			return (factors[0] * factors[1].integral) - (factors[0].derivative*factors[1]).integral
 		}
@@ -53,7 +53,7 @@ public struct Term: Function {
 				} else {
 					product.append(factors[j])
 				}
-				print("(\(i), \(j)) with \(integratedIndex) in \(self) results in", product.last!)
+				print("(\(i), \(j)) with \(integratedIndex) in \(self) results in", product.last?.description ?? "nil")
 			}
 			// print(self, "factors \(i):", product)
 			let s = Term(product).reduced
@@ -87,17 +87,17 @@ public struct Term: Function {
 	public var description: String { return coefficientDescription(first: true) }
 	
 	public var debugDescription: String {
-		guard factors.count > 0 else { return "Term()" }
+		guard !factors.isEmpty else { return "Term()" }
 		var arr = ""
 		for i in factors.dropLast() {
 			arr += "\(i.debugDescription), "
 		}
-		return "Term(\(arr)\(factors.last!.debugDescription))"
+		return "Term(\(arr)\(factors.last?.debugDescription ?? "nil"))"
 	}
 	
 	public var latex: String {
 		guard !factors.isEmpty else { return "0" }
-		var result = "\(factors.first!.latex)"
+		var result = "\(factors.first?.latex ?? "nil")"
 		for f in factors.dropFirst() { result += " \\cdot \(f.latex)" }
 		return result
 	}
@@ -135,7 +135,8 @@ public struct Term: Function {
                         [r.numerator, polynomialFunction, _polynomial, ConstantFunction(rest)] + this.factors
                         ).reduced,
                     denominator: r.denominator).reduced
-            default: i += 1
+            default:
+                i += 1
             }
 		}
 
@@ -175,9 +176,12 @@ public struct Term: Function {
         guard factors.count > 2 else {
             let f = factors[1]
             switch f {
-            case is Equation: return result + "·(\(f))"
-            case is _Polynomial, is CustomFunction: return result + "\(f)"
-            default: return result + "·\(f)"
+            case is Equation:
+                return result + "·(\(f))"
+            case is _Polynomial:
+                return result + "\(f)"
+            default:
+                return result + "·\(f)"
             }
         }
         if !hasMinusOne { result += "·( " }

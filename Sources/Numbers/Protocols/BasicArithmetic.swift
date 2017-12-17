@@ -31,7 +31,7 @@ public protocol BasicArithmetic: CustomStringConvertible,
 	prefix static func - (lhs: Self) -> Self
 }
 
-public extension BasicArithmetic where Self: All {
+extension BasicArithmetic where Self: All {
     public static func + (lhs: Self, rhs: Self) -> Self {
         return lhs.copy { $0 += rhs }
     }
@@ -49,11 +49,11 @@ public extension BasicArithmetic where Self: All {
     }
 }
 
-public extension BasicArithmetic {
-    init(integerLiteral: Int) {
+extension BasicArithmetic {
+    public init(integerLiteral: Int) {
         self.init(integerLiteral)
     }
-    init(floatLiteral: Double) {
+    public init(floatLiteral: Double) {
         self.init(floatLiteral)
     }
     
@@ -67,9 +67,12 @@ public extension BasicArithmetic {
 		if !first { n = self.abs; res += self < 0 ? "- " : "+ " } else { n = self }
 		
 		switch n {
-		case 0, 1:  return res
-		case -1:    return "-"
-		default:    return res + n.reducedDescription
+		case 0, 1:
+            return res
+		case -1:
+            return "-"
+		default:
+            return res + n.reducedDescription
 		}
 	}
 }

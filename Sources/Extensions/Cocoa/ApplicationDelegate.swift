@@ -10,8 +10,11 @@ import Cocoa
 
 public protocol ApplicationDelegate: NSApplicationDelegate {
     static var shared: Self? { get set }
+    
     init()
+    
     var windows: [NSWindow] { get set }
+    
     func open(window: NSWindow)
     func start(name: String)
     static func start(name: String) -> Self
@@ -35,7 +38,7 @@ extension ApplicationDelegate {
     
     @discardableResult
     public static func start(name: String) -> Self {
-        let this = Self.init()
+        let this = Self()
         shared = this
         this.start(name: name)
         return this

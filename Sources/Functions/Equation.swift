@@ -24,26 +24,26 @@ extension Equation: Function {
     }
     
 	public var integral: Function {
-        return Equation(terms.map { $0.integral.reduced	}).reduced
+        return Equation(terms.map { $0.integral.reduced }).reduced
     }
 	
 	public var debugDescription: String {
-		guard terms.count > 0 else { return "Term()" }
+		guard !terms.isEmpty else { return "Term()" }
 		var arr = ""
 		for i in terms.dropLast() { arr += "\(i.debugDescription), " }
-		return "Equation(\(arr)\(terms.last!.debugDescription))"
+		return "Equation(\(arr)\(terms.last?.debugDescription ?? "nil"))"
 	}
 	
 	public var description: String {
-		if terms.isEmpty { return "0" }
-		var result = "\(terms.first!.coefficientDescription(first: true))"
+        guard let first = terms.first else { return "0" }
+		var result = "\(first.coefficientDescription(first: true))"
 		for t in terms.dropFirst() { result += " \(t.coefficientDescription(first: false))" }
 		return result
 	}
 	
 	public var latex: String {
 		if terms.isEmpty { return "0" }
-		var result = "\(terms.first!.latex)"
+		var result = "\(terms.first?.latex ?? "nil")"
 		for t in terms.dropFirst() { result += " + \(t.latex)" }
 		return result
 	}
@@ -72,7 +72,7 @@ extension Equation: Function {
 		}
 		if poly.polynomial != 0 { this.terms.append(poly.reduced) }
 		if rest != 0.0 { this.terms.append(Constant(rest)) }
-		if this.terms.count >  1 { return this			}
+		if this.terms.count >  1 { return this }
 		if this.terms.count == 1 { return this.terms[0] }
 		return Constant(0.0)
 	}

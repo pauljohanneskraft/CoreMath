@@ -33,16 +33,16 @@ public protocol Function: CustomStringConvertible, LaTeXConvertible {
 	prefix static func - (lhs: Function) -> Function
 }
 
-public extension Function {
+extension Function {
 	
 	// properties
-	var debugDescription: String { return description }
+	public var debugDescription: String { return description }
 	
 	// functions
-	func coefficientDescription(first: Bool	) -> String { return first ? description : "+ \(description)" }
+	public func coefficientDescription(first: Bool	) -> String { return first ? description : "+ \(description)" }
 	
-	func integral(c:	Double				) -> Function { return integral + Constant(c)											}
-	func integral(from: Double, to: Double	) -> Double {
+	public func integral(c:	Double				) -> Function { return integral + Constant(c) }
+	public func integral(from: Double, to: Double	) -> Double {
         let int = self.integral
         return int.call(x: from) - int.call(x: to)
     }
@@ -56,18 +56,14 @@ extension Function {
 
 public func * (lhs: Function, rhs: Function) -> Function {
 	if let l = lhs as? Equation {
-		if !(rhs is CustomFunction) {
-			var res: Function = Constant(0)
-			for f1 in l.terms { res = res + (f1 * rhs) }
-			return res.reduced
-		}
+        var res: Function = Constant(0)
+        for f1 in l.terms { res = res + (f1 * rhs) }
+        return res.reduced
 	}
 	if let r = rhs as? Equation {
-		if !(lhs is CustomFunction) {
-			var res: Function = Constant(0)
-			for f1 in r.terms { res = res + (f1 * lhs) }
-			return res.reduced
-		}
+        var res: Function = Constant(0)
+        for f1 in r.terms { res = res + (f1 * lhs) }
+        return res.reduced
 	}
 	if var l = lhs as? Term { l.factors.append(rhs); return l.reduced }
 	if var r = rhs as? Term { r.factors.append(lhs); return r.reduced }

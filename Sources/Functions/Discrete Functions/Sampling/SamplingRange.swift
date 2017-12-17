@@ -37,6 +37,10 @@ public struct SamplingRange {
     public subscript(index: Int) -> Double {
         return start + Double(index) * interval
     }
+    
+    public var isEmpty: Bool {
+        return start >= end
+    }
 }
 
 extension SamplingRange: Sequence {
@@ -47,6 +51,7 @@ extension SamplingRange: Sequence {
     public struct Iterator: IteratorProtocol {
         var range: SamplingRange
         var index = 0
+        
         public mutating func next() -> Double? {
             let n = range.start + Double(index) * range.interval
             guard n <= range.end else { return nil }

@@ -6,8 +6,8 @@
 //  Copyright © 2016 pauljohanneskraft. All rights reserved.
 //
 
-import XCTest
 import Math
+import XCTest
 
 #if os(Linux)
 import Glibc
@@ -28,14 +28,12 @@ class NumericTests: XCTestCase, TypeTest {
     }
 	
 	func testPrettyMuchEquals() {
-		for _ in  0 ..< 1000 {
+		for _ in  0 ..< 1_000 {
 			let one = Double.random
 			if one.isNormal {
 				let two = nextafter(one, Double.greatestFiniteMagnitude)
-				let eq  = one == two
-				let eqn = one =~ two
-				XCTAssert(eqn)
-				XCTAssert(!eq)
+				XCTAssert(one =~ two)
+				XCTAssert(one != two)
 			}
 		}
 	}

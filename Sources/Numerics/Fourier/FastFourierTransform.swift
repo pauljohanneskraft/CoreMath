@@ -59,7 +59,7 @@ extension Array where Element: Numeric & ComplexConvertible {
 }
 
 extension Collection where Index == Int, IndexDistance == Index {
-    fileprivate func butterfly() -> (even: [Element], odd: [Element]) {
+    fileprivate func butterfly() -> (even: [Element], odd: [Element]) { // swiftlint:disable:this strict_fileprivate
         let count = self.count
         let even = stride(from: 0, to: count, by: 2).map { self[$0] }
         let odd = stride(from: 1, to: count, by: 2).map { self[$0] }

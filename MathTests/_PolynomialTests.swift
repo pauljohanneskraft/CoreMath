@@ -6,18 +6,13 @@
 //  Copyright © 2016 pauljohanneskraft. All rights reserved.
 //
 
-import XCTest
 import Math
+import XCTest
 
+// swiftlint:disable:next type_name
 class _PolynomialTests: XCTestCase {
 	// MID_PRIO
     
-    static var allTests: [(String, (_PolynomialTests) -> () throws -> Void )] {
-        return [
-            ("testEqualsToPolynomial", testEqualsToPolynomial)
-        ]
-    }
-	
 	func testEqualsToPolynomial() {
 		for _ in 0..<200 {
 			// print(".", terminator: "")
@@ -34,7 +29,10 @@ class _PolynomialTests: XCTestCase {
 			XCTAssert(p.description == f.description, "Polynomial: \(p), Function: \(f)")
 			for _ in 0..<100 {
 				let r = (Math.random() & 0xF).double
-				let pc = p.call(x: r)!.integer
+                guard let pc = p.call(x: r)?.integer else {
+                    XCTAssert(false)
+                    return
+                }
 				let fc = f.call(x: r).integer
 				if pc < 0xFFF { XCTAssert(pc == fc, "\(pc) != \(fc)") }
 			}

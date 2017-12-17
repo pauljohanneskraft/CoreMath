@@ -20,7 +20,7 @@ extension NSView {
 }
 
 extension NSView {
-    var forcedLayer: CALayer! {
+    var forcedLayer: CALayer! { // swiftlint:disable:this implicitly_unwrapped_optional
         wantsLayer = true
         return layer
     }

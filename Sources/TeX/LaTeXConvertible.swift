@@ -11,8 +11,8 @@ public protocol LaTeXConvertible {
 	// func latex(mode: LaTeXMode) -> String
 }
 
-extension LaTeXConvertible where Self : CustomStringConvertible {
-	public var latex: String { return self.description }
+extension LaTeXConvertible where Self: CustomStringConvertible {
+    public var latex: String { return self.description }
 }
 
 enum LaTeXMode { case Math, Standard, Comment }
@@ -44,12 +44,12 @@ extension DenseMatrix: LaTeXConvertible {
 			for value in array.dropLast() {
 				out += "\(value) & "
 			}
-			out += "\(array.last!) \\\\\n"
+            out += "\(array.last!) \\\\\n" // swiftlint:disable:this force_unwrapping
 		}
-		for value in self.elements.last!.dropLast() {
+		for value in self.elements.last?.dropLast() ?? [] {
 			out += "\(value) & "
 		}
-		out += "\(self.elements.last!.last!)\n"
+		out += "\(self.elements.last!.last!)\n" // swiftlint:disable:this force_unwrapping
 		return out + "\\end{pmatrix}"
 	}
 }

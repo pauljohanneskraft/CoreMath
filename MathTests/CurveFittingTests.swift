@@ -6,17 +6,16 @@
 //  Copyright © 2017 pauljohanneskraft. All rights reserved.
 //
 
-import XCTest
 import Math
+import XCTest
 
 class CurveFittingTests: XCTestCase {
     
     func testCurveFitting(function: Function,
                           range: SamplingRange = SamplingRange(start: 1, interval: 0.125, count: 20),
-                          fitter: CurveFittingFunction,
-                          correctParams: [Double]) {
+                          fitter: CurveFittingFunction, correctParams: [Double]) {
         let sampled = function.sampled(in: range)
-        let tolerance = 1e-7
+        let tolerance = Double(Float.inaccuracy)
         let fitted = sampled.curveFit(using: fitter, maxIterations: 100, gradientDifference: 10e-2,
                                       damping: 1.5, errorTolerance: tolerance)
         guard function.description != fitted.function.description else { print(function); return }

@@ -45,7 +45,6 @@ public struct NewtonPolynomialInterpolation: Interpolation {
     
     public mutating func updateCoefficients() {
         let indices = points.indices
-        guard !indices.isEmpty else { return }
         coefficients = [Double](repeating: .nan, count: indices.count)
         schemeDiagonal = points.map { $0.y }
         for i in indices {
@@ -65,9 +64,7 @@ public struct NewtonPolynomialInterpolation: Interpolation {
     public func call(x: Number) -> Number {
         assert(isValid)
         let count = points.count
-        guard count > 1, var output = coefficients.last else {
-            return coefficients.first ?? 0
-        }
+        guard count > 1, var output = coefficients.last else { return coefficients.first ?? 0 }
         
         for i in points.indices.dropLast().reversed() {
             output = coefficients[i] + output * (x - points[i].x)

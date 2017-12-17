@@ -6,8 +6,8 @@
 //  Copyright © 2016 pauljohanneskraft. All rights reserved.
 //
 
-import XCTest
 import Math
+import XCTest
 
 #if os(Linux)
     import Glibc
@@ -33,6 +33,7 @@ class ComplexTests: XCTestCase, TypeTest {
     }
     
 	override func setUp() {
+        super.setUp()
         elements = []
 		for _ in 0 ..< 30 {
             let c = Complex(real: (Int.random & 0xFFFFFF).double)
@@ -103,7 +104,7 @@ class ComplexTests: XCTestCase, TypeTest {
 	func testDescription() {
 		XCTAssert(Complex<Double>(0).description == "0")
 		XCTAssert(Complex<Int>(0).description == "0")
-		for _ in 0 ..< 1000 {
+		for _ in 0 ..< 1_000 {
 			let r = Math.random() & 0xFFFF_FFFF_FFFF + 2
 			let c = Complex<Int>(real: 0, imaginary: r)
 			XCTAssert(c.description == "\(r)i", "\(c)")
@@ -118,7 +119,7 @@ class ComplexTests: XCTestCase, TypeTest {
 	
 	func testPower() {
         // print(Math.pow(0xFFF, 0xF))
-        for _ in 0 ..< 10000 {
+        for _ in 0 ..< 10_000 {
             let a = (Math.random() & 0xFFF).double
             let c = Complex(real: a)
             let p = (Math.random() & 0xF).double

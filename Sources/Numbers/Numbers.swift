@@ -8,9 +8,11 @@
 
 import Foundation
 
+// swiftlint:disable type_name
 public typealias R = Double
 public typealias N = UInt
 public typealias Z = Int
+// swiftlint:enable type_name
 
 public func Z_(_ v: UInt) -> Set<UInt> {
 	return Set<UInt>(0..<v)
@@ -30,6 +32,7 @@ public protocol Randomizable {
 }
 
 infix operator =~ : ComparisonPrecedence
+
 extension Double {
     public static func =~ (lhs: Double, rhs: Double) -> Bool {
         let inacc = Swift.max(lhs.inaccuracy, rhs.inaccuracy)

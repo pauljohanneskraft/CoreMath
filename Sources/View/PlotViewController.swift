@@ -12,7 +12,7 @@ import CorePlot
 class PlotViewController: NSViewController {
     let function: Function
     let range: SamplingRange
-    private weak var window: NSWindow!
+    private weak var window: NSWindow! // swiftlint:disable:this implicitly_unwrapped_optional
     
     init(title: String, function: Function, range: SamplingRange, window: NSWindow) {
         self.function = function
@@ -22,9 +22,10 @@ class PlotViewController: NSViewController {
         self.view = PlotView(frame: window.frame)
         viewDidLoad()
         window.title = title
+        window.contentViewController = self
     }
     
-    var plotView: PlotView! {
+    var plotView: PlotView! { // swiftlint:disable:this implicitly_unwrapped_optional
         return view as? PlotView
     }
     
@@ -33,6 +34,7 @@ class PlotViewController: NSViewController {
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         plotView.setup(function: function, range: range)
     }
 }

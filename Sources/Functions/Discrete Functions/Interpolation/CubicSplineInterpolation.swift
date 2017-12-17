@@ -8,12 +8,11 @@
 
 public struct CubicSplineInterpolation {
     public var function: DiscreteFunction
-    var derivative: DiscreteFunction
+    var functionDerivative: Function
     
     public init(function: DiscreteFunction) {
         self.function = function
-        // swiftlint:disable:next force_cast
-        self.derivative = function.derivative as! DiscreteFunction
+        self.functionDerivative = function.derivative
     }
 }
 
@@ -26,8 +25,8 @@ extension CubicSplineInterpolation: Interpolation {
         
         let this = points[index - 1]
         let next = points[index]
-        let thisDy = derivative.call(x: this.x)
-        let nextDy = derivative.call(x: next.x)
+        let thisDy = functionDerivative.call(x: this.x)
+        let nextDy = functionDerivative.call(x: next.x)
         
         let h = next.x - this.x
         let t = (x - this.x) / h

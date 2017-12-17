@@ -39,8 +39,8 @@ extension Function {
         return interpolatingWindow(frame: PlotWindow.defaultFrame, in: range, using: using)
     }
     
-    public func interpolatingWindow<I: Interpolation>(frame: CGRect, in range: SamplingRange,
-                                               using interpolation: I.Type) -> NSWindow {
+    public func interpolatingWindow<I: Interpolation>(
+        frame: CGRect, in range: SamplingRange, using interpolation: I.Type) -> NSWindow {
         let sampled = self.sampled(in: range).interpolate(using: interpolation)
         let windowRange = SamplingRange(start: range.start, end: range.end, count: range.count * 200)
         let window = sampled.plotWindow(frame: frame, in: windowRange)

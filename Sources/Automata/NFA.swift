@@ -17,18 +17,18 @@ extension NFA {
 }
 
 public struct NFA<Character> {
-    let initialState: Set<Int>
+    let initialStates: Set<Int>
     let states: [Int: State]
     let finalStates: Set<Int>
     
     public init(states: [Int: State], initialStates: Set<Int>, finalStates: Set<Int>) {
         self.states = states
-        self.initialState = initialStates
+        self.initialStates = initialStates
         self.finalStates = Set(finalStates)
     }
     
     public func accepts<S: Sequence>(word: S) throws -> Bool where S.Iterator.Element == Character {
-        var indices = initialState
+        var indices = initialStates
         var nextIndices = Set<Int>()
         for character in word {
             nextIndices.removeAll()

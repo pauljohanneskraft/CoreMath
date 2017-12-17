@@ -9,9 +9,12 @@
 public protocol Interpolation: Function {
     typealias Number = Double
     typealias Point = (x: Number, y: Number)
+    
     var function: DiscreteFunction { get set }
+    
     init(function: DiscreteFunction)
     init(points: [Point])
+    
     mutating func add(point: Point) throws
     func call(x: Number) -> Number
 }
@@ -26,17 +29,13 @@ extension Interpolation {
     }
     
     public var integral: Function {
-        guard let integral = function.integral as? DiscreteFunction else {
-            return Constant(0)
-        }
-        return Self.init(function: integral)
+        guard let integral = function.integral as? DiscreteFunction else { return Constant(0) }
+        return Self(function: integral)
     }
     
     public var derivative: Function {
-        guard let derivative = function.derivative as? DiscreteFunction else {
-            return Constant(0)
-        }
-        return Self.init(function: derivative)
+        guard let derivative = function.derivative as? DiscreteFunction else { return Constant(0) }
+        return Self(function: derivative)
     }
     
     public var description: String {
@@ -60,7 +59,7 @@ extension Interpolation {
     }
     
     public func converted<I: Interpolation>(to: I.Type) -> I {
-        return I.init(function: function)
+        return I(function: function)
     }
 }
 
