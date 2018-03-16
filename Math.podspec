@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Math'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = 'Math implements a lot of math concept a Computer Science student learns about during their studies.'
 
   s.description      = <<-DESC

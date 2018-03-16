@@ -61,7 +61,6 @@
 		9BF494E9205C06BD00DBB2AE /* Numerics */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Numerics; sourceTree = "<group>"; };
 		9BF494EA205C06BD00DBB2AE /* LinuxSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinuxSupport.swift; sourceTree = "<group>"; };
 		9BF494EB205C06BE00DBB2AE /* Automata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Automata; sourceTree = "<group>"; };
-		9BF494EC205C06BE00DBB2AE /* View */ = {isa = PBXFileReference; lastKnownFileType = folder; path = View; sourceTree = "<group>"; };
 		9C34EC67993F05784FFF1FACA116BB29 /* Math.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Math.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F2AC43EAC3DF2768B9031DA0AA9B3FF /* Pods-Math_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Math_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		A42D60016764E61BDFE2F2D60D7DC783 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -144,7 +143,6 @@
 				9BF494E8205C06BD00DBB2AE /* Numbers */,
 				9BF494E9205C06BD00DBB2AE /* Numerics */,
 				9BF494E1205C06BD00DBB2AE /* TeX */,
-				9BF494EC205C06BE00DBB2AE /* View */,
 				648A394AC72990FF008595A54856EB64 /* Support Files */,
 			);
 			name = Math;
