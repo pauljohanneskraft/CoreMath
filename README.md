@@ -22,7 +22,7 @@ pod 'Math'
 
 ## Author
 
-pauljohanneskraft, paul.kraft@tum.de
+Paul Kraft
 
 ## License
 
