@@ -57,6 +57,7 @@ class RationalNumberTests: XCTestCase, TypeTest {
 		forAll("/", assert: { (a: RationalNumber, b: RationalNumber, c: RationalNumber) -> Bool in
             ((a.double / b.double) - (c.double)).abs < 1e-10 }, /)
 	}
+
 	func testPrefixMinus() {
 		forAll("-", assert: { (a: RationalNumber, b: RationalNumber) -> Bool in a.double == -b.double }, { -$0 })
 	}
