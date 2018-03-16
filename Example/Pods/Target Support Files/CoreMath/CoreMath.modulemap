@@ -1,0 +1,6 @@
+framework module CoreMath {
+  umbrella header "CoreMath-umbrella.h"
+
+  export *
+  module * { export * }
+}

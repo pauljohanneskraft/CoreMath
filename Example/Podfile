@@ -1,9 +1,9 @@
 use_frameworks!
 
-target 'Math_Example' do
-  pod 'Math', :path => '../'
+target 'CoreMath_Example' do
+  pod 'CoreMath', :path => '../'
 
-  target 'Math_Tests' do
+  target 'CoreMath_Tests' do
     inherit! :search_paths
 
     

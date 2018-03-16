@@ -1,5 +1,5 @@
 import XCTest
-import Math
+import CoreMath
 
 class Tests: XCTestCase {
     

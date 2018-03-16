@@ -7,96 +7,227 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2356EEE26B8D7BC3595C1F67D47F886E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270DD1219F1E6CF00379D39F252D87C6 /* Cocoa.framework */; };
-		2619FC8066A66B9B3501150123CF9E2B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270DD1219F1E6CF00379D39F252D87C6 /* Cocoa.framework */; };
-		46C264DD78B1F45EEF464EB1827D47BE /* Math-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EB136EAC89D0F45580C55EDD7461238 /* Math-dummy.m */; };
-		4E7C4113ECDED5E9219836C9EA7A31B6 /* Math-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 13C02E52987D41527306FE44D0E4538C /* Math-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9BF494ED205C06BE00DBB2AE /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF494E4205C06BD00DBB2AE /* General.swift */; };
-		9BF494EE205C06BE00DBB2AE /* LinuxSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF494EA205C06BD00DBB2AE /* LinuxSupport.swift */; };
-		B619F2311D78BE310F3AA582B785AF68 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270DD1219F1E6CF00379D39F252D87C6 /* Cocoa.framework */; };
-		BE44A0BDFCA7DBFB8C8FE098F5858710 /* Pods-Math_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 982EFE4C77CC429BA974547AAF4E81A9 /* Pods-Math_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DAE1B2EE8B308858A70CA1BE2800FC0F /* Pods-Math_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1575D5A7DE7ED93DDA16226FCCEFE5C1 /* Pods-Math_Example-dummy.m */; };
-		EB29723645AE843BEF364917EFB3EB89 /* Pods-Math_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C437A2DC09AD580758704A6E5AE8D9 /* Pods-Math_Tests-dummy.m */; };
-		EF8B021CEB092497E956D53868D85E01 /* Pods-Math_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8944B0B594DE5B73C6DC0FA539A4A449 /* Pods-Math_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D5A897EB91F7D387159E0E8D7899046 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270DD1219F1E6CF00379D39F252D87C6 /* Cocoa.framework */; };
+		11CE24203E599648A47BFA7BC4DC7FE1 /* Pods-CoreMath_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B2C1522FB4EBCCD32422E75555D40FC /* Pods-CoreMath_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1ABFC14D2366EBA59B0D3F9B60857E86 /* CoreMath-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA4322CFAB55CAFF9F1A4C01520A17B /* CoreMath-dummy.m */; };
+		4E16FC1D2254F5B68D227498E0072214 /* Pods-CoreMath_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 559CD1668B47DA990FE25E99D8297E3A /* Pods-CoreMath_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		61C278E7C7269591FBCDB9B075DC2F62 /* Pods-CoreMath_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 321F280D41526B8724A64F3FF8F7DB3B /* Pods-CoreMath_Tests-dummy.m */; };
+		9A174C974BA57EAED5E17EFC74C52B37 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270DD1219F1E6CF00379D39F252D87C6 /* Cocoa.framework */; };
+		9BBA47B8205C0CA300C9A4CB /* Logarithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA4749205C0CA100C9A4CB /* Logarithm.swift */; };
+		9BBA47B9205C0CA300C9A4CB /* Power.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA474A205C0CA100C9A4CB /* Power.swift */; };
+		9BBA47BA205C0CA300C9A4CB /* Equation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA474B205C0CA100C9A4CB /* Equation.swift */; };
+		9BBA47BB205C0CA300C9A4CB /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA474C205C0CA100C9A4CB /* Functions.swift */; };
+		9BBA47BC205C0CA300C9A4CB /* Smoothing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA474E205C0CA100C9A4CB /* Smoothing.swift */; };
+		9BBA47BD205C0CA300C9A4CB /* LevenbergMarquardt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA4750205C0CA100C9A4CB /* LevenbergMarquardt.swift */; };
+		9BBA47BE205C0CA300C9A4CB /* TrigonometricCurveFitting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA4751205C0CA100C9A4CB /* TrigonometricCurveFitting.swift */; };
+		9BBA47BF205C0CA300C9A4CB /* CurveFitting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA4752205C0CA100C9A4CB /* CurveFitting.swift */; };
+		9BBA47C0205C0CA300C9A4CB /* SamplingRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA4754205C0CA100C9A4CB /* SamplingRange.swift */; };
+		9BBA47C1205C0CA300C9A4CB /* Sampling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA4755205C0CA100C9A4CB /* Sampling.swift */; };
+		9BBA47C2205C0CA300C9A4CB /* DiscreteFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA4756205C0CA100C9A4CB /* DiscreteFunction.swift */; };
+		9BBA47C3205C0CA300C9A4CB /* NearestNeighborInterpolation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA4758205C0CA100C9A4CB /* NearestNeighborInterpolation.swift */; };
+		9BBA47C4205C0CA300C9A4CB /* NewtonPolynomialInterpolation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA4759205C0CA100C9A4CB /* NewtonPolynomialInterpolation.swift */; };
+		9BBA47C5205C0CA300C9A4CB /* Interpolation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA475A205C0CA100C9A4CB /* Interpolation.swift */; };
+		9BBA47C6205C0CA300C9A4CB /* CubicSplineInterpolation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA475B205C0CA100C9A4CB /* CubicSplineInterpolation.swift */; };
+		9BBA47C7205C0CA300C9A4CB /* LinearInterpolation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA475C205C0CA100C9A4CB /* LinearInterpolation.swift */; };
+		9BBA47C8205C0CA300C9A4CB /* Fraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA475D205C0CA100C9A4CB /* Fraction.swift */; };
+		9BBA47C9205C0CA300C9A4CB /* Zeros.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA475E205C0CA100C9A4CB /* Zeros.swift */; };
+		9BBA47CA205C0CA300C9A4CB /* ConstantFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA475F205C0CA100C9A4CB /* ConstantFunction.swift */; };
+		9BBA47CB205C0CA300C9A4CB /* Term.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA4760205C0CA100C9A4CB /* Term.swift */; };
+		9BBA47CC205C0CA300C9A4CB /* TrigonometricFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA4761205C0CA100C9A4CB /* TrigonometricFunction.swift */; };
+		9BBA47CD205C0CA300C9A4CB /* ExponentialFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA4762205C0CA100C9A4CB /* ExponentialFunction.swift */; };
+		9BBA47CE205C0CA300C9A4CB /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA4763205C0CA100C9A4CB /* Function.swift */; };
+		9BBA47CF205C0CA300C9A4CB /* Polynomial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA4765205C0CA100C9A4CB /* Polynomial.swift */; };
+		9BBA47D0205C0CA300C9A4CB /* PolynomialFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA4766205C0CA100C9A4CB /* PolynomialFields.swift */; };
+		9BBA47D1205C0CA300C9A4CB /* _Polynomial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA4767205C0CA100C9A4CB /* _Polynomial.swift */; };
+		9BBA47D2205C0CA300C9A4CB /* PolynomialFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA4768205C0CA100C9A4CB /* PolynomialFunction.swift */; };
+		9BBA47D3205C0CA300C9A4CB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA476A205C0CA100C9A4CB /* Constants.swift */; };
+		9BBA47D4205C0CA300C9A4CB /* FastFourierTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA476D205C0CA100C9A4CB /* FastFourierTransform.swift */; };
+		9BBA47D5205C0CA300C9A4CB /* DoubleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA476E205C0CA100C9A4CB /* DoubleExtensions.swift */; };
+		9BBA47D6205C0CA300C9A4CB /* FloatingPointNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA476F205C0CA100C9A4CB /* FloatingPointNumber.swift */; };
+		9BBA47E1205C0CA300C9A4CB /* LaTeXConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA477F205C0CA200C9A4CB /* LaTeXConvertible.swift */; };
+		9BBA47E2205C0CA300C9A4CB /* GroupLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA4781205C0CA200C9A4CB /* GroupLike.swift */; };
+		9BBA47E3205C0CA300C9A4CB /* ModuleLikeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA4782205C0CA200C9A4CB /* ModuleLikeProtocols.swift */; };
+		9BBA47E4205C0CA300C9A4CB /* ModuleLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA4783205C0CA200C9A4CB /* ModuleLike.swift */; };
+		9BBA47E5205C0CA300C9A4CB /* RingLikeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA4784205C0CA200C9A4CB /* RingLikeProtocols.swift */; };
+		9BBA47E6205C0CA300C9A4CB /* GroupLikeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA4785205C0CA200C9A4CB /* GroupLikeProtocols.swift */; };
+		9BBA47E7205C0CA300C9A4CB /* RingLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA4786205C0CA200C9A4CB /* RingLike.swift */; };
+		9BBA47E8205C0CA300C9A4CB /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA4787205C0CA200C9A4CB /* General.swift */; };
+		9BBA47E9205C0CA300C9A4CB /* ClosedRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA478B205C0CA200C9A4CB /* ClosedRange.swift */; };
+		9BBA47EA205C0CA300C9A4CB /* Bool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA478C205C0CA200C9A4CB /* Bool.swift */; };
+		9BBA47EB205C0CA300C9A4CB /* CGSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA478E205C0CA200C9A4CB /* CGSize.swift */; };
+		9BBA47EC205C0CA300C9A4CB /* CGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA478F205C0CA200C9A4CB /* CGRect.swift */; };
+		9BBA47ED205C0CA300C9A4CB /* CGColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA4790205C0CA200C9A4CB /* CGColor.swift */; };
+		9BBA47EE205C0CA300C9A4CB /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA4792205C0CA200C9A4CB /* Character.swift */; };
+		9BBA47EF205C0CA300C9A4CB /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA4793205C0CA200C9A4CB /* String.swift */; };
+		9BBA47F5205C0CA300C9A4CB /* RationalNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA479B205C0CA200C9A4CB /* RationalNumber.swift */; };
+		9BBA47F6205C0CA300C9A4CB /* Complex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA479C205C0CA200C9A4CB /* Complex.swift */; };
+		9BBA47F7205C0CA300C9A4CB /* BasicArithmetic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA479E205C0CA200C9A4CB /* BasicArithmetic.swift */; };
+		9BBA47F8205C0CA300C9A4CB /* FloatExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA479F205C0CA200C9A4CB /* FloatExtensions.swift */; };
+		9BBA47F9205C0CA300C9A4CB /* DoubleProtocolExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA47A0205C0CA200C9A4CB /* DoubleProtocolExtensions.swift */; };
+		9BBA47FA205C0CA300C9A4CB /* Randomizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA47A1205C0CA200C9A4CB /* Randomizable.swift */; };
+		9BBA47FB205C0CA300C9A4CB /* Ordered.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA47A2205C0CA200C9A4CB /* Ordered.swift */; };
+		9BBA47FC205C0CA300C9A4CB /* Numeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA47A3205C0CA200C9A4CB /* Numeric.swift */; };
+		9BBA47FD205C0CA300C9A4CB /* AdvancedNumeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA47A4205C0CA200C9A4CB /* AdvancedNumeric.swift */; };
+		9BBA47FE205C0CA300C9A4CB /* IntegerAdvancedNumeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA47A5205C0CA200C9A4CB /* IntegerAdvancedNumeric.swift */; };
+		9BBA47FF205C0CA300C9A4CB /* ComplexConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA47A6205C0CA200C9A4CB /* ComplexConvertible.swift */; };
+		9BBA4800205C0CA300C9A4CB /* Enhanced.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA47A7205C0CA200C9A4CB /* Enhanced.swift */; };
+		9BBA4801205C0CA300C9A4CB /* Numbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA47A8205C0CA200C9A4CB /* Numbers.swift */; };
+		9BBA4802205C0CA300C9A4CB /* TransposedDenseMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA47AA205C0CA300C9A4CB /* TransposedDenseMatrix.swift */; };
+		9BBA4803205C0CA300C9A4CB /* HorizontalDenseVector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA47AB205C0CA300C9A4CB /* HorizontalDenseVector.swift */; };
+		9BBA4804205C0CA300C9A4CB /* SparseVector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA47AC205C0CA300C9A4CB /* SparseVector.swift */; };
+		9BBA4805205C0CA300C9A4CB /* Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA47AD205C0CA300C9A4CB /* Vector.swift */; };
+		9BBA4806205C0CA300C9A4CB /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA47AE205C0CA300C9A4CB /* Matrix.swift */; };
+		9BBA4807205C0CA300C9A4CB /* SparseMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA47AF205C0CA300C9A4CB /* SparseMatrix.swift */; };
+		9BBA4808205C0CA300C9A4CB /* LinearAlgebraic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA47B0205C0CA300C9A4CB /* LinearAlgebraic.swift */; };
+		9BBA4809205C0CA300C9A4CB /* DenseMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA47B1205C0CA300C9A4CB /* DenseMatrix.swift */; };
+		9BBA480A205C0CA300C9A4CB /* VerticalDenseVector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA47B2205C0CA300C9A4CB /* VerticalDenseVector.swift */; };
+		9BBA480B205C0CA300C9A4CB /* LinuxSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA47B3205C0CA300C9A4CB /* LinuxSupport.swift */; };
+		9BBA480C205C0CA300C9A4CB /* Automaton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA47B5205C0CA300C9A4CB /* Automaton.swift */; };
+		9BBA480D205C0CA300C9A4CB /* NFA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA47B6205C0CA300C9A4CB /* NFA.swift */; };
+		9BBA480E205C0CA300C9A4CB /* DFA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBA47B7205C0CA300C9A4CB /* DFA.swift */; };
+		B48E36C0973BFDE58D1A5ADFD2C3CC3A /* Pods-CoreMath_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E5381C0DA5BB820A3D6E46AFF9A00519 /* Pods-CoreMath_Example-dummy.m */; };
+		BF272B957ABED85A5BDC1864FF82C325 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270DD1219F1E6CF00379D39F252D87C6 /* Cocoa.framework */; };
+		C4D972E9EBB0C0EE43E78E59E6197B6E /* CoreMath-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C7DF99EF737934E0B4E56C132B74BD65 /* CoreMath-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		AB4E068BD51CEB60CFBCD7FA9101405F /* PBXContainerItemProxy */ = {
+		A43F84170BC409CC13FD66A12DA0210A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = AD25B3C24829C5422535EDC91B380BE5;
-			remoteInfo = Math;
+			remoteGlobalIDString = 884275A9E312B0C2E948EDA97A870668;
+			remoteInfo = CoreMath;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0CC7B28F9680AF73477DABCC91E9FEAB /* Pods_Math_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Math_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0D0B33C35176FA3EF8C5691EB09BD1F2 /* Math.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Math.modulemap; sourceTree = "<group>"; };
-		13849D3DC400DED2F79619E25A32ECFC /* Pods-Math_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Math_Tests.modulemap"; sourceTree = "<group>"; };
-		13C02E52987D41527306FE44D0E4538C /* Math-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Math-umbrella.h"; sourceTree = "<group>"; };
-		1575D5A7DE7ED93DDA16226FCCEFE5C1 /* Pods-Math_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Math_Example-dummy.m"; sourceTree = "<group>"; };
-		2580491EC7C16F8C30DE947259F11B0F /* Pods-Math_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Math_Example-resources.sh"; sourceTree = "<group>"; };
+		1B2C1522FB4EBCCD32422E75555D40FC /* Pods-CoreMath_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CoreMath_Example-umbrella.h"; sourceTree = "<group>"; };
+		1E307274894C974E8A9E220B81AACF7C /* Pods-CoreMath_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CoreMath_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		2542028691C0E3F2B8A6446FD55FA026 /* Pods-CoreMath_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CoreMath_Tests-resources.sh"; sourceTree = "<group>"; };
 		270DD1219F1E6CF00379D39F252D87C6 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
-		2EB136EAC89D0F45580C55EDD7461238 /* Math-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Math-dummy.m"; sourceTree = "<group>"; };
-		36814E529D192AA8BD222CB49093B6AD /* Pods-Math_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Math_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		41C437A2DC09AD580758704A6E5AE8D9 /* Pods-Math_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Math_Tests-dummy.m"; sourceTree = "<group>"; };
-		5215875DDD2262571E70B40195F41987 /* Pods-Math_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Math_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		5B45E4D41AD72F2E7163AF7F25A6BD24 /* Pods-Math_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Math_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		74E370D56A3C13D99F6A27378E4B8596 /* Pods-Math_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Math_Example-frameworks.sh"; sourceTree = "<group>"; };
-		78F43E12E7BA5843C5C31CE895A73395 /* Pods-Math_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Math_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		7A23FEC1A8A804822D7B1C4701886EC2 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8944B0B594DE5B73C6DC0FA539A4A449 /* Pods-Math_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Math_Tests-umbrella.h"; sourceTree = "<group>"; };
+		2E0F953A29104D6FC2827D0DED4C74A6 /* Pods-CoreMath_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CoreMath_Tests-frameworks.sh"; sourceTree = "<group>"; };
+		310D664A681D4E1F92ECEAB47D409250 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		321F280D41526B8724A64F3FF8F7DB3B /* Pods-CoreMath_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CoreMath_Tests-dummy.m"; sourceTree = "<group>"; };
+		3FE9C70631D3DDCA7A8ADBC2960A032F /* Pods-CoreMath_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CoreMath_Example-frameworks.sh"; sourceTree = "<group>"; };
+		41420897D6B46B1DE73F206A7A4EB986 /* Pods-CoreMath_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CoreMath_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		559CD1668B47DA990FE25E99D8297E3A /* Pods-CoreMath_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CoreMath_Tests-umbrella.h"; sourceTree = "<group>"; };
+		56AE7F386BA987569724244E506880EF /* Pods_CoreMath_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoreMath_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		57B8B2BF3675DB356035B604D7BF471E /* CoreMath-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CoreMath-prefix.pch"; sourceTree = "<group>"; };
+		5BDECDEB40AB2D3CC28C04207C9B4CC9 /* Pods-CoreMath_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CoreMath_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		64C044ED085347739C0BD1BA628F8379 /* Pods-CoreMath_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-CoreMath_Example.modulemap"; sourceTree = "<group>"; };
+		7666E459F19462C5A4AF58113722FD03 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		914C94FBA0263E1AC714CD8B5A766D5B /* Pods-CoreMath_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CoreMath_Example-resources.sh"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		94A2B4AB793C32FB7F0078974ECCDD25 /* Math-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Math-prefix.pch"; sourceTree = "<group>"; };
-		982EFE4C77CC429BA974547AAF4E81A9 /* Pods-Math_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Math_Example-umbrella.h"; sourceTree = "<group>"; };
-		9BF494E1205C06BD00DBB2AE /* TeX */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TeX; sourceTree = "<group>"; };
-		9BF494E2205C06BD00DBB2AE /* Algebra */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Algebra; sourceTree = "<group>"; };
-		9BF494E3205C06BD00DBB2AE /* Functions */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Functions; sourceTree = "<group>"; };
-		9BF494E4205C06BD00DBB2AE /* General.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
-		9BF494E5205C06BD00DBB2AE /* General */ = {isa = PBXFileReference; lastKnownFileType = folder; path = General; sourceTree = "<group>"; };
-		9BF494E6205C06BD00DBB2AE /* Extensions */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Extensions; sourceTree = "<group>"; };
-		9BF494E7205C06BD00DBB2AE /* Linear Algebra */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Linear Algebra"; sourceTree = "<group>"; };
-		9BF494E8205C06BD00DBB2AE /* Numbers */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Numbers; sourceTree = "<group>"; };
-		9BF494E9205C06BD00DBB2AE /* Numerics */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Numerics; sourceTree = "<group>"; };
-		9BF494EA205C06BD00DBB2AE /* LinuxSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinuxSupport.swift; sourceTree = "<group>"; };
-		9BF494EB205C06BE00DBB2AE /* Automata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Automata; sourceTree = "<group>"; };
-		9C34EC67993F05784FFF1FACA116BB29 /* Math.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Math.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9F2AC43EAC3DF2768B9031DA0AA9B3FF /* Pods-Math_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Math_Tests-frameworks.sh"; sourceTree = "<group>"; };
-		A42D60016764E61BDFE2F2D60D7DC783 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B333057E284C21458E62205A6ED29098 /* Pods-Math_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Math_Example.release.xcconfig"; sourceTree = "<group>"; };
-		C2091AB7ED4E4142044488FC198EC2C4 /* Pods_Math_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Math_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D36AA375F889EF9A349016FAE7F6FA41 /* Pods-Math_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Math_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		D43D19C357F44667AEE82C9B22396EAC /* Math.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Math.xcconfig; sourceTree = "<group>"; };
-		EB919EADC5039C7EC32E66F19BE2B145 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		ECAD6B55DDC25D56579977D7CFAF2ECB /* Pods-Math_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Math_Tests-resources.sh"; sourceTree = "<group>"; };
-		F15023E83DC0FCAFF8AC15208693BC8A /* Pods-Math_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Math_Example.modulemap"; sourceTree = "<group>"; };
-		F9E3309C33FFFAF66B38E7BBE7F9D426 /* Pods-Math_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Math_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		FE4B873718C6F548AF58BFCC01689367 /* Pods-Math_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Math_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		9AF43B4493AD54CB4BF5A3A8AFA9E47E /* CoreMath.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = CoreMath.modulemap; sourceTree = "<group>"; };
+		9BBA4749205C0CA100C9A4CB /* Logarithm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logarithm.swift; sourceTree = "<group>"; };
+		9BBA474A205C0CA100C9A4CB /* Power.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Power.swift; sourceTree = "<group>"; };
+		9BBA474B205C0CA100C9A4CB /* Equation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Equation.swift; sourceTree = "<group>"; };
+		9BBA474C205C0CA100C9A4CB /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
+		9BBA474E205C0CA100C9A4CB /* Smoothing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Smoothing.swift; sourceTree = "<group>"; };
+		9BBA4750205C0CA100C9A4CB /* LevenbergMarquardt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevenbergMarquardt.swift; sourceTree = "<group>"; };
+		9BBA4751205C0CA100C9A4CB /* TrigonometricCurveFitting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrigonometricCurveFitting.swift; sourceTree = "<group>"; };
+		9BBA4752205C0CA100C9A4CB /* CurveFitting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurveFitting.swift; sourceTree = "<group>"; };
+		9BBA4754205C0CA100C9A4CB /* SamplingRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SamplingRange.swift; sourceTree = "<group>"; };
+		9BBA4755205C0CA100C9A4CB /* Sampling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sampling.swift; sourceTree = "<group>"; };
+		9BBA4756205C0CA100C9A4CB /* DiscreteFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscreteFunction.swift; sourceTree = "<group>"; };
+		9BBA4758205C0CA100C9A4CB /* NearestNeighborInterpolation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearestNeighborInterpolation.swift; sourceTree = "<group>"; };
+		9BBA4759205C0CA100C9A4CB /* NewtonPolynomialInterpolation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewtonPolynomialInterpolation.swift; sourceTree = "<group>"; };
+		9BBA475A205C0CA100C9A4CB /* Interpolation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interpolation.swift; sourceTree = "<group>"; };
+		9BBA475B205C0CA100C9A4CB /* CubicSplineInterpolation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CubicSplineInterpolation.swift; sourceTree = "<group>"; };
+		9BBA475C205C0CA100C9A4CB /* LinearInterpolation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinearInterpolation.swift; sourceTree = "<group>"; };
+		9BBA475D205C0CA100C9A4CB /* Fraction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fraction.swift; sourceTree = "<group>"; };
+		9BBA475E205C0CA100C9A4CB /* Zeros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Zeros.swift; sourceTree = "<group>"; };
+		9BBA475F205C0CA100C9A4CB /* ConstantFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstantFunction.swift; sourceTree = "<group>"; };
+		9BBA4760205C0CA100C9A4CB /* Term.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Term.swift; sourceTree = "<group>"; };
+		9BBA4761205C0CA100C9A4CB /* TrigonometricFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrigonometricFunction.swift; sourceTree = "<group>"; };
+		9BBA4762205C0CA100C9A4CB /* ExponentialFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExponentialFunction.swift; sourceTree = "<group>"; };
+		9BBA4763205C0CA100C9A4CB /* Function.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Function.swift; sourceTree = "<group>"; };
+		9BBA4765205C0CA100C9A4CB /* Polynomial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Polynomial.swift; sourceTree = "<group>"; };
+		9BBA4766205C0CA100C9A4CB /* PolynomialFields.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PolynomialFields.swift; sourceTree = "<group>"; };
+		9BBA4767205C0CA100C9A4CB /* _Polynomial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _Polynomial.swift; sourceTree = "<group>"; };
+		9BBA4768205C0CA100C9A4CB /* PolynomialFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PolynomialFunction.swift; sourceTree = "<group>"; };
+		9BBA476A205C0CA100C9A4CB /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		9BBA476D205C0CA100C9A4CB /* FastFourierTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FastFourierTransform.swift; sourceTree = "<group>"; };
+		9BBA476E205C0CA100C9A4CB /* DoubleExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleExtensions.swift; sourceTree = "<group>"; };
+		9BBA476F205C0CA100C9A4CB /* FloatingPointNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingPointNumber.swift; sourceTree = "<group>"; };
+		9BBA477F205C0CA200C9A4CB /* LaTeXConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaTeXConvertible.swift; sourceTree = "<group>"; };
+		9BBA4781205C0CA200C9A4CB /* GroupLike.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupLike.swift; sourceTree = "<group>"; };
+		9BBA4782205C0CA200C9A4CB /* ModuleLikeProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleLikeProtocols.swift; sourceTree = "<group>"; };
+		9BBA4783205C0CA200C9A4CB /* ModuleLike.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleLike.swift; sourceTree = "<group>"; };
+		9BBA4784205C0CA200C9A4CB /* RingLikeProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RingLikeProtocols.swift; sourceTree = "<group>"; };
+		9BBA4785205C0CA200C9A4CB /* GroupLikeProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupLikeProtocols.swift; sourceTree = "<group>"; };
+		9BBA4786205C0CA200C9A4CB /* RingLike.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RingLike.swift; sourceTree = "<group>"; };
+		9BBA4787205C0CA200C9A4CB /* General.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
+		9BBA478B205C0CA200C9A4CB /* ClosedRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosedRange.swift; sourceTree = "<group>"; };
+		9BBA478C205C0CA200C9A4CB /* Bool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bool.swift; sourceTree = "<group>"; };
+		9BBA478E205C0CA200C9A4CB /* CGSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGSize.swift; sourceTree = "<group>"; };
+		9BBA478F205C0CA200C9A4CB /* CGRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGRect.swift; sourceTree = "<group>"; };
+		9BBA4790205C0CA200C9A4CB /* CGColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGColor.swift; sourceTree = "<group>"; };
+		9BBA4792205C0CA200C9A4CB /* Character.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
+		9BBA4793205C0CA200C9A4CB /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		9BBA479B205C0CA200C9A4CB /* RationalNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RationalNumber.swift; sourceTree = "<group>"; };
+		9BBA479C205C0CA200C9A4CB /* Complex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Complex.swift; sourceTree = "<group>"; };
+		9BBA479E205C0CA200C9A4CB /* BasicArithmetic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicArithmetic.swift; sourceTree = "<group>"; };
+		9BBA479F205C0CA200C9A4CB /* FloatExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatExtensions.swift; sourceTree = "<group>"; };
+		9BBA47A0205C0CA200C9A4CB /* DoubleProtocolExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleProtocolExtensions.swift; sourceTree = "<group>"; };
+		9BBA47A1205C0CA200C9A4CB /* Randomizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Randomizable.swift; sourceTree = "<group>"; };
+		9BBA47A2205C0CA200C9A4CB /* Ordered.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ordered.swift; sourceTree = "<group>"; };
+		9BBA47A3205C0CA200C9A4CB /* Numeric.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Numeric.swift; sourceTree = "<group>"; };
+		9BBA47A4205C0CA200C9A4CB /* AdvancedNumeric.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedNumeric.swift; sourceTree = "<group>"; };
+		9BBA47A5205C0CA200C9A4CB /* IntegerAdvancedNumeric.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntegerAdvancedNumeric.swift; sourceTree = "<group>"; };
+		9BBA47A6205C0CA200C9A4CB /* ComplexConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplexConvertible.swift; sourceTree = "<group>"; };
+		9BBA47A7205C0CA200C9A4CB /* Enhanced.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enhanced.swift; sourceTree = "<group>"; };
+		9BBA47A8205C0CA200C9A4CB /* Numbers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Numbers.swift; sourceTree = "<group>"; };
+		9BBA47AA205C0CA300C9A4CB /* TransposedDenseMatrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransposedDenseMatrix.swift; sourceTree = "<group>"; };
+		9BBA47AB205C0CA300C9A4CB /* HorizontalDenseVector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalDenseVector.swift; sourceTree = "<group>"; };
+		9BBA47AC205C0CA300C9A4CB /* SparseVector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SparseVector.swift; sourceTree = "<group>"; };
+		9BBA47AD205C0CA300C9A4CB /* Vector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector.swift; sourceTree = "<group>"; };
+		9BBA47AE205C0CA300C9A4CB /* Matrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
+		9BBA47AF205C0CA300C9A4CB /* SparseMatrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SparseMatrix.swift; sourceTree = "<group>"; };
+		9BBA47B0205C0CA300C9A4CB /* LinearAlgebraic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinearAlgebraic.swift; sourceTree = "<group>"; };
+		9BBA47B1205C0CA300C9A4CB /* DenseMatrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DenseMatrix.swift; sourceTree = "<group>"; };
+		9BBA47B2205C0CA300C9A4CB /* VerticalDenseVector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalDenseVector.swift; sourceTree = "<group>"; };
+		9BBA47B3205C0CA300C9A4CB /* LinuxSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinuxSupport.swift; sourceTree = "<group>"; };
+		9BBA47B5205C0CA300C9A4CB /* Automaton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Automaton.swift; sourceTree = "<group>"; };
+		9BBA47B6205C0CA300C9A4CB /* NFA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NFA.swift; sourceTree = "<group>"; };
+		9BBA47B7205C0CA300C9A4CB /* DFA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DFA.swift; sourceTree = "<group>"; };
+		9FFF4FFF1F03E81DE1C30BD352A27CA6 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A606FAF85EEF278A9D66F2CC77B00AA5 /* Pods-CoreMath_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CoreMath_Example.release.xcconfig"; sourceTree = "<group>"; };
+		B94F1CF938E6FA922C4A0AE158093844 /* CoreMath.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreMath.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7DF99EF737934E0B4E56C132B74BD65 /* CoreMath-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CoreMath-umbrella.h"; sourceTree = "<group>"; };
+		CF6276DB6A91B711138C7B4109C400FC /* Pods-CoreMath_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CoreMath_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		D06D9012DE0248A73D892FB4D35FC1C0 /* Pods-CoreMath_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CoreMath_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		E454BD40035673EC168AE15A8A116102 /* CoreMath.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CoreMath.xcconfig; sourceTree = "<group>"; };
+		E5381C0DA5BB820A3D6E46AFF9A00519 /* Pods-CoreMath_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CoreMath_Example-dummy.m"; sourceTree = "<group>"; };
+		EC3B22D909A7E8D7D774015F4EBC619E /* Pods-CoreMath_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CoreMath_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		F899695AE6442D491F989A67F9DB2E51 /* Pods-CoreMath_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CoreMath_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		FA52E2935E260656B4FD295589BCB2FE /* Pods_CoreMath_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoreMath_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBE6940A4F24C918EAFC121D07224102 /* Pods-CoreMath_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-CoreMath_Tests.modulemap"; sourceTree = "<group>"; };
+		FDA4322CFAB55CAFF9F1A4C01520A17B /* CoreMath-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CoreMath-dummy.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		8D65DCD07A06A8FE1E0B0892A3966593 /* Frameworks */ = {
+		027ADCB911EEC1D3259AFD69111AD3C0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2619FC8066A66B9B3501150123CF9E2B /* Cocoa.framework in Frameworks */,
+				0D5A897EB91F7D387159E0E8D7899046 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BAAB0EB2C2E791612DF2F7CCBDB7748F /* Frameworks */ = {
+		275475306EAC593113726647A5A95585 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B619F2311D78BE310F3AA582B785AF68 /* Cocoa.framework in Frameworks */,
+				9A174C974BA57EAED5E17EFC74C52B37 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E5CB1A15B44AE1F4A3935E5419D2202F /* Frameworks */ = {
+		7619A662B8075B8D238A8D685CDD2EB0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2356EEE26B8D7BC3595C1F67D47F886E /* Cocoa.framework in Frameworks */,
+				BF272B957ABED85A5BDC1864FF82C325 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,42 +242,48 @@
 			name = "OS X";
 			sourceTree = "<group>";
 		};
-		1C85A9D186E96B70A8E5AFA11B15AD64 /* Pods-Math_Tests */ = {
+		17BBF50C7CB99F0F79FF7357813D1FE2 /* Pods-CoreMath_Tests */ = {
 			isa = PBXGroup;
 			children = (
-				EB919EADC5039C7EC32E66F19BE2B145 /* Info.plist */,
-				13849D3DC400DED2F79619E25A32ECFC /* Pods-Math_Tests.modulemap */,
-				78F43E12E7BA5843C5C31CE895A73395 /* Pods-Math_Tests-acknowledgements.markdown */,
-				F9E3309C33FFFAF66B38E7BBE7F9D426 /* Pods-Math_Tests-acknowledgements.plist */,
-				41C437A2DC09AD580758704A6E5AE8D9 /* Pods-Math_Tests-dummy.m */,
-				9F2AC43EAC3DF2768B9031DA0AA9B3FF /* Pods-Math_Tests-frameworks.sh */,
-				ECAD6B55DDC25D56579977D7CFAF2ECB /* Pods-Math_Tests-resources.sh */,
-				8944B0B594DE5B73C6DC0FA539A4A449 /* Pods-Math_Tests-umbrella.h */,
-				5B45E4D41AD72F2E7163AF7F25A6BD24 /* Pods-Math_Tests.debug.xcconfig */,
-				36814E529D192AA8BD222CB49093B6AD /* Pods-Math_Tests.release.xcconfig */,
+				310D664A681D4E1F92ECEAB47D409250 /* Info.plist */,
+				FBE6940A4F24C918EAFC121D07224102 /* Pods-CoreMath_Tests.modulemap */,
+				CF6276DB6A91B711138C7B4109C400FC /* Pods-CoreMath_Tests-acknowledgements.markdown */,
+				F899695AE6442D491F989A67F9DB2E51 /* Pods-CoreMath_Tests-acknowledgements.plist */,
+				321F280D41526B8724A64F3FF8F7DB3B /* Pods-CoreMath_Tests-dummy.m */,
+				2E0F953A29104D6FC2827D0DED4C74A6 /* Pods-CoreMath_Tests-frameworks.sh */,
+				2542028691C0E3F2B8A6446FD55FA026 /* Pods-CoreMath_Tests-resources.sh */,
+				559CD1668B47DA990FE25E99D8297E3A /* Pods-CoreMath_Tests-umbrella.h */,
+				D06D9012DE0248A73D892FB4D35FC1C0 /* Pods-CoreMath_Tests.debug.xcconfig */,
+				5BDECDEB40AB2D3CC28C04207C9B4CC9 /* Pods-CoreMath_Tests.release.xcconfig */,
 			);
-			name = "Pods-Math_Tests";
-			path = "Target Support Files/Pods-Math_Tests";
+			name = "Pods-CoreMath_Tests";
+			path = "Target Support Files/Pods-CoreMath_Tests";
 			sourceTree = "<group>";
 		};
-		34214B4CE76BE575B98E7ED6ABDB0887 /* Math */ = {
+		2E7E9111AB4C15CBD5E481BB72E73F42 /* Pods-CoreMath_Example */ = {
 			isa = PBXGroup;
 			children = (
-				9BF494E2205C06BD00DBB2AE /* Algebra */,
-				9BF494EB205C06BE00DBB2AE /* Automata */,
-				9BF494E6205C06BD00DBB2AE /* Extensions */,
-				9BF494E3205C06BD00DBB2AE /* Functions */,
-				9BF494E5205C06BD00DBB2AE /* General */,
-				9BF494E4205C06BD00DBB2AE /* General.swift */,
-				9BF494E7205C06BD00DBB2AE /* Linear Algebra */,
-				9BF494EA205C06BD00DBB2AE /* LinuxSupport.swift */,
-				9BF494E8205C06BD00DBB2AE /* Numbers */,
-				9BF494E9205C06BD00DBB2AE /* Numerics */,
-				9BF494E1205C06BD00DBB2AE /* TeX */,
-				648A394AC72990FF008595A54856EB64 /* Support Files */,
+				7666E459F19462C5A4AF58113722FD03 /* Info.plist */,
+				64C044ED085347739C0BD1BA628F8379 /* Pods-CoreMath_Example.modulemap */,
+				41420897D6B46B1DE73F206A7A4EB986 /* Pods-CoreMath_Example-acknowledgements.markdown */,
+				EC3B22D909A7E8D7D774015F4EBC619E /* Pods-CoreMath_Example-acknowledgements.plist */,
+				E5381C0DA5BB820A3D6E46AFF9A00519 /* Pods-CoreMath_Example-dummy.m */,
+				3FE9C70631D3DDCA7A8ADBC2960A032F /* Pods-CoreMath_Example-frameworks.sh */,
+				914C94FBA0263E1AC714CD8B5A766D5B /* Pods-CoreMath_Example-resources.sh */,
+				1B2C1522FB4EBCCD32422E75555D40FC /* Pods-CoreMath_Example-umbrella.h */,
+				1E307274894C974E8A9E220B81AACF7C /* Pods-CoreMath_Example.debug.xcconfig */,
+				A606FAF85EEF278A9D66F2CC77B00AA5 /* Pods-CoreMath_Example.release.xcconfig */,
 			);
-			name = Math;
-			path = ../../Math/Classes;
+			name = "Pods-CoreMath_Example";
+			path = "Target Support Files/Pods-CoreMath_Example";
+			sourceTree = "<group>";
+		};
+		3905D114FD407F7C995B253334956F2D /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FE989E96EA9ACFD78396E6A4698B09CE /* CoreMath */,
+			);
+			name = "Development Pods";
 			sourceTree = "<group>";
 		};
 		39E9EE8210D861DFD82346C1F5EB7218 /* Frameworks */ = {
@@ -157,26 +294,12 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		648A394AC72990FF008595A54856EB64 /* Support Files */ = {
+		578AD062E2CEE87CFEEB5B90C9688767 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A42D60016764E61BDFE2F2D60D7DC783 /* Info.plist */,
-				0D0B33C35176FA3EF8C5691EB09BD1F2 /* Math.modulemap */,
-				D43D19C357F44667AEE82C9B22396EAC /* Math.xcconfig */,
-				2EB136EAC89D0F45580C55EDD7461238 /* Math-dummy.m */,
-				94A2B4AB793C32FB7F0078974ECCDD25 /* Math-prefix.pch */,
-				13C02E52987D41527306FE44D0E4538C /* Math-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../../Example/Pods/Target Support Files/Math";
-			sourceTree = "<group>";
-		};
-		77E57D93BCDC77A5B64633ADE190F4F9 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9C34EC67993F05784FFF1FACA116BB29 /* Math.framework */,
-				C2091AB7ED4E4142044488FC198EC2C4 /* Pods_Math_Example.framework */,
-				0CC7B28F9680AF73477DABCC91E9FEAB /* Pods_Math_Tests.framework */,
+				B94F1CF938E6FA922C4A0AE158093844 /* CoreMath.framework */,
+				FA52E2935E260656B4FD295589BCB2FE /* Pods_CoreMath_Example.framework */,
+				56AE7F386BA987569724244E506880EF /* Pods_CoreMath_Tests.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -185,128 +308,349 @@
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				FBEB44E24AF7C2F7E1985AB484367E10 /* Development Pods */,
+				3905D114FD407F7C995B253334956F2D /* Development Pods */,
 				39E9EE8210D861DFD82346C1F5EB7218 /* Frameworks */,
-				77E57D93BCDC77A5B64633ADE190F4F9 /* Products */,
-				E2FF4F3E326431EC53B07DD0A0FCC63C /* Targets Support Files */,
+				578AD062E2CEE87CFEEB5B90C9688767 /* Products */,
+				80F324339B43E1BB315C2A4536366C93 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		E2FF4F3E326431EC53B07DD0A0FCC63C /* Targets Support Files */ = {
+		80F324339B43E1BB315C2A4536366C93 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				FBB46D458D52A141EEE33953CB6BE7B9 /* Pods-Math_Example */,
-				1C85A9D186E96B70A8E5AFA11B15AD64 /* Pods-Math_Tests */,
+				2E7E9111AB4C15CBD5E481BB72E73F42 /* Pods-CoreMath_Example */,
+				17BBF50C7CB99F0F79FF7357813D1FE2 /* Pods-CoreMath_Tests */,
 			);
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		FBB46D458D52A141EEE33953CB6BE7B9 /* Pods-Math_Example */ = {
+		9BBA4748205C0CA100C9A4CB /* Functions */ = {
 			isa = PBXGroup;
 			children = (
-				7A23FEC1A8A804822D7B1C4701886EC2 /* Info.plist */,
-				F15023E83DC0FCAFF8AC15208693BC8A /* Pods-Math_Example.modulemap */,
-				D36AA375F889EF9A349016FAE7F6FA41 /* Pods-Math_Example-acknowledgements.markdown */,
-				5215875DDD2262571E70B40195F41987 /* Pods-Math_Example-acknowledgements.plist */,
-				1575D5A7DE7ED93DDA16226FCCEFE5C1 /* Pods-Math_Example-dummy.m */,
-				74E370D56A3C13D99F6A27378E4B8596 /* Pods-Math_Example-frameworks.sh */,
-				2580491EC7C16F8C30DE947259F11B0F /* Pods-Math_Example-resources.sh */,
-				982EFE4C77CC429BA974547AAF4E81A9 /* Pods-Math_Example-umbrella.h */,
-				FE4B873718C6F548AF58BFCC01689367 /* Pods-Math_Example.debug.xcconfig */,
-				B333057E284C21458E62205A6ED29098 /* Pods-Math_Example.release.xcconfig */,
+				9BBA4749205C0CA100C9A4CB /* Logarithm.swift */,
+				9BBA474A205C0CA100C9A4CB /* Power.swift */,
+				9BBA474B205C0CA100C9A4CB /* Equation.swift */,
+				9BBA474C205C0CA100C9A4CB /* Functions.swift */,
+				9BBA474D205C0CA100C9A4CB /* Discrete Functions */,
+				9BBA475D205C0CA100C9A4CB /* Fraction.swift */,
+				9BBA475E205C0CA100C9A4CB /* Zeros.swift */,
+				9BBA475F205C0CA100C9A4CB /* ConstantFunction.swift */,
+				9BBA4760205C0CA100C9A4CB /* Term.swift */,
+				9BBA4761205C0CA100C9A4CB /* TrigonometricFunction.swift */,
+				9BBA4762205C0CA100C9A4CB /* ExponentialFunction.swift */,
+				9BBA4763205C0CA100C9A4CB /* Function.swift */,
+				9BBA4764205C0CA100C9A4CB /* Polynomials */,
 			);
-			name = "Pods-Math_Example";
-			path = "Target Support Files/Pods-Math_Example";
+			path = Functions;
 			sourceTree = "<group>";
 		};
-		FBEB44E24AF7C2F7E1985AB484367E10 /* Development Pods */ = {
+		9BBA474D205C0CA100C9A4CB /* Discrete Functions */ = {
 			isa = PBXGroup;
 			children = (
-				34214B4CE76BE575B98E7ED6ABDB0887 /* Math */,
+				9BBA474E205C0CA100C9A4CB /* Smoothing.swift */,
+				9BBA474F205C0CA100C9A4CB /* CurveFitting */,
+				9BBA4753205C0CA100C9A4CB /* Sampling */,
+				9BBA4756205C0CA100C9A4CB /* DiscreteFunction.swift */,
+				9BBA4757205C0CA100C9A4CB /* Interpolation */,
 			);
-			name = "Development Pods";
+			path = "Discrete Functions";
+			sourceTree = "<group>";
+		};
+		9BBA474F205C0CA100C9A4CB /* CurveFitting */ = {
+			isa = PBXGroup;
+			children = (
+				9BBA4750205C0CA100C9A4CB /* LevenbergMarquardt.swift */,
+				9BBA4751205C0CA100C9A4CB /* TrigonometricCurveFitting.swift */,
+				9BBA4752205C0CA100C9A4CB /* CurveFitting.swift */,
+			);
+			path = CurveFitting;
+			sourceTree = "<group>";
+		};
+		9BBA4753205C0CA100C9A4CB /* Sampling */ = {
+			isa = PBXGroup;
+			children = (
+				9BBA4754205C0CA100C9A4CB /* SamplingRange.swift */,
+				9BBA4755205C0CA100C9A4CB /* Sampling.swift */,
+			);
+			path = Sampling;
+			sourceTree = "<group>";
+		};
+		9BBA4757205C0CA100C9A4CB /* Interpolation */ = {
+			isa = PBXGroup;
+			children = (
+				9BBA4758205C0CA100C9A4CB /* NearestNeighborInterpolation.swift */,
+				9BBA4759205C0CA100C9A4CB /* NewtonPolynomialInterpolation.swift */,
+				9BBA475A205C0CA100C9A4CB /* Interpolation.swift */,
+				9BBA475B205C0CA100C9A4CB /* CubicSplineInterpolation.swift */,
+				9BBA475C205C0CA100C9A4CB /* LinearInterpolation.swift */,
+			);
+			path = Interpolation;
+			sourceTree = "<group>";
+		};
+		9BBA4764205C0CA100C9A4CB /* Polynomials */ = {
+			isa = PBXGroup;
+			children = (
+				9BBA4765205C0CA100C9A4CB /* Polynomial.swift */,
+				9BBA4766205C0CA100C9A4CB /* PolynomialFields.swift */,
+				9BBA4767205C0CA100C9A4CB /* _Polynomial.swift */,
+				9BBA4768205C0CA100C9A4CB /* PolynomialFunction.swift */,
+			);
+			path = Polynomials;
+			sourceTree = "<group>";
+		};
+		9BBA4769205C0CA100C9A4CB /* General */ = {
+			isa = PBXGroup;
+			children = (
+				9BBA476A205C0CA100C9A4CB /* Constants.swift */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
+		9BBA476B205C0CA100C9A4CB /* Numerics */ = {
+			isa = PBXGroup;
+			children = (
+				9BBA476C205C0CA100C9A4CB /* Fourier */,
+				9BBA476E205C0CA100C9A4CB /* DoubleExtensions.swift */,
+				9BBA476F205C0CA100C9A4CB /* FloatingPointNumber.swift */,
+			);
+			path = Numerics;
+			sourceTree = "<group>";
+		};
+		9BBA476C205C0CA100C9A4CB /* Fourier */ = {
+			isa = PBXGroup;
+			children = (
+				9BBA476D205C0CA100C9A4CB /* FastFourierTransform.swift */,
+			);
+			path = Fourier;
+			sourceTree = "<group>";
+		};
+		9BBA477E205C0CA200C9A4CB /* TeX */ = {
+			isa = PBXGroup;
+			children = (
+				9BBA477F205C0CA200C9A4CB /* LaTeXConvertible.swift */,
+			);
+			path = TeX;
+			sourceTree = "<group>";
+		};
+		9BBA4780205C0CA200C9A4CB /* Algebra */ = {
+			isa = PBXGroup;
+			children = (
+				9BBA4781205C0CA200C9A4CB /* GroupLike.swift */,
+				9BBA4782205C0CA200C9A4CB /* ModuleLikeProtocols.swift */,
+				9BBA4783205C0CA200C9A4CB /* ModuleLike.swift */,
+				9BBA4784205C0CA200C9A4CB /* RingLikeProtocols.swift */,
+				9BBA4785205C0CA200C9A4CB /* GroupLikeProtocols.swift */,
+				9BBA4786205C0CA200C9A4CB /* RingLike.swift */,
+			);
+			path = Algebra;
+			sourceTree = "<group>";
+		};
+		9BBA4789205C0CA200C9A4CB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9BBA478A205C0CA200C9A4CB /* Standard Library */,
+				9BBA478D205C0CA200C9A4CB /* CoreGraphics */,
+				9BBA4791205C0CA200C9A4CB /* Foundation */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		9BBA478A205C0CA200C9A4CB /* Standard Library */ = {
+			isa = PBXGroup;
+			children = (
+				9BBA478B205C0CA200C9A4CB /* ClosedRange.swift */,
+				9BBA478C205C0CA200C9A4CB /* Bool.swift */,
+			);
+			path = "Standard Library";
+			sourceTree = "<group>";
+		};
+		9BBA478D205C0CA200C9A4CB /* CoreGraphics */ = {
+			isa = PBXGroup;
+			children = (
+				9BBA478E205C0CA200C9A4CB /* CGSize.swift */,
+				9BBA478F205C0CA200C9A4CB /* CGRect.swift */,
+				9BBA4790205C0CA200C9A4CB /* CGColor.swift */,
+			);
+			path = CoreGraphics;
+			sourceTree = "<group>";
+		};
+		9BBA4791205C0CA200C9A4CB /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				9BBA4792205C0CA200C9A4CB /* Character.swift */,
+				9BBA4793205C0CA200C9A4CB /* String.swift */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		9BBA479A205C0CA200C9A4CB /* Numbers */ = {
+			isa = PBXGroup;
+			children = (
+				9BBA479B205C0CA200C9A4CB /* RationalNumber.swift */,
+				9BBA479C205C0CA200C9A4CB /* Complex.swift */,
+				9BBA479D205C0CA200C9A4CB /* Protocols */,
+				9BBA47A7205C0CA200C9A4CB /* Enhanced.swift */,
+				9BBA47A8205C0CA200C9A4CB /* Numbers.swift */,
+			);
+			path = Numbers;
+			sourceTree = "<group>";
+		};
+		9BBA479D205C0CA200C9A4CB /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				9BBA479E205C0CA200C9A4CB /* BasicArithmetic.swift */,
+				9BBA479F205C0CA200C9A4CB /* FloatExtensions.swift */,
+				9BBA47A0205C0CA200C9A4CB /* DoubleProtocolExtensions.swift */,
+				9BBA47A1205C0CA200C9A4CB /* Randomizable.swift */,
+				9BBA47A2205C0CA200C9A4CB /* Ordered.swift */,
+				9BBA47A3205C0CA200C9A4CB /* Numeric.swift */,
+				9BBA47A4205C0CA200C9A4CB /* AdvancedNumeric.swift */,
+				9BBA47A5205C0CA200C9A4CB /* IntegerAdvancedNumeric.swift */,
+				9BBA47A6205C0CA200C9A4CB /* ComplexConvertible.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		9BBA47A9205C0CA300C9A4CB /* Linear Algebra */ = {
+			isa = PBXGroup;
+			children = (
+				9BBA47AA205C0CA300C9A4CB /* TransposedDenseMatrix.swift */,
+				9BBA47AB205C0CA300C9A4CB /* HorizontalDenseVector.swift */,
+				9BBA47AC205C0CA300C9A4CB /* SparseVector.swift */,
+				9BBA47AD205C0CA300C9A4CB /* Vector.swift */,
+				9BBA47AE205C0CA300C9A4CB /* Matrix.swift */,
+				9BBA47AF205C0CA300C9A4CB /* SparseMatrix.swift */,
+				9BBA47B0205C0CA300C9A4CB /* LinearAlgebraic.swift */,
+				9BBA47B1205C0CA300C9A4CB /* DenseMatrix.swift */,
+				9BBA47B2205C0CA300C9A4CB /* VerticalDenseVector.swift */,
+			);
+			path = "Linear Algebra";
+			sourceTree = "<group>";
+		};
+		9BBA47B4205C0CA300C9A4CB /* Automata */ = {
+			isa = PBXGroup;
+			children = (
+				9BBA47B5205C0CA300C9A4CB /* Automaton.swift */,
+				9BBA47B6205C0CA300C9A4CB /* NFA.swift */,
+				9BBA47B7205C0CA300C9A4CB /* DFA.swift */,
+			);
+			path = Automata;
+			sourceTree = "<group>";
+		};
+		D5CEAC91946AAD7DEBB8B30DA5785CD5 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				9AF43B4493AD54CB4BF5A3A8AFA9E47E /* CoreMath.modulemap */,
+				E454BD40035673EC168AE15A8A116102 /* CoreMath.xcconfig */,
+				FDA4322CFAB55CAFF9F1A4C01520A17B /* CoreMath-dummy.m */,
+				57B8B2BF3675DB356035B604D7BF471E /* CoreMath-prefix.pch */,
+				C7DF99EF737934E0B4E56C132B74BD65 /* CoreMath-umbrella.h */,
+				9FFF4FFF1F03E81DE1C30BD352A27CA6 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../../Example/Pods/Target Support Files/CoreMath";
+			sourceTree = "<group>";
+		};
+		FE989E96EA9ACFD78396E6A4698B09CE /* CoreMath */ = {
+			isa = PBXGroup;
+			children = (
+				9BBA4780205C0CA200C9A4CB /* Algebra */,
+				9BBA47B4205C0CA300C9A4CB /* Automata */,
+				9BBA4789205C0CA200C9A4CB /* Extensions */,
+				9BBA4748205C0CA100C9A4CB /* Functions */,
+				9BBA4769205C0CA100C9A4CB /* General */,
+				9BBA4787205C0CA200C9A4CB /* General.swift */,
+				9BBA47A9205C0CA300C9A4CB /* Linear Algebra */,
+				9BBA47B3205C0CA300C9A4CB /* LinuxSupport.swift */,
+				9BBA479A205C0CA200C9A4CB /* Numbers */,
+				9BBA476B205C0CA100C9A4CB /* Numerics */,
+				9BBA477E205C0CA200C9A4CB /* TeX */,
+				D5CEAC91946AAD7DEBB8B30DA5785CD5 /* Support Files */,
+			);
+			name = CoreMath;
+			path = ../../CoreMath/Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		12BE684CC2CF6880EF21F29E64E2A50A /* Headers */ = {
+		286995293EBC23A0D7597B3FFFE9A336 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE44A0BDFCA7DBFB8C8FE098F5858710 /* Pods-Math_Example-umbrella.h in Headers */,
+				C4D972E9EBB0C0EE43E78E59E6197B6E /* CoreMath-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D8F2FB11C1E2FF019113D5F2A8231A9B /* Headers */ = {
+		78676109B8CCF14BAB185741627A7231 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E7C4113ECDED5E9219836C9EA7A31B6 /* Math-umbrella.h in Headers */,
+				4E16FC1D2254F5B68D227498E0072214 /* Pods-CoreMath_Tests-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EEFCC931D7E1CFCEBB7F97A825134B42 /* Headers */ = {
+		F97884B8C6C5379E457CA8266DFF4E87 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF8B021CEB092497E956D53868D85E01 /* Pods-Math_Tests-umbrella.h in Headers */,
+				11CE24203E599648A47BFA7BC4DC7FE1 /* Pods-CoreMath_Example-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		8C8BFC17A43DAB5F8FB2A2553F38E59F /* Pods-Math_Example */ = {
+		884275A9E312B0C2E948EDA97A870668 /* CoreMath */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B6E81D9CD933C74D10D40AED837A889A /* Build configuration list for PBXNativeTarget "Pods-Math_Example" */;
+			buildConfigurationList = 3CA5076E77307E15A4B0B40FDDB7662D /* Build configuration list for PBXNativeTarget "CoreMath" */;
 			buildPhases = (
-				19E501E889FB3685C74EA692F8AE1361 /* Sources */,
-				8D65DCD07A06A8FE1E0B0892A3966593 /* Frameworks */,
-				12BE684CC2CF6880EF21F29E64E2A50A /* Headers */,
+				2EF7A9D2FDF2C95B47696272A43AD210 /* Sources */,
+				027ADCB911EEC1D3259AFD69111AD3C0 /* Frameworks */,
+				286995293EBC23A0D7597B3FFFE9A336 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				02A46341268CDFABBB683AE90C4A78D5 /* PBXTargetDependency */,
 			);
-			name = "Pods-Math_Example";
-			productName = "Pods-Math_Example";
-			productReference = C2091AB7ED4E4142044488FC198EC2C4 /* Pods_Math_Example.framework */;
+			name = CoreMath;
+			productName = CoreMath;
+			productReference = B94F1CF938E6FA922C4A0AE158093844 /* CoreMath.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		AD25B3C24829C5422535EDC91B380BE5 /* Math */ = {
+		8FF721AD4121899EA7862B18F98B4D79 /* Pods-CoreMath_Example */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 829EBF26FFD7E633CE4AE586A828ABD7 /* Build configuration list for PBXNativeTarget "Math" */;
+			buildConfigurationList = 64860735C25ECEA1505CE7ED757A0EFF /* Build configuration list for PBXNativeTarget "Pods-CoreMath_Example" */;
 			buildPhases = (
-				093683CE20DEF4F2C54847D5BCE93524 /* Sources */,
-				E5CB1A15B44AE1F4A3935E5419D2202F /* Frameworks */,
-				D8F2FB11C1E2FF019113D5F2A8231A9B /* Headers */,
+				C3D744C7D3E4AFEFA29F140B25AAC720 /* Sources */,
+				275475306EAC593113726647A5A95585 /* Frameworks */,
+				F97884B8C6C5379E457CA8266DFF4E87 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				ACC876DAB8BF6E437CAE4BE2F0EDCA49 /* PBXTargetDependency */,
 			);
-			name = Math;
-			productName = Math;
-			productReference = 9C34EC67993F05784FFF1FACA116BB29 /* Math.framework */;
+			name = "Pods-CoreMath_Example";
+			productName = "Pods-CoreMath_Example";
+			productReference = FA52E2935E260656B4FD295589BCB2FE /* Pods_CoreMath_Example.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		FCFD19B8D4C73B7EF9A153622CF723E4 /* Pods-Math_Tests */ = {
+		BC1FF3B84F71D6078D73F72354D23AA4 /* Pods-CoreMath_Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 388968B4C1D1BC196D04F7BCCB7F2815 /* Build configuration list for PBXNativeTarget "Pods-Math_Tests" */;
+			buildConfigurationList = A10C0BD7F63C341B0AF7F1BAB0BAC5DC /* Build configuration list for PBXNativeTarget "Pods-CoreMath_Tests" */;
 			buildPhases = (
-				AAB594E5B702861F730EA36F4F49B064 /* Sources */,
-				BAAB0EB2C2E791612DF2F7CCBDB7748F /* Frameworks */,
-				EEFCC931D7E1CFCEBB7F97A825134B42 /* Headers */,
+				E6309B100499A94F3B09CEB128E4D3C8 /* Sources */,
+				7619A662B8075B8D238A8D685CDD2EB0 /* Frameworks */,
+				78676109B8CCF14BAB185741627A7231 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Pods-Math_Tests";
-			productName = "Pods-Math_Tests";
-			productReference = 0CC7B28F9680AF73477DABCC91E9FEAB /* Pods_Math_Tests.framework */;
+			name = "Pods-CoreMath_Tests";
+			productName = "Pods-CoreMath_Tests";
+			productReference = 56AE7F386BA987569724244E506880EF /* Pods_CoreMath_Tests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -326,59 +670,129 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 77E57D93BCDC77A5B64633ADE190F4F9 /* Products */;
+			productRefGroup = 578AD062E2CEE87CFEEB5B90C9688767 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AD25B3C24829C5422535EDC91B380BE5 /* Math */,
-				8C8BFC17A43DAB5F8FB2A2553F38E59F /* Pods-Math_Example */,
-				FCFD19B8D4C73B7EF9A153622CF723E4 /* Pods-Math_Tests */,
+				884275A9E312B0C2E948EDA97A870668 /* CoreMath */,
+				8FF721AD4121899EA7862B18F98B4D79 /* Pods-CoreMath_Example */,
+				BC1FF3B84F71D6078D73F72354D23AA4 /* Pods-CoreMath_Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		093683CE20DEF4F2C54847D5BCE93524 /* Sources */ = {
+		2EF7A9D2FDF2C95B47696272A43AD210 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9BF494ED205C06BE00DBB2AE /* General.swift in Sources */,
-				46C264DD78B1F45EEF464EB1827D47BE /* Math-dummy.m in Sources */,
-				9BF494EE205C06BE00DBB2AE /* LinuxSupport.swift in Sources */,
+				9BBA47EF205C0CA300C9A4CB /* String.swift in Sources */,
+				9BBA480A205C0CA300C9A4CB /* VerticalDenseVector.swift in Sources */,
+				9BBA47F9205C0CA300C9A4CB /* DoubleProtocolExtensions.swift in Sources */,
+				9BBA47D0205C0CA300C9A4CB /* PolynomialFields.swift in Sources */,
+				1ABFC14D2366EBA59B0D3F9B60857E86 /* CoreMath-dummy.m in Sources */,
+				9BBA47CF205C0CA300C9A4CB /* Polynomial.swift in Sources */,
+				9BBA4803205C0CA300C9A4CB /* HorizontalDenseVector.swift in Sources */,
+				9BBA47CD205C0CA300C9A4CB /* ExponentialFunction.swift in Sources */,
+				9BBA47E2205C0CA300C9A4CB /* GroupLike.swift in Sources */,
+				9BBA47E7205C0CA300C9A4CB /* RingLike.swift in Sources */,
+				9BBA47FA205C0CA300C9A4CB /* Randomizable.swift in Sources */,
+				9BBA47FE205C0CA300C9A4CB /* IntegerAdvancedNumeric.swift in Sources */,
+				9BBA47C8205C0CA300C9A4CB /* Fraction.swift in Sources */,
+				9BBA47D3205C0CA300C9A4CB /* Constants.swift in Sources */,
+				9BBA47F6205C0CA300C9A4CB /* Complex.swift in Sources */,
+				9BBA47F7205C0CA300C9A4CB /* BasicArithmetic.swift in Sources */,
+				9BBA47C0205C0CA300C9A4CB /* SamplingRange.swift in Sources */,
+				9BBA47FC205C0CA300C9A4CB /* Numeric.swift in Sources */,
+				9BBA47E1205C0CA300C9A4CB /* LaTeXConvertible.swift in Sources */,
+				9BBA47E9205C0CA300C9A4CB /* ClosedRange.swift in Sources */,
+				9BBA480C205C0CA300C9A4CB /* Automaton.swift in Sources */,
+				9BBA480D205C0CA300C9A4CB /* NFA.swift in Sources */,
+				9BBA47EC205C0CA300C9A4CB /* CGRect.swift in Sources */,
+				9BBA47CA205C0CA300C9A4CB /* ConstantFunction.swift in Sources */,
+				9BBA47F5205C0CA300C9A4CB /* RationalNumber.swift in Sources */,
+				9BBA47FD205C0CA300C9A4CB /* AdvancedNumeric.swift in Sources */,
+				9BBA47CB205C0CA300C9A4CB /* Term.swift in Sources */,
+				9BBA47D4205C0CA300C9A4CB /* FastFourierTransform.swift in Sources */,
+				9BBA480E205C0CA300C9A4CB /* DFA.swift in Sources */,
+				9BBA47E4205C0CA300C9A4CB /* ModuleLike.swift in Sources */,
+				9BBA47EE205C0CA300C9A4CB /* Character.swift in Sources */,
+				9BBA47FF205C0CA300C9A4CB /* ComplexConvertible.swift in Sources */,
+				9BBA47C3205C0CA300C9A4CB /* NearestNeighborInterpolation.swift in Sources */,
+				9BBA47E6205C0CA300C9A4CB /* GroupLikeProtocols.swift in Sources */,
+				9BBA47C9205C0CA300C9A4CB /* Zeros.swift in Sources */,
+				9BBA47C6205C0CA300C9A4CB /* CubicSplineInterpolation.swift in Sources */,
+				9BBA47E3205C0CA300C9A4CB /* ModuleLikeProtocols.swift in Sources */,
+				9BBA4808205C0CA300C9A4CB /* LinearAlgebraic.swift in Sources */,
+				9BBA4805205C0CA300C9A4CB /* Vector.swift in Sources */,
+				9BBA47ED205C0CA300C9A4CB /* CGColor.swift in Sources */,
+				9BBA47F8205C0CA300C9A4CB /* FloatExtensions.swift in Sources */,
+				9BBA4809205C0CA300C9A4CB /* DenseMatrix.swift in Sources */,
+				9BBA4802205C0CA300C9A4CB /* TransposedDenseMatrix.swift in Sources */,
+				9BBA47BA205C0CA300C9A4CB /* Equation.swift in Sources */,
+				9BBA47B8205C0CA300C9A4CB /* Logarithm.swift in Sources */,
+				9BBA47C5205C0CA300C9A4CB /* Interpolation.swift in Sources */,
+				9BBA4807205C0CA300C9A4CB /* SparseMatrix.swift in Sources */,
+				9BBA47BC205C0CA300C9A4CB /* Smoothing.swift in Sources */,
+				9BBA47E5205C0CA300C9A4CB /* RingLikeProtocols.swift in Sources */,
+				9BBA47FB205C0CA300C9A4CB /* Ordered.swift in Sources */,
+				9BBA4801205C0CA300C9A4CB /* Numbers.swift in Sources */,
+				9BBA4804205C0CA300C9A4CB /* SparseVector.swift in Sources */,
+				9BBA47B9205C0CA300C9A4CB /* Power.swift in Sources */,
+				9BBA4800205C0CA300C9A4CB /* Enhanced.swift in Sources */,
+				9BBA47EB205C0CA300C9A4CB /* CGSize.swift in Sources */,
+				9BBA47E8205C0CA300C9A4CB /* General.swift in Sources */,
+				9BBA47BE205C0CA300C9A4CB /* TrigonometricCurveFitting.swift in Sources */,
+				9BBA47C2205C0CA300C9A4CB /* DiscreteFunction.swift in Sources */,
+				9BBA47D1205C0CA300C9A4CB /* _Polynomial.swift in Sources */,
+				9BBA47C1205C0CA300C9A4CB /* Sampling.swift in Sources */,
+				9BBA47BD205C0CA300C9A4CB /* LevenbergMarquardt.swift in Sources */,
+				9BBA47CE205C0CA300C9A4CB /* Function.swift in Sources */,
+				9BBA47D2205C0CA300C9A4CB /* PolynomialFunction.swift in Sources */,
+				9BBA47CC205C0CA300C9A4CB /* TrigonometricFunction.swift in Sources */,
+				9BBA47EA205C0CA300C9A4CB /* Bool.swift in Sources */,
+				9BBA480B205C0CA300C9A4CB /* LinuxSupport.swift in Sources */,
+				9BBA47C4205C0CA300C9A4CB /* NewtonPolynomialInterpolation.swift in Sources */,
+				9BBA47D5205C0CA300C9A4CB /* DoubleExtensions.swift in Sources */,
+				9BBA4806205C0CA300C9A4CB /* Matrix.swift in Sources */,
+				9BBA47BB205C0CA300C9A4CB /* Functions.swift in Sources */,
+				9BBA47D6205C0CA300C9A4CB /* FloatingPointNumber.swift in Sources */,
+				9BBA47BF205C0CA300C9A4CB /* CurveFitting.swift in Sources */,
+				9BBA47C7205C0CA300C9A4CB /* LinearInterpolation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		19E501E889FB3685C74EA692F8AE1361 /* Sources */ = {
+		C3D744C7D3E4AFEFA29F140B25AAC720 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DAE1B2EE8B308858A70CA1BE2800FC0F /* Pods-Math_Example-dummy.m in Sources */,
+				B48E36C0973BFDE58D1A5ADFD2C3CC3A /* Pods-CoreMath_Example-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AAB594E5B702861F730EA36F4F49B064 /* Sources */ = {
+		E6309B100499A94F3B09CEB128E4D3C8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB29723645AE843BEF364917EFB3EB89 /* Pods-Math_Tests-dummy.m in Sources */,
+				61C278E7C7269591FBCDB9B075DC2F62 /* Pods-CoreMath_Tests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		02A46341268CDFABBB683AE90C4A78D5 /* PBXTargetDependency */ = {
+		ACC876DAB8BF6E437CAE4BE2F0EDCA49 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = Math;
-			target = AD25B3C24829C5422535EDC91B380BE5 /* Math */;
-			targetProxy = AB4E068BD51CEB60CFBCD7FA9101405F /* PBXContainerItemProxy */;
+			name = CoreMath;
+			target = 884275A9E312B0C2E948EDA97A870668 /* CoreMath */;
+			targetProxy = A43F84170BC409CC13FD66A12DA0210A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		109259DB778B5E8817BEBB9E26010589 /* Release */ = {
+		11B27EE35B33A916F14E3F81648E40CE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 36814E529D192AA8BD222CB49093B6AD /* Pods-Math_Tests.release.xcconfig */;
+			baseConfigurationReference = 5BDECDEB40AB2D3CC28C04207C9B4CC9 /* Pods-CoreMath_Tests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -391,17 +805,17 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = "Target Support Files/Pods-Math_Tests/Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-CoreMath_Tests/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MODULEMAP_FILE = "Target Support Files/Pods-Math_Tests/Pods-Math_Tests.modulemap";
+				MODULEMAP_FILE = "Target Support Files/Pods-CoreMath_Tests/Pods-CoreMath_Tests.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_Math_Tests;
+				PRODUCT_NAME = Pods_CoreMath_Tests;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -409,9 +823,9 @@
 			};
 			name = Release;
 		};
-		36C97345990633508394491DBAA22F49 /* Debug */ = {
+		1328F9B28AFE242580D0DF9B15F5EE0F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FE4B873718C6F548AF58BFCC01689367 /* Pods-Math_Example.debug.xcconfig */;
+			baseConfigurationReference = 1E307274894C974E8A9E220B81AACF7C /* Pods-CoreMath_Example.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -424,17 +838,17 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = "Target Support Files/Pods-Math_Example/Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-CoreMath_Example/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MODULEMAP_FILE = "Target Support Files/Pods-Math_Example/Pods-Math_Example.modulemap";
+				MODULEMAP_FILE = "Target Support Files/Pods-CoreMath_Example/Pods-CoreMath_Example.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_Math_Example;
+				PRODUCT_NAME = Pods_CoreMath_Example;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -444,9 +858,9 @@
 			};
 			name = Debug;
 		};
-		46E2C711F590994467FB7D7D0311C3B6 /* Debug */ = {
+		1D717528B82D4EE55671580F299D7441 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D43D19C357F44667AEE82C9B22396EAC /* Math.xcconfig */;
+			baseConfigurationReference = E454BD40035673EC168AE15A8A116102 /* CoreMath.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -459,13 +873,112 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				GCC_PREFIX_HEADER = "Target Support Files/Math/Math-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Math/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/CoreMath/CoreMath-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CoreMath/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				MODULEMAP_FILE = "Target Support Files/Math/Math.modulemap";
-				PRODUCT_NAME = Math;
+				MODULEMAP_FILE = "Target Support Files/CoreMath/CoreMath.modulemap";
+				PRODUCT_NAME = CoreMath;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		6F6FE04238601C5D2C7DA77C9297A21A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A606FAF85EEF278A9D66F2CC77B00AA5 /* Pods-CoreMath_Example.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "Target Support Files/Pods-CoreMath_Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MODULEMAP_FILE = "Target Support Files/Pods-CoreMath_Example/Pods-CoreMath_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_CoreMath_Example;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		78F2AC50ACEE4C054B3D78227294C381 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D06D9012DE0248A73D892FB4D35FC1C0 /* Pods-CoreMath_Tests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "Target Support Files/Pods-CoreMath_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MODULEMAP_FILE = "Target Support Files/Pods-CoreMath_Tests/Pods-CoreMath_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_CoreMath_Tests;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		7B41AFA2FDB1450F392C71D62E934FE2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E454BD40035673EC168AE15A8A116102 /* CoreMath.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_PREFIX_HEADER = "Target Support Files/CoreMath/CoreMath-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CoreMath/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MODULEMAP_FILE = "Target Support Files/CoreMath/CoreMath.modulemap";
+				PRODUCT_NAME = CoreMath;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
@@ -475,72 +988,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
-		};
-		6C1684B0A44EE703EF071616765B00CF /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D43D19C357F44667AEE82C9B22396EAC /* Math.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				GCC_PREFIX_HEADER = "Target Support Files/Math/Math-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Math/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				MODULEMAP_FILE = "Target Support Files/Math/Math.modulemap";
-				PRODUCT_NAME = Math;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		C15CAC343E445D826368C115D690B5B4 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B333057E284C21458E62205A6ED29098 /* Pods-Math_Example.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = "Target Support Files/Pods-Math_Example/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MODULEMAP_FILE = "Target Support Files/Pods-Math_Example/Pods-Math_Example.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_Math_Example;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
 		};
 		C4D8B0A6AD4EF0183B7B90C84630289B /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -658,39 +1105,6 @@
 			};
 			name = Debug;
 		};
-		F791179B8387A6806D433DE624454D58 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B45E4D41AD72F2E7163AF7F25A6BD24 /* Pods-Math_Tests.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = "Target Support Files/Pods-Math_Tests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MODULEMAP_FILE = "Target Support Files/Pods-Math_Tests/Pods-Math_Tests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_Math_Tests;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -703,29 +1117,29 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		388968B4C1D1BC196D04F7BCCB7F2815 /* Build configuration list for PBXNativeTarget "Pods-Math_Tests" */ = {
+		3CA5076E77307E15A4B0B40FDDB7662D /* Build configuration list for PBXNativeTarget "CoreMath" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F791179B8387A6806D433DE624454D58 /* Debug */,
-				109259DB778B5E8817BEBB9E26010589 /* Release */,
+				7B41AFA2FDB1450F392C71D62E934FE2 /* Debug */,
+				1D717528B82D4EE55671580F299D7441 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		829EBF26FFD7E633CE4AE586A828ABD7 /* Build configuration list for PBXNativeTarget "Math" */ = {
+		64860735C25ECEA1505CE7ED757A0EFF /* Build configuration list for PBXNativeTarget "Pods-CoreMath_Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				46E2C711F590994467FB7D7D0311C3B6 /* Debug */,
-				6C1684B0A44EE703EF071616765B00CF /* Release */,
+				1328F9B28AFE242580D0DF9B15F5EE0F /* Debug */,
+				6F6FE04238601C5D2C7DA77C9297A21A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B6E81D9CD933C74D10D40AED837A889A /* Build configuration list for PBXNativeTarget "Pods-Math_Example" */ = {
+		A10C0BD7F63C341B0AF7F1BAB0BAC5DC /* Build configuration list for PBXNativeTarget "Pods-CoreMath_Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				36C97345990633508394491DBAA22F49 /* Debug */,
-				C15CAC343E445D826368C115D690B5B4 /* Release */,
+				78F2AC50ACEE4C054B3D78227294C381 /* Debug */,
+				11B27EE35B33A916F14E3F81648E40CE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

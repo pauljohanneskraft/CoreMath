@@ -1,6 +1,0 @@
-framework module Math {
-  umbrella header "Math-umbrella.h"
-
-  export *
-  module * { export * }
-}
