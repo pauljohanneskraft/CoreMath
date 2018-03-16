@@ -14,6 +14,6 @@ extension Numeric {
 		return Polynomial((Self(integerLiteral: 1), v))
 	}
 	
-	public static var x : Polynomial<Self> { return Self.x(1) }
+	public static var x: Polynomial<Self> { return Self.x(1) }
 	
 }

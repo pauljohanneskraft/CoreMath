@@ -7,18 +7,18 @@
 //
 
 import Foundation
-import XCTest
 import Math
+import XCTest
 
 protocol TypeTest {
 	associatedtype DataType
 	
-	var elements : [DataType] { get }
+	var elements: [DataType] { get }
 	
 }
 extension TypeTest {
 	
-	func forAll<T>(_ char: String, assert cond: (DataType, T) -> Bool = { _,_ in return true }, _ f: (DataType) -> T) {
+	func forAll<T>(_ char: String, assert cond: (DataType, T) -> Bool = { _, _ in return true }, _ f: (DataType) -> T) {
 		let n = self.elements
 		// var avgtime = 0.0
 		for r in n {
@@ -34,7 +34,13 @@ extension TypeTest {
 		// print("avg time:", avgtime / Double(n.count), "total:", avgtime)
 	}
 	
-	func forAll<T>(_ char: String, assert cond: (DataType, DataType, T) -> Bool = { _,_,_ in return true }, _ f: (DataType, DataType) -> T) {
+    // swiftlint:disable vertical_parameter_alignment
+	func forAll<T>(_ char: String,
+                   assert cond: (DataType, DataType, T) -> Bool = { _, _, _ in return true },
+                   _ f: (DataType, DataType) -> T
+        ) {
+        // swiftlint:enable vertical_parameter_alignment
+
 		let n = self.elements
 		// var avgtime = 0.0
 		for r in n {
@@ -46,7 +52,7 @@ extension TypeTest {
 				// print(r, char, q, "=", frq, "in", time)
 				XCTAssert(time >= 0, "\(time)")
 				// avgtime += time
-				let t = cond(r,q, frq)
+				let t = cond(r, q, frq)
 				if !t { print(".", terminator: "") }
 				XCTAssert(t, "\(r) \(char) \(q) == \(frq) doesn't meet the assertion criteria.")
 			}

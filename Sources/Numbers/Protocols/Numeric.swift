@@ -8,24 +8,25 @@
 
 import Foundation
 
-public protocol Numeric : BasicArithmetic, Randomizable {
-	var integer		: Int		{ get }
-	var isInteger	: Bool		{ get }
-	var double		: Double	{ get }
-	var sqrt		: Self		{ get }
+public protocol Numeric: BasicArithmetic, Randomizable {
+	var integer: Int { get }
+	var isInteger: Bool { get }
+	var double: Double { get }
+	var sqrt: Self { get }
+    
 	func power(_ v: Double) -> Self
 }
 
 extension Numeric {
-	public var sqrt : Self {
+    public var sqrt: Self {
 		return Self(floatLiteral: pow(self.double, 1.0/2))
 	}
 	
-	public func power(_ v: Double) -> Self {
+    public func power(_ v: Double) -> Self {
 		return Self(floatLiteral: pow(self.double, v))
 	}
 	
-	public var primeFactors : [Int] {
+    public var primeFactors: [Int] {
 		guard self.isInteger else { return [] }
 		var this = self.integer
 		guard this != 0 else { return [0] }
@@ -57,7 +58,7 @@ extension Numeric {
 		return factors
 	}
 	
-	public static func getPrimes(upTo: Int) -> [Int] {
+    public static func getPrimes(upTo: Int) -> [Int] {
 		// print("did start", upTo)
 		if upTo <= 1 { return [] }
 		
@@ -71,7 +72,7 @@ extension Numeric {
 		} while true
 	}
 	
-	public static func getNextPrime(from: Int) -> Int {
+    public static func getNextPrime(from: Int) -> Int {
 		guard from > 3 else { return from < 2 ? 2 : from < 3 ? 3 : 5 }
 		var candidate = from % 2 == 0 ? from - 1 : from
 		var test = 3

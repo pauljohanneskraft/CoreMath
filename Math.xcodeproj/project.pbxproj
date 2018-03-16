@@ -6,8 +6,35 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		9B825EAB1EBF19EE003A9B9C /* Documentation */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 9B825EAE1EBF19EE003A9B9C /* Build configuration list for PBXAggregateTarget "Documentation" */;
+			buildPhases = (
+				9B825EAF1EBF19F3003A9B9C /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Documentation;
+			productName = Documentation;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
+		7B821C3FB8D7F9D230188636 /* Pods_Math.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21BAD2771947EFB33EE11DC3 /* Pods_Math.framework */; };
+		9B04DC781FD60BB30097F0A7 /* PlotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B04DC751FD60BB20097F0A7 /* PlotViewController.swift */; };
+		9B04DC791FD60BB30097F0A7 /* PlotWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B04DC761FD60BB20097F0A7 /* PlotWindow.swift */; };
+		9B04DC7A1FD60BB30097F0A7 /* PlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B04DC771FD60BB30097F0A7 /* PlotView.swift */; };
+		9B04DC7F1FD60C6F0097F0A7 /* LogarithmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B04DC7B1FD60C690097F0A7 /* LogarithmTests.swift */; };
+		9B04DC801FD60C730097F0A7 /* ViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B04DC7C1FD60C690097F0A7 /* ViewTests.swift */; };
+		9B04DC841FD61AD80097F0A7 /* SamplingRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B04DC831FD61AD80097F0A7 /* SamplingRange.swift */; };
+		9B04DC871FD6F5810097F0A7 /* CustomPlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B04DC861FD6F5810097F0A7 /* CustomPlotView.swift */; };
+		9B04DC8D1FD7A40D0097F0A7 /* CustomPlotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B04DC8C1FD7A40D0097F0A7 /* CustomPlotViewController.swift */; };
+		9B059E001FE66A230032D173 /* Smoothing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B059DFF1FE66A230032D173 /* Smoothing.swift */; };
 		9B09603D1D4EB14900ED8517 /* DataTypeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B09603C1D4EB14900ED8517 /* DataTypeTest.swift */; };
+		9B1503ED1FC7D7FA000BC543 /* ComplexConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1503EC1FC7D7FA000BC543 /* ComplexConvertible.swift */; };
+		9B2539AC1FBE015F00824CFC /* FloatingPointNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2539AB1FBE015F00824CFC /* FloatingPointNumber.swift */; };
+		9B2539AE1FBE016A00824CFC /* DoubleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2539AD1FBE016A00824CFC /* DoubleExtensions.swift */; };
 		9B46A07A1D78FEC900C1059E /* GroupLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0531D78FEC900C1059E /* GroupLike.swift */; };
 		9B46A07B1D78FEC900C1059E /* GroupLikeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0541D78FEC900C1059E /* GroupLikeProtocols.swift */; };
 		9B46A07C1D78FEC900C1059E /* ModuleLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0551D78FEC900C1059E /* ModuleLike.swift */; };
@@ -15,26 +42,22 @@
 		9B46A07E1D78FEC900C1059E /* RingLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0571D78FEC900C1059E /* RingLike.swift */; };
 		9B46A07F1D78FEC900C1059E /* RingLikeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0581D78FEC900C1059E /* RingLikeProtocols.swift */; };
 		9B46A0801D78FEC900C1059E /* ConstantFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A05A1D78FEC900C1059E /* ConstantFunction.swift */; };
-		9B46A0811D78FEC900C1059E /* CustomFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A05B1D78FEC900C1059E /* CustomFunction.swift */; };
 		9B46A0821D78FEC900C1059E /* Equation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A05C1D78FEC900C1059E /* Equation.swift */; };
 		9B46A0831D78FEC900C1059E /* ExponentialFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A05D1D78FEC900C1059E /* ExponentialFunction.swift */; };
 		9B46A0841D78FEC900C1059E /* Fraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A05E1D78FEC900C1059E /* Fraction.swift */; };
 		9B46A0851D78FEC900C1059E /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A05F1D78FEC900C1059E /* Function.swift */; };
-		9B46A0861D78FEC900C1059E /* Growth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0601D78FEC900C1059E /* Growth.swift */; };
 		9B46A0871D78FEC900C1059E /* _Polynomial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0611D78FEC900C1059E /* _Polynomial.swift */; };
 		9B46A0881D78FEC900C1059E /* Polynomial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0621D78FEC900C1059E /* Polynomial.swift */; };
 		9B46A0891D78FEC900C1059E /* PolynomialFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0631D78FEC900C1059E /* PolynomialFields.swift */; };
 		9B46A08A1D78FEC900C1059E /* PolynomialFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0641D78FEC900C1059E /* PolynomialFunction.swift */; };
 		9B46A08B1D78FEC900C1059E /* Term.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0661D78FEC900C1059E /* Term.swift */; };
-		9B46A08C1D78FEC900C1059E /* TrigonometricFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0671D78FEC900C1059E /* TrigonometricFunctions.swift */; };
 		9B46A08D1D78FEC900C1059E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0691D78FEC900C1059E /* Constants.swift */; };
-		9B46A08E1D78FEC900C1059E /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A06B1D78FEC900C1059E /* Matrix.swift */; };
-		9B46A08F1D78FEC900C1059E /* LinuxSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A06D1D78FEC900C1059E /* LinuxSupport.swift */; };
+		9B46A08E1D78FEC900C1059E /* DenseMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A06B1D78FEC900C1059E /* DenseMatrix.swift */; };
 		9B46A0901D78FEC900C1059E /* Complex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A06E1D78FEC900C1059E /* Complex.swift */; };
-		9B46A0911D78FEC900C1059E /* EnhancedNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A06F1D78FEC900C1059E /* EnhancedNumber.swift */; };
+		9B46A0911D78FEC900C1059E /* Enhanced.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A06F1D78FEC900C1059E /* Enhanced.swift */; };
 		9B46A0921D78FEC900C1059E /* Numbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0701D78FEC900C1059E /* Numbers.swift */; };
 		9B46A0931D78FEC900C1059E /* AdvancedNumeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0711D78FEC900C1059E /* AdvancedNumeric.swift */; };
-		9B46A0941D78FEC900C1059E /* AdvancedNumericTypeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0721D78FEC900C1059E /* AdvancedNumericTypeExtensions.swift */; };
+		9B46A0941D78FEC900C1059E /* IntegerAdvancedNumeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0721D78FEC900C1059E /* IntegerAdvancedNumeric.swift */; };
 		9B46A0951D78FEC900C1059E /* BasicArithmetic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0731D78FEC900C1059E /* BasicArithmetic.swift */; };
 		9B46A0961D78FEC900C1059E /* Numeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0741D78FEC900C1059E /* Numeric.swift */; };
 		9B46A0971D78FEC900C1059E /* RationalNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B46A0761D78FEC900C1059E /* RationalNumber.swift */; };
@@ -47,6 +70,15 @@
 		9B47341C1D4AD5130055A7E8 /* RationalNumberTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B47341B1D4AD5130055A7E8 /* RationalNumberTests.swift */; };
 		9B47341E1D4AD51D0055A7E8 /* ComplexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B47341D1D4AD51D0055A7E8 /* ComplexTests.swift */; };
 		9B4734201D4AD5360055A7E8 /* EnhancedNumberTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B47341F1D4AD5360055A7E8 /* EnhancedNumberTests.swift */; };
+		9B47AAEF1FE0883F004B5B45 /* CurveFittingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B47AAEE1FE0883F004B5B45 /* CurveFittingTests.swift */; };
+		9B47AAF21FE14AAC004B5B45 /* TrigonometricFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B47AAF11FE14AAC004B5B45 /* TrigonometricFunction.swift */; };
+		9B47AAF41FE1534F004B5B45 /* TrigonometricCurveFitting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B47AAF31FE1534F004B5B45 /* TrigonometricCurveFitting.swift */; };
+		9B47AAF61FE15390004B5B45 /* LevenbergMarquardt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B47AAF51FE15390004B5B45 /* LevenbergMarquardt.swift */; };
+		9B4977C81EBD3D3E00B65019 /* NFA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4977C71EBD3D3E00B65019 /* NFA.swift */; };
+		9B4977CA1EBD3D5800B65019 /* DFA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4977C91EBD3D5800B65019 /* DFA.swift */; };
+		9B4977CC1EBD3D6900B65019 /* Automaton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4977CB1EBD3D6900B65019 /* Automaton.swift */; };
+		9B4C42991FBF97DB00786391 /* LinuxSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4C42981FBF97DB00786391 /* LinuxSupport.swift */; };
+		9B4C429B1FBFB0BB00786391 /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4C429A1FBFB0BB00786391 /* General.swift */; };
 		9B5BE2501D72E386006C5B96 /* TeXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5BE24F1D72E386006C5B96 /* TeXTests.swift */; };
 		9B5BE2531D72E3F0006C5B96 /* RingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5BE2521D72E3F0006C5B96 /* RingTests.swift */; };
 		9B5BE2551D72E3F9006C5B96 /* ModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5BE2541D72E3F9006C5B96 /* ModuleTests.swift */; };
@@ -57,12 +89,59 @@
 		9B5BE25F1D72E450006C5B96 /* ConstantFunctionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5BE25E1D72E450006C5B96 /* ConstantFunctionTests.swift */; };
 		9B5BE2611D72E466006C5B96 /* CustomFunctionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5BE2601D72E466006C5B96 /* CustomFunctionTests.swift */; };
 		9B5BE2631D72E47B006C5B96 /* TrigonometricFunctionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5BE2621D72E47B006C5B96 /* TrigonometricFunctionTests.swift */; };
-		9B5BE2651D72E49D006C5B96 /* GrowthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5BE2641D72E49D006C5B96 /* GrowthTests.swift */; };
 		9B5BE2671D72E4B3006C5B96 /* FractionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5BE2661D72E4B3006C5B96 /* FractionTests.swift */; };
 		9B5BE26A1D72E4FA006C5B96 /* AdvancedNumericTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5BE2691D72E4FA006C5B96 /* AdvancedNumericTests.swift */; };
 		9B5BE26D1D72F9FD006C5B96 /* LinuxCompatibilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5BE26C1D72F9FD006C5B96 /* LinuxCompatibilityTests.swift */; };
+		9B67D1BA1FC7B6950054C4A9 /* FastFourierTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B67D1B91FC7B6950054C4A9 /* FastFourierTransform.swift */; };
+		9B6925E31FC6DFE300A2BD21 /* LinearInterpolation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6925E21FC6DFE300A2BD21 /* LinearInterpolation.swift */; };
+		9B6925E51FC6DFED00A2BD21 /* NearestNeighborInterpolation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6925E41FC6DFED00A2BD21 /* NearestNeighborInterpolation.swift */; };
+		9B6925E71FC6E02000A2BD21 /* NewtonPolynomialInterpolation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6925E61FC6E02000A2BD21 /* NewtonPolynomialInterpolation.swift */; };
+		9B6925EB1FC78DC200A2BD21 /* InterpolationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6925EA1FC78DC200A2BD21 /* InterpolationTests.swift */; };
+		9B6CEAEE1FDC68C1004FBCB3 /* CGColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6CEAED1FDC68C1004FBCB3 /* CGColor.swift */; };
+		9B6CEAF01FDC68D9004FBCB3 /* NSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6CEAEF1FDC68D9004FBCB3 /* NSView.swift */; };
+		9B6CEAF21FDC6946004FBCB3 /* NSTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6CEAF11FDC6946004FBCB3 /* NSTextField.swift */; };
+		9B6CEAF41FDC695B004FBCB3 /* CGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6CEAF31FDC695B004FBCB3 /* CGRect.swift */; };
+		9B6CEAF61FDC6990004FBCB3 /* FunctionPlotDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6CEAF51FDC6990004FBCB3 /* FunctionPlotDataSource.swift */; };
+		9B6CEAF81FDC6A0E004FBCB3 /* NSStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6CEAF71FDC6A0E004FBCB3 /* NSStackView.swift */; };
+		9B6CEAFA1FDC6A4F004FBCB3 /* CGSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6CEAF91FDC6A4F004FBCB3 /* CGSize.swift */; };
+		9B6CEAFC1FDC6A7D004FBCB3 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6CEAFB1FDC6A7D004FBCB3 /* Character.swift */; };
+		9B6CEAFE1FDC6AB5004FBCB3 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6CEAFD1FDC6AB5004FBCB3 /* String.swift */; };
+		9B6CEB031FDC6BF0004FBCB3 /* NSMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6CEB021FDC6BF0004FBCB3 /* NSMenu.swift */; };
+		9B6CEB051FDC6D13004FBCB3 /* ApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6CEB041FDC6D13004FBCB3 /* ApplicationDelegate.swift */; };
+		9B70A5D61FDC07BA00769B8D /* SamplingRangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B70A5D51FDC07BA00769B8D /* SamplingRangeView.swift */; };
 		9B71D3ED1D4BF1C6001C5BE9 /* TermTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B71D3EC1D4BF1C6001C5BE9 /* TermTests.swift */; };
+		9B825EB61EBF2C94003A9B9C /* DFATest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B825EB51EBF2C94003A9B9C /* DFATest.swift */; };
+		9B825EB81EBF2CA3003A9B9C /* NFATest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B825EB71EBF2CA3003A9B9C /* NFATest.swift */; };
+		9B9060E21FE971D9001A06DD /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9060E11FE971D9001A06DD /* Matrix.swift */; };
+		9B9060E81FE9D3EE001A06DD /* VectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9060E71FE9D3EE001A06DD /* VectorTests.swift */; };
+		9B9060EA1FE9D3FD001A06DD /* LinearAlgebraicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9060E91FE9D3FD001A06DD /* LinearAlgebraicTests.swift */; };
+		9B959AF91FD8F9A6000B4404 /* CustomFourierPlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B959AF81FD8F9A6000B4404 /* CustomFourierPlotView.swift */; };
+		9B959AFB1FD8FE69000B4404 /* CustomFourierPlotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B959AFA1FD8FE69000B4404 /* CustomFourierPlotViewController.swift */; };
+		9B96F4B21FE7F55100B73A75 /* Zeros.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B96F4B11FE7F55100B73A75 /* Zeros.swift */; };
+		9B96F4B41FE7F7AF00B73A75 /* FunctionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B96F4B31FE7F7AF00B73A75 /* FunctionTests.swift */; };
+		9BA084581FD59D9A00424E5D /* Logarithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA084561FD59D9900424E5D /* Logarithm.swift */; };
+		9BA084591FD59D9A00424E5D /* Power.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA084571FD59D9900424E5D /* Power.swift */; };
+		9BA13BDC1FE1AE740072E5D0 /* TransposedDenseMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA13BDB1FE1AE740072E5D0 /* TransposedDenseMatrix.swift */; };
+		9BA13BDE1FE1B66E0072E5D0 /* VerticalDenseVector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA13BDD1FE1B66E0072E5D0 /* VerticalDenseVector.swift */; };
+		9BB9138F1FEBC42B008059C0 /* ClosedRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB9138E1FEBC42B008059C0 /* ClosedRange.swift */; };
+		9BB913921FEBC471008059C0 /* Bool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB913911FEBC471008059C0 /* Bool.swift */; };
+		9BC7689F1FE030650069050A /* CurveFitting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC7689E1FE030650069050A /* CurveFitting.swift */; };
+		9BC768A31FE03E310069050A /* SparseMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC768A21FE03E310069050A /* SparseMatrix.swift */; };
+		9BC768A51FE03E3E0069050A /* HorizontalDenseVector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC768A41FE03E3E0069050A /* HorizontalDenseVector.swift */; };
+		9BC768A71FE03E490069050A /* SparseVector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC768A61FE03E490069050A /* SparseVector.swift */; };
 		9BC8BBDB1D6F0E1D0010AC02 /* BasicArithmeticTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC8BBDA1D6F0E1D0010AC02 /* BasicArithmeticTests.swift */; };
+		9BD5AE091FEC28B70030122F /* Randomizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD5AE081FEC28B70030122F /* Randomizable.swift */; };
+		9BD5AE0B1FEC28C30030122F /* Ordered.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD5AE0A1FEC28C30030122F /* Ordered.swift */; };
+		9BD5AE0D1FEC29B60030122F /* DoubleProtocolExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD5AE0C1FEC29B60030122F /* DoubleProtocolExtensions.swift */; };
+		9BD5AE0F1FEC2E030030122F /* FloatExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD5AE0E1FEC2E030030122F /* FloatExtensions.swift */; };
+		9BE2CB2E1FCF732900BD4942 /* DiscreteFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE2CB2D1FCF732900BD4942 /* DiscreteFunction.swift */; };
+		9BE2CB7F1FD0ACC500BD4942 /* Sampling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE2CB7E1FD0ACC500BD4942 /* Sampling.swift */; };
+		9BE2CB811FD0B12600BD4942 /* Interpolation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE2CB801FD0B12600BD4942 /* Interpolation.swift */; };
+		9BE2CB841FD0CE5100BD4942 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE2CB831FD0CE5100BD4942 /* Functions.swift */; };
+		9BE2CB861FD0FD7800BD4942 /* Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE2CB851FD0FD7800BD4942 /* Vector.swift */; };
+		9BE2CB881FD0FDEF00BD4942 /* LinearAlgebraic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE2CB871FD0FDEF00BD4942 /* LinearAlgebraic.swift */; };
+		9BE2CB8A1FD1652700BD4942 /* CubicSplineInterpolation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE2CB891FD1652700BD4942 /* CubicSplineInterpolation.swift */; };
+		9E584C725401035C49D5A869 /* Pods_MathTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 801540AD109E27455C2CC178 /* Pods_MathTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,7 +155,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		09EE498DF8D64C4A074E5B27 /* Pods-Math.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Math.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Math/Pods-Math.debug.xcconfig"; sourceTree = "<group>"; };
+		21BAD2771947EFB33EE11DC3 /* Pods_Math.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Math.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		62B0F6C794B593C3699EB3F5 /* Pods-MathTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MathTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MathTests/Pods-MathTests.debug.xcconfig"; sourceTree = "<group>"; };
+		801540AD109E27455C2CC178 /* Pods_MathTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MathTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B04DC751FD60BB20097F0A7 /* PlotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlotViewController.swift; path = Sources/View/PlotViewController.swift; sourceTree = SOURCE_ROOT; };
+		9B04DC761FD60BB20097F0A7 /* PlotWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotWindow.swift; sourceTree = "<group>"; };
+		9B04DC771FD60BB30097F0A7 /* PlotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotView.swift; sourceTree = "<group>"; };
+		9B04DC7B1FD60C690097F0A7 /* LogarithmTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogarithmTests.swift; sourceTree = "<group>"; };
+		9B04DC7C1FD60C690097F0A7 /* ViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewTests.swift; sourceTree = "<group>"; };
+		9B04DC831FD61AD80097F0A7 /* SamplingRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SamplingRange.swift; sourceTree = "<group>"; };
+		9B04DC861FD6F5810097F0A7 /* CustomPlotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPlotView.swift; sourceTree = "<group>"; };
+		9B04DC8C1FD7A40D0097F0A7 /* CustomPlotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPlotViewController.swift; sourceTree = "<group>"; };
+		9B059DFF1FE66A230032D173 /* Smoothing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Smoothing.swift; sourceTree = "<group>"; };
 		9B09603C1D4EB14900ED8517 /* DataTypeTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTypeTest.swift; sourceTree = "<group>"; };
+		9B1503EC1FC7D7FA000BC543 /* ComplexConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplexConvertible.swift; sourceTree = "<group>"; };
+		9B2539AB1FBE015F00824CFC /* FloatingPointNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPointNumber.swift; sourceTree = "<group>"; };
+		9B2539AD1FBE016A00824CFC /* DoubleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtensions.swift; sourceTree = "<group>"; };
 		9B46A0531D78FEC900C1059E /* GroupLike.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupLike.swift; sourceTree = "<group>"; };
 		9B46A0541D78FEC900C1059E /* GroupLikeProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupLikeProtocols.swift; sourceTree = "<group>"; };
 		9B46A0551D78FEC900C1059E /* ModuleLike.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleLike.swift; sourceTree = "<group>"; };
@@ -84,26 +179,22 @@
 		9B46A0571D78FEC900C1059E /* RingLike.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RingLike.swift; sourceTree = "<group>"; };
 		9B46A0581D78FEC900C1059E /* RingLikeProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RingLikeProtocols.swift; sourceTree = "<group>"; };
 		9B46A05A1D78FEC900C1059E /* ConstantFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstantFunction.swift; sourceTree = "<group>"; };
-		9B46A05B1D78FEC900C1059E /* CustomFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomFunction.swift; sourceTree = "<group>"; };
 		9B46A05C1D78FEC900C1059E /* Equation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Equation.swift; sourceTree = "<group>"; };
 		9B46A05D1D78FEC900C1059E /* ExponentialFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExponentialFunction.swift; sourceTree = "<group>"; };
 		9B46A05E1D78FEC900C1059E /* Fraction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fraction.swift; sourceTree = "<group>"; };
 		9B46A05F1D78FEC900C1059E /* Function.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Function.swift; sourceTree = "<group>"; };
-		9B46A0601D78FEC900C1059E /* Growth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Growth.swift; sourceTree = "<group>"; };
 		9B46A0611D78FEC900C1059E /* _Polynomial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _Polynomial.swift; sourceTree = "<group>"; };
 		9B46A0621D78FEC900C1059E /* Polynomial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Polynomial.swift; sourceTree = "<group>"; };
 		9B46A0631D78FEC900C1059E /* PolynomialFields.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PolynomialFields.swift; sourceTree = "<group>"; };
 		9B46A0641D78FEC900C1059E /* PolynomialFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PolynomialFunction.swift; sourceTree = "<group>"; };
 		9B46A0661D78FEC900C1059E /* Term.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Term.swift; sourceTree = "<group>"; };
-		9B46A0671D78FEC900C1059E /* TrigonometricFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrigonometricFunctions.swift; sourceTree = "<group>"; };
 		9B46A0691D78FEC900C1059E /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		9B46A06B1D78FEC900C1059E /* Matrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
-		9B46A06D1D78FEC900C1059E /* LinuxSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinuxSupport.swift; path = Sources/LinuxSupport.swift; sourceTree = "<group>"; };
+		9B46A06B1D78FEC900C1059E /* DenseMatrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DenseMatrix.swift; sourceTree = "<group>"; };
 		9B46A06E1D78FEC900C1059E /* Complex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Complex.swift; sourceTree = "<group>"; };
-		9B46A06F1D78FEC900C1059E /* EnhancedNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnhancedNumber.swift; sourceTree = "<group>"; };
+		9B46A06F1D78FEC900C1059E /* Enhanced.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enhanced.swift; sourceTree = "<group>"; };
 		9B46A0701D78FEC900C1059E /* Numbers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Numbers.swift; sourceTree = "<group>"; };
 		9B46A0711D78FEC900C1059E /* AdvancedNumeric.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedNumeric.swift; sourceTree = "<group>"; };
-		9B46A0721D78FEC900C1059E /* AdvancedNumericTypeExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedNumericTypeExtensions.swift; sourceTree = "<group>"; };
+		9B46A0721D78FEC900C1059E /* IntegerAdvancedNumeric.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntegerAdvancedNumeric.swift; sourceTree = "<group>"; };
 		9B46A0731D78FEC900C1059E /* BasicArithmetic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicArithmetic.swift; sourceTree = "<group>"; };
 		9B46A0741D78FEC900C1059E /* Numeric.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Numeric.swift; sourceTree = "<group>"; };
 		9B46A0761D78FEC900C1059E /* RationalNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RationalNumber.swift; sourceTree = "<group>"; };
@@ -118,6 +209,15 @@
 		9B47341B1D4AD5130055A7E8 /* RationalNumberTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RationalNumberTests.swift; sourceTree = "<group>"; };
 		9B47341D1D4AD51D0055A7E8 /* ComplexTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComplexTests.swift; sourceTree = "<group>"; };
 		9B47341F1D4AD5360055A7E8 /* EnhancedNumberTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnhancedNumberTests.swift; sourceTree = "<group>"; };
+		9B47AAEE1FE0883F004B5B45 /* CurveFittingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurveFittingTests.swift; sourceTree = "<group>"; };
+		9B47AAF11FE14AAC004B5B45 /* TrigonometricFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrigonometricFunction.swift; sourceTree = "<group>"; };
+		9B47AAF31FE1534F004B5B45 /* TrigonometricCurveFitting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrigonometricCurveFitting.swift; sourceTree = "<group>"; };
+		9B47AAF51FE15390004B5B45 /* LevenbergMarquardt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevenbergMarquardt.swift; sourceTree = "<group>"; };
+		9B4977C71EBD3D3E00B65019 /* NFA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NFA.swift; sourceTree = "<group>"; };
+		9B4977C91EBD3D5800B65019 /* DFA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DFA.swift; sourceTree = "<group>"; };
+		9B4977CB1EBD3D6900B65019 /* Automaton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Automaton.swift; sourceTree = "<group>"; };
+		9B4C42981FBF97DB00786391 /* LinuxSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinuxSupport.swift; sourceTree = "<group>"; };
+		9B4C429A1FBFB0BB00786391 /* General.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
 		9B5BE24F1D72E386006C5B96 /* TeXTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeXTests.swift; sourceTree = "<group>"; };
 		9B5BE2521D72E3F0006C5B96 /* RingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RingTests.swift; sourceTree = "<group>"; };
 		9B5BE2541D72E3F9006C5B96 /* ModuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleTests.swift; sourceTree = "<group>"; };
@@ -128,13 +228,62 @@
 		9B5BE25E1D72E450006C5B96 /* ConstantFunctionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstantFunctionTests.swift; sourceTree = "<group>"; };
 		9B5BE2601D72E466006C5B96 /* CustomFunctionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomFunctionTests.swift; sourceTree = "<group>"; };
 		9B5BE2621D72E47B006C5B96 /* TrigonometricFunctionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrigonometricFunctionTests.swift; sourceTree = "<group>"; };
-		9B5BE2641D72E49D006C5B96 /* GrowthTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrowthTests.swift; sourceTree = "<group>"; };
 		9B5BE2661D72E4B3006C5B96 /* FractionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FractionTests.swift; sourceTree = "<group>"; };
 		9B5BE2691D72E4FA006C5B96 /* AdvancedNumericTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedNumericTests.swift; sourceTree = "<group>"; };
 		9B5BE26C1D72F9FD006C5B96 /* LinuxCompatibilityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinuxCompatibilityTests.swift; sourceTree = "<group>"; };
+		9B5DC9681FE2C8B3004164FC /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
+		9B67D1B91FC7B6950054C4A9 /* FastFourierTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastFourierTransform.swift; sourceTree = "<group>"; };
+		9B6925E21FC6DFE300A2BD21 /* LinearInterpolation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinearInterpolation.swift; sourceTree = "<group>"; };
+		9B6925E41FC6DFED00A2BD21 /* NearestNeighborInterpolation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearestNeighborInterpolation.swift; sourceTree = "<group>"; };
+		9B6925E61FC6E02000A2BD21 /* NewtonPolynomialInterpolation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewtonPolynomialInterpolation.swift; sourceTree = "<group>"; };
+		9B6925EA1FC78DC200A2BD21 /* InterpolationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterpolationTests.swift; sourceTree = "<group>"; };
+		9B6CEAED1FDC68C1004FBCB3 /* CGColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGColor.swift; sourceTree = "<group>"; };
+		9B6CEAEF1FDC68D9004FBCB3 /* NSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSView.swift; sourceTree = "<group>"; };
+		9B6CEAF11FDC6946004FBCB3 /* NSTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSTextField.swift; sourceTree = "<group>"; };
+		9B6CEAF31FDC695B004FBCB3 /* CGRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGRect.swift; sourceTree = "<group>"; };
+		9B6CEAF51FDC6990004FBCB3 /* FunctionPlotDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionPlotDataSource.swift; sourceTree = "<group>"; };
+		9B6CEAF71FDC6A0E004FBCB3 /* NSStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSStackView.swift; sourceTree = "<group>"; };
+		9B6CEAF91FDC6A4F004FBCB3 /* CGSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGSize.swift; sourceTree = "<group>"; };
+		9B6CEAFB1FDC6A7D004FBCB3 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
+		9B6CEAFD1FDC6AB5004FBCB3 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		9B6CEB021FDC6BF0004FBCB3 /* NSMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSMenu.swift; sourceTree = "<group>"; };
+		9B6CEB041FDC6D13004FBCB3 /* ApplicationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationDelegate.swift; sourceTree = "<group>"; };
+		9B70A5D51FDC07BA00769B8D /* SamplingRangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SamplingRangeView.swift; sourceTree = "<group>"; };
 		9B71D3EC1D4BF1C6001C5BE9 /* TermTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermTests.swift; sourceTree = "<group>"; };
+		9B825EB51EBF2C94003A9B9C /* DFATest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DFATest.swift; sourceTree = "<group>"; };
+		9B825EB71EBF2CA3003A9B9C /* NFATest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NFATest.swift; sourceTree = "<group>"; };
+		9B9060E11FE971D9001A06DD /* Matrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
+		9B9060E71FE9D3EE001A06DD /* VectorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VectorTests.swift; sourceTree = "<group>"; };
+		9B9060E91FE9D3FD001A06DD /* LinearAlgebraicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinearAlgebraicTests.swift; sourceTree = "<group>"; };
+		9B959AF81FD8F9A6000B4404 /* CustomFourierPlotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFourierPlotView.swift; sourceTree = "<group>"; };
+		9B959AFA1FD8FE69000B4404 /* CustomFourierPlotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFourierPlotViewController.swift; sourceTree = "<group>"; };
+		9B96F4B11FE7F55100B73A75 /* Zeros.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zeros.swift; sourceTree = "<group>"; };
+		9B96F4B31FE7F7AF00B73A75 /* FunctionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionTests.swift; sourceTree = "<group>"; };
+		9BA084561FD59D9900424E5D /* Logarithm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logarithm.swift; sourceTree = "<group>"; };
+		9BA084571FD59D9900424E5D /* Power.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Power.swift; sourceTree = "<group>"; };
+		9BA13BDB1FE1AE740072E5D0 /* TransposedDenseMatrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransposedDenseMatrix.swift; sourceTree = "<group>"; };
+		9BA13BDD1FE1B66E0072E5D0 /* VerticalDenseVector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalDenseVector.swift; sourceTree = "<group>"; };
+		9BB9138E1FEBC42B008059C0 /* ClosedRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedRange.swift; sourceTree = "<group>"; };
+		9BB913911FEBC471008059C0 /* Bool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bool.swift; sourceTree = "<group>"; };
+		9BC7689E1FE030650069050A /* CurveFitting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurveFitting.swift; sourceTree = "<group>"; };
+		9BC768A21FE03E310069050A /* SparseMatrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparseMatrix.swift; sourceTree = "<group>"; };
+		9BC768A41FE03E3E0069050A /* HorizontalDenseVector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalDenseVector.swift; sourceTree = "<group>"; };
+		9BC768A61FE03E490069050A /* SparseVector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparseVector.swift; sourceTree = "<group>"; };
 		9BC8BBDA1D6F0E1D0010AC02 /* BasicArithmeticTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicArithmeticTests.swift; sourceTree = "<group>"; };
-		9BD8A6731D705C2F00C2618E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Sources/Info.plist; sourceTree = "<group>"; };
+		9BD5AE081FEC28B70030122F /* Randomizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Randomizable.swift; sourceTree = "<group>"; };
+		9BD5AE0A1FEC28C30030122F /* Ordered.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ordered.swift; sourceTree = "<group>"; };
+		9BD5AE0C1FEC29B60030122F /* DoubleProtocolExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleProtocolExtensions.swift; sourceTree = "<group>"; };
+		9BD5AE0E1FEC2E030030122F /* FloatExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatExtensions.swift; sourceTree = "<group>"; };
+		9BD8A6731D705C2F00C2618E /* Info.plist */ = {isa = PBXFileReference; explicitFileType = wrapper.xcdatamodel; fileEncoding = 4; path = Info.plist; sourceTree = "<group>"; };
+		9BE2CB2D1FCF732900BD4942 /* DiscreteFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscreteFunction.swift; sourceTree = "<group>"; };
+		9BE2CB7E1FD0ACC500BD4942 /* Sampling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sampling.swift; sourceTree = "<group>"; };
+		9BE2CB801FD0B12600BD4942 /* Interpolation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interpolation.swift; sourceTree = "<group>"; };
+		9BE2CB831FD0CE5100BD4942 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
+		9BE2CB851FD0FD7800BD4942 /* Vector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vector.swift; sourceTree = "<group>"; };
+		9BE2CB871FD0FDEF00BD4942 /* LinearAlgebraic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinearAlgebraic.swift; sourceTree = "<group>"; };
+		9BE2CB891FD1652700BD4942 /* CubicSplineInterpolation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CubicSplineInterpolation.swift; sourceTree = "<group>"; };
+		B2EE6DEAAAF008FD8A227CF0 /* Pods-Math.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Math.release.xcconfig"; path = "Pods/Target Support Files/Pods-Math/Pods-Math.release.xcconfig"; sourceTree = "<group>"; };
+		DE61CA4ACFC88BB710AD34A9 /* Pods-MathTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MathTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MathTests/Pods-MathTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,12 +292,58 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B4733C51D4ACBE00055A7E8 /* Math.framework in Frameworks */,
+				9E584C725401035C49D5A869 /* Pods_MathTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1E15104B9BC8FB487BFE8A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7B821C3FB8D7F9D230188636 /* Pods_Math.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C5D268A0D123AB25C57720D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				21BAD2771947EFB33EE11DC3 /* Pods_Math.framework */,
+				801540AD109E27455C2CC178 /* Pods_MathTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		707B1ED8F0B1F4BAC25999CC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				09EE498DF8D64C4A074E5B27 /* Pods-Math.debug.xcconfig */,
+				B2EE6DEAAAF008FD8A227CF0 /* Pods-Math.release.xcconfig */,
+				62B0F6C794B593C3699EB3F5 /* Pods-MathTests.debug.xcconfig */,
+				DE61CA4ACFC88BB710AD34A9 /* Pods-MathTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		9B04DC821FD60C940097F0A7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9B04DC7C1FD60C690097F0A7 /* ViewTests.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		9B04DC851FD6B62B0097F0A7 /* Sampling */ = {
+			isa = PBXGroup;
+			children = (
+				9B04DC831FD61AD80097F0A7 /* SamplingRange.swift */,
+				9BE2CB7E1FD0ACC500BD4942 /* Sampling.swift */,
+			);
+			path = Sampling;
+			sourceTree = "<group>";
+		};
 		9B0960321D4E6ACE00ED8517 /* Numbers */ = {
 			isa = PBXGroup;
 			children = (
@@ -163,9 +358,11 @@
 		9B0960331D4E6AD800ED8517 /* Functions */ = {
 			isa = PBXGroup;
 			children = (
+				9B04DC7B1FD60C690097F0A7 /* LogarithmTests.swift */,
 				9B5BE2661D72E4B3006C5B96 /* FractionTests.swift */,
-				9B5BE2641D72E49D006C5B96 /* GrowthTests.swift */,
 				9B71D3EC1D4BF1C6001C5BE9 /* TermTests.swift */,
+				9B96F4B31FE7F7AF00B73A75 /* FunctionTests.swift */,
+				9B47AAEE1FE0883F004B5B45 /* CurveFittingTests.swift */,
 				9B5BE2621D72E47B006C5B96 /* TrigonometricFunctionTests.swift */,
 				9B5BE2601D72E466006C5B96 /* CustomFunctionTests.swift */,
 				9B5BE25E1D72E450006C5B96 /* ConstantFunctionTests.swift */,
@@ -190,9 +387,21 @@
 		9B0960351D4E6AED00ED8517 /* LinearAlgebra */ = {
 			isa = PBXGroup;
 			children = (
+				9B9060E91FE9D3FD001A06DD /* LinearAlgebraicTests.swift */,
+				9B9060E71FE9D3EE001A06DD /* VectorTests.swift */,
 				9B4734151D4AD4DF0055A7E8 /* MatrixTests.swift */,
 			);
 			name = LinearAlgebra;
+			sourceTree = "<group>";
+		};
+		9B2539AA1FBE014600824CFC /* Numerics */ = {
+			isa = PBXGroup;
+			children = (
+				9B2539AB1FBE015F00824CFC /* FloatingPointNumber.swift */,
+				9B2539AD1FBE016A00824CFC /* DoubleExtensions.swift */,
+				9B67D1BB1FC7B69B0054C4A9 /* Fourier */,
+			);
+			path = Numerics;
 			sourceTree = "<group>";
 		};
 		9B46A0591D78FEC900C1059E /* Algebra */ = {
@@ -205,8 +414,7 @@
 				9B46A0571D78FEC900C1059E /* RingLike.swift */,
 				9B46A0581D78FEC900C1059E /* RingLikeProtocols.swift */,
 			);
-			name = Algebra;
-			path = Sources/Algebra;
+			path = Algebra;
 			sourceTree = "<group>";
 		};
 		9B46A0651D78FEC900C1059E /* Polynomials */ = {
@@ -223,19 +431,21 @@
 		9B46A0681D78FEC900C1059E /* Functions */ = {
 			isa = PBXGroup;
 			children = (
+				9BE2CB831FD0CE5100BD4942 /* Functions.swift */,
 				9B46A05A1D78FEC900C1059E /* ConstantFunction.swift */,
-				9B46A05B1D78FEC900C1059E /* CustomFunction.swift */,
+				9BA084561FD59D9900424E5D /* Logarithm.swift */,
+				9BA084571FD59D9900424E5D /* Power.swift */,
+				9B47AAF11FE14AAC004B5B45 /* TrigonometricFunction.swift */,
+				9BE2CB7D1FD0ACAE00BD4942 /* Discrete Functions */,
 				9B46A05C1D78FEC900C1059E /* Equation.swift */,
+				9B96F4B11FE7F55100B73A75 /* Zeros.swift */,
 				9B46A05D1D78FEC900C1059E /* ExponentialFunction.swift */,
 				9B46A05E1D78FEC900C1059E /* Fraction.swift */,
 				9B46A05F1D78FEC900C1059E /* Function.swift */,
-				9B46A0601D78FEC900C1059E /* Growth.swift */,
 				9B46A0651D78FEC900C1059E /* Polynomials */,
 				9B46A0661D78FEC900C1059E /* Term.swift */,
-				9B46A0671D78FEC900C1059E /* TrigonometricFunctions.swift */,
 			);
-			name = Functions;
-			path = Sources/Functions;
+			path = Functions;
 			sourceTree = "<group>";
 		};
 		9B46A06A1D78FEC900C1059E /* General */ = {
@@ -243,24 +453,35 @@
 			children = (
 				9B46A0691D78FEC900C1059E /* Constants.swift */,
 			);
-			name = General;
-			path = Sources/General;
+			path = General;
 			sourceTree = "<group>";
 		};
 		9B46A06C1D78FEC900C1059E /* Linear Algebra */ = {
 			isa = PBXGroup;
 			children = (
-				9B46A06B1D78FEC900C1059E /* Matrix.swift */,
+				9BE2CB871FD0FDEF00BD4942 /* LinearAlgebraic.swift */,
+				9B9060E11FE971D9001A06DD /* Matrix.swift */,
+				9BC768A21FE03E310069050A /* SparseMatrix.swift */,
+				9BE2CB851FD0FD7800BD4942 /* Vector.swift */,
+				9BC768A41FE03E3E0069050A /* HorizontalDenseVector.swift */,
+				9BA13BDD1FE1B66E0072E5D0 /* VerticalDenseVector.swift */,
+				9BC768A61FE03E490069050A /* SparseVector.swift */,
+				9B46A06B1D78FEC900C1059E /* DenseMatrix.swift */,
+				9BA13BDB1FE1AE740072E5D0 /* TransposedDenseMatrix.swift */,
 			);
-			name = "Linear Algebra";
-			path = "Sources/Linear Algebra";
+			path = "Linear Algebra";
 			sourceTree = "<group>";
 		};
 		9B46A0751D78FEC900C1059E /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
 				9B46A0711D78FEC900C1059E /* AdvancedNumeric.swift */,
-				9B46A0721D78FEC900C1059E /* AdvancedNumericTypeExtensions.swift */,
+				9B46A0721D78FEC900C1059E /* IntegerAdvancedNumeric.swift */,
+				9B1503EC1FC7D7FA000BC543 /* ComplexConvertible.swift */,
+				9BD5AE0E1FEC2E030030122F /* FloatExtensions.swift */,
+				9BD5AE0C1FEC29B60030122F /* DoubleProtocolExtensions.swift */,
+				9BD5AE081FEC28B70030122F /* Randomizable.swift */,
+				9BD5AE0A1FEC28C30030122F /* Ordered.swift */,
 				9B46A0731D78FEC900C1059E /* BasicArithmetic.swift */,
 				9B46A0741D78FEC900C1059E /* Numeric.swift */,
 			);
@@ -271,13 +492,12 @@
 			isa = PBXGroup;
 			children = (
 				9B46A06E1D78FEC900C1059E /* Complex.swift */,
-				9B46A06F1D78FEC900C1059E /* EnhancedNumber.swift */,
+				9B46A06F1D78FEC900C1059E /* Enhanced.swift */,
 				9B46A0701D78FEC900C1059E /* Numbers.swift */,
 				9B46A0751D78FEC900C1059E /* Protocols */,
 				9B46A0761D78FEC900C1059E /* RationalNumber.swift */,
 			);
-			name = Numbers;
-			path = Sources/Numbers;
+			path = Numbers;
 			sourceTree = "<group>";
 		};
 		9B46A0791D78FEC900C1059E /* TeX */ = {
@@ -285,16 +505,18 @@
 			children = (
 				9B46A0781D78FEC900C1059E /* LaTeXConvertible.swift */,
 			);
-			name = TeX;
-			path = Sources/TeX;
+			path = TeX;
 			sourceTree = "<group>";
 		};
 		9B4733A71D4ACBB80055A7E8 = {
 			isa = PBXGroup;
 			children = (
+				9B5DC9681FE2C8B3004164FC /* .swiftlint.yml */,
 				9BD8A6A11D705C3F00C2618E /* Sources */,
 				9B4733C11D4ACBE00055A7E8 /* Tests */,
 				9B4733B21D4ACBB80055A7E8 /* Products */,
+				707B1ED8F0B1F4BAC25999CC /* Pods */,
+				2C5D268A0D123AB25C57720D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -312,16 +534,39 @@
 			children = (
 				9B09603C1D4EB14900ED8517 /* DataTypeTest.swift */,
 				9B5BE26C1D72F9FD006C5B96 /* LinuxCompatibilityTests.swift */,
+				9B825EB91EBF2CB9003A9B9C /* Automata */,
 				9B5BE24E1D72E36C006C5B96 /* General */,
 				9B0960341D4E6AE400ED8517 /* Algebra */,
 				9B0960331D4E6AD800ED8517 /* Functions */,
 				9B0960351D4E6AED00ED8517 /* LinearAlgebra */,
+				9B6925E91FC78DA200A2BD21 /* Numerics */,
 				9B0960321D4E6ACE00ED8517 /* Numbers */,
 				9B5BE2511D72E390006C5B96 /* TeX */,
+				9B04DC821FD60C940097F0A7 /* View */,
 				9B4733C41D4ACBE00055A7E8 /* Info.plist */,
 			);
 			name = Tests;
 			path = MathTests;
+			sourceTree = "<group>";
+		};
+		9B47AAF01FE14A92004B5B45 /* CurveFitting */ = {
+			isa = PBXGroup;
+			children = (
+				9BC7689E1FE030650069050A /* CurveFitting.swift */,
+				9B47AAF31FE1534F004B5B45 /* TrigonometricCurveFitting.swift */,
+				9B47AAF51FE15390004B5B45 /* LevenbergMarquardt.swift */,
+			);
+			path = CurveFitting;
+			sourceTree = "<group>";
+		};
+		9B4977C41EBD3CE800B65019 /* Automata */ = {
+			isa = PBXGroup;
+			children = (
+				9B4977CB1EBD3D6900B65019 /* Automaton.swift */,
+				9B4977C91EBD3D5800B65019 /* DFA.swift */,
+				9B4977C71EBD3D3E00B65019 /* NFA.swift */,
+			);
+			path = Automata;
 			sourceTree = "<group>";
 		};
 		9B5BE24E1D72E36C006C5B96 /* General */ = {
@@ -350,19 +595,164 @@
 			name = Protocols;
 			sourceTree = "<group>";
 		};
+		9B67D1BB1FC7B69B0054C4A9 /* Fourier */ = {
+			isa = PBXGroup;
+			children = (
+				9B67D1B91FC7B6950054C4A9 /* FastFourierTransform.swift */,
+			);
+			path = Fourier;
+			sourceTree = "<group>";
+		};
+		9B6925E91FC78DA200A2BD21 /* Numerics */ = {
+			isa = PBXGroup;
+			children = (
+				9B6925EA1FC78DC200A2BD21 /* InterpolationTests.swift */,
+			);
+			name = Numerics;
+			sourceTree = "<group>";
+		};
+		9B6CEAEC1FDC68A8004FBCB3 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9BB913901FEBC45F008059C0 /* Standard Library */,
+				9B6CEAFF1FDC6B7F004FBCB3 /* CoreGraphics */,
+				9B6CEB011FDC6B96004FBCB3 /* Foundation */,
+				9B6CEB001FDC6B8D004FBCB3 /* Cocoa */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		9B6CEAFF1FDC6B7F004FBCB3 /* CoreGraphics */ = {
+			isa = PBXGroup;
+			children = (
+				9B6CEAED1FDC68C1004FBCB3 /* CGColor.swift */,
+				9B6CEAF31FDC695B004FBCB3 /* CGRect.swift */,
+				9B6CEAF91FDC6A4F004FBCB3 /* CGSize.swift */,
+			);
+			path = CoreGraphics;
+			sourceTree = "<group>";
+		};
+		9B6CEB001FDC6B8D004FBCB3 /* Cocoa */ = {
+			isa = PBXGroup;
+			children = (
+				9B6CEAEF1FDC68D9004FBCB3 /* NSView.swift */,
+				9B6CEB021FDC6BF0004FBCB3 /* NSMenu.swift */,
+				9B6CEAF11FDC6946004FBCB3 /* NSTextField.swift */,
+				9B6CEAF71FDC6A0E004FBCB3 /* NSStackView.swift */,
+				9B6CEB041FDC6D13004FBCB3 /* ApplicationDelegate.swift */,
+			);
+			path = Cocoa;
+			sourceTree = "<group>";
+		};
+		9B6CEB011FDC6B96004FBCB3 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				9B6CEAFB1FDC6A7D004FBCB3 /* Character.swift */,
+				9B6CEAFD1FDC6AB5004FBCB3 /* String.swift */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		9B825EB91EBF2CB9003A9B9C /* Automata */ = {
+			isa = PBXGroup;
+			children = (
+				9B825EB71EBF2CA3003A9B9C /* NFATest.swift */,
+				9B825EB51EBF2C94003A9B9C /* DFATest.swift */,
+			);
+			name = Automata;
+			sourceTree = "<group>";
+		};
+		9B959AFC1FD8FE71000B4404 /* FourierPlotView */ = {
+			isa = PBXGroup;
+			children = (
+				9B959AFA1FD8FE69000B4404 /* CustomFourierPlotViewController.swift */,
+				9B959AF81FD8F9A6000B4404 /* CustomFourierPlotView.swift */,
+			);
+			path = FourierPlotView;
+			sourceTree = "<group>";
+		};
+		9B959AFD1FD8FE7E000B4404 /* InterpolationPlotView */ = {
+			isa = PBXGroup;
+			children = (
+				9B04DC8C1FD7A40D0097F0A7 /* CustomPlotViewController.swift */,
+				9B04DC861FD6F5810097F0A7 /* CustomPlotView.swift */,
+			);
+			path = InterpolationPlotView;
+			sourceTree = "<group>";
+		};
+		9B959AFE1FD8FE8C000B4404 /* PlotView */ = {
+			isa = PBXGroup;
+			children = (
+				9B04DC771FD60BB30097F0A7 /* PlotView.swift */,
+				9B04DC751FD60BB20097F0A7 /* PlotViewController.swift */,
+			);
+			path = PlotView;
+			sourceTree = "<group>";
+		};
+		9BB913901FEBC45F008059C0 /* Standard Library */ = {
+			isa = PBXGroup;
+			children = (
+				9BB9138E1FEBC42B008059C0 /* ClosedRange.swift */,
+				9BB913911FEBC471008059C0 /* Bool.swift */,
+			);
+			path = "Standard Library";
+			sourceTree = "<group>";
+		};
+		9BC799C21FD60B3B00D4A782 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9B04DC761FD60BB20097F0A7 /* PlotWindow.swift */,
+				9B6CEAF51FDC6990004FBCB3 /* FunctionPlotDataSource.swift */,
+				9B70A5D51FDC07BA00769B8D /* SamplingRangeView.swift */,
+				9B959AFE1FD8FE8C000B4404 /* PlotView */,
+				9B959AFD1FD8FE7E000B4404 /* InterpolationPlotView */,
+				9B959AFC1FD8FE71000B4404 /* FourierPlotView */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		9BD8A6A11D705C3F00C2618E /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				9B4C42981FBF97DB00786391 /* LinuxSupport.swift */,
+				9B4C429A1FBFB0BB00786391 /* General.swift */,
 				9B46A0591D78FEC900C1059E /* Algebra */,
+				9B4977C41EBD3CE800B65019 /* Automata */,
 				9B46A0681D78FEC900C1059E /* Functions */,
 				9B46A06A1D78FEC900C1059E /* General */,
 				9B46A06C1D78FEC900C1059E /* Linear Algebra */,
-				9B46A06D1D78FEC900C1059E /* LinuxSupport.swift */,
+				9B2539AA1FBE014600824CFC /* Numerics */,
 				9B46A0771D78FEC900C1059E /* Numbers */,
 				9B46A0791D78FEC900C1059E /* TeX */,
+				9BC799C21FD60B3B00D4A782 /* View */,
+				9B6CEAEC1FDC68A8004FBCB3 /* Extensions */,
 				9BD8A6731D705C2F00C2618E /* Info.plist */,
 			);
-			name = Sources;
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		9BE2CB7D1FD0ACAE00BD4942 /* Discrete Functions */ = {
+			isa = PBXGroup;
+			children = (
+				9BE2CB2D1FCF732900BD4942 /* DiscreteFunction.swift */,
+				9B059DFF1FE66A230032D173 /* Smoothing.swift */,
+				9B47AAF01FE14A92004B5B45 /* CurveFitting */,
+				9B04DC851FD6B62B0097F0A7 /* Sampling */,
+				9BE2CB821FD0B28500BD4942 /* Interpolation */,
+			);
+			path = "Discrete Functions";
+			sourceTree = "<group>";
+		};
+		9BE2CB821FD0B28500BD4942 /* Interpolation */ = {
+			isa = PBXGroup;
+			children = (
+				9BE2CB801FD0B12600BD4942 /* Interpolation.swift */,
+				9B6925E21FC6DFE300A2BD21 /* LinearInterpolation.swift */,
+				9BE2CB891FD1652700BD4942 /* CubicSplineInterpolation.swift */,
+				9B6925E41FC6DFED00A2BD21 /* NearestNeighborInterpolation.swift */,
+				9B6925E61FC6E02000A2BD21 /* NewtonPolynomialInterpolation.swift */,
+			);
+			path = Interpolation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -372,7 +762,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9B4733B91D4ACBB80055A7E8 /* Build configuration list for PBXNativeTarget "Math" */;
 			buildPhases = (
+				BBA120686267425DF3589B6C /* [CP] Check Pods Manifest.lock */,
 				9B4733AC1D4ACBB80055A7E8 /* Sources */,
+				9B2539B11FBE02D000824CFC /* ShellScript */,
+				A1E15104B9BC8FB487BFE8A1 /* Frameworks */,
+				1CA4CEFD6A8050D02CC17EEF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -387,8 +781,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9B4733C81D4ACBE00055A7E8 /* Build configuration list for PBXNativeTarget "MathTests" */;
 			buildPhases = (
+				E580C9ED34BD673006CD3C8D /* [CP] Check Pods Manifest.lock */,
 				9B4733BC1D4ACBE00055A7E8 /* Sources */,
 				9B4733BD1D4ACBE00055A7E8 /* Frameworks */,
+				240B314F876B8DC81A1AA319 /* [CP] Embed Pods Frameworks */,
+				833826DFAE257B0A7F54D6FF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -407,20 +804,26 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0910;
 				ORGANIZATIONNAME = pauljohanneskraft;
 				TargetAttributes = {
 					9B4733B01D4ACBB80055A7E8 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = TJSHMGE2VX;
 						DevelopmentTeamName = "Paul Kraft (Personal Team)";
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 					};
 					9B4733BF1D4ACBE00055A7E8 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = TJSHMGE2VX;
 						DevelopmentTeamName = "Paul Kraft (Personal Team)";
+						LastSwiftMigration = 0910;
+						ProvisioningStyle = Automatic;
+					};
+					9B825EAB1EBF19EE003A9B9C = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = WCM2L8RG39;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -439,46 +842,215 @@
 			targets = (
 				9B4733B01D4ACBB80055A7E8 /* Math */,
 				9B4733BF1D4ACBE00055A7E8 /* MathTests */,
+				9B825EAB1EBF19EE003A9B9C /* Documentation */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1CA4CEFD6A8050D02CC17EEF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Math/Pods-Math-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		240B314F876B8DC81A1AA319 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MathTests/Pods-MathTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/CorePlot/CorePlot.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CorePlot.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MathTests/Pods-MathTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		833826DFAE257B0A7F54D6FF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MathTests/Pods-MathTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9B2539B11FBE02D000824CFC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=/usr/local/bin:$PATH\nif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    if which brew; then\n        brew install swiftlint\n        if which swiftlint >/dev/null; then\n            swiftlint\n        else\n            echo \"warning: SwiftLint could not be installed using Homebrew...\"\n        fi\n    else\n        /usr/bin/ruby -e \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)\"\n        if which brew; then\n            brew install swiftlint\n            if which swiftlint >/dev/null; then\n                swiftlint\n            else\n                echo \"warning: SwiftLint could not be installed using Homebrew...\"\n            fi\n        else\n            echo \"warning: Homebrew could not be installed...\"\n        fi\n    fi\nfi";
+		};
+		9B825EAF1EBF19F3003A9B9C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = jazzy;
+		};
+		BBA120686267425DF3589B6C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Math-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E580C9ED34BD673006CD3C8D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MathTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9B4733AC1D4ACBB80055A7E8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B46A0811D78FEC900C1059E /* CustomFunction.swift in Sources */,
 				9B46A0881D78FEC900C1059E /* Polynomial.swift in Sources */,
+				9BE2CB811FD0B12600BD4942 /* Interpolation.swift in Sources */,
 				9B46A0831D78FEC900C1059E /* ExponentialFunction.swift in Sources */,
+				9BC768A51FE03E3E0069050A /* HorizontalDenseVector.swift in Sources */,
+				9BD5AE0F1FEC2E030030122F /* FloatExtensions.swift in Sources */,
+				9B6CEAFE1FDC6AB5004FBCB3 /* String.swift in Sources */,
 				9B46A0901D78FEC900C1059E /* Complex.swift in Sources */,
+				9BE2CB881FD0FDEF00BD4942 /* LinearAlgebraic.swift in Sources */,
+				9B2539AE1FBE016A00824CFC /* DoubleExtensions.swift in Sources */,
 				9B46A08A1D78FEC900C1059E /* PolynomialFunction.swift in Sources */,
+				9B6CEAF81FDC6A0E004FBCB3 /* NSStackView.swift in Sources */,
+				9B959AFB1FD8FE69000B4404 /* CustomFourierPlotViewController.swift in Sources */,
 				9B46A07D1D78FEC900C1059E /* ModuleLikeProtocols.swift in Sources */,
+				9BD5AE0D1FEC29B60030122F /* DoubleProtocolExtensions.swift in Sources */,
+				9B6CEB051FDC6D13004FBCB3 /* ApplicationDelegate.swift in Sources */,
 				9B46A0851D78FEC900C1059E /* Function.swift in Sources */,
 				9B46A0821D78FEC900C1059E /* Equation.swift in Sources */,
+				9B47AAF21FE14AAC004B5B45 /* TrigonometricFunction.swift in Sources */,
 				9B46A0871D78FEC900C1059E /* _Polynomial.swift in Sources */,
+				9B6CEAF41FDC695B004FBCB3 /* CGRect.swift in Sources */,
+				9B04DC841FD61AD80097F0A7 /* SamplingRange.swift in Sources */,
 				9B46A07E1D78FEC900C1059E /* RingLike.swift in Sources */,
+				9B6CEAFA1FDC6A4F004FBCB3 /* CGSize.swift in Sources */,
 				9B46A0961D78FEC900C1059E /* Numeric.swift in Sources */,
 				9B46A07B1D78FEC900C1059E /* GroupLikeProtocols.swift in Sources */,
-				9B46A08F1D78FEC900C1059E /* LinuxSupport.swift in Sources */,
 				9B46A0951D78FEC900C1059E /* BasicArithmetic.swift in Sources */,
+				9B4977C81EBD3D3E00B65019 /* NFA.swift in Sources */,
+				9B6925E31FC6DFE300A2BD21 /* LinearInterpolation.swift in Sources */,
 				9B46A0801D78FEC900C1059E /* ConstantFunction.swift in Sources */,
+				9BC768A31FE03E310069050A /* SparseMatrix.swift in Sources */,
+				9BC768A71FE03E490069050A /* SparseVector.swift in Sources */,
+				9BA13BDE1FE1B66E0072E5D0 /* VerticalDenseVector.swift in Sources */,
+				9B4977CA1EBD3D5800B65019 /* DFA.swift in Sources */,
 				9B46A08B1D78FEC900C1059E /* Term.swift in Sources */,
-				9B46A0911D78FEC900C1059E /* EnhancedNumber.swift in Sources */,
-				9B46A08C1D78FEC900C1059E /* TrigonometricFunctions.swift in Sources */,
+				9B1503ED1FC7D7FA000BC543 /* ComplexConvertible.swift in Sources */,
+				9BD5AE0B1FEC28C30030122F /* Ordered.swift in Sources */,
+				9B46A0911D78FEC900C1059E /* Enhanced.swift in Sources */,
 				9B46A07A1D78FEC900C1059E /* GroupLike.swift in Sources */,
-				9B46A08E1D78FEC900C1059E /* Matrix.swift in Sources */,
+				9B46A08E1D78FEC900C1059E /* DenseMatrix.swift in Sources */,
 				9B46A07F1D78FEC900C1059E /* RingLikeProtocols.swift in Sources */,
+				9B6CEAF01FDC68D9004FBCB3 /* NSView.swift in Sources */,
+				9BE2CB2E1FCF732900BD4942 /* DiscreteFunction.swift in Sources */,
+				9B6CEAEE1FDC68C1004FBCB3 /* CGColor.swift in Sources */,
+				9B04DC7A1FD60BB30097F0A7 /* PlotView.swift in Sources */,
+				9BE2CB841FD0CE5100BD4942 /* Functions.swift in Sources */,
 				9B46A08D1D78FEC900C1059E /* Constants.swift in Sources */,
+				9BE2CB7F1FD0ACC500BD4942 /* Sampling.swift in Sources */,
+				9B47AAF61FE15390004B5B45 /* LevenbergMarquardt.swift in Sources */,
+				9BE2CB8A1FD1652700BD4942 /* CubicSplineInterpolation.swift in Sources */,
+				9B04DC781FD60BB30097F0A7 /* PlotViewController.swift in Sources */,
 				9B46A0891D78FEC900C1059E /* PolynomialFields.swift in Sources */,
+				9B059E001FE66A230032D173 /* Smoothing.swift in Sources */,
 				9B46A0931D78FEC900C1059E /* AdvancedNumeric.swift in Sources */,
-				9B46A0861D78FEC900C1059E /* Growth.swift in Sources */,
+				9BA084591FD59D9A00424E5D /* Power.swift in Sources */,
+				9B4977CC1EBD3D6900B65019 /* Automaton.swift in Sources */,
+				9B6925E51FC6DFED00A2BD21 /* NearestNeighborInterpolation.swift in Sources */,
+				9BB913921FEBC471008059C0 /* Bool.swift in Sources */,
+				9BC7689F1FE030650069050A /* CurveFitting.swift in Sources */,
+				9BB9138F1FEBC42B008059C0 /* ClosedRange.swift in Sources */,
+				9BA13BDC1FE1AE740072E5D0 /* TransposedDenseMatrix.swift in Sources */,
+				9B4C42991FBF97DB00786391 /* LinuxSupport.swift in Sources */,
+				9BD5AE091FEC28B70030122F /* Randomizable.swift in Sources */,
+				9B4C429B1FBFB0BB00786391 /* General.swift in Sources */,
+				9B04DC791FD60BB30097F0A7 /* PlotWindow.swift in Sources */,
+				9BA084581FD59D9A00424E5D /* Logarithm.swift in Sources */,
+				9B04DC871FD6F5810097F0A7 /* CustomPlotView.swift in Sources */,
+				9B2539AC1FBE015F00824CFC /* FloatingPointNumber.swift in Sources */,
+				9B959AF91FD8F9A6000B4404 /* CustomFourierPlotView.swift in Sources */,
+				9BE2CB861FD0FD7800BD4942 /* Vector.swift in Sources */,
 				9B46A0921D78FEC900C1059E /* Numbers.swift in Sources */,
+				9B70A5D61FDC07BA00769B8D /* SamplingRangeView.swift in Sources */,
 				9B46A0971D78FEC900C1059E /* RationalNumber.swift in Sources */,
+				9B6CEAF61FDC6990004FBCB3 /* FunctionPlotDataSource.swift in Sources */,
+				9B6925E71FC6E02000A2BD21 /* NewtonPolynomialInterpolation.swift in Sources */,
+				9B96F4B21FE7F55100B73A75 /* Zeros.swift in Sources */,
+				9B47AAF41FE1534F004B5B45 /* TrigonometricCurveFitting.swift in Sources */,
 				9B46A07C1D78FEC900C1059E /* ModuleLike.swift in Sources */,
+				9B6CEAFC1FDC6A7D004FBCB3 /* Character.swift in Sources */,
+				9B67D1BA1FC7B6950054C4A9 /* FastFourierTransform.swift in Sources */,
+				9B04DC8D1FD7A40D0097F0A7 /* CustomPlotViewController.swift in Sources */,
 				9B46A0841D78FEC900C1059E /* Fraction.swift in Sources */,
-				9B46A0941D78FEC900C1059E /* AdvancedNumericTypeExtensions.swift in Sources */,
+				9B46A0941D78FEC900C1059E /* IntegerAdvancedNumeric.swift in Sources */,
+				9B9060E21FE971D9001A06DD /* Matrix.swift in Sources */,
 				9B46A0981D78FEC900C1059E /* LaTeXConvertible.swift in Sources */,
+				9B6CEAF21FDC6946004FBCB3 /* NSTextField.swift in Sources */,
+				9B6CEB031FDC6BF0004FBCB3 /* NSMenu.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,30 +1058,38 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B47AAEF1FE0883F004B5B45 /* CurveFittingTests.swift in Sources */,
 				9B4734161D4AD4DF0055A7E8 /* MatrixTests.swift in Sources */,
 				9B5BE2571D72E415006C5B96 /* EquationTests.swift in Sources */,
 				9B5BE26A1D72E4FA006C5B96 /* AdvancedNumericTests.swift in Sources */,
 				9B47341E1D4AD51D0055A7E8 /* ComplexTests.swift in Sources */,
+				9B04DC801FD60C730097F0A7 /* ViewTests.swift in Sources */,
+				9B9060E81FE9D3EE001A06DD /* VectorTests.swift in Sources */,
 				9B5BE25D1D72E43F006C5B96 /* PolynomialFunctionTests.swift in Sources */,
 				9B5BE26D1D72F9FD006C5B96 /* LinuxCompatibilityTests.swift in Sources */,
 				9B71D3ED1D4BF1C6001C5BE9 /* TermTests.swift in Sources */,
+				9B825EB81EBF2CA3003A9B9C /* NFATest.swift in Sources */,
 				9B5BE25F1D72E450006C5B96 /* ConstantFunctionTests.swift in Sources */,
 				9B47341A1D4AD50A0055A7E8 /* NumericTests.swift in Sources */,
 				9BC8BBDB1D6F0E1D0010AC02 /* BasicArithmeticTests.swift in Sources */,
 				9B5BE2631D72E47B006C5B96 /* TrigonometricFunctionTests.swift in Sources */,
 				9B5BE2531D72E3F0006C5B96 /* RingTests.swift in Sources */,
+				9B825EB61EBF2C94003A9B9C /* DFATest.swift in Sources */,
 				9B5BE25B1D72E433006C5B96 /* PolynomialTests.swift in Sources */,
+				9B6925EB1FC78DC200A2BD21 /* InterpolationTests.swift in Sources */,
 				9B09603D1D4EB14900ED8517 /* DataTypeTest.swift in Sources */,
 				9B5BE2551D72E3F9006C5B96 /* ModuleTests.swift in Sources */,
 				9B4734141D4AD34D0055A7E8 /* ConstantsTest.swift in Sources */,
 				9B47341C1D4AD5130055A7E8 /* RationalNumberTests.swift in Sources */,
 				9B5BE2611D72E466006C5B96 /* CustomFunctionTests.swift in Sources */,
+				9B04DC7F1FD60C6F0097F0A7 /* LogarithmTests.swift in Sources */,
 				9B4734201D4AD5360055A7E8 /* EnhancedNumberTests.swift in Sources */,
+				9B96F4B41FE7F7AF00B73A75 /* FunctionTests.swift in Sources */,
 				9B5BE2671D72E4B3006C5B96 /* FractionTests.swift in Sources */,
 				9B5BE2591D72E426006C5B96 /* _PolynomialTests.swift in Sources */,
+				9B9060EA1FE9D3FD001A06DD /* LinearAlgebraicTests.swift in Sources */,
 				9B5BE2501D72E386006C5B96 /* TeXTests.swift in Sources */,
 				9B4734181D4AD4EC0055A7E8 /* GroupTests.swift in Sources */,
-				9B5BE2651D72E49D006C5B96 /* GrowthTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -533,7 +1113,9 @@
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_ENABLE_MODULES = NO;
 				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = NO;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = NO;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
@@ -541,7 +1123,11 @@
 				CLANG_WARN_ENUM_CONVERSION = NO;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = NO;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = NO;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
@@ -574,6 +1160,7 @@
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -590,7 +1177,9 @@
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_ENABLE_MODULES = NO;
 				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = NO;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = NO;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
@@ -598,7 +1187,11 @@
 				CLANG_WARN_ENUM_CONVERSION = NO;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = NO;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = NO;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
@@ -624,6 +1217,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -633,11 +1227,14 @@
 		};
 		9B4733BA1D4ACBB80055A7E8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 09EE498DF8D64C4A074E5B27 /* Pods-Math.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = TJSHMGE2VX;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -646,12 +1243,13 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = Kraft.Math;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
@@ -659,11 +1257,14 @@
 		};
 		9B4733BB1D4ACBB80055A7E8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B2EE6DEAAAF008FD8A227CF0 /* Pods-Math.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = TJSHMGE2VX;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -672,11 +1273,12 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = Kraft.Math;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
@@ -684,27 +1286,49 @@
 		};
 		9B4733C91D4ACBE00055A7E8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 62B0F6C794B593C3699EB3F5 /* Pods-MathTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = MathTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @loader_path/../../../";
 				PRODUCT_BUNDLE_IDENTIFIER = Kraft.MathTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
 		9B4733CA1D4ACBE00055A7E8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DE61CA4ACFC88BB710AD34A9 /* Pods-MathTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = MathTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @loader_path/../../../";
 				PRODUCT_BUNDLE_IDENTIFIER = Kraft.MathTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		9B825EAC1EBF19EE003A9B9C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = WCM2L8RG39;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		9B825EAD1EBF19EE003A9B9C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = WCM2L8RG39;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -734,6 +1358,15 @@
 			buildConfigurations = (
 				9B4733C91D4ACBE00055A7E8 /* Debug */,
 				9B4733CA1D4ACBE00055A7E8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9B825EAE1EBF19EE003A9B9C /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9B825EAC1EBF19EE003A9B9C /* Debug */,
+				9B825EAD1EBF19EE003A9B9C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

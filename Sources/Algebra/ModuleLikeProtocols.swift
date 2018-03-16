@@ -34,6 +34,3 @@ extension SubVectorSpaceType where Element : NumericType {
     }
 }
 */
-
-
-

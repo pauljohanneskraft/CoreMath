@@ -6,13 +6,13 @@
 //  Copyright © 2016 pauljohanneskraft. All rights reserved.
 //
 
-import XCTest
 import Math
+import XCTest
 
 class ConstantFunctionTests: XCTestCase {
 	// MID_PRIO
 	
-    static var allTests : [(String, (ConstantFunctionTests) -> () throws -> () )] {
+    static var allTests: [(String, (ConstantFunctionTests) -> () throws -> Void )] {
         return [
             ("testOperators", testOperators)
         ]

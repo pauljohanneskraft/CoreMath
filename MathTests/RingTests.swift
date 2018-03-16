@@ -11,7 +11,7 @@ import XCTest
 class RingTests: XCTestCase {
 	// LOW_PRIO
     
-    static var allTests : [(String, (RingTests) -> () throws -> () )] {
+    static var allTests: [(String, (RingTests) -> () throws -> Void )] {
         return [
         ]
     }

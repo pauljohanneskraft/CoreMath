@@ -6,12 +6,12 @@
 //  Copyright © 2016 pauljohanneskraft. All rights reserved.
 //
 
-import XCTest
 import Math
+import XCTest
 
 class TermTests: XCTestCase {
 	
-    static var allTests : [(String, (TermTests) -> () throws -> () )] {
+    static var allTests: [(String, (TermTests) -> () throws -> Void )] {
         return [ ("testPolynomial", testPolynomial) ]
     }
     
@@ -106,4 +106,3 @@ class TermTests: XCTestCase {
     }
 	*/
 }
-

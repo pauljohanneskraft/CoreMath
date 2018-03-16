@@ -6,25 +6,16 @@
 //  Copyright © 2016 pauljohanneskraft. All rights reserved.
 //
 
-import XCTest
 import Math
+import XCTest
 
-#if os(Linux)
-#else
-	
 class LinuxCompatibilityTests: XCTestCase {
-
-	func testLinux() {
-		print(DBL_MAX.hashValue)
-		print(unsafeBitCast(Double.max, to: Int.self))
-		XCTAssert(Double.max == unsafeBitCast(DBL_MAX.hashValue, to: Double.self))
-		print(DBL_MIN.hashValue)
-		print(unsafeBitCast(Double.min, to: Int.self))
-		XCTAssert(Double.min == unsafeBitCast(DBL_MIN.hashValue, to: Double.self))
-		// print("-----------------------------------------")
-		// for _ in 0..<100 { print(Math.random()) }
-	}
-	
+    func testLinux() {
+        print(Double.greatestFiniteMagnitude)
+        print(Double.max.bitPattern)
+        XCTAssertEqual(.max, Double(bitPattern: UInt64(bitPattern: Int64(0x7FEFFFFFFFFFFFFF))))
+        print(Double.leastNormalMagnitude)
+        print(Int(bitPattern: UInt(Double.min.bitPattern)))
+        XCTAssertEqual(.min, Double(bitPattern: UInt64(bitPattern: Int64(0x10000000000000))))
+    }
 }
-
-#endif

@@ -6,8 +6,8 @@
 //  Copyright © 2016 pauljohanneskraft. All rights reserved.
 //
 
-import XCTest
 import Math
+import XCTest
 
 #if os(Linux)
 import Glibc
@@ -19,7 +19,7 @@ class NumericTests: XCTestCase, TypeTest {
 	
 	var elements: [Number] = []
     
-    static var allTests : [(String, (NumericTests) -> () throws -> () )] {
+    static var allTests: [(String, (NumericTests) -> () throws -> Void )] {
         return [
             ("testPrettyMuchEquals", testPrettyMuchEquals),
             ("testPower", testPower),
@@ -28,15 +28,11 @@ class NumericTests: XCTestCase, TypeTest {
     }
 	
 	func testPrettyMuchEquals() {
-		for _ in  0 ..< 1000 {
-			let one = Double.random
-			if one.isNormal {
-				let two = nextafter(one, DBL_MAX)
-				let eq  = one == two
-				let eqn = one =~ two
-				XCTAssert(eqn)
-				XCTAssert(!eq)
-			}
+		for _ in  0 ..< 1_000 {
+            let one = Double.random(inside: -1_000...1_000)
+            let two = nextafter(one, Double.greatestFiniteMagnitude)
+            XCTAssert(one =~ two)
+            XCTAssert(one != two)
 		}
 	}
 	
@@ -54,11 +50,11 @@ class NumericTests: XCTestCase, TypeTest {
 	
 	func testPower() {
 		for _ in 0 ..< 100 {
-			let r = Double.random
-			let p = Double.random
-			let p1 = Math.pow(r,p)
+            let r = Double.random(inside: 0...10_000)
+            let p = Double.random(inside: 2...1_000) * (Bool.random() ? -1 : 1)
+			let p1 = Math.pow(r, p)
 			let p2 = r.power(p)
-			XCTAssert((!p1.isNormal && !p2.isNormal) || p1 == p2, "\(p1) != \(p2)")
+			XCTAssertEqual(p1, p2, "\(r)^\(p)")
 		}
 	}
 	/*

@@ -6,12 +6,12 @@
 //  Copyright © 2016 pauljohanneskraft. All rights reserved.
 //
 
-import XCTest
 import Math
+import XCTest
 
 class GroupTests: XCTestCase {
     
-    static var allTests : [(String, (GroupTests) -> () throws -> () )] {
+    static var allTests: [(String, (GroupTests) -> () throws -> Void )] {
         return [
         ]
     }

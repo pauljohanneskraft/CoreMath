@@ -8,21 +8,21 @@
 
 import Foundation
 
-struct Term : Function {
+public struct Term: Function {
 	
 	// stored properties
-	var factors : [ Function ]
+	public var factors : [ Function ]
 	
 	// initializers
-	init(_ factors: Function...	) { self.factors = factors }
-	init(_ factors: [Function]	) { self.factors = factors }
+	public init(_ factors: Function...	) { self.factors = factors }
+	public init(_ factors: [Function]	) { self.factors = factors }
 	
 	// computed properties
-	var integral : Function {
+	public var integral: Function {
 		var factors = self.factors
 		// print("integral of", self)
 		guard factors.count > 2 else {
-			guard factors.count > 1 else { return factors.count == 0 ? Constant(0) : factors[0].integral }
+			guard factors.count > 1 else { return factors.isEmpty ? Constant(0) : factors[0].integral }
 			// print("2", self)
 			return (factors[0] * factors[1].integral) - (factors[0].derivative*factors[1]).integral
 		}
@@ -31,7 +31,7 @@ struct Term : Function {
 		
 		var terms = [Function]()
 		let indices = factors.indices
-		let integratedIndex = (Math.random() % factors.count)
+        let integratedIndex = Int.random(inside: 0...(factors.count-1))
 		let factor = factors[integratedIndex].integral.reduced
 		var product = [factor]
 		for i in indices {
@@ -39,7 +39,7 @@ struct Term : Function {
 			product.append(factors[i])
 		}
 		let s = Term(product).reduced
-		print(s, "is the first term to integrate", self)
+		// print(s, "is the first term to integrate", self)
 		// print(self, "first term:", s, "from product", product)
 		if !(s == Constant(0)) { terms.append(s) }
 		for i in indices {
@@ -53,12 +53,12 @@ struct Term : Function {
 				} else {
 					product.append(factors[j])
 				}
-				print("(\(i), \(j)) with \(integratedIndex) in \(self) results in", product.last!)
+				// print("(\(i), \(j)) with \(integratedIndex) in \(self) results in", product.last?.description ?? "nil")
 			}
 			// print(self, "factors \(i):", product)
 			let s = Term(product).reduced
 			if s == Constant(0) { continue }
-			print(s, "is the \(i). term to be integrated and subtracted \(product) --> integrating", self)
+			// print(s, "is the \(i). term to be integrated and subtracted \(product) --> integrating", self)
 			// print(self, "product \(i):", s, "will be integrated")
 			let int = -(s.integral.reduced)
 			// print(self, "summand \(i):", int, "has been integrated")
@@ -70,7 +70,7 @@ struct Term : Function {
 		return result
 	}
 	
-	var derivative: Function {
+	public var derivative: Function {
 		var terms = [Function]()
 		for fi in factors.indices {
 			var facs = self.factors
@@ -84,135 +84,112 @@ struct Term : Function {
 		return Equation(terms)
 	}
 
-	var description: String { return coefficientDescription(first: true) }
+	public var description: String { return coefficientDescription(first: true) }
 	
 	public var debugDescription: String {
-		guard factors.count > 0 else { return "Term()" }
+		guard !factors.isEmpty else { return "Term()" }
 		var arr = ""
 		for i in factors.dropLast() {
 			arr += "\(i.debugDescription), "
 		}
-		return "Term(\(arr)\(factors.last!.debugDescription))"
+		return "Term(\(arr)\(factors.last?.debugDescription ?? "nil"))"
 	}
 	
 	public var latex: String {
 		guard !factors.isEmpty else { return "0" }
-		var result = "\(factors.first!.latex)"
+		var result = "\(factors.first?.latex ?? "nil")"
 		for f in factors.dropFirst() { result += " \\cdot \(f.latex)" }
 		return result
 	}
 	
-	var reduced: Function {
-		guard factors.count > 0 else { return Constant(0) }
-		guard factors.count > 1 else { return factors[0] }
-		if factors.count == 2 {
-			let lhs = factors[0]
-			let rhs = factors[1]
-			if let l = lhs as? Equation {
-				if !(rhs is CustomFunction) {
-					var res = [Function]()
-					for f1 in l.terms { res.append(f1 * rhs) }
-					return Equation(res).reduced
-				}
-			}
-			if let r = rhs as? Equation {
-				if !(lhs is CustomFunction) {
-					var res = [Function]()
-					for f1 in r.terms { res.append(f1 * lhs) }
-					return Equation(res).reduced
-				}
-			}
-			if var l = lhs as? Term {
-				l.factors.append(rhs)
-				return l.reduced
-			}
-			if var r = rhs as? Term {
-				r.factors.append(lhs)
-				return r.reduced
-			}
-		}
+	public var reduced: Function {
+        guard factors.count > 1 else {
+            return factors.first ?? Constant(0)
+        }
+        
 		var this = self
 		var i = 0
 		var rest = 1.0
-		var poly = PolynomialFunction(1)
-		var poly1 = _Polynomial(degree: 0)
+		var polynomialFunction = PolynomialFunction(1)
+		var _polynomial = _Polynomial(degree: 0)
 		while i < this.factors.count {
-			// print("testing at", i, ":", this.factors[i], "in", this.factors, "with length", this.factors.count)
-			switch this.factors[i] {
-			case let r as Term:
-				this.factors.append(contentsOf: r.factors)
-				this.factors.remove(at: i)
-			case let r as Constant:
-				if r.value == 0.0 { return r }
-				rest *= r.value
-				this.factors.remove(at: i)
-			case let r as PolynomialFunction:
-				if r.polynomial == 0.0 { return Constant(0.0) }
-				poly.polynomial *= r.polynomial
-				this.factors.remove(at: i)
-			case let r as _Polynomial:
-				poly1 = _Polynomial(degree: r.degree + poly1.degree)
-				this.factors.remove(at: i)
-			default: i += 1
-			}
+            switch this.factors[i] {
+            case let r as Term:
+                this.factors.append(contentsOf: r.factors)
+                this.factors.remove(at: i)
+            case let r as Constant:
+                guard r.value != 0 else { return r }
+                rest *= r.value
+                this.factors.remove(at: i)
+            case let r as PolynomialFunction:
+                guard r.polynomial != 0 else { return Constant(0) }
+                polynomialFunction.polynomial *= r.polynomial
+                this.factors.remove(at: i)
+            case let r as _Polynomial:
+                _polynomial.degree += r.degree
+                this.factors.remove(at: i)
+            case let r as Fraction:
+                this.factors.remove(at: i)
+                return Fraction(
+                    numerator: Term(
+                        [r.numerator, polynomialFunction, _polynomial, ConstantFunction(rest)] + this.factors
+                        ).reduced,
+                    denominator: r.denominator).reduced
+            default:
+                i += 1
+            }
 		}
-		// print(this.factors, poly, rest)
-		if poly1.degree != 0 { this.factors.append(poly1) }
-		let r = poly.polynomial * Polynomial<Double>(rest)
-		if r != 1.0 {
-			if r.degree == 0 { this.factors = [Constant(r[0])] + this.factors }
-			else { this.factors.append(PolynomialFunction(r).reduced) }
-		}
-		if this.factors.count >  1 { return this }
-		if this.factors.count == 1 { return this.factors[0] }
-		return Constant(1.0)
-	}
 
+        if _polynomial.degree != 0 {
+            this.factors.append(_polynomial)
+        }
+        
+        let r = polynomialFunction.polynomial * Polynomial<Double>(floatLiteral: rest)
+		if r != 1.0 {
+			if r.degree == 0 {
+                this.factors = [Constant(r[0])] + this.factors
+            } else {
+                this.factors.append(PolynomialFunction(r).reduced)
+            }
+		}
+        return this.factors.count > 1 ? this : this.factors.first ?? Constant(1)
+	}
 	
 	// functions
-	func call(x: Double) -> Double {
-		var res = 1.0
-		for f in factors { res *= f.call(x: x) }
-		return res
+	public func call(x: Double) -> Double {
+        return factors.reduce(into: 1) { $0 *= $1.call(x: x) }
 	}
 	
 	public func coefficientDescription(first: Bool) -> String {
-		guard factors.count > 1 else { return factors.count == 0 ? "0" : factors[0].coefficientDescription(first: false) }
-		if let coeff = factors[0] as? Constant {
-			let hasMinusOne = coeff.value.abs == 1
-			var result = "\(coeff.value.coefficientDescription(first: first))"
-			guard factors.count > 2 else {
-				let f = factors[1]
-				switch f {
-				case is Equation: return result + "·(\(f))"
-				case is _Polynomial, is CustomFunction: return result + "\(f)"
-				default: return result + "·\(f)"
-				}
-			}
-			if !hasMinusOne { result += "·( " }
-			let f = factors[1]
-			if f is Equation	{ result += "(\(f))"	}
-			else				{ result +=  "\(f)"		}
-			for f in factors.dropFirst(2) {
-				if f is Equation	{ result += "·(\(f))"	}
-				else				{ result +=  "·\(f)"	}
-			}
-			guard !hasMinusOne else { return result }
-			return result + " )"
-		} else {
-			var result = first ? "" : "+ "
-			let f = factors[0]
-			if f is Equation	{ result += "(\(f))"	}
-			else				{ result +=  "\(f)"		}
-			for f in factors.dropFirst() {
-				if f is Equation	{ result += "·(\(f))"	}
-				else				{ result +=  "·\(f)"	}
-			}
-			return result
-		}
+		guard factors.count > 1 else {
+            return factors.first?.coefficientDescription(first: false) ?? 0.description
+        }
+        
+		guard let coeff = factors.first as? Constant else {
+            let sign = first ? "" : "+ "
+            let rest = factors.reduce("") { $0 + ($1 is Equation ? "·(\($1))" : "·\($1)") }.dropFirst()
+            return sign + rest
+        }
+        
+        let hasMinusOne = coeff.value.abs == 1
+        var result = coeff.value.coefficientDescription(first: first)
+        guard factors.count > 2 else {
+            let f = factors[1]
+            switch f {
+            case is Equation:
+                return result + "·(\(f))"
+            case is _Polynomial:
+                return result + "\(f)"
+            default:
+                return result + "·\(f)"
+            }
+        }
+        if !hasMinusOne { result += "·( " }
+        let facs = factors.dropFirst().reduce("") { $0 + ($1 is Equation ? "·(\($1))" : "·\($1)") }.dropFirst()
+        return result + facs + (hasMinusOne ? "" : " )")
 	}
 	
-	func equals(to: Function) -> Bool {
+	public func equals(to: Function) -> Bool {
 		if let t = to as? Term { return t.factors == self.factors }
 		return false
 	}

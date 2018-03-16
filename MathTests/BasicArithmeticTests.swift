@@ -6,13 +6,13 @@
 //  Copyright © 2016 pauljohanneskraft. All rights reserved.
 //
 
-import XCTest
 import Foundation
 import Math
+import XCTest
 
 class BasicArithmeticTests: XCTestCase {
 	
-    static var allTests : [(String, (BasicArithmeticTests) -> () throws -> () )] {
+    static var allTests: [(String, (BasicArithmeticTests) -> () throws -> Void )] {
         return [
             ("testAbs", testAbs),
             ("testReducedDescription", testReducedDescription),
@@ -25,8 +25,8 @@ class BasicArithmeticTests: XCTestCase {
 	}
 	
 	func testReducedDescription() {
-		for _ in 0..<10000 {
-			let a = Double(Int.random)
+		for _ in 0..<10_000 {
+            let a = Double(Int.random(inside: -100...100))
 			XCTAssert(!a.reducedDescription.hasSuffix(".0"), "\(a)")
 		}
 	}
@@ -45,7 +45,6 @@ class BasicArithmeticTests: XCTestCase {
 				XCTAssert(range.contains(sr) ? uz.contains(ur) : !uz.contains(ur))
 			}
 		}
-		
 		
 	}
 	

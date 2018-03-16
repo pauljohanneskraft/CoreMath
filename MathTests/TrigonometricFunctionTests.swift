@@ -6,12 +6,12 @@
 //  Copyright © 2016 pauljohanneskraft. All rights reserved.
 //
 
-import XCTest
 import Math
+import XCTest
 
 class TrigonometricFunctionTests: XCTestCase {
 	
-    static var allTests : [(String, (TrigonometricFunctionTests) -> () throws -> () )] {
+    static var allTests: [(String, (TrigonometricFunctionTests) -> () throws -> Void )] {
         return [
             ("test1", test1),
             ("testPropertiesSin", testPropertiesSin)
@@ -19,21 +19,21 @@ class TrigonometricFunctionTests: XCTestCase {
     }
     
 	func testPropertiesSin() {
-		let sin = Trigonometric.sin
-		let cos = Trigonometric.cos
-		XCTAssert(sin.derivative	==  cos		)
-		XCTAssert(sin.integral		== -cos		)
-		XCTAssert(cos.derivative	== -sin		)
-		XCTAssert(cos.integral		==  sin		)
-		XCTAssert(sin.description	== "sin(x)"	)
-		XCTAssert(cos.description	== "cos(x)"	)
+		let sin = Functions.sin
+		let cos = Functions.cos
+		XCTAssert(sin.derivative ==  cos)
+		XCTAssert(sin.integral == -cos)
+		XCTAssert(cos.derivative == -sin)
+		XCTAssert(cos.integral == sin)
+		XCTAssert(sin.description == "sin(x)")
+		XCTAssert(cos.description == "cos(x)")
 	}
 
 	func test1() {
-		let f1 = Trigonometric.sin.integral + Trigonometric.cos.derivative
+		let f1 = Functions.sin.integral + Functions.cos.derivative
 		print(f1)
 		print(f1.call(x: Constants.pi/2))
-		XCTAssert(f1.call(x: Constants.pi/2) == -1)
+		XCTAssert(f1.call(x: Constants.pi / 2) == -1)
 		let f2 = f1 + 1.0
 		print(f2.debugDescription)
 		print(f2.call(x: Constants.pi/2))

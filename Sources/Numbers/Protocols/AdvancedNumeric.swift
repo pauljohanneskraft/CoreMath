@@ -8,21 +8,29 @@
 
 import Foundation
 
-public protocol AdvancedNumeric : Numeric, Ordered {
+public protocol AdvancedNumeric: Numeric, Ordered {
 	static func % (lhs: Self, rhs: Self) -> Self
 	static func %= (lhs: inout Self, rhs: Self)
+    func mod(_ v: Int) -> Self
+    func greatestCommonDivisor(with other: Self) -> Self
 }
 
-public extension AdvancedNumeric {
-	func mod(_ v: Int) -> Self {
-		let m = self % Self(integerLiteral: v)
-		if m < 0 { return m + Self(integerLiteral: v) }
+extension AdvancedNumeric {
+    public func mod(_ v: Int) -> Self {
+		let m = self % Self(v)
+		if m < 0 { return m + Self(v) }
 		return m
 	}
 }
 
-public extension AdvancedNumeric {
-	public func greatestCommonDivisor(with other: Self) -> Self {
+extension AdvancedNumeric where Self: All {
+    public static func % (lhs: Self, rhs: Self) -> Self {
+        return lhs.copy { $0 %= rhs }
+    }
+}
+
+extension AdvancedNumeric {
+    public func greatestCommonDivisor(with other: Self) -> Self {
 		var a = self > other ? self : other
 		var b = self < other ? self : other
 		while b.abs > 0 {
