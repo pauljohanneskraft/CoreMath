@@ -23,7 +23,7 @@ public protocol ApplicationDelegate: NSApplicationDelegate {
 extension ApplicationDelegate {
     public func open(window: NSWindow) {
         windows.append(window)
-        print("opening window", window)
+        // print("opening window", window)
         window.makeKeyAndOrderFront(self)
     }
     

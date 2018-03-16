@@ -47,25 +47,18 @@ class AdvancedNumericTests: XCTestCase {
 	}
 	
 	func mod< N: AdvancedNumeric >(on type: N.Type) {
-		let a = N(integerLiteral: 20)
-		let am = a.mod(5)
-		// print(am)
-		XCTAssert(am == 0)
-		let b = N(integerLiteral: -10)
-		let bm = b.mod(3)
-		// print(bm)
-		XCTAssert(bm == 2)
+		XCTAssertEqual(N(20).mod(5), 0)
+		XCTAssertEqual(N(-10).mod(3), 2)
 	}
 	
 	func testDoubleRemainder() {
 		for _ in 0 ..< 100 {
-			let r = Double.random
-			let q = Double.random
+            let r = Double.random(inside: -1_000...1_000)
+            let q = Double.random(inside: -1_000...1_000)
             if q == 0.0 { continue }
-            // print(r, q)
 			var p = r
 			p %= q
-			XCTAssert(p == p % q)
+			XCTAssertEqual(p, p % q)
 		}
 	}
 	
@@ -74,7 +67,7 @@ class AdvancedNumericTests: XCTestCase {
 		let m = 0xFFFF_FFFF_FFFF.double
 		XCTAssert(!(m =~ m + 1), "\(m)")
 		for _ in 0 ..< 100 {
-			let a = (Math.random() & 0xFFFF_FFFF_FFFF).double
+            let a = Int.random(inside: 0...0xFFFF_FFFF_FFFF).double
 			XCTAssert(!(a =~ a + 1), "\(a) == \(a + 1)")
 		}
 	}

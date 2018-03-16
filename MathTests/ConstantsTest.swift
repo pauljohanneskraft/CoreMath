@@ -31,6 +31,41 @@ class ConstantsTest: XCTestCase {
         XCTAssertLessThan(abs(9.807_215 - Constants.Physics.g), accuracy)
 	}
     
+    func testInt() {
+        let min = Int(Int32.min) << 32
+        let max = Int(UInt32.max) << 32
+        let range = ClosedRange(min...max)
+        print(range)
+        for _ in 0..<1_000_000_000 {
+            let number = Int.random(inside: range)
+            XCTAssert(range.contains(number), "Range \(range) doesn't contain \(number).")
+            if !(Int.min...Int.max).contains(number) {
+                print(number)
+            }
+        }
+    }
+    
+    func testInt32() {
+        let min = Int32(Int16.random())
+        let max = min + Int32(Int16.random()).abs
+        let range = ClosedRange(min...max)
+        print(min...max)
+        let bigRange = ClosedRange(Int32.min...(-1)) // (Int32.max - Int32(Int16.max)))
+        print(bigRange)
+        let upperRange = ClosedRange(bigRange.upperBound...Int32.max)
+        print(upperRange)
+        for _ in 0..<(Int32.max >> 12) {
+            let random32 = Int32.random(inside: bigRange)
+            if upperRange.contains(random32) {
+                print("found one")
+            }
+            XCTAssert(bigRange.contains(random32), "\(bigRange) doesn't contain \(random32)")
+
+            let number = Int32.random(inside: range)
+            XCTAssert(range.contains(number), "\(range) doesn't contain \(number)")
+        }
+    }
+    
     func testPiUsingCoprimes() {
         
         func gcd(_ num0: Int, _ num1: Int) -> Int {
@@ -63,8 +98,8 @@ class ConstantsTest: XCTestCase {
         while true {
             
             for _ in inner {
-                let a = Int.random.abs
-                let b = Int.random.abs
+                let a = Int.random(inside: Int32.min.integer...Int32.max.integer).abs
+                let b = Int.random(inside: Int32.min.integer...Int32.max.integer).abs
                 
                 if gcd(a, b) > 1 { cofactor += 1 } else { coprimes += 1 }
             }

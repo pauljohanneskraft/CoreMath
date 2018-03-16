@@ -36,7 +36,7 @@ class ComplexTests: XCTestCase, TypeTest {
         super.setUp()
         elements = []
 		for _ in 0 ..< 30 {
-            let c = Complex(real: (Int.random & 0xFFFFFF).double)
+            let c = Complex(real: Int.random(inside: -0xFFFFFF...0xFFFFFF).double)
 			// print("added \(c)")
 			XCTAssert(c != 0)
 			elements.append(c)
@@ -95,7 +95,7 @@ class ComplexTests: XCTestCase, TypeTest {
 	
 	func testRandom() {
 		for _ in 0..<100 {
-			let r = Complex<Double>.random
+            let r = Complex<Double>.random(inside: -1_000...1_000)
 			XCTAssert(r.real == r.double)
 			XCTAssert(r.real.integer == r.integer)
 		}

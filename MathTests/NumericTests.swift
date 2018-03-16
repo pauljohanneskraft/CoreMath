@@ -29,12 +29,10 @@ class NumericTests: XCTestCase, TypeTest {
 	
 	func testPrettyMuchEquals() {
 		for _ in  0 ..< 1_000 {
-			let one = Double.random
-			if one.isNormal {
-				let two = nextafter(one, Double.greatestFiniteMagnitude)
-				XCTAssert(one =~ two)
-				XCTAssert(one != two)
-			}
+            let one = Double.random(inside: -1_000...1_000)
+            let two = nextafter(one, Double.greatestFiniteMagnitude)
+            XCTAssert(one =~ two)
+            XCTAssert(one != two)
 		}
 	}
 	
@@ -52,11 +50,11 @@ class NumericTests: XCTestCase, TypeTest {
 	
 	func testPower() {
 		for _ in 0 ..< 100 {
-			let r = Double.random
-			let p = Double.random
+            let r = Double.random(inside: 0...10_000)
+            let p = Double.random(inside: 2...1_000) * (Bool.random() ? -1 : 1)
 			let p1 = Math.pow(r, p)
 			let p2 = r.power(p)
-			XCTAssert((!p1.isNormal && !p2.isNormal) || p1 == p2, "\(p1) != \(p2)")
+			XCTAssertEqual(p1, p2, "\(r)^\(p)")
 		}
 	}
 	/*

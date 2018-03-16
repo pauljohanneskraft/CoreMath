@@ -152,8 +152,9 @@ extension Complex: Numeric {
         return imaginary == 0 ? real.double : abs.real.double
     }
     
-    public static var random: Complex<Number> {
-        return Complex(real: Number.random)
+    public static func random(inside range: ClosedRange<Complex<Number>>) -> Complex<Number> {
+        return Complex(real: Number.random(inside: range.map { $0.real }),
+                       imaginary: Number.random(inside: range.map { $0.imaginary }))
     }
     
     public var sqrt: Complex<Number> {

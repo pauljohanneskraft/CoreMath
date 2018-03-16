@@ -99,7 +99,7 @@ class InterpolationTests: XCTestCase {
         print("dft-idft:", transformed)
         for index in array.indices {
             let error = (C(array[index]) - transformed[index]).abs
-            XCTAssertLessThan(error, 9.1e16)
+            XCTAssertLessThan(error, 9.1e-16)
         }
     }
     
@@ -228,9 +228,9 @@ class InterpolationTests: XCTestCase {
     
     func testSampling() {
         for function in InterpolationTests.functions {
-            let start = Double.random.remainder(dividingBy: 100).abs
-            let end = start + (Double.random.remainder(dividingBy: 100).abs + 10)
-            let count = (Int.random % 200).abs + 50
+            let start = Double.random(inside: 0...100)
+            let end = start + Double.random(inside: 10...110)
+            let count = Int.random(inside: 50...250)
             print("Sampling", function, "from", start, "to", end, "using", count, "points")
             testSampling(for: function, start: start, end: end, count: count)
         }

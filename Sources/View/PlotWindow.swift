@@ -15,7 +15,6 @@ private enum PlotWindow {
     static var defaultFrame: CGRect {
         origin.x += 30
         origin.y -= 30
-        print("origin:", origin)
         return CGRect(origin: origin, size: size)
     }
 }

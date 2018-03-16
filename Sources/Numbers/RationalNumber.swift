@@ -170,8 +170,8 @@ extension RationalNumber: Numeric {
         return self.reduced.denominator == 1
     }
     
-    public static var random: RationalNumber {
-        return Q(Math.random(), Math.random()).reduced
+    public static func random(inside range: ClosedRange<RationalNumber>) -> RationalNumber {
+        return RationalNumber(Double.random(inside: range.lowerBound.double...range.upperBound.double))
     }
 }
 

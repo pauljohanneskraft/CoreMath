@@ -32,9 +32,9 @@ class PolynomialTests: XCTestCase {
     func testComplexZeros() {
         measure {
             for _ in 0..<20 {
-                let a = C((Int.random.abs % 20) + 1) * (Int.random % 2 == 0 ? -1 : 1)
+                let a = C(Int.random(inside: 1...19)) * (Math.random() % 2 == 0 ? -1 : 1)
                 XCTAssertNotEqual(a, 0)
-                let c = C(Int.random % 20)
+                let c = C(Int.random(inside: -20...20))
                 let b = C(Double(Int((a * c).double.abs.sqrt)))
                 let poly = Polynomial<C>([c, b, a])
                 
@@ -49,11 +49,10 @@ class PolynomialTests: XCTestCase {
     func testFactorZeros() {
         measure {
             for _ in 0..<10 {
-                let zeros = (0..<10).map { _ in Double(Int.random % 12) }
+                let zeros = (0..<10).map { _ in Double(Int.random(inside: -12...12)) }
                 let polynomial = zeros.reduce(into: Polynomial<Double>(1)) {
                     $0 *= Polynomial<Double>([-$1, 1])
                 }
-                // print(polynomial)
                 XCTAssertEqual(zeros.sorted(), polynomial.zeros.sorted())
             }
         }

@@ -53,10 +53,12 @@ extension DiscreteFunction {
         let smoothCurveFit = smooth.customCurveFit(generator: generator, initialValues: initialValues).function
         
         let newRange = SamplingRange(start: range.start, end: range.end, count: range.count * 20)
-        print(curveFit, smoothCurveFit)
-        vc.plotView.add(dataSource: FunctionPlotDataSource(function: smoothCurveFit, range: newRange), lineWidth: 3, color: .blue)
-        vc.plotView.add(dataSource: FunctionPlotDataSource(function: smooth, range: newRange), lineWidth: 3, color: .green)
-        vc.plotView.add(dataSource: FunctionPlotDataSource(function: curveFit, range: newRange), lineWidth: 3, color: .black)
+        let ds0 = FunctionPlotDataSource(function: smoothCurveFit, range: newRange)
+        let ds1 = FunctionPlotDataSource(function: smooth, range: newRange)
+        let ds2 = FunctionPlotDataSource(function: curveFit, range: newRange)
+        vc.plotView.add(dataSource: ds0, lineWidth: 3, color: .blue)
+        vc.plotView.add(dataSource: ds1, lineWidth: 3, color: .green)
+        vc.plotView.add(dataSource: ds2, lineWidth: 3, color: .black)
         return window
     }
 }

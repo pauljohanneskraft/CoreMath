@@ -10,7 +10,7 @@ import Math
 import XCTest
 
 class ViewTests: XCTestCase {
-    let showWindows = true
+    let showWindows = false
     
     override func setUp() {
         super.setUp()
@@ -50,7 +50,7 @@ class ViewTests: XCTestCase {
     func testInterpolationPlots() {
         guard showWindows else { return }
         let functions = InterpolationTests.functions
-        let random = Int.random.abs % functions.count
+        let random = Int.random(inside: 0...functions.count-1)
         print(random, functions[random])
         let function = Functions.sin / x // functions[random]
         testInterpolationPlots(function: function, using: CubicSplineInterpolation.self)

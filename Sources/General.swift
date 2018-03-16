@@ -111,6 +111,18 @@ extension Double {
     }
 }
 
+extension Double {
+    public var isReal: Bool {
+        return isFinite && !isNaN
+    }
+}
+
+extension Float {
+    public var isReal: Bool {
+        return isFinite && !isNaN
+    }
+}
+
 extension Int {
     var divisors: [Int] {
         let range = 1..<((self + 1).sqrt + 1) / 2

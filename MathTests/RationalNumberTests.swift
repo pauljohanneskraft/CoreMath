@@ -36,7 +36,7 @@ class RationalNumberTests: XCTestCase, TypeTest {
     
 	override func setUp() {
         super.setUp()
-		for _ in 0 ..< 30 { elements.append(Q(Int.random % Int16.max.integer)) }
+        for _ in 0 ..< 30 { elements.append(Q(Int.random(inside: Int16.min.integer...Int16.max.integer))) }
 	}
 	
 	// basic arithmetic

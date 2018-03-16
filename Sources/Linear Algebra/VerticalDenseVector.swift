@@ -8,20 +8,56 @@
 
 import Foundation
 
-struct VerticalDenseVector<Number> {
-    var elements: [Number]
+public struct VerticalDenseVector<Number: BasicArithmetic>: Vector {
+    public typealias Row = [Number]
+    public typealias TwoDimensionalArray = [[Number]]
+    public typealias Size = (rows: Int, columns: Int)
+    
+    public var elements: [Number]
+}
+
+extension VerticalDenseVector: All {}
+
+extension VerticalDenseVector: LinearAlgebraicArithmetic {
+    public typealias MultiplicationResult = DenseMatrix<Number>
+    
+    public static func += <L: LinearAlgebraic>(lhs: inout VerticalDenseVector, rhs: L) where Number == L.Number {
+        precondition(lhs.size == rhs.size)
+        for i in 0..<lhs.size.columns { lhs[i, 0] += rhs[i, 0] }
+    }
+    
+    public static func -= <L: LinearAlgebraic>(lhs: inout VerticalDenseVector, rhs: L) where Number == L.Number {
+        precondition(lhs.size == rhs.size)
+        for i in 0..<lhs.size.columns { lhs[i, 0] -= rhs[i, 0] }
+    }
+    
+    public static func * <L: LinearAlgebraic>(lhs: VerticalDenseVector, rhs: L)
+        -> DenseMatrix<Number> where Number == L.Number {
+            assert(lhs.size.columns == rhs.size.rows)
+            let lrows = 0..<lhs.size.rows
+            let rcolumns = 0..<rhs.size.columns
+            
+            let matrix = lrows.map { i in
+                rcolumns.map { j in lhs[i, 0] * rhs[0, j] }
+            }
+            return DenseMatrix(matrix)
+    }
+    
+    public var transposed: HorizontalDenseVector<Number> {
+        return HorizontalDenseVector(elements: elements)
+    }
 }
 
 extension VerticalDenseVector: LinearAlgebraic {
-    var matrix: [[Number]] {
+    public var matrix: [[Number]] {
         return elements.map { [$0] }
     }
     
-    var size: Size {
+    public var size: Size {
         return (elements.count, 1)
     }
     
-    subscript(row: Int) -> Row {
+    public subscript(row: Int) -> Row {
         get {
             return [elements[row]]
         }
@@ -31,7 +67,7 @@ extension VerticalDenseVector: LinearAlgebraic {
         
     }
     
-    subscript(row: Int, column: Int) -> Number {
+    public subscript(row: Int, column: Int) -> Number {
         get {
             assert(column == 0)
             return elements[row]
@@ -44,7 +80,7 @@ extension VerticalDenseVector: LinearAlgebraic {
 }
 
 extension VerticalDenseVector: CustomStringConvertible {
-    var description: String {
+    public var description: String {
         return "\(elements)^T"
     }
 }

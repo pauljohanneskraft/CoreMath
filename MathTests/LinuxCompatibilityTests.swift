@@ -13,9 +13,9 @@ class LinuxCompatibilityTests: XCTestCase {
     func testLinux() {
         print(Double.greatestFiniteMagnitude)
         print(Double.max.bitPattern)
-        XCTAssert(Double.max == Double(bitPattern: UInt64(bitPattern: Int64(0x7FEFFFFFFFFFFFFF))))
+        XCTAssertEqual(.max, Double(bitPattern: UInt64(bitPattern: Int64(0x7FEFFFFFFFFFFFFF))))
         print(Double.leastNormalMagnitude)
         print(Int(bitPattern: UInt(Double.min.bitPattern)))
-        XCTAssert(Double.min == Double(bitPattern: UInt64(bitPattern: Int64(0x10000000000000))))
+        XCTAssertEqual(.min, Double(bitPattern: UInt64(bitPattern: Int64(0x10000000000000))))
     }
 }

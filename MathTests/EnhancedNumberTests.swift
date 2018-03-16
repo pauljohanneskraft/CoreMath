@@ -32,7 +32,12 @@ class EnhancedNumberTests: XCTestCase, TypeTest {
 		elements.append(.infinity(sign: true))
 		elements.append(.infinity(sign: false))
 		elements.append(.nan)
-		for _ in 0 ..< 10 { elements.append(Enhanced<N>(integerLiteral: N.random % Int16.max.integer)) }
+        for _ in 0 ..< 10 {
+            let n = N.random(inside: Int16.min.integer...Int16.max.integer)
+            let num = Enhanced<N>(integerLiteral: n)
+            elements.append(num)
+            
+        }
 	}
 	
 	var elements: [Enhanced<N>] = []

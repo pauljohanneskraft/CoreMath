@@ -21,8 +21,8 @@ class FractionTests: XCTestCase {
     
 	func testReduced() {
 		for _ in 0 ..< 100 {
-			let num = (Math.random() & 0xFFF).double
-			let den = (Math.random() & 0xFFF + 1).double
+            let num = Int.random(inside: 0...0x0FFF).double
+			let den = Int.random(inside: 0...0x1000).double
 			let a = ConstantFunction(num) / ConstantFunction(den)
 			XCTAssert(a is ConstantFunction)
 			if let c = a as? ConstantFunction {

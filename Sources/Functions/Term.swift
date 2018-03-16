@@ -31,7 +31,7 @@ public struct Term: Function {
 		
 		var terms = [Function]()
 		let indices = factors.indices
-		let integratedIndex = (Math.random() % factors.count)
+        let integratedIndex = Int.random(inside: 0...(factors.count-1))
 		let factor = factors[integratedIndex].integral.reduced
 		var product = [factor]
 		for i in indices {
@@ -39,7 +39,7 @@ public struct Term: Function {
 			product.append(factors[i])
 		}
 		let s = Term(product).reduced
-		print(s, "is the first term to integrate", self)
+		// print(s, "is the first term to integrate", self)
 		// print(self, "first term:", s, "from product", product)
 		if !(s == Constant(0)) { terms.append(s) }
 		for i in indices {
@@ -53,12 +53,12 @@ public struct Term: Function {
 				} else {
 					product.append(factors[j])
 				}
-				print("(\(i), \(j)) with \(integratedIndex) in \(self) results in", product.last?.description ?? "nil")
+				// print("(\(i), \(j)) with \(integratedIndex) in \(self) results in", product.last?.description ?? "nil")
 			}
 			// print(self, "factors \(i):", product)
 			let s = Term(product).reduced
 			if s == Constant(0) { continue }
-			print(s, "is the \(i). term to be integrated and subtracted \(product) --> integrating", self)
+			// print(s, "is the \(i). term to be integrated and subtracted \(product) --> integrating", self)
 			// print(self, "product \(i):", s, "will be integrated")
 			let int = -(s.integral.reduced)
 			// print(self, "summand \(i):", int, "has been integrated")

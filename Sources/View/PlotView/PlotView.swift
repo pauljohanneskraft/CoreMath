@@ -72,7 +72,7 @@ class PlotView: CPTGraphHostingView {
         plotSpace.xRange = CPTPlotRange(
             location: NSNumber(value: range.start - distance),
             length: NSNumber(value: (range.end - range.start) + distance * 2))
-        let values = range.map { function.call(x: $0) }.filter { !$0.isNaN && !$0.isInfinite }
+        let values = range.map { function.call(x: $0) }.filter { $0.isReal }
         
         let min = values.min() ?? 0
         let max = values.max() ?? 1
@@ -112,7 +112,7 @@ class PlotView: CPTGraphHostingView {
     
     @discardableResult
     func setup(function: Function, range: SamplingRange) -> CPTPlot {
-        print("\(PlotView.self).setup(delegate:)")
+        // print("\(PlotView.self).setup(delegate:)")
         setupGraphBorders()
         let (min, max) = setupGraphSpaces(function: function, range: range)
         setupGraphAxisSet(range: range, min: min, max: max)

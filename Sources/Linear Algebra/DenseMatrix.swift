@@ -6,7 +6,7 @@
 //  Copyright © 2016 pauljohanneskraft. All rights reserved.
 //
 
-public struct DenseMatrix<Number>: LinearAlgebraic {
+public struct DenseMatrix<Number: BasicArithmetic> {
     public typealias Row = [Number]
     public typealias TwoDimensionalArray = [[Number]]
     public typealias Size = (rows: Int, columns: Int)
@@ -88,7 +88,7 @@ extension DenseMatrix: CustomStringConvertible {
     }
 }
 
-extension DenseMatrix where Number: BasicArithmetic {
+extension DenseMatrix {
 	public static func identity(_ count: Int) -> DenseMatrix {
 		var mat = [[Number]](repeating: [Number](repeating: 0, count: count), count: count)
 		for i in 0..<count { mat[i][i] = 1 }
@@ -224,23 +224,9 @@ extension DenseMatrix where Number: Numeric {
 
 extension DenseMatrix: All {}
 
-extension DenseMatrix where Number: BasicArithmetic {
-    public static func += (left: inout DenseMatrix, right: DenseMatrix) {
-        assert(left.size == right.size)
-        for i in 0..<left.elements.count {
-            for j in 0..<left.elements[0].count { left.elements[i][j] += right.elements[i][j] }
-        }
-    }
-    
-    public static func -= <LA: LinearAlgebraic>(lhs: inout DenseMatrix, rhs: LA) where LA.Number == Number {
-        assert(lhs.size == rhs.size)
-        let (rows, columnCount) = lhs.size
-        let columns = 0..<columnCount
-        for i in 0 ..< rows {
-            for j in columns { lhs.elements[i][j] -= rhs[i, j] }
-        }
-    }
-    
+extension DenseMatrix: Matrix, LinearAlgebraicArithmetic {
+    public typealias MultiplicationResult = DenseMatrix<Number>
+
     public static func *= (lhs: inout DenseMatrix, rhs: Number) {
         let size = lhs.size
         for i in 0 ..< size.rows {
@@ -248,61 +234,29 @@ extension DenseMatrix where Number: BasicArithmetic {
         }
     }
     
-    public static func *= <LA: LinearAlgebraic>(left: inout DenseMatrix, right: LA) where LA.Number == Number {
-        assert(left.size.columns == right.size.rows)
-        var matrix = [[Number]]()
-        let ls = left.size
-        let lrows = ls.rows
-        let lcols = ls.columns
-        let rcols = right.size.columns
-        
-        for i in 0 ..< lrows {
-            var array = [Number]()
-            for j in 0 ..< rcols {
-                var value: Number = 0
-                for k in 0 ..< lcols { value += (left[i, k] * right[k, j]) }
-                array.append(value)
-            }
-            matrix.append(array)
-        }
-        left = DenseMatrix(matrix)
-    }
-    
-    public static func * (lhs: DenseMatrix, rhs: Number) -> DenseMatrix {
-        return lhs.copy { $0 *= rhs }
-    }
-    
-    public static func * (lhs: Number, rhs: DenseMatrix) -> DenseMatrix {
-        return rhs.copy { $0 *= lhs }
-    }
-    
-    public static func * <LA: LinearAlgebraic>(lhs: DenseMatrix, rhs: LA) -> DenseMatrix where LA.Number == Number {
-        return lhs.copy { $0 *= rhs }
-    }
-    
-    public static func + (lhs: DenseMatrix, rhs: DenseMatrix) -> DenseMatrix {
-        return lhs.copy { $0 += rhs }
-    }
-    
-    public static func - <LA: LinearAlgebraic>(lhs: DenseMatrix, rhs: LA) -> DenseMatrix where LA.Number == Number {
-        return lhs.copy { $0 -= rhs }
-    }
-}
-
-extension DenseMatrix where Number: Equatable {
     public static func == (lhs: DenseMatrix, rhs: DenseMatrix) -> Bool {
         guard lhs.size == rhs.size else { return false }
         return lhs.elements == rhs.elements
+    }
+    
+    public static func *= <L: LinearAlgebraic>(left: inout DenseMatrix, right: L) where L.Number == Number {
+        assert(left.size.columns == right.size.rows)
+        let ls = left.size, lrows = 0..<ls.rows, lcols = 0..<ls.columns
+        let rcols = 0..<right.size.columns
+        
+        left.elements = lrows.map { i -> Row in
+            rcols.map { j -> Number in
+                lcols.reduce(into: 0) { value, k in value += left[i, k] * right[k, j] }
+            }
+        }
+    }
+    
+    public var transposed: TransposedDenseMatrix<Number> {
+        return TransposedDenseMatrix(self)
     }
 }
 
 private func == <T: Equatable>(lhs: [[T]], rhs: [[T]]) -> Bool {
     guard lhs.count == rhs.count else { return false }
     return !lhs.indices.contains { lhs[$0] != rhs[$0] }
-}
-
-extension DenseMatrix {
-    var transposed: TransposedDenseMatrix<Number> {
-        return TransposedDenseMatrix(original: self)
-    }
 }

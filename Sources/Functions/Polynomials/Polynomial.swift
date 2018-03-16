@@ -125,7 +125,11 @@ extension Polynomial { // descriptions
 
 extension Polynomial {
 	public var isZero: Bool {
-        return degree == 0 && coefficients[0] == 0
+        guard degree == 0 else { return false }
+        if let first = coefficients.first as? Double {
+            return Float(first) == 0
+        }
+        return coefficients[0] == 0
     }
 
 	public var hashValue: Int {
@@ -172,114 +176,110 @@ extension Polynomial {
 		
 		while cs.first == 0 { zeros.append(cs.remove(at: 0)) }
 		
-		switch cs.count - 1 {
-		case -1:
+        switch cs.count - 1 {
+        case -1:
             return []
-		case 0:
+        case 0:
             return zeros
-		case 1:
+        case 1:
             return zeros + [-(cs[0] / cs[1])]
-		case 2:
-			let det: Number = cs[1]*cs[1] - 4 * cs[0] * cs[2]
-			if !(det is C) {
-				// det = b^2 - 4ac
-				if det < 0 { return zeros }
-				if det == 0 { return zeros + [-cs[1] / ( 2 * cs[2] ) ] } // -b / 2a
-			}
-			let ds = det.sqrt
-			let a = (-cs[1] + ds ) / ( 2 * cs[2] )
-			let b = (-cs[1] - ds ) / ( 2 * cs[2] )
-			return zeros + [a, b]
-		default:
-			let factors = Polynomial(cs).factors
-			for f in factors {
+        case 2:
+            let det: Number = cs[1]*cs[1] - 4 * cs[0] * cs[2]
+            if !(det is C) {
+                // det = b^2 - 4ac
+                if det < 0 { return zeros }
+                if det == 0 { return zeros + [-cs[1] / ( 2 * cs[2] ) ] } // -b / 2a
+            }
+            let ds = det.sqrt
+            let a = (-cs[1] + ds ) / ( 2 * cs[2] )
+            let b = (-cs[1] - ds ) / ( 2 * cs[2] )
+            return zeros + [a, b]
+        default:
+            let factors = Polynomial(cs).factors
+            for f in factors {
                 guard f.degree >= 3 else {
                     zeros += f.zeros
                     continue
                 }
-				var k = false
-				for i in 1...f.degree where f[i] != 0 {
+                var k = false
+                for i in 1...f.degree where f[i] != 0 {
                     guard !k else { return zeros }
                     k = true
-				}
-				let z = (-f[0]/f[f.degree]).power(1 / Double(f.degree))
-				zeros.append(z)
-				if f.degree % 2 == 0 { zeros.append(-z) }
-			}
-			return zeros
-		}
-	}
-	
-	public var factors: [Polynomial<Number>] {
-		var cs = reduced.coefficients
-		var factors = [Polynomial<Number>]()
-		var i = 0
-		
-		if !cs.isEmpty {
-			while i < cs.count && cs[i] == 0 { i += 1 }
-			if i > 1 {
-				cs = cs.dropFirst(i) + []
-				factors.append(Polynomial<Number>((1, i)))
-			}
-		}
-		
-		var this = Polynomial(cs)
-		
-		if cs.count < 3 { return factors + [this] }
-		if cs.count == 3 {
-			let det: Number = cs[1]*cs[1] - 4 * cs[0] * cs[2]
-			if !(det is C) {
-				// det = b^2 - 4ac
-				if det < 0 { return factors + [this] }
-				if det == 0 {
-					let n = cs[1] / ( 2 * cs[2] )
-					return factors + [Polynomial<Number>((n, 0), (1, 1)),
-					                  Polynomial<Number>((n, 0), (1, 1))]
-				} // -b / 2a
-			}
-			let ds = det.sqrt
-			let a = (cs[1] + ds ) / ( 2 * cs[2] )
-			let b = (cs[1] - ds ) / ( 2 * cs[2] )
-			return factors + [Polynomial<Number>((a, 0), (1, 1)),
-			                  Polynomial<Number>((b, 0), (1, 1))]
-		}
-		// source: http://www.math.utah.edu/~wortman/1050-text-fp.pdf
-		
+                }
+                let z = (-f[0]/f[f.degree]).power(1 / Double(f.degree))
+                zeros.append(z)
+                if f.degree % 2 == 0 { zeros.append(-z) }
+            }
+            return zeros
+        }
+    }
+    
+    public var factors: [Polynomial<Number>] {
+        var cs = reduced.coefficients
+        var factors = [Polynomial<Number>]()
+        guard let i = cs.indices.first(where: { cs[$0] != 0 }) else { return [] }
+        
+        if i > 0 {
+            cs.removeFirst(i)
+            factors.append(Polynomial<Number>((1, i)))
+        }
+        
+        var this = Polynomial(cs)
+        if cs.count < 3 { return factors + [this] }
+        if cs.count == 3 {
+            let det: Number = cs[1]*cs[1] - 4 * cs[0] * cs[2]
+            if !(det is C) {
+                // det = b^2 - 4ac
+                if det < 0 { return factors + [this] }
+                if det == 0 {
+                    let n = cs[1] / ( 2 * cs[2] )
+                    return factors + [Polynomial<Number>((n, 0), (1, 1)),
+                                      Polynomial<Number>((n, 0), (1, 1))]
+                } // -b / 2a
+            }
+            let ds = det.sqrt
+            let a = (cs[1] + ds ) / ( 2 * cs[2] )
+            let b = (cs[1] - ds ) / ( 2 * cs[2] )
+            return factors + [Polynomial<Number>((a, 0), (1, 1)),
+                              Polynomial<Number>((b, 0), (1, 1))]
+        }
+        // source: http://www.math.utah.edu/~wortman/1050-text-fp.pdf
+        
         guard let last = cs.last else { return factors }
-		for i in cs.indices { cs[i] /= last }
-		if last != 1 { factors.append(Polynomial<Number>((last, 0))) }
-		
-		this = Polynomial(cs)
-		
+        for i in cs.indices { cs[i] /= last }
+        if last != 1 { factors.append(Polynomial<Number>((last, 0))) }
+        
+        this = Polynomial(cs)
+        
         guard let first = cs.first?.abs, first.isInteger else { return factors }
-		let pfactors = first.integer.divisors
-		for i in 1 ..< cs.count - 1 {
-			for pF in pfactors {
-				let p = Number(integerLiteral: pF)
-				
-				// p
-				let poly1 = Polynomial<Number>((p, 0), (1, i))
-				let div1 = this /% poly1
-				if div1.remainder.numerator.isZero {
-					// print("agreeing on", div1, poly1, this, Polynomial(div1.numerator))
-					factors.append(poly1)
-					return factors + div1.result.factors
-				}
-				
-				// -p
-				let poly2 = Polynomial<Number>((-p, 0), (1, i))
-				let div2 = this /% poly2
-				if div2.remainder.numerator.isZero {
-					factors.append(poly2)
-					return factors + div2.result.factors
-				}
-			}
+        let pfactors = first.integer.divisors
+        for i in 1 ..< cs.count - 1 {
+            for pF in pfactors {
+                let p = Number(integerLiteral: pF)
+                
+                // p
+                let poly1 = Polynomial<Number>((p, 0), (1, i))
+                let div1 = this /% poly1
+                if div1.remainder.numerator.isZero {
+                    // print("agreeing on", div1, poly1, this, Polynomial(div1.numerator))
+                    factors.append(poly1)
+                    return factors + div1.result.factors
+                }
+                
+                // -p
+                let poly2 = Polynomial<Number>((-p, 0), (1, i))
+                let div2 = this /% poly2
+                if div2.remainder.numerator.isZero {
+                    factors.append(poly2)
+                    return factors + div2.result.factors
+                }
+            }
 		}
 		return factors + [this]
 	}
 }
 
-infix operator    ?=
+infix operator ?=
 
 extension Polynomial {
     public static func == (lhs: Polynomial, rhs: Polynomial) -> Bool {

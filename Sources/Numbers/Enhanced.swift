@@ -201,8 +201,11 @@ extension Enhanced {
 }
 
 extension Enhanced where Number: Numeric {
-    public static var random: Enhanced {
-        return .finite(Number.random)
+    public static func random(inside range: ClosedRange<Enhanced>) -> Enhanced {
+        guard case let .finite(lowerBound) = range.lowerBound, case let .finite(upperBound) = range.upperBound else {
+            return .nan
+        }
+        return .finite(Number.random(inside: lowerBound...upperBound))
     }
     
     public var integer: Int {

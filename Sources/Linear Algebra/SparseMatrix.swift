@@ -12,7 +12,7 @@ public protocol EmptyInitializable {
     init()
 }
 
-struct SparseMatrix<Number: Equatable>: LinearAlgebraic {
+struct SparseMatrix<Number: BasicArithmetic>: LinearAlgebraic {
     typealias Size = (rows: Int, columns: Int)
     typealias TwoDimensionalArray = [[Number]]
     typealias Row = [Number]

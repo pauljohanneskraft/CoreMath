@@ -27,8 +27,14 @@ public protocol Ordered: Comparable {
 	static var max: Self { get }
 }
 
-public protocol Randomizable {
-	static var random: Self { get }
+extension Ordered {
+    static var range: ClosedRange<Self> {
+        return min...max
+    }
+}
+
+public protocol Randomizable: Comparable {
+    static func random(inside: ClosedRange<Self>) -> Self
 }
 
 infix operator =~ : ComparisonPrecedence

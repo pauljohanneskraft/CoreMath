@@ -57,6 +57,7 @@ extension Fraction: Function {
             return numerator * (1 / denominator.value)
         case let (numerator as PolynomialFunction, denominator as PolynomialFunction):
             let frac = numerator.polynomial /% denominator.polynomial
+            guard !frac.remainder.numerator.isZero else { return PolynomialFunction(frac.result) }
             return Equation(
                 PolynomialFunction(frac.result),
                 Fraction(numerator: PolynomialFunction(frac.remainder.numerator),

@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+struct SparseHorizontalVector<Number: BasicArithmetic> {
+    var elements: [Int: Number]
+}

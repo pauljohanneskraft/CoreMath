@@ -39,11 +39,6 @@
                BlueprintName = "MathTests"
                ReferencedContainer = "container:Math.xcodeproj">
             </BuildableReference>
-            <SkippedTests>
-               <Test
-                  Identifier = "CurveFittingTests/test1()">
-               </Test>
-            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>
