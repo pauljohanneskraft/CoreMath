@@ -2,7 +2,8 @@ use_frameworks!
 
 target 'CoreMath_Example' do
   pod 'CoreMath', :path => '../'
-
+  pod 'CorePlot'
+  
   target 'CoreMath_Tests' do
     inherit! :search_paths
 

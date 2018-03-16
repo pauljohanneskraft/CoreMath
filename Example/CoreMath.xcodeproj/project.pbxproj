@@ -8,6 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		18247EB0E81DE654620F7B50 /* Pods_CoreMath_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B472F2F0EFC7700A9D8125E1 /* Pods_CoreMath_Example.framework */; };
+		9B304307205C84CE00C4F4B5 /* CustomFourierPlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3042FB205C84CD00C4F4B5 /* CustomFourierPlotView.swift */; };
+		9B304308205C84CE00C4F4B5 /* CustomFourierPlotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3042FC205C84CD00C4F4B5 /* CustomFourierPlotViewController.swift */; };
+		9B304309205C84CE00C4F4B5 /* CustomPlotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3042FE205C84CD00C4F4B5 /* CustomPlotViewController.swift */; };
+		9B30430A205C84CE00C4F4B5 /* CustomPlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3042FF205C84CD00C4F4B5 /* CustomPlotView.swift */; };
+		9B30430B205C84CE00C4F4B5 /* PlotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B304301205C84CD00C4F4B5 /* PlotViewController.swift */; };
+		9B30430C205C84CE00C4F4B5 /* PlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B304302205C84CD00C4F4B5 /* PlotView.swift */; };
+		9B30430E205C84CE00C4F4B5 /* SamplingRangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B304304205C84CD00C4F4B5 /* SamplingRangeView.swift */; };
+		9B30430F205C84CE00C4F4B5 /* FunctionPlotDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B304305205C84CE00C4F4B5 /* FunctionPlotDataSource.swift */; };
+		9B304310205C84CE00C4F4B5 /* PlotWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B304306205C84CE00C4F4B5 /* PlotWindow.swift */; };
+		9B304317205C859700C4F4B5 /* NSTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B304312205C859700C4F4B5 /* NSTextField.swift */; };
+		9B304318205C859700C4F4B5 /* NSMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B304313205C859700C4F4B5 /* NSMenu.swift */; };
+		9B304319205C859700C4F4B5 /* NSStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B304314205C859700C4F4B5 /* NSStackView.swift */; };
+		9B30431A205C859700C4F4B5 /* NSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B304315205C859700C4F4B5 /* NSView.swift */; };
+		9B30431B205C859700C4F4B5 /* ApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B304316205C859700C4F4B5 /* ApplicationDelegate.swift */; };
+		9B304320205C85B300C4F4B5 /* CGSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B30431D205C85B200C4F4B5 /* CGSize.swift */; };
+		9B304321205C85B300C4F4B5 /* CGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B30431E205C85B200C4F4B5 /* CGRect.swift */; };
+		9B304322205C85B300C4F4B5 /* CGColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B30431F205C85B200C4F4B5 /* CGColor.swift */; };
 		D5BB1CA2BD3D5A3147CBC813 /* Pods_CoreMath_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D31F26BF0AE9765F1E26D19 /* Pods_CoreMath_Tests.framework */; };
 		ED83F67C20348A760038D96B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED83F67B20348A760038D96B /* AppDelegate.swift */; };
 		ED83F67E20348A760038D96B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED83F67D20348A760038D96B /* ViewController.swift */; };
@@ -32,6 +49,23 @@
 		1D31F26BF0AE9765F1E26D19 /* Pods_CoreMath_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoreMath_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		20AA309B98D58F9A00CEBAA3 /* Pods-CoreMath_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoreMath_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CoreMath_Example/Pods-CoreMath_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		9A6CD5AC1AFF5D7F23DA9C85 /* CoreMath.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = CoreMath.podspec; path = ../CoreMath.podspec; sourceTree = "<group>"; };
+		9B3042FB205C84CD00C4F4B5 /* CustomFourierPlotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomFourierPlotView.swift; sourceTree = "<group>"; };
+		9B3042FC205C84CD00C4F4B5 /* CustomFourierPlotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomFourierPlotViewController.swift; sourceTree = "<group>"; };
+		9B3042FE205C84CD00C4F4B5 /* CustomPlotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPlotViewController.swift; sourceTree = "<group>"; };
+		9B3042FF205C84CD00C4F4B5 /* CustomPlotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPlotView.swift; sourceTree = "<group>"; };
+		9B304301205C84CD00C4F4B5 /* PlotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlotViewController.swift; sourceTree = "<group>"; };
+		9B304302205C84CD00C4F4B5 /* PlotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlotView.swift; sourceTree = "<group>"; };
+		9B304304205C84CD00C4F4B5 /* SamplingRangeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SamplingRangeView.swift; sourceTree = "<group>"; };
+		9B304305205C84CE00C4F4B5 /* FunctionPlotDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionPlotDataSource.swift; sourceTree = "<group>"; };
+		9B304306205C84CE00C4F4B5 /* PlotWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlotWindow.swift; sourceTree = "<group>"; };
+		9B304312205C859700C4F4B5 /* NSTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSTextField.swift; sourceTree = "<group>"; };
+		9B304313205C859700C4F4B5 /* NSMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSMenu.swift; sourceTree = "<group>"; };
+		9B304314205C859700C4F4B5 /* NSStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSStackView.swift; sourceTree = "<group>"; };
+		9B304315205C859700C4F4B5 /* NSView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSView.swift; sourceTree = "<group>"; };
+		9B304316205C859700C4F4B5 /* ApplicationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationDelegate.swift; sourceTree = "<group>"; };
+		9B30431D205C85B200C4F4B5 /* CGSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGSize.swift; sourceTree = "<group>"; };
+		9B30431E205C85B200C4F4B5 /* CGRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGRect.swift; sourceTree = "<group>"; };
+		9B30431F205C85B200C4F4B5 /* CGColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGColor.swift; sourceTree = "<group>"; };
 		A0EDC0B6CF06F0B6D58C5154 /* Pods-CoreMath_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoreMath_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-CoreMath_Example/Pods-CoreMath_Example.release.xcconfig"; sourceTree = "<group>"; };
 		B18FAA099BBF0080ECFAB73A /* Pods-CoreMath_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoreMath_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CoreMath_Tests/Pods-CoreMath_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		B472F2F0EFC7700A9D8125E1 /* Pods_CoreMath_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoreMath_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,6 +111,55 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		9B3042FA205C84CD00C4F4B5 /* FourierPlotView */ = {
+			isa = PBXGroup;
+			children = (
+				9B3042FB205C84CD00C4F4B5 /* CustomFourierPlotView.swift */,
+				9B3042FC205C84CD00C4F4B5 /* CustomFourierPlotViewController.swift */,
+			);
+			path = FourierPlotView;
+			sourceTree = "<group>";
+		};
+		9B3042FD205C84CD00C4F4B5 /* InterpolationPlotView */ = {
+			isa = PBXGroup;
+			children = (
+				9B3042FE205C84CD00C4F4B5 /* CustomPlotViewController.swift */,
+				9B3042FF205C84CD00C4F4B5 /* CustomPlotView.swift */,
+			);
+			path = InterpolationPlotView;
+			sourceTree = "<group>";
+		};
+		9B304300205C84CD00C4F4B5 /* PlotView */ = {
+			isa = PBXGroup;
+			children = (
+				9B304301205C84CD00C4F4B5 /* PlotViewController.swift */,
+				9B304302205C84CD00C4F4B5 /* PlotView.swift */,
+			);
+			path = PlotView;
+			sourceTree = "<group>";
+		};
+		9B304311205C859700C4F4B5 /* Cocoa */ = {
+			isa = PBXGroup;
+			children = (
+				9B304312205C859700C4F4B5 /* NSTextField.swift */,
+				9B304313205C859700C4F4B5 /* NSMenu.swift */,
+				9B304314205C859700C4F4B5 /* NSStackView.swift */,
+				9B304315205C859700C4F4B5 /* NSView.swift */,
+				9B304316205C859700C4F4B5 /* ApplicationDelegate.swift */,
+			);
+			path = Cocoa;
+			sourceTree = "<group>";
+		};
+		9B30431C205C85B200C4F4B5 /* CoreGraphics */ = {
+			isa = PBXGroup;
+			children = (
+				9B30431D205C85B200C4F4B5 /* CGSize.swift */,
+				9B30431E205C85B200C4F4B5 /* CGRect.swift */,
+				9B30431F205C85B200C4F4B5 /* CGColor.swift */,
+			);
+			path = CoreGraphics;
+			sourceTree = "<group>";
+		};
 		A06285E1D9DF2E6EEF56623B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +197,14 @@
 			children = (
 				ED83F67B20348A760038D96B /* AppDelegate.swift */,
 				ED83F67D20348A760038D96B /* ViewController.swift */,
+				9B3042FA205C84CD00C4F4B5 /* FourierPlotView */,
+				9B304305205C84CE00C4F4B5 /* FunctionPlotDataSource.swift */,
+				9B3042FD205C84CD00C4F4B5 /* InterpolationPlotView */,
+				9B304300205C84CD00C4F4B5 /* PlotView */,
+				9B304306205C84CE00C4F4B5 /* PlotWindow.swift */,
+				9B304304205C84CD00C4F4B5 /* SamplingRangeView.swift */,
+				9B30431C205C85B200C4F4B5 /* CoreGraphics */,
+				9B304311205C859700C4F4B5 /* Cocoa */,
 				ED83F67F20348A760038D96B /* Assets.xcassets */,
 				ED83F68120348A760038D96B /* Main.storyboard */,
 				ED83F68420348A760038D96B /* Info.plist */,
@@ -301,10 +392,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-CoreMath_Example/Pods-CoreMath_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/CoreMath/CoreMath.framework",
+				"${BUILT_PRODUCTS_DIR}/CorePlot/CorePlot.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CoreMath.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CorePlot.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -351,7 +444,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B304320205C85B300C4F4B5 /* CGSize.swift in Sources */,
+				9B304309205C84CE00C4F4B5 /* CustomPlotViewController.swift in Sources */,
+				9B304310205C84CE00C4F4B5 /* PlotWindow.swift in Sources */,
 				ED83F67E20348A760038D96B /* ViewController.swift in Sources */,
+				9B30431B205C859700C4F4B5 /* ApplicationDelegate.swift in Sources */,
+				9B304318205C859700C4F4B5 /* NSMenu.swift in Sources */,
+				9B30430F205C84CE00C4F4B5 /* FunctionPlotDataSource.swift in Sources */,
+				9B304321205C85B300C4F4B5 /* CGRect.swift in Sources */,
+				9B30430A205C84CE00C4F4B5 /* CustomPlotView.swift in Sources */,
+				9B30430C205C84CE00C4F4B5 /* PlotView.swift in Sources */,
+				9B304317205C859700C4F4B5 /* NSTextField.swift in Sources */,
+				9B304319205C859700C4F4B5 /* NSStackView.swift in Sources */,
+				9B304322205C85B300C4F4B5 /* CGColor.swift in Sources */,
+				9B304308205C84CE00C4F4B5 /* CustomFourierPlotViewController.swift in Sources */,
+				9B30430B205C84CE00C4F4B5 /* PlotViewController.swift in Sources */,
+				9B30430E205C84CE00C4F4B5 /* SamplingRangeView.swift in Sources */,
+				9B304307205C84CE00C4F4B5 /* CustomFourierPlotView.swift in Sources */,
+				9B30431A205C859700C4F4B5 /* NSView.swift in Sources */,
 				ED83F67C20348A760038D96B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

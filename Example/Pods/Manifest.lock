@@ -1,16 +1,19 @@
 PODS:
-  - CoreMath (0.1.0)
+  - CoreMath (0.1.3)
+  - CorePlot (2.2)
 
 DEPENDENCIES:
   - CoreMath (from `../`)
+  - CorePlot
 
 EXTERNAL SOURCES:
   CoreMath:
     :path: ../
 
 SPEC CHECKSUMS:
-  CoreMath: f70c4906dfd8d0dd888cfd1b5d7b93b5da7d26e1
+  CoreMath: 1b2865d0957bc960ca17b55f0dec4bfcde437939
+  CorePlot: cbe0c6e14220705e32e06a89c7d6a5a908b7d7d8
 
-PODFILE CHECKSUM: ce0c8687a1f24c2f6922dbb6f2a325fa5b7391fa
+PODFILE CHECKSUM: 35e8d5ea595384b1dfff43390326b6a1f07fa7b4
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.4.0
