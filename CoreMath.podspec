@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'CoreMath'
-  s.version          = '0.2.0'
+  s.version          = '0.2.1'
   s.summary          = 'CoreMath is a Swift library containing many math concepts.'
 
   s.description      = <<-DESC
