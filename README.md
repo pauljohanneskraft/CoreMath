@@ -1,3 +1,5 @@
+![CoreMath](https://user-images.githubusercontent.com/15239005/165651634-47dd9baf-5187-4702-9cf9-71445204a33a.png)
+
 # CoreMath
 
 [![CI Status](http://img.shields.io/travis/pauljohanneskraft/CoreMath.svg?style=flat)](https://travis-ci.org/pauljohanneskraft/CoreMath)
